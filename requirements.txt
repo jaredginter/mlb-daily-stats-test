@@ -1,0 +1,5 @@
+pybaseball>=2.2.7
+pandas>=2.0
+requests>=2.31
+streamlit>=1.35
+plotly>=5.20
