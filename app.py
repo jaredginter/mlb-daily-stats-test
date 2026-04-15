@@ -46,7 +46,8 @@ def style_splits_table(df):
     """Apply conditional formatting to the hitter splits table."""
     display_cols = {
         "batter_name":   "Hitter",
-        "pa":            "PA",
+        "seasons":       "Seasons",
+        "pa":            "PA (career)",
         "pitches_seen":  "Pitches",
         "xwoba":         "xwOBA",
         "barrel_rate":   "Barrel%",
@@ -61,7 +62,9 @@ def style_splits_table(df):
     for raw, label in display_cols.items():
         if raw not in df.columns:
             continue
-        if raw in ("pa", "pitches_seen"):
+        if raw == "seasons":
+            pass  # already a string, display as-is
+        elif raw in ("pa", "pitches_seen"):
             out[label] = out[label].apply(lambda v: f"{int(v)}" if pd.notna(v) else "—")
         elif raw in ("barrel_rate", "hard_hit_pct", "whiff_pct"):
             out[label] = out[label].apply(lambda v: f"{v:.1%}" if pd.notna(v) else "—")
@@ -154,7 +157,7 @@ with st.sidebar:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 st.title(f"Hitter Splits vs Starters — {selected_date.strftime('%A, %B %d %Y')}")
-st.caption("Each panel shows the **opposing lineup's** Statcast numbers vs. that starting pitcher this season.")
+st.caption("Each panel shows the **opposing lineup's** career Statcast numbers vs. that starting pitcher (all seasons since 2015).")
 
 date_str = selected_date.strftime("%Y-%m-%d")
 summary  = load_summary(date_str)
@@ -260,5 +263,5 @@ for _, game in summary.iterrows():
 st.divider()
 st.caption(
     "Data: Baseball Savant (Statcast) via pybaseball · MLB Stats API · "
-    "Stats reflect current season plate appearances vs. today's starter only."
+    "Career splits cover all Statcast seasons (2015–present) vs. today's starter."
 )
