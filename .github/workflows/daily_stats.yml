@@ -2,13 +2,14 @@ name: Daily Starter Stats
 
 on:
   schedule:
-    # 9:00 AM ET = 13:00 UTC
+    # 9:00 AM ET = 13:00 UTC (accounts for EDT — adjust to 14:00 in EST months if needed)
     - cron: '0 13 * * *'
-  workflow_dispatch:
+  workflow_dispatch:   # allows manual trigger from the GitHub UI
 
 jobs:
   update-stats:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -18,6 +19,16 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip'
+
+      # Persist pybaseball's local cache between daily runs
+      # After the first run this can cut fetch time significantly
+      - name: Cache pybaseball data
+        uses: actions/cache@v4
+        with:
+          path: ~/.pybaseball/cache
+          key: pybaseball-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            pybaseball-${{ runner.os }}-
 
       - name: Install dependencies
         run: pip install -r requirements.txt
