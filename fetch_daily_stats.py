@@ -1,11 +1,13 @@
 """
 fetch_daily_stats.py
-For each day's probable starters, fetches the opposing team's
-active roster and pulls each hitter's full career Statcast splits
-vs. that pitcher (all seasons since the Statcast era began in 2015).
+For each day's probable starters, fetches the pitcher's full career
+Statcast data once, then slices it per opposing hitter.
+
+This is much faster than the previous approach of fetching each hitter
+individually — 1 API call per pitcher instead of ~13 per pitcher.
 
 Output: data/daily_starters.csv  (one row per game)
-        data/hitter_splits/  (one CSV per game: hitter-vs-pitcher rows)
+        data/hitter_splits/      (one CSV per game: hitter-vs-pitcher rows)
 """
 
 import logging
@@ -14,7 +16,7 @@ from datetime import date
 
 import pandas as pd
 import requests
-from pybaseball import cache, statcast_batter
+from pybaseball import cache, statcast_pitcher
 
 logging.basicConfig(
     level=logging.INFO,
@@ -25,7 +27,7 @@ log = logging.getLogger(__name__)
 
 cache.enable()
 
-# Full Statcast era — career history vs pitcher, not just current season
+# Full Statcast era — pulls all career history vs each pitcher
 STATCAST_ERA_START = "2015-03-01"
 DATA_DIR           = "data"
 SPLITS_DIR         = os.path.join(DATA_DIR, "hitter_splits")
@@ -74,11 +76,8 @@ def get_probable_starters(game_date=None):
 
 
 def get_active_hitters(team_id):
-    """
-    Return a list of {name, mlbam_id} for active position players on a team.
-    Uses the MLB Stats API 40-man / active roster endpoint.
-    """
-    url = f"https://statsapi.mlb.com/api/v1/teams/{team_id}/roster"
+    """Return {name, mlbam_id} for every active non-pitcher on a team."""
+    url    = f"https://statsapi.mlb.com/api/v1/teams/{team_id}/roster"
     params = {"rosterType": "active"}
     try:
         r = requests.get(url, params=params, timeout=15)
@@ -88,30 +87,25 @@ def get_active_hitters(team_id):
         log.error("  Roster fetch failed for team %s: %s", team_id, exc)
         return []
 
-    hitters = []
-    for p in roster:
-        pos = p.get("position", {}).get("abbreviation", "")
-        # Exclude pitchers (P) and two-way players are included
-        if pos != "P":
-            hitters.append({
-                "name":     p["person"]["fullName"],
-                "mlbam_id": p["person"]["id"],
-            })
-    return hitters
+    return [
+        {"name": p["person"]["fullName"], "mlbam_id": p["person"]["id"]}
+        for p in roster
+        if p.get("position", {}).get("abbreviation", "") != "P"
+    ]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Statcast batter splits
+# Statcast splits — pitcher-first approach
 # ─────────────────────────────────────────────────────────────────────────────
 
-def compute_batter_splits_vs_pitcher(batter_df, pitcher_mlbam_id):
+def compute_hitter_splits(pitcher_df, batter_mlbam_id):
     """
-    Filter a batter's full career Statcast DataFrame to at-bats vs. a specific
-    pitcher, then compute summary metrics across all seasons.
+    Slice a pitcher's career Statcast DataFrame down to one batter
+    and compute summary metrics.
     """
-    vs = batter_df[batter_df["pitcher"] == pitcher_mlbam_id].copy()
+    vs = pitcher_df[pitcher_df["batter"] == batter_mlbam_id].copy()
     if vs.empty:
-        return None   # no career history vs this pitcher
+        return None
 
     bbe    = vs[vs["type"] == "X"]
     swings = vs[vs["description"].isin(
@@ -124,7 +118,7 @@ def compute_batter_splits_vs_pitcher(batter_df, pitcher_mlbam_id):
     xwoba_vals = vs["estimated_woba_using_speedangle"].dropna()
     ev_vals    = bbe["launch_speed"].dropna()
 
-    # Determine the range of seasons covered
+    # Year range of the matchup history
     seasons_seen = ""
     if "game_date" in vs.columns:
         years = pd.to_datetime(vs["game_date"], errors="coerce").dt.year.dropna().astype(int)
@@ -145,32 +139,42 @@ def compute_batter_splits_vs_pitcher(batter_df, pitcher_mlbam_id):
     }
 
 
-def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id):
+def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
     """
-    For a list of hitters, fetch each one's full career Statcast data
-    (2015–today) and filter to at-bats vs. pitcher_mlbam_id.
-    Returns a DataFrame with one row per hitter who has faced this pitcher.
+    Fetch the pitcher's full career Statcast data ONCE, then slice per hitter.
+    Returns a DataFrame sorted by xwOBA descending.
     """
     today = date.today().strftime("%Y-%m-%d")
-    rows  = []
 
+    log.info("  Fetching career Statcast for %s (id=%s) ...", pitcher_name, pitcher_mlbam_id)
+    try:
+        pitcher_df = statcast_pitcher(STATCAST_ERA_START, today, player_id=pitcher_mlbam_id)
+    except Exception as exc:
+        log.error("  Failed to fetch pitcher data for %s: %s", pitcher_name, exc)
+        return pd.DataFrame()
+
+    if pitcher_df.empty:
+        log.warning("  No Statcast data found for %s", pitcher_name)
+        return pd.DataFrame()
+
+    log.info("  Got %d pitches — slicing by opposing hitters ...", len(pitcher_df))
+
+    rows = []
     for hitter in hitters:
-        hitter_id = hitter["mlbam_id"]
-        log.info("    %s (id=%s) vs pitcher %s", hitter["name"], hitter_id, pitcher_mlbam_id)
-        try:
-            # Pull full Statcast career for this batter
-            df = statcast_batter(STATCAST_ERA_START, today, player_id=hitter_id)
-            splits = compute_batter_splits_vs_pitcher(df, pitcher_mlbam_id)
-            if splits:
-                rows.append({"batter_name": hitter["name"], "batter_id": hitter_id, **splits})
-        except Exception as exc:
-            log.warning("    Failed for %s: %s", hitter["name"], exc)
+        splits = compute_hitter_splits(pitcher_df, hitter["mlbam_id"])
+        if splits:
+            rows.append({
+                "batter_name": hitter["name"],
+                "batter_id":   hitter["mlbam_id"],
+                **splits,
+            })
+        else:
+            log.info("    No history: %s vs %s", hitter["name"], pitcher_name)
 
     if not rows:
         return pd.DataFrame()
 
-    result = pd.DataFrame(rows).sort_values("xwoba", ascending=False, na_position="last")
-    return result
+    return pd.DataFrame(rows).sort_values("xwoba", ascending=False, na_position="last")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -180,9 +184,9 @@ def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id):
 def build_daily_report(game_date=None):
     """
     For each game:
-      - Home pitcher vs. away lineup
-      - Away pitcher vs. home lineup
-    Saves per-game hitter split CSVs to data/hitter_splits/
+      - Fetch home pitcher career data → slice vs away lineup
+      - Fetch away pitcher career data → slice vs home lineup
+    Saves per-game CSVs to data/hitter_splits/
     Returns a summary DataFrame (one row per game).
     """
     if game_date is None:
@@ -195,8 +199,8 @@ def build_daily_report(game_date=None):
     summary_rows = []
 
     for game in starters:
-        matchup   = f"{game['away_team']} @ {game['home_team']}"
-        game_id   = game["game_id"]
+        matchup = f"{game['away_team']} @ {game['home_team']}"
+        game_id = game["game_id"]
         log.info("Processing: %s", matchup)
 
         row = {
@@ -211,12 +215,11 @@ def build_daily_report(game_date=None):
             "away_pitcher_id":   game["away_pitcher_id"],
         }
 
-        # ── Home pitcher vs away lineup ──
+        # ── Home pitcher vs away lineup ──────────────────────────────────────
         if game["home_pitcher_id"]:
-            log.info("  Away hitters vs %s", game["home_pitcher_name"])
             away_hitters = get_active_hitters(game["away_team_id"])
             away_splits  = get_lineup_splits_vs_pitcher(
-                away_hitters, game["home_pitcher_id"]
+                away_hitters, game["home_pitcher_id"], game["home_pitcher_name"]
             )
             if not away_splits.empty:
                 path = os.path.join(SPLITS_DIR, f"{game_id}_away_vs_home_pitcher.csv")
@@ -230,12 +233,11 @@ def build_daily_report(game_date=None):
             row["away_hitters_with_history"] = None
             row["away_lineup_avg_xwoba"]     = None
 
-        # ── Away pitcher vs home lineup ──
+        # ── Away pitcher vs home lineup ──────────────────────────────────────
         if game["away_pitcher_id"]:
-            log.info("  Home hitters vs %s", game["away_pitcher_name"])
             home_hitters = get_active_hitters(game["home_team_id"])
             home_splits  = get_lineup_splits_vs_pitcher(
-                home_hitters, game["away_pitcher_id"]
+                home_hitters, game["away_pitcher_id"], game["away_pitcher_name"]
             )
             if not home_splits.empty:
                 path = os.path.join(SPLITS_DIR, f"{game_id}_home_vs_away_pitcher.csv")
