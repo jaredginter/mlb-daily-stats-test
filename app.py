@@ -48,7 +48,7 @@ def style_splits_table(df):
     display_cols = {
         "batter_name":   "Hitter",
         "seasons":       "Seasons",
-        "pa":            "PA (career)",
+        "abs":           "ABs",
         "batting_avg":   "Batting Avg",
         "home_runs":     "Home Runs",
         "xwoba":         "xwOBA",
@@ -65,7 +65,7 @@ def style_splits_table(df):
             continue
         if raw == "seasons":
             pass  # already a string, display as-is
-        elif raw == "pa":
+        elif raw == "abs":
             out[label] = out[label].apply(lambda v: f"{int(v)}" if pd.notna(v) else "—")
         elif raw == "home_runs":
             out[label] = out[label].apply(lambda v: f"{int(v)}" if pd.notna(v) else "—")

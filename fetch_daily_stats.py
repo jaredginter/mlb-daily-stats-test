@@ -151,7 +151,7 @@ def compute_hitter_splits(pitcher_df, batter_mlbam_id):
     home_runs = int((ab_df["events"] == "home_run").sum()) if "events" in ab_df.columns else 0
 
     return {
-        "pa":            int(vs["at_bat_number"].nunique()),
+        "abs":           int(ab_df["events"].isin(ab_events).sum()) if "events" in ab_df.columns else int(vs["at_bat_number"].nunique()),
         "seasons":       seasons_seen,
         "batting_avg":   batting_avg,
         "home_runs":     home_runs,
