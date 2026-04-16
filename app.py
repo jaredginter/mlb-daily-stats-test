@@ -44,13 +44,14 @@ def xwoba_color(val):
 
 def style_splits_table(df):
     """Apply conditional formatting to the hitter splits table."""
+    # Columns in the exact display order requested
     display_cols = {
         "batter_name":   "Hitter",
         "seasons":       "Seasons",
         "pa":            "PA (career)",
-        "pitches_seen":  "Pitches",
+        "batting_avg":   "Batting Avg",
+        "home_runs":     "Home Runs",
         "xwoba":         "xwOBA",
-        "barrel_rate":   "Barrel%",
         "hard_hit_pct":  "HardHit%",
         "whiff_pct":     "Whiff%",
         "avg_exit_velo": "Avg EV",
@@ -64,9 +65,13 @@ def style_splits_table(df):
             continue
         if raw == "seasons":
             pass  # already a string, display as-is
-        elif raw in ("pa", "pitches_seen"):
+        elif raw == "pa":
             out[label] = out[label].apply(lambda v: f"{int(v)}" if pd.notna(v) else "—")
-        elif raw in ("barrel_rate", "hard_hit_pct", "whiff_pct"):
+        elif raw == "home_runs":
+            out[label] = out[label].apply(lambda v: f"{int(v)}" if pd.notna(v) else "—")
+        elif raw == "batting_avg":
+            out[label] = out[label].apply(lambda v: f"{v:.3f}" if pd.notna(v) else "—")
+        elif raw in ("hard_hit_pct", "whiff_pct"):
             out[label] = out[label].apply(lambda v: f"{v:.1%}" if pd.notna(v) else "—")
         elif raw == "avg_exit_velo":
             out[label] = out[label].apply(lambda v: f"{v:.1f}" if pd.notna(v) else "—")

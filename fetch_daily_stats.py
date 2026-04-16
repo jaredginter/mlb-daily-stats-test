@@ -131,17 +131,35 @@ def compute_hitter_splits(pitcher_df, batter_mlbam_id):
     xwoba_vals = vs["estimated_woba_using_speedangle"].dropna() if has_xwoba else pd.Series([], dtype=float)
     ev_vals    = bbe["launch_speed"].dropna() if has_launch_spd else pd.Series([], dtype=float)
 
+    # Batting average: hits / at-bats (exclude walks, HBP, sac flies)
+    # Statcast events that count as hits
+    hit_events = {"single", "double", "triple", "home_run"}
+    ab_events  = {
+        "single", "double", "triple", "home_run",
+        "strikeout", "strikeout_double_play",
+        "field_out", "force_out", "grounded_into_double_play",
+        "fielders_choice", "fielders_choice_out",
+        "double_play", "triple_play",
+    }
+    # One row per plate appearance (use last pitch of each AB)
+    ab_df = vs.sort_values("pitch_number").groupby("at_bat_number").last()
+    hits  = ab_df["events"].isin(hit_events).sum() if "events" in ab_df.columns else 0
+    abs_  = ab_df["events"].isin(ab_events).sum()  if "events" in ab_df.columns else 0
+    batting_avg = round(hits / abs_, 3) if abs_ > 0 else None
+
+    # Home runs: count PA events == "home_run"
+    home_runs = int((ab_df["events"] == "home_run").sum()) if "events" in ab_df.columns else 0
+
     return {
         "pa":            int(vs["at_bat_number"].nunique()),
-        "pitches_seen":  int(len(vs)),
         "seasons":       seasons_seen,
+        "batting_avg":   batting_avg,
+        "home_runs":     home_runs,
         "xwoba":         round(xwoba_vals.mean(), 3) if not xwoba_vals.empty else None,
-        "barrel_rate":   round(bbe["barrel"].mean(), 3)
-                         if (has_barrel and not bbe.empty) else None,
-        "avg_exit_velo": round(ev_vals.mean(), 1) if not ev_vals.empty else None,
-        "whiff_pct":     round(len(whiffs) / len(swings), 3) if len(swings) > 0 else None,
         "hard_hit_pct":  round((bbe["launch_speed"] >= 95).sum() / len(bbe), 3)
                          if (has_launch_spd and not bbe.empty) else None,
+        "whiff_pct":     round(len(whiffs) / len(swings), 3) if len(swings) > 0 else None,
+        "avg_exit_velo": round(ev_vals.mean(), 1) if not ev_vals.empty else None,
     }
 
 
