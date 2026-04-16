@@ -10,8 +10,6 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from fetch_daily_stats import build_daily_report
-
 st.set_page_config(
     page_title="MLB Hitter Splits vs Starters",
     page_icon="⚾",
@@ -121,18 +119,13 @@ def splits_bar_chart(df, pitcher_name, batting_team):
 
 # ── Data loading ──────────────────────────────────────────────────────────────
 
-@st.cache_data(ttl=1800, show_spinner="Fetching today's starters and hitter splits…")
+@st.cache_data(ttl=1800, show_spinner="Loading today's starters…")
 def load_summary(game_date_str):
+    """Always read from the CSV committed by GitHub Actions — never fetch live."""
     csv_path = os.path.join("data", "daily_starters.csv")
     if os.path.exists(csv_path):
-        mtime = datetime.fromtimestamp(os.path.getmtime(csv_path), tz=timezone.utc)
-        if mtime.date() == date.today():
-            return pd.read_csv(csv_path)
-    df = build_daily_report(game_date_str)
-    if not df.empty:
-        os.makedirs("data", exist_ok=True)
-        df.to_csv(csv_path, index=False)
-    return df
+        return pd.read_csv(csv_path)
+    return pd.DataFrame()
 
 
 def load_splits(game_id, side):
@@ -158,25 +151,25 @@ def render_game_log(df, pitcher_name, season):
         st.caption("No game log available yet for this season.")
         return
 
-    # Rename columns for display
-    display = df.rename(columns={
-        "date":     "DATE",
-        "opponent": "OPP",
-        "home_away":"",
-        "result":   "RESULT",
-        "ip":       "IP",
-        "h":        "H",
-        "r":        "R",
-        "er":       "ER",
-        "hr":       "HR",
-        "bb":       "BB",
-        "k":        "K",
-        "pitches":  "P",
-    })
+    # Build combined OPP column BEFORE any renaming to avoid type issues
+    display = df.copy()
+    display["OPP"] = (
+        display["home_away"].astype(str) + " " + display["opponent"].astype(str)
+    )
 
-    # Combine home_away + opponent into one OPP column
-    display["OPP"] = display[""] + " " + display["OPP"]
-    display = display.drop(columns=[""])
+    # Select and rename columns for display
+    display = display[["date", "OPP", "result", "ip", "h", "r", "er", "hr", "bb", "k", "pitches"]].rename(columns={
+        "date":    "DATE",
+        "result":  "RESULT",
+        "ip":      "IP",
+        "h":       "H",
+        "r":       "R",
+        "er":      "ER",
+        "hr":      "HR",
+        "bb":      "BB",
+        "k":       "K",
+        "pitches": "P",
+    })
 
     st.caption(f"**{season} Regular Season — {pitcher_name}**")
     st.dataframe(
