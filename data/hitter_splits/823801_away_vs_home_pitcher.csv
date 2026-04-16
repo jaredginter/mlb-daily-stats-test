@@ -1,2 +1,2 @@
-batter_name,batter_id,pa,pitches_seen,seasons,xwoba,barrel_rate,avg_exit_velo,whiff_pct,hard_hit_pct
-Lenyn Sosa,672820,1,3,2026,,,,0.0,
+batter_name,batter_id,pa,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Lenyn Sosa,672820,1,2026,0.0,0,,,0.0,

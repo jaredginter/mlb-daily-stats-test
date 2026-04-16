@@ -1,6 +1,6 @@
-batter_name,batter_id,pa,pitches_seen,seasons,xwoba,barrel_rate,avg_exit_velo,whiff_pct,hard_hit_pct
-Andrew Benintendi,643217,9,30,2020–2025,0.538,,94.1,0.214,0.714
-Miguel Vargas,678246,3,12,2023–2025,0.38,,90.8,0.0,0.333
-Derek Hill,656537,5,24,2021,0.165,,66.9,0.385,0.0
-Reese McGuire,624512,1,4,2025,0.025,,46.8,0.0,0.0
-Chase Meidroth,805367,1,5,2025,0.0,,,0.25,
+batter_name,batter_id,pa,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Andrew Benintendi,643217,9,2020–2025,0.429,0,0.538,0.714,0.214,94.1
+Miguel Vargas,678246,3,2023–2025,0.333,0,0.38,0.333,0.0,90.8
+Derek Hill,656537,5,2021,0.2,0,0.165,0.0,0.385,66.9
+Reese McGuire,624512,1,2025,0.0,0,0.025,0.0,0.0,46.8
+Chase Meidroth,805367,1,2025,0.0,0,0.0,,0.25,
