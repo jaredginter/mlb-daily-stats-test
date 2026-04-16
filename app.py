@@ -144,6 +144,48 @@ def load_splits(game_id, side):
     return pd.DataFrame()
 
 
+def load_game_log(pitcher_id):
+    """Load saved game log CSV for a pitcher if it exists."""
+    path = os.path.join("data", "gamelogs", f"{pitcher_id}_gamelog.csv")
+    if os.path.exists(path):
+        return pd.read_csv(path)
+    return pd.DataFrame()
+
+
+def render_game_log(df, pitcher_name, season):
+    """Render a styled game log table matching the screenshot layout."""
+    if df.empty:
+        st.caption("No game log available yet for this season.")
+        return
+
+    # Rename columns for display
+    display = df.rename(columns={
+        "date":     "DATE",
+        "opponent": "OPP",
+        "home_away":"",
+        "result":   "RESULT",
+        "ip":       "IP",
+        "h":        "H",
+        "r":        "R",
+        "er":       "ER",
+        "hr":       "HR",
+        "bb":       "BB",
+        "k":        "K",
+        "pitches":  "P",
+    })
+
+    # Combine home_away + opponent into one OPP column
+    display["OPP"] = display[""] + " " + display["OPP"]
+    display = display.drop(columns=[""])
+
+    st.caption(f"**{season} Regular Season — {pitcher_name}**")
+    st.dataframe(
+        display,
+        use_container_width=True,
+        hide_index=True,
+    )
+
+
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 
 with st.sidebar:
@@ -152,7 +194,8 @@ with st.sidebar:
     st.caption("Shows each opposing hitter's Statcast stats vs. today's starter — season-to-date.")
     st.divider()
     show_chart = st.toggle("Show xwOBA chart", value=True)
-    show_table = st.toggle("Show hitter table", value=True)
+    show_table   = st.toggle("Show hitter table", value=True)
+    show_gamelog = st.toggle("Show pitcher game log", value=True)
     st.divider()
     if st.button("🔄 Force refresh", use_container_width=True):
         st.cache_data.clear()
@@ -257,6 +300,13 @@ for _, game in summary.iterrows():
                         hide_index=True,
                         key=f"table_{game_id}_{panel['splits_side']}",
                     )
+
+                # ── Game log ─────────────────────────────────────────────
+                pitcher_id = game.get(f"{panel['pitcher_side']}_pitcher_id")
+                if pitcher_id and show_gamelog:
+                    st.markdown("---")
+                    gl_df = load_game_log(pitcher_id)
+                    render_game_log(gl_df, pitcher, selected_date.year)
 
         with col_div:
             st.markdown(

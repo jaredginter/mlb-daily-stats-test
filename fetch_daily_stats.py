@@ -94,6 +94,66 @@ def get_active_hitters(team_id):
     ]
 
 
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Pitcher game log
+# ─────────────────────────────────────────────────────────────────────────────
+
+def get_pitcher_game_log(pitcher_id, season=None):
+    """
+    Fetch a pitcher's game-by-game log for the current season
+    from the MLB Stats API. Returns a DataFrame with one row per start.
+    """
+    if season is None:
+        season = date.today().year
+
+    url    = f"https://statsapi.mlb.com/api/v1/people/{pitcher_id}/stats"
+    params = {
+        "stats":  "gameLog",
+        "group":  "pitching",
+        "season": season,
+    }
+    try:
+        r = requests.get(url, params=params, timeout=15)
+        r.raise_for_status()
+        splits = r.json().get("stats", [{}])[0].get("splits", [])
+    except Exception as exc:
+        log.error("  Game log fetch failed for pitcher %s: %s", pitcher_id, exc)
+        return pd.DataFrame()
+
+    if not splits:
+        return pd.DataFrame()
+
+    rows = []
+    for s in splits:
+        stat = s.get("stat", {})
+        game = s.get("game", {})
+        team = s.get("team", {})
+        opp  = s.get("opponent", {})
+        rows.append({
+            "date":       s.get("date", ""),
+            "opponent":   opp.get("abbreviation", ""),
+            "home_away":  "vs" if s.get("isHome") else "@",
+            "result":     f"W {stat.get('wins',0)}-{stat.get('losses',0)}" if stat.get("wins") else
+                          f"L {stat.get('wins',0)}-{stat.get('losses',0)}" if stat.get("losses") else "ND",
+            "ip":         stat.get("inningsPitched", ""),
+            "h":          stat.get("hits", ""),
+            "r":          stat.get("runs", ""),
+            "er":         stat.get("earnedRuns", ""),
+            "hr":         stat.get("homeRuns", ""),
+            "bb":         stat.get("baseOnBalls", ""),
+            "k":          stat.get("strikeOuts", ""),
+            "pitches":    stat.get("numberOfPitches", ""),
+        })
+
+    df = pd.DataFrame(rows)
+    # Most recent starts first
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+    df = df.sort_values("date", ascending=False).reset_index(drop=True)
+    df["date"] = df["date"].dt.strftime("%-m/%-d")
+    return df
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Statcast splits — pitcher-first approach
 # ─────────────────────────────────────────────────────────────────────────────
@@ -238,6 +298,16 @@ def build_daily_report(game_date=None):
             "home_pitcher_id":   game["home_pitcher_id"],
             "away_pitcher_id":   game["away_pitcher_id"],
         }
+
+        # ── Game logs for both pitchers ─────────────────────────────────────
+        for side in ("home", "away"):
+            pid = game[f"{side}_pitcher_id"]
+            if pid:
+                gl = get_pitcher_game_log(pid)
+                if not gl.empty:
+                    gl_path = os.path.join(DATA_DIR, f"gamelogs/{pid}_gamelog.csv")
+                    os.makedirs(os.path.dirname(gl_path), exist_ok=True)
+                    gl.to_csv(gl_path, index=False)
 
         # ── Home pitcher vs away lineup ──────────────────────────────────────
         if game["home_pitcher_id"]:
