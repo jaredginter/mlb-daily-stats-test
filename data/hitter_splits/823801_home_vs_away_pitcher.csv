@@ -1,6 +1,6 @@
-batter_name,batter_id,pa,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
 Gary Sánchez,596142,10,2021–2025,0.4,1,0.423,0.667,0.294,96.0
 Luis Rengifo,650859,11,2023–2025,0.091,0,0.317,0.364,0.208,81.8
-William Contreras,661388,8,2021–2023,0.333,0,0.219,0.0,0.471,63.6
+William Contreras,661388,6,2021–2023,0.333,0,0.219,0.0,0.471,63.6
 Blake Perkins,663368,2,2023,0.0,0,0.142,0.5,0.0,95.9
 Jake Bauers,641343,2,2019,0.0,0,0.077,0.0,0.75,72.0

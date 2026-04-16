@@ -1,3 +1,3 @@
-batter_name,batter_id,pa,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
-Yandy Díaz,650490,6,2020–2021,0.0,0,0.632,0.667,0.125,99.1
-Cedric Mullins,656775,6,2021,0.4,1,0.489,0.333,0.25,85.1
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Yandy Díaz,650490,3,2020–2021,0.0,0,0.632,0.667,0.125,99.1
+Cedric Mullins,656775,5,2021,0.4,1,0.489,0.333,0.25,85.1
