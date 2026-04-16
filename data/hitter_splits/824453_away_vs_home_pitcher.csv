@@ -1,2 +1,2 @@
-batter_name,batter_id,pa,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
 Blaze Alexander,677942,3,2025,0.0,0,0.088,0.0,0.25,84.8
