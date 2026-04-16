@@ -115,9 +115,6 @@ def compute_hitter_splits(pitcher_df, batter_mlbam_id):
         ["swinging_strike", "swinging_strike_blocked"]
     )]
 
-    xwoba_vals = vs["estimated_woba_using_speedangle"].dropna()
-    ev_vals    = bbe["launch_speed"].dropna()
-
     # Year range of the matchup history
     seasons_seen = ""
     if "game_date" in vs.columns:
@@ -126,16 +123,25 @@ def compute_hitter_splits(pitcher_df, batter_mlbam_id):
             yr_min, yr_max = int(years.min()), int(years.max())
             seasons_seen = str(yr_min) if yr_min == yr_max else f"{yr_min}–{yr_max}"
 
+    # Guard against missing columns — pybaseball omits these when data is sparse
+    has_barrel     = "barrel" in bbe.columns
+    has_launch_spd = "launch_speed" in bbe.columns
+    has_xwoba      = "estimated_woba_using_speedangle" in vs.columns
+
+    xwoba_vals = vs["estimated_woba_using_speedangle"].dropna() if has_xwoba else pd.Series([], dtype=float)
+    ev_vals    = bbe["launch_speed"].dropna() if has_launch_spd else pd.Series([], dtype=float)
+
     return {
         "pa":            int(vs["at_bat_number"].nunique()),
         "pitches_seen":  int(len(vs)),
         "seasons":       seasons_seen,
         "xwoba":         round(xwoba_vals.mean(), 3) if not xwoba_vals.empty else None,
-        "barrel_rate":   round(bbe["barrel"].mean(), 3) if not bbe.empty else None,
+        "barrel_rate":   round(bbe["barrel"].mean(), 3)
+                         if (has_barrel and not bbe.empty) else None,
         "avg_exit_velo": round(ev_vals.mean(), 1) if not ev_vals.empty else None,
         "whiff_pct":     round(len(whiffs) / len(swings), 3) if len(swings) > 0 else None,
         "hard_hit_pct":  round((bbe["launch_speed"] >= 95).sum() / len(bbe), 3)
-                         if not bbe.empty else None,
+                         if (has_launch_spd and not bbe.empty) else None,
     }
 
 
