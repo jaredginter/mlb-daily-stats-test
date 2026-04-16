@@ -1,10 +1,10 @@
-batter_name,batter_id,pa,pitches_seen,seasons,xwoba,barrel_rate,avg_exit_velo,whiff_pct,hard_hit_pct
-Riley Greene,682985,10,39,2022–2025,0.544,,88.8,0.188,0.571
-Spencer Torkelson,679529,7,27,2022–2025,0.343,,79.2,0.182,0.0
-Zach McKinstry,656716,2,9,2025,0.273,,107.1,0.2,1.0
-Javier Báez,595879,12,40,2020–2025,0.227,,92.7,0.333,0.429
-Jake Rogers,668670,5,24,2021–2025,0.212,,95.6,0.154,0.5
-Gleyber Torres,650402,11,40,2021–2025,0.144,,81.4,0.381,0.0
-Jahmai Jones,663330,2,8,2021,0.094,,88.7,0.25,0.0
-Colt Keith,690993,4,14,2024–2025,0.051,,69.9,0.333,0.0
-Matt Vierling,663837,2,9,2024,0.0,,,0.75,
+batter_name,batter_id,pa,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Riley Greene,682985,10,2022–2025,0.444,0,0.544,0.571,0.188,88.8
+Spencer Torkelson,679529,7,2022–2025,0.333,0,0.343,0.0,0.182,79.2
+Zach McKinstry,656716,2,2025,0.5,0,0.273,1.0,0.2,107.1
+Javier Báez,595879,12,2020–2025,0.273,0,0.227,0.429,0.333,92.7
+Jake Rogers,668670,5,2021–2025,0.0,0,0.212,0.5,0.154,95.6
+Gleyber Torres,650402,11,2021–2025,0.0,0,0.144,0.0,0.381,81.4
+Jahmai Jones,663330,2,2021,0.0,0,0.094,0.0,0.25,88.7
+Colt Keith,690993,4,2024–2025,0.0,0,0.051,0.0,0.333,69.9
+Matt Vierling,663837,2,2024,0.0,0,0.0,,0.75,

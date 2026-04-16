@@ -1,5 +1,5 @@
-batter_name,batter_id,pa,pitches_seen,seasons,xwoba,barrel_rate,avg_exit_velo,whiff_pct,hard_hit_pct
-Travis d'Arnaud,518595,3,12,2017,0.539,,103.0,0.25,1.0
-Adam Frazier,624428,11,40,2019–2021,0.29,,79.1,0.222,0.143
-Josh Lowe,666139,6,24,2025,0.0,,83.0,0.333,0.0
-Yoán Moncada,660162,3,15,2019,0.0,,,0.8,
+batter_name,batter_id,pa,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Travis d'Arnaud,518595,3,2017,0.5,0,0.539,1.0,0.25,103.0
+Adam Frazier,624428,11,2019–2021,0.222,0,0.29,0.143,0.222,79.1
+Josh Lowe,666139,6,2025,0.167,0,0.0,0.0,0.333,83.0
+Yoán Moncada,660162,3,2019,0.0,0,0.0,,0.8,

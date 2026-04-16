@@ -1,2 +1,2 @@
-batter_name,batter_id,pa,pitches_seen,seasons,xwoba,barrel_rate,avg_exit_velo,whiff_pct,hard_hit_pct
-Curtis Mead,678554,1,2,2025,,,100.1,0.0,1.0
+batter_name,batter_id,pa,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Curtis Mead,678554,1,2025,1.0,0,,1.0,0.0,100.1

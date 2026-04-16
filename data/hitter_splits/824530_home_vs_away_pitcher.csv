@@ -1,9 +1,9 @@
-batter_name,batter_id,pa,pitches_seen,seasons,xwoba,barrel_rate,avg_exit_velo,whiff_pct,hard_hit_pct
-Nathaniel Lowe,663993,5,20,2025–2026,0.553,,95.0,0.125,0.333
-Spencer Steer,668715,2,9,2025,0.391,,91.7,0.0,0.0
-Elly De La Cruz,682829,3,8,2025,0.25,,71.2,0.333,0.0
-Eugenio Suárez,553993,4,20,2024–2025,0.187,,87.4,0.375,0.0
-TJ Friedl,670770,4,18,2025–2026,0.157,,94.7,0.0,0.333
-Matt McLain,680574,2,8,2026,,,98.2,0.0,0.5
-P.J. Higgins,664731,1,4,2026,,,56.7,0.0,0.0
-Will Benson,666181,2,7,2026,,,104.6,0.5,1.0
+batter_name,batter_id,pa,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Nathaniel Lowe,663993,5,2025–2026,0.25,0,0.553,0.333,0.125,95.0
+Spencer Steer,668715,2,2025,1.0,0,0.391,0.0,0.0,91.7
+Elly De La Cruz,682829,3,2025,0.0,0,0.25,0.0,0.333,71.2
+Eugenio Suárez,553993,4,2024–2025,0.0,0,0.187,0.0,0.375,87.4
+TJ Friedl,670770,4,2025–2026,0.0,0,0.157,0.333,0.0,94.7
+Matt McLain,680574,2,2026,0.5,0,,0.5,0.0,98.2
+P.J. Higgins,664731,1,2026,0.0,0,,0.0,0.0,56.7
+Will Benson,666181,2,2026,1.0,0,,1.0,0.5,104.6
