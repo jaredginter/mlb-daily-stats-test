@@ -1,0 +1,8 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Aaron Judge,592450,3,2025,0.333,1,0.667,1.0,0.8,117.9
+José Caballero,676609,1,2025,0.0,0,0.65,1.0,0.333,102.7
+Jazz Chisholm Jr.,665862,3,2025,0.333,0,0.632,1.0,0.167,100.5
+Trent Grisham,663757,2,2025,0.0,0,0.289,0.0,0.333,93.4
+Austin Wells,669224,2,2025,0.5,1,0.281,0.5,0.0,89.8
+Cody Bellinger,641355,3,2025,0.0,0,0.242,1.0,0.143,100.2
+Paul Goldschmidt,502671,3,2025,0.0,0,0.082,0.5,0.25,85.7
