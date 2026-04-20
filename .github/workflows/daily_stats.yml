@@ -2,8 +2,8 @@ name: Daily Starter Stats
 
 on:
   schedule:
-    # 9:00 AM ET = 13:00 UTC (accounts for EDT — adjust to 14:00 in EST months if needed)
-    - cron: '0 13 * * *'
+    - cron: '0 16 * * *'   # 10:00 AM CST (UTC-6) / 11:00 AM CDT (UTC-5)
+    - cron: '0 4 * * *'    # 10:00 PM CST (UTC-6) / 11:00 PM CDT (UTC-5)
   workflow_dispatch:   # allows manual trigger from the GitHub UI
 
 jobs:
