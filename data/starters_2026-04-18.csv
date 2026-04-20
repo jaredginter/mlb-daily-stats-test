@@ -1,0 +1,16 @@
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
+823558,2026-04-18T17:35:00Z,KC @ NYY,NYY,KC,Will Warren,Noah Cameron,701542,702070,8,0.291,7,0.406
+823721,2026-04-18T18:10:00Z,CIN @ MIN,MIN,CIN,Taj Bradley,Andrew Abbott,671737,671096,5,0.216,6,0.325
+824694,2026-04-18T18:20:00Z,NYM @ CHC,CHC,NYM,Jameson Taillon,Freddy Peralta,592791,642547,12,0.392,13,0.335
+822751,2026-04-18T20:05:00Z,SF @ WSH,WSH,SF,Cade Cavalli,Adrian Houser,676917,605288,0,,8,0.23
+823394,2026-04-18T20:05:00Z,TB @ PIT,PIT,TB,Paul Skenes,Drew Rasmussen,694973,656876,9,0.174,6,0.225
+825020,2026-04-18T20:05:00Z,CWS @ ATH,ATH,CWS,Luis Severino,Erick Fedde,622663,607200,5,0.225,2,0.343
+824775,2026-04-18T20:10:00Z,DET @ BOS,BOS,DET,Brayan Bello,Tarik Skubal,678394,669373,9,0.366,9,0.289
+823882,2026-04-18T20:10:00Z,MIL @ MIA,MIA,MIL,Sandy Alcantara,Brandon Woodruff,645261,605540,9,0.287,9,0.242
+824451,2026-04-18T22:10:00Z,BAL @ CLE,CLE,BAL,Gavin Williams,Dean Kremer,668909,665152,7,0.241,10,0.328
+824206,2026-04-18T23:10:00Z,STL @ HOU,HOU,STL,Lance McCullers Jr.,Andre Pallante,621121,669467,1,0.135,7,0.249
+823151,2026-04-18T23:15:00Z,TEX @ SEA,SEA,TEX,George Kirby,Nathan Eovaldi,669923,543135,12,0.25,11,0.304
+823474,2026-04-18T23:15:00Z,ATL @ PHI,PHI,ATL,Cristopher Sánchez,Chris Sale,650911,519242,12,0.348,9,0.26
+824372,2026-04-19T00:10:00Z,LAD @ COL,COL,LAD,Ryan Feltner,Emmet Sheehan,663372,686218,8,0.336,7,0.255
+825098,2026-04-19T00:10:00Z,TOR @ AZ,AZ,TOR,Zac Gallen,Max Scherzer,668678,453286,8,0.41,7,0.288
+824049,2026-04-19T01:38:00Z,SD @ LAA,LAA,SD,Yusei Kikuchi,Germán Márquez,579328,608566,11,0.349,7,0.319

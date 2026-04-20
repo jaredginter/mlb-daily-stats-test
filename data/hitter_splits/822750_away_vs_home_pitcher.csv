@@ -1,0 +1,8 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Jerar Encarnacion,666464,4,2023–2024,0.25,1,0.723,1.0,0.333,104.5
+Rafael Devers,646240,7,2023–2025,0.714,1,0.688,1.0,0.2,102.9
+Luis Arraez,650333,12,2023–2025,0.333,0,0.417,0.333,0.029,86.9
+Matt Chapman,656305,8,2022–2024,0.5,0,0.408,0.333,0.143,88.0
+Patrick Bailey,672275,4,2024,0.0,0,0.266,0.5,0.0,92.8
+Heliot Ramos,671218,6,2024,0.0,0,0.264,0.6,0.167,94.3
+Willy Adames,642715,24,2021–2024,0.167,0,0.258,0.455,0.237,87.8

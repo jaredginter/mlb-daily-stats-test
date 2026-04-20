@@ -1,0 +1,7 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Rafael Devers,646240,12,2019–2025,0.25,1,0.436,0.571,0.333,93.7
+Matt Chapman,656305,9,2018–2023,0.333,1,0.392,0.571,0.222,99.0
+Willy Adames,642715,6,2018–2023,0.167,0,0.344,0.333,0.353,85.2
+Will Brennan,686823,4,2023–2024,0.0,0,0.266,0.4,0.182,88.8
+Patrick Bailey,672275,2,2023,0.0,0,0.153,0.5,0.333,90.5
+Casey Schmitt,669477,1,2023,1.0,0,,0.0,0.0,
