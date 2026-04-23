@@ -1,0 +1,6 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Ramón Urías,602104,1,2022,0.0,0,0.426,1.0,0.0,98.8
+Iván Herrera,671056,1,2024,1.0,0,,1.0,0.167,97.3
+Jordan Walker,691023,1,2024,0.0,0,,,0.667,
+Masyn Winn,691026,1,2024,0.0,0,,,0.0,
+Nolan Gorman,669357,2,2024,0.5,0,,0.0,0.6,86.9

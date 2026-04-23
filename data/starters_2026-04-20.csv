@@ -1,5 +1,5 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
-824776,2026-04-20T15:10:00Z,DET @ BOS,BOS,DET,Sonny Gray,Jack Flaherty,543243.0,656427,0.0,,11,0.225
+824776,2026-04-20T15:10:00Z,DET @ BOS,BOS,DET,Sonny Gray,Jack Flaherty,543243.0,656427,11.0,0.255,11,0.225
 824450,2026-04-20T22:10:00Z,HOU @ CLE,CLE,HOU,Slade Cecconi,Spencer Arrighetti,677944.0,681293,7.0,0.286,6,0.252
 822994,2026-04-20T22:40:00Z,CIN @ TB,TB,CIN,TBD,Rhett Lowder,,695076,,,0,
 823879,2026-04-20T22:40:00Z,STL @ MIA,MIA,STL,Max Meyer,Michael McGreevy,676974.0,700241,7.0,0.287,10,0.348
