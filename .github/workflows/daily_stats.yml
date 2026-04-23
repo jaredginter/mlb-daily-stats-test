@@ -2,8 +2,10 @@ name: Daily Starter Stats
 
 on:
   schedule:
-    - cron: '0 16 * * *'   # 10:00 AM CST (UTC-6) / 11:00 AM CDT (UTC-5)
-    - cron: '0 4 * * *'    # 10:00 PM CST (UTC-6) / 11:00 PM CDT (UTC-5)
+    - cron: '0 15 * * *'   #  9:00 AM CST (UTC-6) / 10:00 AM CDT (UTC-5)
+    - cron: '0 21 * * *'   #  3:00 PM CST (UTC-6) /  4:00 PM CDT (UTC-5)
+    - cron: '0 3 * * *'    #  9:00 PM CST (UTC-6) / 10:00 PM CDT (UTC-5)
+    - cron: '0 9 * * *'    #  3:00 AM CST (UTC-6) /  4:00 AM CDT (UTC-5)
   workflow_dispatch:   # allows manual trigger from the GitHub UI
 
 jobs:
