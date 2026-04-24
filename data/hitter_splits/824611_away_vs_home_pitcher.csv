@@ -1,0 +1,5 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Curtis Mead,678554,1,2024,0.0,0,0.0,,0.333,
+Drew Millas,686452,1,2026,0.0,0,,,1.0,
+José Tena,677588,0,2026,,0,,,0.0,
+Nasim Nuñez,683083,1,2026,1.0,0,,0.0,0.0,75.8
