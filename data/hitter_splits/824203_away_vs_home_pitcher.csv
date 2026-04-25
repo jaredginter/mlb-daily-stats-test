@@ -1,0 +1,5 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Jazz Chisholm Jr.,665862,1,2024,1.0,1,1.247,1.0,0.0,104.2
+Austin Wells,669224,1,2024,0.0,0,0.041,1.0,0.0,100.5
+Giancarlo Stanton,519317,1,2024,0.0,0,0.005,0.0,0.333,67.5
+Aaron Judge,592450,1,2024,0.0,0,0.0,,0.5,
