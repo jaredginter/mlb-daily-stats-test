@@ -13,4 +13,4 @@ game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_nam
 822908,2026-04-29T00:05:00Z,NYY @ TEX,TEX,NYY,Jacob deGrom,Cam Schlittler,594798.0,693645.0,12.0,0.363,0.0,
 825017,2026-04-29T01:40:00Z,KC @ ATH,ATH,KC,TBD,Kris Bubic,,663460.0,,,2.0,0.28
 823310,2026-04-29T01:40:00Z,CHC @ SD,SD,CHC,Walker Buehler,Edward Cabrera,621111.0,665795.0,10.0,0.311,11.0,0.307
-823956,2026-04-29T02:10:00Z,MIA @ LAD,LAD,MIA,Shohei Ohtani,Janson Junk,660271.0,676083.0,0.0,,3.0,0.09
+823956,2026-04-29T02:10:00Z,MIA @ LAD,LAD,MIA,Shohei Ohtani,Janson Junk,660271.0,676083.0,2.0,0.215,3.0,0.09
