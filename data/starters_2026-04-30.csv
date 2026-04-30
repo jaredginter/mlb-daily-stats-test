@@ -1,12 +1,12 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
 824929,2026-04-30T16:15:00Z,DET @ ATL,ATL,DET,Bryce Elder,Framber Valdez,693821.0,664285.0,10.0,0.303,11.0,0.303
-824848,2026-04-30T16:35:00Z,HOU @ BAL,BAL,HOU,Chris Bassitt,Lance McCullers Jr.,605135.0,621121.0,9.0,0.396,10.0,0.326
-824850,2026-04-30T16:40:00Z,HOU @ BAL,BAL,HOU,Brandon Young,TBD,687064.0,,5.0,0.289,,
+824848,2026-04-30T16:35:00Z,HOU @ BAL,BAL,HOU,Chris Bassitt,Peter Lambert,605135.0,663567.0,9.0,0.396,4.0,0.209
+824850,2026-04-30T16:40:00Z,HOU @ BAL,BAL,HOU,Brandon Young,Lance McCullers Jr.,687064.0,621121.0,5.0,0.289,10.0,0.326
 823391,2026-04-30T16:35:00Z,STL @ PIT,PIT,STL,Paul Skenes,Hunter Dobbins,694973.0,690928.0,9.0,0.182,2.0,0.386
 823472,2026-04-30T16:35:00Z,SF @ PHI,PHI,SF,Cristopher Sánchez,Logan Webb,650911.0,657277.0,10.0,0.281,10.0,0.343
 823471,2026-04-30T21:35:00Z,SF @ PHI,PHI,SF,TBD,TBD,,,,,,
 824524,2026-04-30T16:40:00Z,COL @ CIN,CIN,COL,Andrew Abbott,Michael Lorenzen,671096.0,547179.0,8.0,0.225,9.0,0.266
-823634,2026-04-30T17:10:00Z,WSH @ NYM,NYM,WSH,Freddy Peralta,Miles Mikolas,642547.0,571945.0,7.0,0.259,11.0,0.241
+823634,2026-04-30T17:10:00Z,WSH @ NYM,NYM,WSH,Freddy Peralta,Miles Mikolas,642547.0,571945.0,7.0,0.259,11.0,0.257
 823795,2026-04-30T17:40:00Z,AZ @ MIL,MIL,AZ,Brandon Woodruff,Michael Soroka,605540.0,647336.0,9.0,0.265,8.0,0.425
 825016,2026-04-30T19:05:00Z,KC @ ATH,ATH,KC,Jeffrey Springs,Noah Cameron,605488.0,702070.0,9.0,0.402,10.0,0.371
 823714,2026-04-30T23:40:00Z,TOR @ MIN,MIN,TOR,Bailey Ober,Kevin Gausman,641927.0,592332.0,9.0,0.228,11.0,0.259
