@@ -1,5 +1,5 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
-824686,2026-05-01T18:20:00Z,AZ @ CHC,CHC,AZ,Colin Rea,Zac Gallen,607067.0,668678.0,11.0,0.329,12.0,0.271
+824686,2026-05-01T18:20:00Z,AZ @ CHC,CHC,AZ,Colin Rea,Zac Gallen,607067.0,668678.0,12.0,0.333,12.0,0.271
 824287,2026-05-01T22:40:00Z,TEX @ DET,DET,TEX,Jack Flaherty,MacKenzie Gore,656427.0,669022.0,11.0,0.442,7.0,0.445
 823389,2026-05-01T22:45:00Z,CIN @ PIT,PIT,CIN,Mitch Keller,Brady Singer,656605.0,663903.0,11.0,0.329,12.0,0.414
 822744,2026-05-01T22:45:00Z,MIL @ WSH,WSH,MIL,Jake Irvin,Jacob Misiorowski,663623.0,694819.0,10.0,0.424,0.0,
