@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Luis Arraez,650333,6,2023–2025,0.333,0,0.367,0.143,0.118,81.9
+Rafael Devers,646240,16,2019–2025,0.438,0,0.338,0.357,0.185,88.6
+Willy Adames,642715,8,2021–2024,0.0,0,0.22,0.25,0.5,88.4
+Matt Chapman,656305,5,2017–2021,0.2,0,0.15,0.5,0.4,78.1
+Will Brennan,686823,1,2024,0.0,0,0.126,1.0,0.0,103.1
+Eric Haase,606992,4,2021–2023,0.25,0,0.126,0.0,0.111,79.6
+Casey Schmitt,669477,1,2024,1.0,0,0.111,1.0,0.0,96.9
+Patrick Bailey,672275,1,2023,0.0,0,0.0,,,
