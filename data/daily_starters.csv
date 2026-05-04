@@ -1,8 +1,8 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
-824363,2026-05-04T21:40:00Z,NYM @ COL,COL,NYM,Tomoyuki Sugano,TBD,608372,,6,0.391,,
+824363,2026-05-04T21:40:00Z,NYM @ COL,COL,NYM,Tomoyuki Sugano,Huascar Brazobán,608372,623211.0,6,0.391,11.0,0.285
 824283,2026-05-04T22:40:00Z,BOS @ DET,DET,BOS,Tarik Skubal,Payton Tolle,669373,801139.0,12,0.297,3.0,0.174
 822984,2026-05-04T22:40:00Z,TOR @ TB,TB,TOR,Nick Martinez,TBD,607259,,10,0.388,,
-823874,2026-05-04T22:40:00Z,PHI @ MIA,MIA,PHI,Janson Junk,Aaron Nola,676083,605400.0,8,0.317,10.0,0.513
+823874,2026-05-04T22:40:00Z,PHI @ MIA,MIA,PHI,Janson Junk,Aaron Nola,676083,605400.0,8,0.317,9.0,0.513
 823552,2026-05-04T23:05:00Z,BAL @ NYY,NYY,BAL,Cam Schlittler,Shane Baz,693645,669358.0,7,0.292,10.0,0.388
 824684,2026-05-04T23:40:00Z,CIN @ CHC,CHC,CIN,Edward Cabrera,Chase Petty,665795,695534.0,10,0.31,0.0,
 824120,2026-05-04T23:40:00Z,CLE @ KC,KC,CLE,Michael Wacha,Tanner Bibee,608379,676440.0,11,0.311,12.0,0.246
