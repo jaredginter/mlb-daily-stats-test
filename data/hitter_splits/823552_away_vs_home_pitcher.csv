@@ -1,0 +1,8 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Coby Mayo,691723,3,2025,0.0,0,0.42,0.667,0.0,94.2
+Tyler O'Neill,641933,3,2025,0.333,0,0.366,0.333,0.0,86.9
+Gunnar Henderson,683002,4,2025,0.25,0,0.326,1.0,0.182,98.2
+Jeremiah Jackson,669236,4,2025,0.25,0,0.323,0.5,0.6,89.3
+Samuel Basallo,694212,5,2025,0.2,1,0.287,0.5,0.333,99.0
+Colton Cowser,681297,4,2025,0.0,0,0.181,0.0,0.0,91.6
+Dylan Beavers,687637,6,2025,0.0,0,0.139,0.0,0.25,85.0
