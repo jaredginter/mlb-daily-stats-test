@@ -1,5 +1,5 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
-824281,2026-05-05T22:40:00Z,BOS @ DET,DET,BOS,Framber Valdez,Jovani Morán,664285,663558,10,0.27,11,0.275
+824281,2026-05-05T22:40:00Z,BOS @ DET,DET,BOS,Framber Valdez,Jovani Morán,664285,663558,10,0.27,11,0.325
 822986,2026-05-05T22:40:00Z,TOR @ TB,TB,TOR,Drew Rasmussen,Kevin Gausman,656876,592332,9,0.254,12,0.335
 823469,2026-05-05T22:40:00Z,ATH @ PHI,PHI,ATH,Cristopher Sánchez,Luis Severino,650911,622663,6,0.246,10,0.282
 823873,2026-05-05T22:40:00Z,BAL @ MIA,MIA,BAL,Sandy Alcantara,Chris Bassitt,645261,605135,6,0.266,4,0.155
@@ -7,10 +7,10 @@ game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_nam
 823553,2026-05-05T23:05:00Z,TEX @ NYY,NYY,TEX,Elmer Rodríguez,Jacob deGrom,695684,594798,9,0.397,11,0.337
 824682,2026-05-05T23:40:00Z,CIN @ CHC,CHC,CIN,Jameson Taillon,Andrew Abbott,592791,671096,11,0.32,11,0.306
 824119,2026-05-05T23:40:00Z,CLE @ KC,KC,CLE,Stephen Kolek,Gavin Williams,663568,668909,8,0.338,9,0.341
-823062,2026-05-05T23:45:00Z,MIL @ STL,STL,MIL,Andre Pallante,Brandon Sproat,669467,687075,9,0.291,0,
-824200,2026-05-06T00:10:00Z,LAD @ HOU,HOU,LAD,Peter Lambert,Shohei Ohtani,663567,660271,9,0.246,8,0.278
-824362,2026-05-06T00:40:00Z,NYM @ COL,COL,NYM,Michael Lorenzen,Freddy Peralta,547179,642547,11,0.364,12,0.304
+824200,2026-05-06T00:10:00Z,LAD @ HOU,HOU,LAD,Peter Lambert,Shohei Ohtani,663567,660271,9,0.246,8,0.287
 824040,2026-05-06T01:38:00Z,CWS @ LAA,LAA,CWS,Sam Aldegheri,Erick Fedde,691951,607200,1,0.459,13,0.313
 825092,2026-05-06T01:40:00Z,PIT @ AZ,AZ,PIT,Eduardo Rodriguez,Bubba Chandler,593958,696149,8,0.187,0,
 823142,2026-05-06T01:40:00Z,ATL @ SEA,SEA,ATL,George Kirby,Bryce Elder,669923,693821,10,0.245,8,0.379
-823227,2026-05-06T01:45:00Z,SD @ SF,SF,SD,Logan Webb,Walker Buehler,657277,621111,13,0.357,12,0.29
+823227,2026-05-06T01:45:00Z,SD @ SF,SF,SD,Logan Webb,Walker Buehler,657277,621111,13,0.361,12,0.29
+823062,2026-05-05T23:45:00Z,MIL @ STL,STL,MIL,Andre Pallante,Brandon Sproat,669467,687075,9,0.291,0,
+824362,2026-05-06T00:40:00Z,NYM @ COL,COL,NYM,Michael Lorenzen,Freddy Peralta,547179,642547,11,0.364,12,0.304
