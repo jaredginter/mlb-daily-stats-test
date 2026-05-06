@@ -1,11 +1,11 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
 822985,2026-05-06T17:10:00Z,TOR @ TB,TB,TOR,Shane McClanahan,Patrick Corbin,663556,571578,9,0.274,7,0.353
 823063,2026-05-06T17:15:00Z,MIL @ STL,STL,MIL,Andre Pallante,Brandon Sproat,669467,687075,9,0.291,0,
-824198,2026-05-06T18:10:00Z,LAD @ HOU,HOU,LAD,Lance McCullers Jr.,Tyler Glasnow,621121,607192,10,0.337,5,0.158
+824198,2026-05-06T18:10:00Z,LAD @ HOU,HOU,LAD,Lance McCullers Jr.,Tyler Glasnow,621121,607192,10,0.337,4,0.169
 823226,2026-05-06T19:45:00Z,SD @ SF,SF,SD,Adrian Houser,Bradgley Rodriguez,605288,699134,11,0.278,8,0.252
 824036,2026-05-06T20:07:00Z,CWS @ LAA,LAA,CWS,Walbert Ureña,Noah Schultz,700712,702273,1,,0,
 823141,2026-05-06T20:10:00Z,ATL @ SEA,SEA,ATL,Bryan Woo,Martín Pérez,693433,527048,5,0.23,10,0.34
-824282,2026-05-06T22:40:00Z,BOS @ DET,DET,BOS,Jack Flaherty,Sonny Gray,656427,543243,12,0.334,12,0.295
+824282,2026-05-06T22:40:00Z,BOS @ DET,DET,BOS,Jack Flaherty,Sonny Gray,656427,543243,12,0.334,12,0.31
 823470,2026-05-06T22:40:00Z,ATH @ PHI,PHI,ATH,Zack Wheeler,Jeffrey Springs,554430,605488,8,0.253,9,0.159
 823872,2026-05-06T22:40:00Z,BAL @ MIA,MIA,BAL,Eury Pérez,Brandon Young,691587,687064,6,0.319,5,0.404
 822740,2026-05-06T22:45:00Z,MIN @ WSH,WSH,MIN,Miles Mikolas,Bailey Ober,571945,641927,10,0.372,5,0.335
