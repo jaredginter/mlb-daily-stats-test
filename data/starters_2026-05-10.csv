@@ -1,6 +1,6 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
 823868,2026-05-10T16:15:00Z,WSH @ MIA,MIA,WSH,Sandy Alcantara,Cade Cavalli,645261,676917,10,0.303,6,0.307
-824845,2026-05-10T17:35:00Z,ATH @ BAL,BAL,ATH,Chris Bassitt,Luis Severino,605135,622663,8,0.37,8,0.351
+824845,2026-05-10T17:35:00Z,ATH @ BAL,BAL,ATH,Keegan Akin,Luis Severino,669211,622663,6,0.234,8,0.351
 824765,2026-05-10T17:35:00Z,TB @ BOS,BOS,TB,Payton Tolle,Nick Martinez,801139,607259,3,0.501,11,0.37
 823463,2026-05-10T17:35:00Z,COL @ PHI,PHI,COL,Cristopher Sánchez,Tomoyuki Sugano,650911,608372,7,0.318,9,0.319
 822819,2026-05-10T17:37:00Z,LAA @ TOR,TOR,LAA,Spencer Miles,José Soriano,693686,667755,5,0.397,11,0.29
