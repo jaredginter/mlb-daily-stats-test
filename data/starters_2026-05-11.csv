@@ -1,7 +1,7 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
-824441,2026-05-11T22:10:00Z,LAA @ CLE,CLE,LAA,Joey Cantillo,TBD,676282,,9,0.257,,
-824844,2026-05-11T22:35:00Z,NYY @ BAL,BAL,NYY,Brandon Young,Ryan Weathers,687064,677960.0,0,,10.0,0.347
-822818,2026-05-11T23:07:00Z,TB @ TOR,TOR,TB,Kevin Gausman,Drew Rasmussen,592332,656876.0,12,0.318,12.0,0.36
-822901,2026-05-12T00:05:00Z,AZ @ TEX,TEX,AZ,Nathan Eovaldi,Michael Soroka,543135,647336.0,9,0.271,10.0,0.307
-824199,2026-05-12T00:10:00Z,SEA @ HOU,HOU,SEA,Peter Lambert,George Kirby,663567,669923.0,7,0.449,9.0,0.267
-823953,2026-05-12T02:10:00Z,SF @ LAD,LAD,SF,Roki Sasaki,Trevor McDonald,808963,686790.0,0,,10.0,0.329
+824441,2026-05-11T22:10:00Z,LAA @ CLE,CLE,LAA,Joey Cantillo,Brent Suter,676282,608718,9,0.257,8,0.294
+824844,2026-05-11T22:35:00Z,NYY @ BAL,BAL,NYY,Brandon Young,Ryan Weathers,687064,677960,0,,10,0.347
+822818,2026-05-11T23:07:00Z,TB @ TOR,TOR,TB,Kevin Gausman,Drew Rasmussen,592332,656876,12,0.318,12,0.341
+822901,2026-05-12T00:05:00Z,AZ @ TEX,TEX,AZ,Jakob Junis,Michael Soroka,596001,647336,8,0.381,10,0.307
+824199,2026-05-12T00:10:00Z,SEA @ HOU,HOU,SEA,Peter Lambert,George Kirby,663567,669923,7,0.449,9,0.267
+823953,2026-05-12T02:10:00Z,SF @ LAD,LAD,SF,Roki Sasaki,Trevor McDonald,808963,686790,0,,10,0.329

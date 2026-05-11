@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+José Ramírez,608070,7,2018–2025,0.429,1,0.597,0.5,0.067,93.8
+Steven Kwan,680757,4,2023–2025,0.25,0,0.508,0.2,0.0,82.1
+Daniel Schneemann,682177,1,2025,0.0,0,0.381,0.0,0.0,85.4
+Patrick Bailey,672275,0,2024,,0,0.378,1.0,0.0,99.1
+Angel Martínez,682657,2,2024–2025,1.0,0,0.235,0.0,0.0,55.4
+Rhys Hoskins,656555,8,2018–2025,0.0,0,0.2,0.25,0.067,87.4
+Kyle Manzardo,700932,1,2025,0.0,0,0.026,0.0,0.0,90.4
+Austin Hedges,595978,4,2018–2023,0.0,0,0.024,0.0,0.286,74.9
