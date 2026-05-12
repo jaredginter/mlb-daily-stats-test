@@ -1,6 +1,6 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
 824442,2026-05-12T22:10:00Z,LAA @ CLE,CLE,LAA,Slade Cecconi,Walbert Ureña,677944.0,700712,9.0,0.5,0,
-824843,2026-05-12T22:35:00Z,NYY @ BAL,BAL,NYY,TBD,Will Warren,,701542,,,12,0.306
+824843,2026-05-12T22:35:00Z,NYY @ BAL,BAL,NYY,Trevor Rogers,Will Warren,669432.0,701542,9.0,0.335,12,0.306
 824521,2026-05-12T22:40:00Z,WSH @ CIN,CIN,WSH,Brady Singer,Miles Mikolas,663903.0,571945,7.0,0.4,11,0.334
 823385,2026-05-12T22:40:00Z,COL @ PIT,PIT,COL,Paul Skenes,Michael Lorenzen,694973.0,547179,10.0,0.28,8,0.339
 824764,2026-05-12T22:45:00Z,PHI @ BOS,BOS,PHI,TBD,Zack Wheeler,,554430,,,12,0.183
