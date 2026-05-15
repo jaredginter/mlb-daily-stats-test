@@ -1,7 +1,7 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
 823384,2026-05-15T22:40:00Z,PHI @ PIT,PIT,PHI,Braxton Ashcraft,Aaron Nola,677952,605400.0,10,0.654,9.0,0.286
 822739,2026-05-15T22:45:00Z,BAL @ WSH,WSH,BAL,Zack Littell,Shane Baz,641793,669358.0,8,0.378,9.0,
-824280,2026-05-15T22:45:00Z,TOR @ DET,DET,TOR,Ty Madden,Trey Yesavage,680744,702056.0,6,0.28,0.0,
+824280,2026-05-15T22:45:00Z,TOR @ DET,DET,TOR,Brenan Hanifee,Trey Yesavage,669724,702056.0,7,0.413,0.0,
 824439,2026-05-15T23:10:00Z,CIN @ CLE,CLE,CIN,Tanner Bibee,Andrew Abbott,676440,671096.0,10,0.272,9.0,0.263
 822983,2026-05-15T23:10:00Z,MIA @ TB,TB,MIA,Jesse Scholtens,Janson Junk,669947,676083.0,2,0.014,2.0,0.066
 823707,2026-05-15T23:10:00Z,MIL @ MIN,MIN,MIL,Joe Ryan,TBD,657746,,11,0.209,,
