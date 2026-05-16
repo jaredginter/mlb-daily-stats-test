@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Gary Sánchez,596142,1,2026,0.0,0,0.359,0.0,0.5,52.6
+William Contreras,661388,2,2026,0.0,0,0.358,1.0,0.0,96.8
+Brandon Lockridge,663604,2,2026,0.0,0,0.316,0.5,0.0,89.4
+Luis Rengifo,650859,3,2026,0.0,0,0.307,0.333,0.25,81.8
+Brice Turang,668930,2,2026,0.0,0,0.28,0.0,0.75,91.2
+Joey Ortiz,687401,2,2026,0.5,0,0.206,0.0,0.0,86.3
+Sal Frelick,686217,2,2026,0.0,0,0.168,0.5,0.0,95.2
+Blake Perkins,663368,2,2026,0.0,0,0.134,0.0,0.0,78.2

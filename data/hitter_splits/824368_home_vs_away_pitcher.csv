@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Willi Castro,650489,2,2024,1.0,0,0.724,1.0,0.0,100.9
+Jordan Beck,687597,3,2024,1.0,0,0.657,0.333,0.0,82.9
+Edouard Julien,666397,3,2024,0.667,0,0.465,0.5,0.0,82.2
+Jake McCarthy,664983,10,2024,0.5,0,0.295,0.333,0.25,86.3
+Ezequiel Tovar,678662,8,2024,0.125,0,0.202,0.6,0.444,91.3
+Brenton Doyle,686668,8,2024,0.25,1,0.141,0.167,0.385,78.2
+Hunter Goodman,696100,2,2024,0.0,0,0.045,0.0,0.4,93.8
+Mickey Moniak,666160,2,2024,0.0,0,0.01,0.0,0.0,90.3

@@ -1,0 +1,6 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Isaac Paredes,670623,2,2024,1.0,0,0.833,1.0,0.0,102.6
+Dustin Harris,687957,3,2025,0.667,0,0.528,0.5,0.4,88.8
+Christian Vázquez,543877,2,2025,0.5,0,0.233,1.0,0.0,100.9
+Christian Walker,572233,6,2024,0.0,0,0.195,0.333,0.467,75.2
+Carlos Correa,621043,2,2025,0.5,0,0.038,0.0,0.0,80.7

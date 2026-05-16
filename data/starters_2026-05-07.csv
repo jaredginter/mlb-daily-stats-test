@@ -1,0 +1,11 @@
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
+823551,2026-05-07T16:35:00Z,TEX @ NYY,NYY,TEX,Paul Blackburn,MacKenzie Gore,621112,669022,10,0.416,9,0.344
+822741,2026-05-07T17:05:00Z,MIN @ WSH,WSH,MIN,Jake Irvin,Simeon Woods Richardson,663623,680573,10,0.369,4,0.371
+824117,2026-05-07T18:10:00Z,CLE @ KC,KC,CLE,Seth Lugo,Slade Cecconi,607625,677944,10,0.278,9,0.302
+824681,2026-05-07T18:20:00Z,CIN @ CHC,CHC,CIN,Shota Imanaga,Rhett Lowder,684007,695076,8,0.266,8,0.282
+824362,2026-05-07T19:10:00Z,NYM @ COL,COL,NYM,Jose Quintana,Christian Scott,500779,681035,10,0.281,2,0.152
+825090,2026-05-07T19:40:00Z,PIT @ AZ,AZ,PIT,Zac Gallen,Mitch Keller,668678,656605,10,0.329,9,0.246
+823467,2026-05-07T22:40:00Z,ATH @ PHI,PHI,ATH,Andrew Painter,J.T. Ginn,691725,669372,0,,1,0.451
+823870,2026-05-07T22:40:00Z,BAL @ MIA,MIA,BAL,Max Meyer,Cade Povich,676974,700249,2,0.587,2,0.394
+824767,2026-05-07T23:10:00Z,TB @ BOS,BOS,TB,Jake Bennett,Griffin Jax,687562,643377,0,,11,0.342
+823306,2026-05-08T02:10:00Z,STL @ SD,SD,STL,Michael King,Matthew Liberatore,650633,669461,6,0.215,11,0.371

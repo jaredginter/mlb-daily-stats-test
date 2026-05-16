@@ -1,0 +1,5 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Matt Chapman,656305,2,2023,1.0,0,0.805,1.0,0.0,103.4
+Eric Haase,606992,1,2025,0.0,0,0.361,,1.0,
+Luis Arraez,650333,3,2025,0.333,0,0.321,0.333,0.0,84.1
+Willy Adames,642715,2,2023,0.0,0,0.024,0.0,0.0,90.7

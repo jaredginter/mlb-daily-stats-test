@@ -1,0 +1,12 @@
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
+823383,2026-05-14T16:35:00Z,COL @ PIT,PIT,COL,Mason Montgomery,Chase Dollander,682254,801403,3,1.128,1,0.179
+824517,2026-05-14T16:40:00Z,WSH @ CIN,CIN,WSH,Chase Burns,Foster Griffin,695505,656492,6,0.307,4,
+823630,2026-05-14T17:10:00Z,DET @ NYM,NYM,DET,Nolan McLean,Keider Montero,690997,672456,6,0.308,4,0.298
+823709,2026-05-14T17:40:00Z,MIA @ MIN,MIN,MIA,Zebby Matthews,Braxton Garrett,805673,666129,1,0.29,3,0.266
+823789,2026-05-14T17:40:00Z,SD @ MIL,MIL,SD,Kyle Harrison,Griffin Canning,690986,656288,8,0.379,10,0.325
+824196,2026-05-14T18:10:00Z,SEA @ HOU,HOU,SEA,Mike Burrows,Luis Castillo,681347,622491,9,0.335,9,0.302
+825008,2026-05-14T19:05:00Z,STL @ ATH,ATH,STL,Jacob Lopez,Michael McGreevy,682052,700241,0,,0,
+824762,2026-05-14T22:45:00Z,PHI @ BOS,BOS,PHI,Ranger Suarez,Jesús Luzardo,624133,666200,3,0.344,12,0.247
+824926,2026-05-14T23:15:00Z,CHC @ ATL,ATL,CHC,Chris Sale,Ben Brown,519242,676962,10,0.281,7,0.212
+824602,2026-05-14T23:40:00Z,KC @ CWS,CWS,KC,Anthony Kay,Kris Bubic,641743,663460,8,0.304,10,0.206
+823950,2026-05-15T02:10:00Z,SF @ LAD,LAD,SF,Emmet Sheehan,Landen Roupp,686218,694738,11,0.24,13,0.282

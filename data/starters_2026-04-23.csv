@@ -1,0 +1,10 @@
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
+822745,2026-04-23T17:05:00Z,ATL @ WSH,WSH,ATL,Cade Cavalli,JR Ritchie,676917,702275,2,0.244,0,
+824288,2026-04-23T17:10:00Z,MIL @ DET,DET,MIL,Tarik Skubal,Brandon Sproat,669373,687075,10,0.189,0,
+824689,2026-04-23T18:20:00Z,PHI @ CHC,CHC,PHI,Edward Cabrera,Cristopher Sánchez,665795,650911,9,0.294,10,0.299
+824368,2026-04-23T19:10:00Z,SD @ COL,COL,SD,Ryan Feltner,Matt Waldron,663372,663362,12,0.345,8,0.317
+825096,2026-04-23T19:40:00Z,CWS @ AZ,AZ,CWS,Michael Soroka,Davis Martin,647336,663436,9,0.702,7,0.287
+823233,2026-04-23T19:45:00Z,LAD @ SF,SF,LAD,Logan Webb,Tyler Glasnow,657277,607192,11,0.358,10,0.297
+824770,2026-04-23T22:10:00Z,NYY @ BOS,BOS,NYY,Payton Tolle,Cam Schlittler,801139,693645,1,0.134,7,0.175
+823639,2026-04-23T23:10:00Z,MIN @ NYM,NYM,MIN,Christian Scott,Joe Ryan,681035,657746,1,0.209,9,0.159
+822912,2026-04-24T00:05:00Z,PIT @ TEX,TEX,PIT,Jacob deGrom,Bubba Chandler,594798,696149,9,0.313,1,0.531

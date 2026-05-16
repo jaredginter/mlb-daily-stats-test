@@ -1,0 +1,10 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Ezequiel Duran,677649,1,2026,1.0,0,0.806,0.0,0.25,79.3
+Alejandro Osuna,696030,0,2026,,0,0.724,,0.0,
+Joc Pederson,592626,2,2026,0.0,0,0.481,0.5,0.25,96.2
+Corey Seager,608369,1,2026,0.0,0,0.479,1.0,0.333,98.7
+Brandon Nimmo,607043,2,2026,0.5,0,0.4,0.0,0.0,87.3
+Kyle Higashioka,543309,2,2026,0.5,0,0.386,1.0,0.5,96.6
+Josh Jung,673962,3,2026,0.333,0,0.131,0.0,0.333,87.5
+Evan Carter,694497,2,2026,0.0,0,0.087,0.0,0.0,82.4
+Jake Burger,669394,2,2026,0.0,0,0.08,1.0,0.5,100.8

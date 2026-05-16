@@ -1,0 +1,15 @@
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
+824529,2026-04-24T22:40:00Z,DET @ CIN,CIN,DET,Andrew Abbott,Framber Valdez,671096,664285,2,0.312,5,0.269
+824854,2026-04-24T23:05:00Z,BOS @ BAL,BAL,BOS,Brandon Young,Brayan Bello,687064,678394,0,,12,0.357
+822827,2026-04-24T23:07:00Z,CLE @ TOR,TOR,CLE,Max Scherzer,Gavin Williams,453286,668909,7,0.267,9,0.298
+823638,2026-04-24T23:10:00Z,COL @ NYM,NYM,COL,Freddy Peralta,Michael Lorenzen,642547,547179,9,0.391,11,0.435
+822992,2026-04-24T23:10:00Z,MIN @ TB,TB,MIN,Drew Rasmussen,Taj Bradley,656876,671737,9,0.281,3,0.267
+824932,2026-04-24T23:15:00Z,PHI @ ATL,ATL,PHI,Grant Holmes,Andrew Painter,656550,691725,10,0.345,10,0.397
+824124,2026-04-24T23:40:00Z,LAA @ KC,KC,LAA,Noah Cameron,Yusei Kikuchi,702070,579328,10,0.309,13,0.227
+824611,2026-04-24T23:40:00Z,WSH @ CWS,CWS,WSH,Bryan Hudson,PJ Poulin,663542,676571,4,0.0,3,0.471
+823800,2026-04-24T23:40:00Z,PIT @ MIL,MIL,PIT,Brandon Woodruff,Paul Skenes,605540,694973,10,0.177,8,0.319
+822909,2026-04-25T00:05:00Z,ATH @ TEX,TEX,ATH,Nathan Eovaldi,Luis Severino,543135,622663,12,0.317,12,0.405
+824204,2026-04-25T00:10:00Z,NYY @ HOU,HOU,NYY,Lance McCullers Jr.,Will Warren,621121,701542,7,0.345,5,0.365
+823069,2026-04-25T00:15:00Z,SEA @ STL,STL,SEA,Andre Pallante,George Kirby,669467,669923,5,0.435,9,0.339
+823962,2026-04-25T02:15:00Z,CHC @ LAD,LAD,CHC,Emmet Sheehan,Jameson Taillon,686218,592791,9,0.292,10,0.357
+823232,2026-04-25T02:15:00Z,MIA @ SF,SF,MIA,Adrian Houser,Sandy Alcantara,605288,645261,4,0.361,5,0.239

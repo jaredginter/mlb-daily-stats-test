@@ -1,0 +1,10 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Alex Bregman,608324,4,2023–2025,0.25,0,0.407,0.25,0.0,82.2
+Michael Conforto,624424,5,2023–2026,0.0,0,0.178,0.333,0.091,92.2
+Carson Kelly,608348,1,2026,0.0,0,,1.0,0.0,99.0
+Dansby Swanson,621020,2,2026,0.0,0,,1.0,0.4,104.3
+Ian Happ,664023,2,2026,0.5,0,,0.5,0.333,96.2
+Matt Shaw,807713,2,2026,0.5,0,,0.0,0.333,79.6
+Michael Busch,683737,1,2026,0.0,0,,1.0,0.0,100.8
+Miguel Amaya,665804,2,2026,0.0,0,,0.0,0.2,81.6
+Nico Hoerner,663538,2,2026,0.5,1,,1.0,0.5,100.7
