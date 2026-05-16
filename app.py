@@ -119,17 +119,30 @@ def splits_bar_chart(df, pitcher_name, batting_team):
 
 # ── Data loading ──────────────────────────────────────────────────────────────
 
-@st.cache_data(ttl=1800, show_spinner="Loading today's starters…")
-def load_summary(game_date_str):
-    """Always read from the CSV committed by GitHub Actions — never fetch live."""
+def get_csv_mtime(path):
+    """Return file modification timestamp as a string, or empty string if missing."""
+    try:
+        return str(os.path.getmtime(path))
+    except OSError:
+        return ""
+
+
+@st.cache_data(show_spinner="Loading today's starters…")
+def load_summary(game_date_str, _mtime):
+    """
+    Read the CSV committed by GitHub Actions.
+    _mtime is the file modification time — changing it busts the cache
+    automatically whenever GitHub Actions commits fresh data.
+    """
     csv_path = os.path.join("data", "daily_starters.csv")
     if os.path.exists(csv_path):
         return pd.read_csv(csv_path)
     return pd.DataFrame()
 
 
-def load_splits(game_id, side):
-    """Load per-game hitter splits CSV if it exists."""
+@st.cache_data(show_spinner=False)
+def load_splits_cached(game_id, side, _mtime):
+    """Cache-busting wrapper for hitter splits CSVs."""
     fname = f"{game_id}_{side}_vs_{'home' if side == 'away' else 'away'}_pitcher.csv"
     path  = os.path.join("data", "hitter_splits", fname)
     if os.path.exists(path):
@@ -137,12 +150,22 @@ def load_splits(game_id, side):
     return pd.DataFrame()
 
 
-def load_game_log(pitcher_id):
-    """Load saved game log CSV for a pitcher if it exists."""
+@st.cache_data(show_spinner=False)
+def load_game_log_cached(pitcher_id, _mtime):
+    """Cache-busting wrapper for pitcher game log CSVs."""
     path = os.path.join("data", "gamelogs", f"{pitcher_id}_gamelog.csv")
     if os.path.exists(path):
         return pd.read_csv(path)
     return pd.DataFrame()
+
+
+# Non-cached passthrough helpers (call the cached versions with mtime)
+def load_splits(game_id, side, mtime):
+    return load_splits_cached(game_id, side, mtime)
+
+
+def load_game_log(pitcher_id, mtime):
+    return load_game_log_cached(pitcher_id, mtime)
 
 
 def render_game_log(df, pitcher_name, season):
@@ -200,8 +223,10 @@ with st.sidebar:
 st.title(f"Hitter Splits vs Starters — {selected_date.strftime('%A, %B %d %Y')}")
 st.caption("Each panel shows the **opposing lineup's** career Statcast numbers vs. that starting pitcher (all seasons since 2015).")
 
-date_str = selected_date.strftime("%Y-%m-%d")
-summary  = load_summary(date_str)
+date_str      = selected_date.strftime("%Y-%m-%d")
+csv_path      = os.path.join("data", "daily_starters.csv")
+current_mtime = get_csv_mtime(csv_path)
+summary       = load_summary(date_str, current_mtime)
 
 if summary.empty:
     st.warning("No games or probable starters found for this date. "
@@ -273,7 +298,7 @@ for _, game in summary.iterrows():
                             "(common early in the season or for new pitchers).")
                     continue
 
-                splits_df = load_splits(game_id, panel["splits_side"])
+                splits_df = load_splits(game_id, panel["splits_side"], current_mtime)
 
                 if splits_df.empty:
                     st.warning("Split data not found — try running the fetch script.")
@@ -298,7 +323,7 @@ for _, game in summary.iterrows():
                 pitcher_id = game.get(f"{panel['pitcher_side']}_pitcher_id")
                 if pitcher_id and show_gamelog:
                     st.markdown("---")
-                    gl_df = load_game_log(pitcher_id)
+                    gl_df = load_game_log(pitcher_id, current_mtime)
                     render_game_log(gl_df, pitcher, selected_date.year)
 
         with col_div:
