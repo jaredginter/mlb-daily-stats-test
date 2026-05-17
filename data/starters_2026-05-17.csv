@@ -1,9 +1,9 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
-822982,2026-05-17T16:15:00Z,MIA @ TB,TB,MIA,Drew Rasmussen,Eury Pérez,656876,691587,10,0.282,2,0.504
-822738,2026-05-17T17:35:00Z,BAL @ WSH,WSH,BAL,Miles Mikolas,Brandon Young,571945,687064,7,0.183,0,
-823381,2026-05-17T17:35:00Z,PHI @ PIT,PIT,PHI,Paul Skenes,Zack Wheeler,694973,554430,7,0.172,10,0.221
+822982,2026-05-17T16:15:00Z,MIA @ TB,TB,MIA,Drew Rasmussen,Eury Pérez,656876,691587,10,0.282,1,0.253
+822738,2026-05-17T17:35:00Z,BAL @ WSH,WSH,BAL,Richard Lovelady,Brandon Young,663992,687064,7,0.331,0,
+823381,2026-05-17T17:35:00Z,PHI @ PIT,PIT,PHI,Paul Skenes,Zack Wheeler,694973,554430,7,0.172,9,0.182
 824923,2026-05-17T17:35:00Z,BOS @ ATL,ATL,BOS,Grant Holmes,Brayan Bello,656550,678394,7,0.251,12,0.276
-824436,2026-05-17T17:40:00Z,CIN @ CLE,CLE,CIN,Gavin Williams,Brady Singer,668909,663903,7,0.362,10,0.304
+824436,2026-05-17T17:40:00Z,CIN @ CLE,CLE,CIN,Gavin Williams,Brady Singer,668909,663903,8,0.362,10,0.304
 824279,2026-05-17T17:40:00Z,TOR @ DET,DET,TOR,Jack Flaherty,Kevin Gausman,656427,592332,10,0.251,8,0.189
 823628,2026-05-17T17:40:00Z,NYY @ NYM,NYM,NYY,Freddy Peralta,Elmer Rodríguez,642547,695684,13,0.37,0,
 824192,2026-05-17T18:10:00Z,TEX @ HOU,HOU,TEX,Peter Lambert,Nathan Eovaldi,663567,543135,5,0.399,8,0.275
