@@ -1,0 +1,11 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Pete Alonso,624413,9,2019–2026,0.444,1,0.589,0.375,0.176,96.6
+Adley Rutschman,668939,3,2024,0.333,0,0.505,0.0,0.0,79.0
+Colton Cowser,681297,4,2024–2026,0.5,1,0.308,0.5,0.273,87.2
+Gunnar Henderson,683002,3,2024,0.333,0,0.304,0.333,0.0,88.5
+Taylor Ward,621493,6,2023–2025,0.167,0,0.294,0.333,0.333,96.0
+Leody Taveras,665750,2,2023–2024,0.0,0,0.239,0.0,0.0,84.3
+Jackson Holliday,702616,5,2024–2025,0.6,0,0.212,0.4,0.143,87.6
+Coby Mayo,691723,1,2026,0.0,0,,1.0,0.0,98.0
+Jeremiah Jackson,669236,2,2025,0.0,0,,0.0,0.25,75.9
+Samuel Basallo,694212,2,2025,0.0,0,,0.0,0.25,93.9
