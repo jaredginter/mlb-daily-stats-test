@@ -1,14 +1,14 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
 824679,2026-05-22T18:20:00Z,HOU @ CHC,CHC,HOU,Jameson Taillon,Spencer Arrighetti,592791.0,681293,8.0,0.285,8,0.373
-824518,2026-05-22T22:40:00Z,STL @ CIN,CIN,STL,Chris Paddack,Kyle Leahy,663978.0,681517,9.0,0.288,9,0.239
+824518,2026-05-22T22:40:00Z,STL @ CIN,CIN,STL,Chris Paddack,Kyle Leahy,663978.0,681517,8.0,0.292,9,0.239
 823461,2026-05-22T22:40:00Z,CLE @ PHI,PHI,CLE,Cristopher Sánchez,Gavin Williams,650911.0,668909,8.0,0.304,9,0.304
 823546,2026-05-22T23:05:00Z,TB @ NYY,NYY,TB,Gerrit Cole,Nick Martinez,543037.0,607259,4.0,0.257,10,0.385
 822816,2026-05-22T23:07:00Z,PIT @ TOR,TOR,PIT,Kevin Gausman,Bubba Chandler,592332.0,696149,11.0,0.397,3,
-824761,2026-05-22T23:10:00Z,MIN @ BOS,BOS,MIN,Payton Tolle,Connor Prielipp,801139.0,687570,5.0,0.008,0,
+824761,2026-05-22T23:10:00Z,MIN @ BOS,BOS,MIN,Payton Tolle,Connor Prielipp,801139.0,687570,4.0,,0,
 823863,2026-05-22T23:10:00Z,NYM @ MIA,MIA,NYM,Eury Pérez,Tobias Myers,691587.0,668964,5.0,0.382,7,0.338
 824842,2026-05-22T23:15:00Z,DET @ BAL,BAL,DET,Chris Bassitt,Jack Flaherty,605135.0,656427,10.0,0.329,10,0.35
 824922,2026-05-22T23:15:00Z,WSH @ ATL,ATL,WSH,TBD,Miles Mikolas,,571945,,,11,0.337
-824110,2026-05-22T23:40:00Z,SEA @ KC,KC,SEA,Noah Cameron,Logan Gilbert,702070.0,669302,9.0,0.188,12,0.272
+824110,2026-05-22T23:40:00Z,SEA @ KC,KC,SEA,Noah Cameron,Logan Gilbert,702070.0,669302,9.0,0.193,12,0.272
 823788,2026-05-22T23:40:00Z,LAD @ MIL,MIL,LAD,Logan Henderson,Justin Wrobleski,701656.0,680736,0.0,,6,0.391
 824029,2026-05-23T01:38:00Z,TEX @ LAA,LAA,TEX,Grayson Rodriguez,Jacob deGrom,680570.0,594798,7.0,0.343,11,0.254
 825082,2026-05-23T01:40:00Z,COL @ AZ,AZ,COL,Michael Soroka,Tomoyuki Sugano,647336.0,608372,11.0,0.294,8,0.476
