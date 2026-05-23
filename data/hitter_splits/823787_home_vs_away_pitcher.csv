@@ -1,0 +1,7 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Jake Bauers,641343,1,2025,1.0,0,1.189,1.0,0.5,108.9
+Christian Yelich,592885,0,2025,,0,0.691,,0.5,
+Jackson Chourio,694192,0,2025,,0,0.588,1.0,0.0,98.1
+William Contreras,661388,1,2025,1.0,0,0.407,0.0,0.5,92.1
+Andrew Vaughn,683734,2,2025,0.0,0,0.302,1.0,0.333,100.1
+Sal Frelick,686217,2,2025,0.0,0,0.138,0.0,0.2,68.1

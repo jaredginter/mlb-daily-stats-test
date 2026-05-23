@@ -1,0 +1,11 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Gabriel Moreno,672515,3,2023–2026,0.667,0,0.523,0.667,0.125,89.4
+Geraldo Perdomo,672695,8,2023–2026,0.375,0,0.383,0.429,0.1,87.2
+Ildemaro Vargas,545121,7,2023–2026,0.143,0,0.366,0.375,0.056,79.8
+Corbin Carroll,682998,8,2023–2026,0.25,2,0.321,0.75,0.333,101.0
+Ryan Waldschmidt,814439,2,2026,0.0,0,0.306,0.5,0.0,79.2
+Nolan Arenado,571448,16,2015–2026,0.125,1,0.303,0.353,0.212,86.4
+Lourdes Gurriel Jr.,666971,7,2022–2026,0.286,1,0.221,0.333,0.2,90.1
+Jose Fernandez,699912,2,2026,0.5,0,0.144,0.0,0.167,46.0
+Ketel Marte,606466,9,2018–2025,0.0,0,0.073,0.0,0.5,70.4
+Adrian Del Castillo,680728,3,2026,0.0,0,0.0,,0.6,
