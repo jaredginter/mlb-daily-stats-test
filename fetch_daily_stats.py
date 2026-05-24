@@ -12,7 +12,7 @@ Output: data/daily_starters.csv  (one row per game)
 
 import logging
 import os
-from datetime import date
+from datetime import date, datetime
 
 import pandas as pd
 import requests
@@ -354,9 +354,29 @@ def build_daily_report(game_date=None):
 # Entry point
 # ─────────────────────────────────────────────────────────────────────────────
 
+def clear_stale_data():
+    """
+    Delete all hitter split and game log CSVs before each run so stale
+    data from previous days never bleeds into today's dashboard.
+    Keeps dated snapshot CSVs in data/ for historical reference.
+    """
+    cleared = 0
+    for folder in [SPLITS_DIR, os.path.join(DATA_DIR, "gamelogs")]:
+        if os.path.exists(folder):
+            for f in os.listdir(folder):
+                if f.endswith(".csv"):
+                    os.remove(os.path.join(folder, f))
+                    cleared += 1
+    log.info("Cleared %d stale CSV files from previous run", cleared)
+
+
 if __name__ == "__main__":
     today = date.today().strftime("%Y-%m-%d")
     log.info("=== MLB Hitter Splits vs Starters — %s ===", today)
+
+    # Always wipe stale split/gamelog files first so old pitcher data
+    # never shows up on a new day's dashboard
+    clear_stale_data()
 
     df = build_daily_report(today)
 
@@ -370,5 +390,11 @@ if __name__ == "__main__":
         snap = os.path.join(DATA_DIR, f"starters_{today}.csv")
         df.to_csv(snap, index=False)
         log.info("Snapshot -> %s", snap)
+
+        # Write a timestamp file so the dashboard can show when data last refreshed
+        ts_path = os.path.join(DATA_DIR, "last_updated.txt")
+        with open(ts_path, "w") as f:
+            f.write(datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"))
+        log.info("Timestamp written -> %s", ts_path)
 
     log.info("Done.")

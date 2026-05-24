@@ -216,7 +216,15 @@ with st.sidebar:
     if st.button("🔄 Force refresh", use_container_width=True):
         st.cache_data.clear()
         st.rerun()
-    st.caption(f"Last refreshed: {datetime.now().strftime('%I:%M %p')}")
+
+    # Show when GitHub Actions last successfully updated the data
+    ts_path = os.path.join("data", "last_updated.txt")
+    if os.path.exists(ts_path):
+        with open(ts_path) as f:
+            last_updated = f.read().strip()
+        st.caption(f"Data last updated: {last_updated}")
+    else:
+        st.caption("Data update time unknown")
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
