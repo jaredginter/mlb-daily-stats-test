@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Nick Castellanos,592206,4,2023–2025,0.25,0,0.391,0.333,0.3,85.2
+Xander Bogaerts,593428,11,2021–2025,0.273,1,0.383,0.5,0.273,92.4
+Fernando Tatis Jr.,665487,2,2025,0.0,0,0.368,1.0,0.4,97.8
+Manny Machado,592518,4,2018–2025,0.25,1,0.363,0.5,0.375,87.6
+Miguel Andujar,609280,5,2022–2024,0.2,0,0.25,0.167,0.231,74.4
+Ramón Laureano,657656,12,2018–2023,0.083,0,0.212,0.375,0.44,89.2
+Ty France,664034,4,2022–2025,0.25,0,0.187,0.5,0.231,82.4
+Freddy Fermin,666023,2,2025,0.5,0,0.166,0.5,0.286,95.6

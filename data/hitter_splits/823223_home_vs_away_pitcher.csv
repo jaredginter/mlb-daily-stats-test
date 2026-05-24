@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Matt Chapman,656305,2,2022–2024,0.5,0,0.569,1.0,0.0,108.6
+Luis Arraez,650333,5,2022–2025,0.4,0,0.455,0.4,0.0,91.8
+Harrison Bader,664056,1,2025,0.0,0,0.361,,0.5,
+Rafael Devers,646240,4,2024–2025,0.25,0,0.361,0.0,0.375,68.8
+Eric Haase,606992,3,2022–2026,0.0,0,0.29,0.667,0.286,90.5
+Casey Schmitt,669477,1,2026,1.0,0,,0.0,0.5,91.2
+Jesus Rodriguez,683679,1,2026,0.0,0,,1.0,0.0,98.5
+Will Brennan,686823,1,2023,1.0,0,,0.0,0.0,

@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Jeremy Peña,665161,3,2023–2024,0.333,0,0.718,0.5,0.167,87.4
+Cam Smith,701358,2,2025,0.5,1,0.597,1.0,0.111,105.6
+Yordan Alvarez,670541,3,2023–2024,0.333,0,0.502,0.5,0.286,93.0
+Isaac Paredes,670623,3,2020–2025,0.333,0,0.492,0.0,0.2,74.6
+Christian Walker,572233,5,2023–2025,0.4,0,0.25,0.25,0.3,93.3
+Jake Meyers,676694,5,2024–2025,0.4,0,0.205,0.0,0.0,80.9
+Christian Vázquez,543877,2,2023,0.0,0,0.004,0.0,0.5,64.1
+Nick Allen,669397,2,2025,0.0,0,0.0,,0.6,
