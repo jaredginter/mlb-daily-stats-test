@@ -1,7 +1,7 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,home_hitters_with_history,home_lineup_avg_xwoba
 823380,2026-05-25T17:35:00Z,CHC @ PIT,PIT,CHC,Carmen Mlodzinski,Ben Brown,669387,676962,11,0.408,9,0.288
 824838,2026-05-25T17:35:00Z,TB @ BAL,BAL,TB,Kyle Bradish,Shane McClanahan,680694,663556,8,0.289,10,0.34
-824598,2026-05-25T18:10:00Z,MIN @ CWS,CWS,MIN,Anthony Kay,Zebby Matthews,641743,805673,3,0.711,6,0.323
+824598,2026-05-25T18:10:00Z,MIN @ CWS,CWS,MIN,Anthony Kay,Zebby Matthews,641743,805673,3,0.711,5,0.323
 823784,2026-05-25T18:10:00Z,STL @ MIL,MIL,STL,Jacob Misiorowski,Matthew Liberatore,694819,669461,8,0.281,11,0.256
 824107,2026-05-25T19:40:00Z,NYY @ KC,KC,NYY,Michael Wacha,Will Warren,608379,701542,12,0.282,12,0.319
 823625,2026-05-25T20:10:00Z,CIN @ NYM,NYM,CIN,Nolan McLean,Nick Lodolo,690997,666157,1,0.04,7,0.396
