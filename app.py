@@ -305,9 +305,21 @@ for _, game in summary.iterrows():
                 )
                 fip_val = game.get(fip_key)
 
-                # Sample size thresholds for FIP reliability warning
-                FIP_WARN_THRESHOLD   = 5   # yellow warning — small sample
-                FIP_IGNORE_THRESHOLD = 3   # grey out FIP entirely — too few hitters
+                # Total AB threshold for FIP reliability (AB-based, not hitter count)
+                FIP_UNRELIABLE_ABS = 20   # red/strong warning below this
+                FIP_CAUTION_ABS    = 40   # yellow caution below this
+
+                # Pull total career ABs for this side from the summary row
+                total_abs_key = (
+                    "away_total_abs"
+                    if panel["pitcher_side"] == "home"
+                    else "home_total_abs"
+                )
+                total_abs = game.get(total_abs_key)
+                try:
+                    total_abs = int(total_abs) if total_abs is not None else 0
+                except (ValueError, TypeError):
+                    total_abs = 0
 
                 if n is not None and n > 0:
                     mc1, mc2, mc3 = st.columns(3)
@@ -327,21 +339,19 @@ for _, game in summary.iterrows():
                              "3.80–4.19 average, 4.20–4.79 below avg, 5.00+ poor."
                     )
 
-                    # Sample size warning below the metric cards
-                    n_int = int(n)
-                    if n_int <= FIP_IGNORE_THRESHOLD:
-                        st.warning(
-                            f"⚠️ **Very small sample — FIP unreliable.** "
-                            f"Only {n_int} current roster hitter{'s' if n_int != 1 else ''} "
-                            f"have career history vs this pitcher. "
-                            f"FIP requires a larger sample to be meaningful.",
-                            icon="⚠️",
+                    # Sample size warning based on total career ABs vs this pitcher
+                    if total_abs < FIP_UNRELIABLE_ABS:
+                        st.error(
+                            f"🚨 **FIP unreliable — very small sample.** "
+                            f"Only **{total_abs} total career ABs** across {int(n)} hitters vs this pitcher. "
+                            f"With fewer than {FIP_UNRELIABLE_ABS} ABs, a single home run can swing FIP "
+                            f"by several points. Disregard FIP for this matchup."
                         )
-                    elif n_int <= FIP_WARN_THRESHOLD:
+                    elif total_abs < FIP_CAUTION_ABS:
                         st.warning(
                             f"⚠️ **Small sample — interpret FIP with caution.** "
-                            f"{n_int} of the current roster hitters have career history vs this pitcher. "
-                            f"FIP is most reliable with 6+ hitters.",
+                            f"**{total_abs} total career ABs** across {int(n)} hitters vs this pitcher. "
+                            f"FIP is most reliable with 40+ total ABs."
                         )
                 else:
                     st.info("No head-to-head Statcast history found for this matchup yet "

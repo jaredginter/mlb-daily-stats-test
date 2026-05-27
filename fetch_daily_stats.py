@@ -395,12 +395,16 @@ def build_daily_report(game_date=None):
                 away_splits.to_csv(path, index=False)
                 row["away_hitters_with_history"] = len(away_splits)
                 row["away_lineup_avg_xwoba"]     = round(away_splits["xwoba"].dropna().mean(), 3)
+                # Total career ABs across all hitters vs this pitcher
+                row["away_total_abs"]            = int(away_splits["abs"].sum()) if "abs" in away_splits.columns else 0
             else:
                 row["away_hitters_with_history"] = 0
                 row["away_lineup_avg_xwoba"]     = None
+                row["away_total_abs"]            = 0
         else:
             row["away_hitters_with_history"]   = None
             row["away_lineup_avg_xwoba"]       = None
+            row["away_total_abs"]              = None
             row["home_pitcher_fip_vs_opp"]     = None
 
         # ── Away pitcher vs home lineup ──────────────────────────────────────
@@ -415,12 +419,15 @@ def build_daily_report(game_date=None):
                 home_splits.to_csv(path, index=False)
                 row["home_hitters_with_history"] = len(home_splits)
                 row["home_lineup_avg_xwoba"]     = round(home_splits["xwoba"].dropna().mean(), 3)
+                row["home_total_abs"]            = int(home_splits["abs"].sum()) if "abs" in home_splits.columns else 0
             else:
                 row["home_hitters_with_history"] = 0
                 row["home_lineup_avg_xwoba"]     = None
+                row["home_total_abs"]            = 0
         else:
             row["home_hitters_with_history"]   = None
             row["home_lineup_avg_xwoba"]       = None
+            row["home_total_abs"]              = None
             row["away_pitcher_fip_vs_opp"]     = None
 
         summary_rows.append(row)
