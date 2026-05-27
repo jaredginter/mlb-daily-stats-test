@@ -305,17 +305,44 @@ for _, game in summary.iterrows():
                 )
                 fip_val = game.get(fip_key)
 
+                # Sample size thresholds for FIP reliability warning
+                FIP_WARN_THRESHOLD   = 5   # yellow warning — small sample
+                FIP_IGNORE_THRESHOLD = 3   # grey out FIP entirely — too few hitters
+
                 if n is not None and n > 0:
                     mc1, mc2, mc3 = st.columns(3)
                     mc1.metric("Hitters with history", int(n))
                     mc2.metric("Lineup avg xwOBA", f"{avg_xwoba:.3f}" if avg_xwoba else "—")
+
+                    fip_display = (
+                        f"{fip_val:.2f}"
+                        if fip_val is not None and str(fip_val) != "nan"
+                        else "—"
+                    )
                     mc3.metric(
                         "FIP vs this team",
-                        f"{fip_val:.2f}" if fip_val is not None and str(fip_val) != "nan" else "—",
+                        fip_display,
                         help="Fielding Independent Pitching vs today's opposing lineup (career). "
                              "Lower is better for the pitcher. Scale: <3.20 elite, 3.20–3.79 good, "
                              "3.80–4.19 average, 4.20–4.79 below avg, 5.00+ poor."
                     )
+
+                    # Sample size warning below the metric cards
+                    n_int = int(n)
+                    if n_int <= FIP_IGNORE_THRESHOLD:
+                        st.warning(
+                            f"⚠️ **Very small sample — FIP unreliable.** "
+                            f"Only {n_int} current roster hitter{'s' if n_int != 1 else ''} "
+                            f"have career history vs this pitcher. "
+                            f"FIP requires a larger sample to be meaningful.",
+                            icon="⚠️",
+                        )
+                    elif n_int <= FIP_WARN_THRESHOLD:
+                        st.warning(
+                            f"⚠️ **Small sample — interpret FIP with caution.** "
+                            f"{n_int} of the current roster hitters have career history vs this pitcher. "
+                            f"FIP is most reliable with 6+ hitters.",
+                        )
                 else:
                     st.info("No head-to-head Statcast history found for this matchup yet "
                             "(common early in the season or for new pitchers).")
