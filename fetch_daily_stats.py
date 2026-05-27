@@ -298,6 +298,11 @@ def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
         log.error("  Failed to fetch pitcher data for %s: %s", pitcher_name, exc)
         return pd.DataFrame(), None
 
+    # Guard: ensure we got a proper DataFrame back, not a tuple or None
+    if not isinstance(pitcher_df, pd.DataFrame):
+        log.warning("  Unexpected return type for %s: %s", pitcher_name, type(pitcher_df))
+        return pd.DataFrame(), None
+
     if pitcher_df.empty:
         log.warning("  No Statcast data found for %s", pitcher_name)
         return pd.DataFrame(), None
