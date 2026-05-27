@@ -202,6 +202,120 @@ def render_game_log(df, pitcher_name, season):
     )
 
 
+# ── Run prediction model ─────────────────────────────────────────────────────
+
+# League average baselines (2024 season)
+LG_AVG_XWOBA  = 0.312
+LG_AVG_FIP    = 4.00
+LG_AVG_RUNS   = 4.50   # runs per team per game
+
+# Weights tuned so league average inputs → 4.5 predicted runs
+XWOBA_WEIGHT  = 18.0   # xwOBA above/below avg × this = run adjustment
+FIP_WEIGHT    = 0.30   # FIP above/below avg × this = run adjustment
+
+
+def predict_runs(avg_xwoba, fip_vs_team, splits_df):
+    """
+    Predict runs scored by the batting team using a weighted model:
+      - xwOBA vs pitcher (strongest signal)
+      - FIP vs this team (pitcher quality signal)
+      - Avg HardHit% and Whiff% from the hitter table (secondary signals)
+
+    Returns (predicted_runs, confidence_label, confidence_color, inputs_used)
+    """
+    if avg_xwoba is None and fip_vs_team is None:
+        return None, None, None, []
+
+    predicted = LG_AVG_RUNS
+    inputs_used = []
+
+    # Signal 1: xwOBA vs pitcher (most reliable)
+    if avg_xwoba is not None and not pd.isna(avg_xwoba):
+        xwoba_adj  = (float(avg_xwoba) - LG_AVG_XWOBA) * XWOBA_WEIGHT
+        predicted += xwoba_adj
+        inputs_used.append("xwOBA")
+
+    # Signal 2: FIP vs this team (pitcher quality)
+    if fip_vs_team is not None and not pd.isna(fip_vs_team):
+        fip_adj    = (float(fip_vs_team) - LG_AVG_FIP) * FIP_WEIGHT
+        predicted += fip_adj
+        inputs_used.append("FIP")
+
+    # Signal 3: avg HardHit% and Whiff% from the splits table
+    if splits_df is not None and not splits_df.empty:
+        if "hard_hit_pct" in splits_df.columns:
+            hh = splits_df["hard_hit_pct"].dropna().mean()
+            if not pd.isna(hh):
+                predicted += (hh - 0.38) * 4.0   # lg avg hard hit ~38%
+                inputs_used.append("HardHit%")
+        if "whiff_pct" in splits_df.columns:
+            wp = splits_df["whiff_pct"].dropna().mean()
+            if not pd.isna(wp):
+                predicted -= (wp - 0.24) * 4.0   # lg avg whiff ~24%
+                inputs_used.append("Whiff%")
+
+    # Floor / ceiling
+    predicted = max(1.0, min(predicted, 12.0))
+
+    # Confidence based on how many signals we have
+    n_signals = len(inputs_used)
+    if n_signals >= 3:
+        conf_label = "High confidence"
+        conf_color = "#2ca02c"
+    elif n_signals == 2:
+        conf_label = "Medium confidence"
+        conf_color = "#ff7f0e"
+    else:
+        conf_label = "Low confidence"
+        conf_color = "#d62728"
+
+    return round(predicted, 1), conf_label, conf_color, inputs_used
+
+
+def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used):
+    """Render a styled predicted runs badge."""
+    signals = ", ".join(inputs_used) if inputs_used else "insufficient data"
+    st.markdown(
+        f"""
+        <div style="
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid {conf_color};
+            border-radius: 10px;
+            padding: 12px 18px;
+            margin: 6px 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        ">
+            <div>
+                <div style="font-size:0.75rem;color:#aaa;margin-bottom:2px;">
+                    📊 Predicted runs — {team}
+                </div>
+                <div style="font-size:2rem;font-weight:700;color:white;line-height:1.1;">
+                    {runs}
+                </div>
+                <div style="font-size:0.7rem;color:#888;margin-top:2px;">
+                    Based on: {signals}
+                </div>
+            </div>
+            <div style="text-align:right;">
+                <div style="
+                    font-size:0.7rem;
+                    font-weight:600;
+                    color:{conf_color};
+                    border:1px solid {conf_color};
+                    border-radius:20px;
+                    padding:3px 10px;
+                ">
+                    {conf_label}
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 
 with st.sidebar:
@@ -211,7 +325,8 @@ with st.sidebar:
     st.divider()
     show_chart = st.toggle("Show xwOBA chart", value=True)
     show_table   = st.toggle("Show hitter table", value=True)
-    show_gamelog = st.toggle("Show pitcher game log", value=True)
+    show_gamelog    = st.toggle("Show pitcher game log", value=True)
+    show_prediction = st.toggle("Show run prediction", value=True)
     st.divider()
     if st.button("🔄 Force refresh", use_container_width=True):
         st.cache_data.clear()
@@ -279,6 +394,51 @@ for _, game in summary.iterrows():
                 "lineup_avg_xwoba":     game.get("home_lineup_avg_xwoba"),
             },
         ]
+
+        # ── Combined game total prediction banner ────────────────────────
+        if show_prediction:
+            away_xwoba = game.get("away_lineup_avg_xwoba")
+            home_xwoba = game.get("home_lineup_avg_xwoba")
+            away_fip   = game.get("home_pitcher_fip_vs_opp")  # home pitcher faces away batters
+            home_fip   = game.get("away_pitcher_fip_vs_opp")  # away pitcher faces home batters
+
+            away_pred, _, _, _ = predict_runs(away_xwoba, away_fip, None)
+            home_pred, _, _, _ = predict_runs(home_xwoba, home_fip, None)
+
+            if away_pred is not None and home_pred is not None:
+                total = round(away_pred + home_pred, 1)
+                away_team = game.get("away_team", "Away")
+                home_team = game.get("home_team", "Home")
+                st.markdown(
+                    f"""
+                    <div style="
+                        background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+                        border: 1px solid #415a77;
+                        border-radius: 10px;
+                        padding: 10px 18px;
+                        margin-bottom: 12px;
+                        display: flex;
+                        align-items: center;
+                        gap: 24px;
+                    ">
+                        <div style="color:#aaa;font-size:0.75rem;white-space:nowrap;">
+                            🎯 Predicted total
+                        </div>
+                        <div style="font-size:1.6rem;font-weight:700;color:white;">
+                            {total}
+                        </div>
+                        <div style="color:#aaa;font-size:0.8rem;">
+                            {away_team} <span style="color:#778da9;">~{away_pred}</span>
+                            &nbsp;·&nbsp;
+                            {home_team} <span style="color:#778da9;">~{home_pred}</span>
+                        </div>
+                        <div style="margin-left:auto;font-size:0.7rem;color:#778da9;">
+                            Model: xwOBA + FIP
+                        </div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
 
         col_left, col_div, col_right = st.columns([5, 0.2, 5])
 
@@ -357,6 +517,16 @@ for _, game in summary.iterrows():
                     st.info("No head-to-head Statcast history found for this matchup yet "
                             "(common early in the season or for new pitchers).")
                     continue
+
+                # ── Predicted runs badge ─────────────────────────────────
+                if show_prediction:
+                    # Load splits now so we can pass hard_hit/whiff signals
+                    _splits_preview = load_splits(game_id, panel["splits_side"], current_mtime)
+                    pred_runs, conf_label, conf_color, inputs_used = predict_runs(
+                        avg_xwoba, fip_val, _splits_preview
+                    )
+                    if pred_runs is not None:
+                        run_prediction_badge(pred_runs, conf_label, conf_color, batting, inputs_used)
 
                 splits_df = load_splits(game_id, panel["splits_side"], current_mtime)
 
