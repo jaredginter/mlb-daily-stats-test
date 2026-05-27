@@ -297,10 +297,25 @@ for _, game in summary.iterrows():
                 n = panel["hitters_with_history"]
                 avg_xwoba = panel["lineup_avg_xwoba"]
 
+                # FIP key depends on which side is pitching
+                fip_key = (
+                    "home_pitcher_fip_vs_opp"
+                    if panel["pitcher_side"] == "home"
+                    else "away_pitcher_fip_vs_opp"
+                )
+                fip_val = game.get(fip_key)
+
                 if n is not None and n > 0:
-                    mc1, mc2 = st.columns(2)
+                    mc1, mc2, mc3 = st.columns(3)
                     mc1.metric("Hitters with history", int(n))
                     mc2.metric("Lineup avg xwOBA", f"{avg_xwoba:.3f}" if avg_xwoba else "—")
+                    mc3.metric(
+                        "FIP vs this team",
+                        f"{fip_val:.2f}" if fip_val is not None and str(fip_val) != "nan" else "—",
+                        help="Fielding Independent Pitching vs today's opposing lineup (career). "
+                             "Lower is better for the pitcher. Scale: <3.20 elite, 3.20–3.79 good, "
+                             "3.80–4.19 average, 4.20–4.79 below avg, 5.00+ poor."
+                    )
                 else:
                     st.info("No head-to-head Statcast history found for this matchup yet "
                             "(common early in the season or for new pitchers).")
