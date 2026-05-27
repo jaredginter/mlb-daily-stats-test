@@ -296,11 +296,11 @@ def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
         pitcher_df = statcast_pitcher(STATCAST_ERA_START, today, player_id=pitcher_mlbam_id)
     except Exception as exc:
         log.error("  Failed to fetch pitcher data for %s: %s", pitcher_name, exc)
-        return pd.DataFrame()
+        return pd.DataFrame(), None
 
     if pitcher_df.empty:
         log.warning("  No Statcast data found for %s", pitcher_name)
-        return pd.DataFrame()
+        return pd.DataFrame(), None
 
     log.info("  Got %d pitches — slicing by opposing hitters ...", len(pitcher_df))
 
