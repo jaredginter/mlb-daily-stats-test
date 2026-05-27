@@ -11,6 +11,10 @@ on:
 jobs:
   update-stats:
     runs-on: ubuntu-latest
+    # Prevent two runs from pushing simultaneously
+    concurrency:
+      group: mlb-stats-push
+      cancel-in-progress: false
 
     steps:
       - name: Checkout repo
@@ -23,7 +27,6 @@ jobs:
           cache: 'pip'
 
       # Persist pybaseball's local cache between daily runs
-      # After the first run this can cut fetch time significantly
       - name: Cache pybaseball data
         uses: actions/cache@v4
         with:
@@ -33,7 +36,7 @@ jobs:
             pybaseball-${{ runner.os }}-
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install --retries 3 -r requirements.txt
 
       - name: Fetch daily starter stats
         run: python fetch_daily_stats.py
@@ -43,5 +46,7 @@ jobs:
           git config --global user.email "mlb-stats-bot@github.com"
           git config --global user.name "MLB Stats Bot"
           git add data/
-          git diff --cached --quiet || git commit -m "chore: update starter stats $(date -u +%Y-%m-%d)"
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "chore: update starter stats $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
           git push
