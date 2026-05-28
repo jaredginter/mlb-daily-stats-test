@@ -1,6 +1,6 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824272,2026-05-28T17:10:00Z,LAA @ DET,DET,LAA,Jack Flaherty,Grayson Rodriguez,656427,680570,1.53,8,0.278,53,6.46,5,0.412,27
-824595,2026-05-28T18:10:00Z,MIN @ CWS,CWS,MIN,Davis Martin,Kendry Rojas,663436,696070,4.4,10,0.324,48,,0,,0
+824595,2026-05-28T18:10:00Z,MIN @ CWS,CWS,MIN,Davis Martin,Simeon Woods Richardson,663436,680573,4.4,10,0.324,48,5.07,9,0.223,21
 824757,2026-05-28T20:10:00Z,ATL @ BOS,BOS,ATL,Payton Tolle,Chris Sale,801139,519242,2.32,9,0.209,24,3.6,12,0.249,61
 824834,2026-05-28T22:35:00Z,TOR @ BAL,BAL,TOR,Chris Bassitt,Patrick Corbin,605135,571578,5.22,9,0.273,62,5.89,11,0.328,95
 823378,2026-05-28T22:40:00Z,CHC @ PIT,PIT,CHC,Paul Skenes,Colin Rea,694973,607067,4.27,11,0.284,78,6.04,9,0.395,72
