@@ -1,7 +1,7 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824832,2026-05-31T16:15:00Z,TOR @ BAL,BAL,TOR,Kyle Bradish,Spencer Miles,680694,693686,5.52,6,0.285,43,11.35,6,,6
 822729,2026-05-31T17:35:00Z,SD @ WSH,WSH,SD,Zack Littell,Griffin Canning,641793,656288,5.23,10,0.417,70,4.96,11,0.374,48
-823373,2026-05-31T17:35:00Z,MIN @ PIT,PIT,MIN,Braxton Ashcraft,Zebby Matthews,677952,805673,3.1,2,0.09,3,10.6,7,0.767,9
+823373,2026-05-31T17:35:00Z,MIN @ PIT,PIT,MIN,Braxton Ashcraft,Zebby Matthews,677952,805673,3.1,2,0.09,3,10.9,8,0.436,13
 824430,2026-05-31T17:40:00Z,BOS @ CLE,CLE,BOS,Tanner Bibee,Ranger Suarez,676440,624133,1.72,6,0.178,21,1.74,7,0.251,30
 822976,2026-05-31T17:40:00Z,LAA @ TB,TB,LAA,Shane McClanahan,Jack Kochanowicz,663556,686799,0.73,6,0.19,18,1.43,3,0.104,10
 824512,2026-05-31T17:40:00Z,ATL @ CIN,CIN,ATL,Nick Lodolo,Spencer Strider,666157,675911,1.1,10,0.206,26,0.15,5,0.364,17
