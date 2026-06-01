@@ -1,7 +1,7 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 822974,2026-06-01T22:40:00Z,DET @ TB,TB,DET,Griffin Jax,Ty Madden,643377,680744.0,4.44,10,0.328,32,,1.0,0.899,3.0
 822730,2026-06-01T22:45:00Z,MIA @ WSH,WSH,MIA,Cade Cavalli,Sandy Alcantara,676917,645261.0,2.16,10,0.356,43,2.9,11.0,0.333,86.0
-824510,2026-06-01T23:10:00Z,KC @ CIN,CIN,KC,Chase Burns,Luinder Avila,695505,679883.0,,0,,0,,2.0,0.161,2.0
+824510,2026-06-01T23:10:00Z,KC @ CIN,CIN,KC,Lyon Richardson,Luinder Avila,680689,679883.0,8.55,5,0.539,7,,2.0,0.161,2.0
 823702,2026-06-01T23:40:00Z,CWS @ MIN,MIN,CWS,Joe Ryan,TBD,657746,,4.3,10,0.325,47,,,,
 823781,2026-06-01T23:40:00Z,SF @ MIL,MIL,SF,Shane Drohan,Landen Roupp,675660,694738.0,3.1,4,,6,3.29,12.0,0.313,48.0
 823050,2026-06-01T23:45:00Z,TEX @ STL,STL,TEX,Michael McGreevy,Jacob deGrom,700241,594798.0,3.1,3,0.264,9,3.1,5.0,0.287,11.0
