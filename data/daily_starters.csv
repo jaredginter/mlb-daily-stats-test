@@ -1,8 +1,8 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-822971,2026-06-02T22:40:00Z,DET @ TB,TB,DET,Steven Matz,Jack Flaherty,571927,656427.0,4.72,10,0.367,34,3.37,10.0,0.172,37.0
-823460,2026-06-02T22:40:00Z,SD @ PHI,PHI,SD,Aaron Nola,Randy Vásquez,605400,681190.0,1.26,11,0.185,98,8.84,12.0,0.56,54.0
+822971,2026-06-02T22:40:00Z,DET @ TB,TB,DET,Steven Matz,Jack Flaherty,571927,656427.0,5.0,11,0.371,42,3.37,10.0,0.172,37.0
+823460,2026-06-02T22:40:00Z,SD @ PHI,PHI,SD,Aaron Nola,Randy Vásquez,605400,681190.0,1.38,10,0.193,93,8.84,12.0,0.56,54.0
 824754,2026-06-02T22:45:00Z,BAL @ BOS,BOS,BAL,Connelly Early,Shane Baz,813349,669358.0,6.81,8,0.274,21,2.33,10.0,0.221,51.0
-822728,2026-06-02T22:45:00Z,MIA @ WSH,WSH,MIA,Miles Mikolas,Lake Bachar,571945,669199.0,4.9,7,0.301,35,4.3,11.0,0.522,17.0
+822728,2026-06-02T22:45:00Z,MIA @ WSH,WSH,MIA,Richard Lovelady,Lake Bachar,663992,669199.0,6.1,10,0.543,11,4.3,11.0,0.522,17.0
 823541,2026-06-02T23:05:00Z,CLE @ NYY,NYY,CLE,Cam Schlittler,Joey Cantillo,693645,676282.0,,1,0.35,2,5.21,8.0,0.319,16.0
 824511,2026-06-02T23:10:00Z,KC @ CIN,CIN,KC,Andrew Abbott,Noah Cameron,671096,702070.0,3.01,11,0.241,26,0.85,5.0,0.299,14.0
 824918,2026-06-02T23:15:00Z,TOR @ ATL,ATL,TOR,Bryce Elder,Kevin Gausman,693821,592332.0,5.29,7,0.402,35,4.33,11.0,0.336,89.0
