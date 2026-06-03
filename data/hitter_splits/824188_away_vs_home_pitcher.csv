@@ -1,0 +1,5 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Brandon Lowe,664040,3,2024,0.667,0,0.637,1.0,0.333,103.5
+Spencer Horwitz,687462,3,2024,0.333,1,0.356,0.333,0.0,87.2
+Ryan O'Hearn,656811,3,2024,0.0,0,0.256,0.333,0.2,88.5
+Marcell Ozuna,542303,2,2024,0.0,0,0.134,1.0,0.75,96.4
