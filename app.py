@@ -4,7 +4,7 @@ Run locally:  streamlit run app.py
 """
 
 import os
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 import pandas as pd
 import plotly.graph_objects as go
@@ -141,31 +141,31 @@ def load_summary(game_date_str, _mtime):
 
 
 @st.cache_data(show_spinner=False)
-def load_splits_cached(game_id, side, _mtime):
+def load_splits_cached(game_id, side, _mtime, root="data"):
     """Cache-busting wrapper for hitter splits CSVs."""
     fname = f"{game_id}_{side}_vs_{'home' if side == 'away' else 'away'}_pitcher.csv"
-    path  = os.path.join("data", "hitter_splits", fname)
+    path  = os.path.join(root, "hitter_splits", fname)
     if os.path.exists(path):
         return pd.read_csv(path)
     return pd.DataFrame()
 
 
 @st.cache_data(show_spinner=False)
-def load_game_log_cached(pitcher_id, _mtime):
+def load_game_log_cached(pitcher_id, _mtime, root="data"):
     """Cache-busting wrapper for pitcher game log CSVs."""
-    path = os.path.join("data", "gamelogs", f"{pitcher_id}_gamelog.csv")
+    path = os.path.join(root, "gamelogs", f"{pitcher_id}_gamelog.csv")
     if os.path.exists(path):
         return pd.read_csv(path)
     return pd.DataFrame()
 
 
 # Non-cached passthrough helpers (call the cached versions with mtime)
-def load_splits(game_id, side, mtime):
-    return load_splits_cached(game_id, side, mtime)
+def load_splits(game_id, side, mtime, root="data"):
+    return load_splits_cached(game_id, side, mtime, root)
 
 
-def load_game_log(pitcher_id, mtime):
-    return load_game_log_cached(pitcher_id, mtime)
+def load_game_log(pitcher_id, mtime, root="data"):
+    return load_game_log_cached(pitcher_id, mtime, root)
 
 
 def render_game_log(df, pitcher_name, season):
@@ -372,11 +372,24 @@ def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample
 
 with st.sidebar:
     st.header("⚾ MLB Starter Splits")
-    selected_date = st.date_input("Game date", value=date.today())
+
+    # Today / Tomorrow toggle
+    tomorrow_available = os.path.exists(os.path.join("data", "tomorrow", "daily_starters.csv"))
+    day_options        = ["Today", "Tomorrow"] if tomorrow_available else ["Today"]
+    selected_day       = st.radio(
+        "Game day",
+        day_options,
+        horizontal=True,
+        help="Tomorrow's data is fetched each evening at 9 PM CST once MLB posts probable starters."
+    )
+    is_tomorrow   = (selected_day == "Tomorrow")
+    data_root     = os.path.join("data", "tomorrow") if is_tomorrow else "data"
+    selected_date = date.today() + timedelta(days=1) if is_tomorrow else date.today()
+
     st.caption("Shows each opposing hitter's Statcast stats vs. today's starter — season-to-date.")
     st.divider()
-    show_chart = st.toggle("Show xwOBA chart", value=True)
-    show_table   = st.toggle("Show hitter table", value=True)
+    show_chart      = st.toggle("Show xwOBA chart", value=True)
+    show_table      = st.toggle("Show hitter table", value=True)
     show_gamelog    = st.toggle("Show pitcher game log", value=True)
     show_prediction = st.toggle("Show run prediction", value=True)
     st.divider()
@@ -384,8 +397,7 @@ with st.sidebar:
         st.cache_data.clear()
         st.rerun()
 
-    # Show when GitHub Actions last successfully updated the data
-    ts_path = os.path.join("data", "last_updated.txt")
+    ts_path = os.path.join(data_root, "last_updated.txt")
     if os.path.exists(ts_path):
         with open(ts_path) as f:
             last_updated = f.read().strip()
@@ -393,13 +405,16 @@ with st.sidebar:
     else:
         st.caption("Data update time unknown")
 
+    if not tomorrow_available:
+        st.caption("Tomorrow's data posts after 9 PM CST once MLB announces starters.")
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 st.title(f"Hitter Splits vs Starters — {selected_date.strftime('%A, %B %d %Y')}")
 st.caption("Each panel shows the **opposing lineup's** career Statcast numbers vs. that starting pitcher (all seasons since 2015).")
 
 date_str      = selected_date.strftime("%Y-%m-%d")
-csv_path      = os.path.join("data", "daily_starters.csv")
+csv_path      = os.path.join(data_root, "daily_starters.csv")
 current_mtime = get_csv_mtime(csv_path)
 summary       = load_summary(date_str, current_mtime)
 
@@ -579,7 +594,7 @@ for _, game in summary.iterrows():
 
                 # ── Predicted runs badge ─────────────────────────────────
                 if show_prediction:
-                    _splits_preview = load_splits(game_id, panel["splits_side"], current_mtime)
+                    _splits_preview = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
                     pred_runs, conf_label, conf_color, inputs_used, sw = predict_runs(
                         avg_xwoba, fip_val, _splits_preview,
                         total_abs=total_abs, n_hitters=int(n) if n else None
@@ -591,7 +606,7 @@ for _, game in summary.iterrows():
                             n_hitters=int(n) if n else None
                         )
 
-                splits_df = load_splits(game_id, panel["splits_side"], current_mtime)
+                splits_df = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
 
                 if splits_df.empty:
                     st.warning("Split data not found — try running the fetch script.")
@@ -616,7 +631,7 @@ for _, game in summary.iterrows():
                 pitcher_id = game.get(f"{panel['pitcher_side']}_pitcher_id")
                 if pitcher_id and show_gamelog:
                     st.markdown("---")
-                    gl_df = load_game_log(pitcher_id, current_mtime)
+                    gl_df = load_game_log(pitcher_id, current_mtime, root=data_root)
                     render_game_log(gl_df, pitcher, selected_date.year)
 
         with col_div:

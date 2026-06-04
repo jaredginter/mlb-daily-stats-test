@@ -12,7 +12,8 @@ Output: data/daily_starters.csv  (one row per game)
 
 import logging
 import os
-from datetime import date, datetime
+import sys
+from datetime import date, datetime, timedelta
 
 import pandas as pd
 import requests
@@ -439,47 +440,116 @@ def build_daily_report(game_date=None):
 # Entry point
 # ─────────────────────────────────────────────────────────────────────────────
 
-def clear_stale_data():
+# Tomorrow's data goes in its own subfolder so it never collides with today
+TOMORROW_DIR        = os.path.join(DATA_DIR, "tomorrow")
+TOMORROW_SPLITS_DIR = os.path.join(TOMORROW_DIR, "hitter_splits")
+TOMORROW_LOGS_DIR   = os.path.join(TOMORROW_DIR, "gamelogs")
+
+
+def clear_stale_data(target_dir=None, splits_subdir=None, logs_subdir=None):
     """
     Delete all hitter split and game log CSVs before each run so stale
     data from previous days never bleeds into today's dashboard.
-    Keeps dated snapshot CSVs in data/ for historical reference.
     """
+    if target_dir is None:
+        target_dir   = DATA_DIR
+        splits_subdir = SPLITS_DIR
+        logs_subdir   = os.path.join(DATA_DIR, "gamelogs")
+
     cleared = 0
-    for folder in [SPLITS_DIR, os.path.join(DATA_DIR, "gamelogs")]:
-        if os.path.exists(folder):
+    for folder in [splits_subdir, logs_subdir]:
+        if folder and os.path.exists(folder):
             for f in os.listdir(folder):
                 if f.endswith(".csv"):
                     os.remove(os.path.join(folder, f))
                     cleared += 1
-    log.info("Cleared %d stale CSV files from previous run", cleared)
+    log.info("Cleared %d stale CSV files", cleared)
 
+
+def save_report(df, game_date, target_dir, splits_subdir, logs_subdir, label=""):
+    """Write summary CSV + snapshot + timestamp for a given date's report."""
+    if df.empty:
+        log.warning("No data to save%s.", f" ({label})" if label else "")
+        return
+
+    os.makedirs(target_dir, exist_ok=True)
+
+    out = os.path.join(target_dir, "daily_starters.csv")
+    df.to_csv(out, index=False)
+    log.info("%sSummary -> %s (%d games)", f"[{label}] " if label else "", out, len(df))
+
+    snap = os.path.join(target_dir, f"starters_{game_date}.csv")
+    df.to_csv(snap, index=False)
+    log.info("Snapshot -> %s", snap)
+
+    ts_path = os.path.join(target_dir, "last_updated.txt")
+    with open(ts_path, "w") as f:
+        f.write(datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"))
+    log.info("Timestamp written -> %s", ts_path)
+
+
+def build_tomorrow_report(tomorrow_str):
+    """
+    Wrapper around build_daily_report that temporarily redirects
+    SPLITS_DIR and gamelogs to the tomorrow subdirectory.
+    """
+    import fetch_daily_stats as _self
+
+    # Swap directories so CSVs land in data/tomorrow/
+    orig_splits = _self.SPLITS_DIR
+    orig_logs   = None
+
+    os.makedirs(TOMORROW_SPLITS_DIR, exist_ok=True)
+    os.makedirs(TOMORROW_LOGS_DIR, exist_ok=True)
+
+    _self.SPLITS_DIR = TOMORROW_SPLITS_DIR
+
+    try:
+        df = build_daily_report(tomorrow_str)
+    finally:
+        _self.SPLITS_DIR = orig_splits  # always restore
+
+    return df
+
+
+# ── Entry point ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    today = date.today().strftime("%Y-%m-%d")
-    log.info("=== MLB Hitter Splits vs Starters — %s ===", today)
+    # Accept optional --tomorrow-only flag for targeted runs
+    tomorrow_only = "--tomorrow-only" in sys.argv
 
-    # Always wipe stale split/gamelog files first so old pitcher data
-    # never shows up on a new day's dashboard
-    clear_stale_data()
+    today_str    = date.today().strftime("%Y-%m-%d")
+    tomorrow_str = (date.today() + timedelta(days=1)).strftime("%Y-%m-%d")
 
-    df = build_daily_report(today)
+    # UTC hour tells us which scheduled run this is
+    # 03:00 UTC = 9 PM CST → the evening run that should also fetch tomorrow
+    utc_hour = datetime.utcnow().hour
+    is_evening_run = (utc_hour >= 2 and utc_hour <= 4)  # 9 PM CST window
 
-    if df.empty:
-        log.warning("No data to save.")
+    log.info("=== MLB Hitter Splits vs Starters — %s ===", today_str)
+    log.info("UTC hour: %d | Evening run: %s | Tomorrow-only: %s",
+             utc_hour, is_evening_run, tomorrow_only)
+
+    # ── Today's data ────────────────────────────────────────────────────────
+    if not tomorrow_only:
+        clear_stale_data()
+        df_today = build_daily_report(today_str)
+        save_report(df_today, today_str, DATA_DIR, SPLITS_DIR,
+                    os.path.join(DATA_DIR, "gamelogs"), label="today")
+
+    # ── Tomorrow's data (evening run only, or if explicitly requested) ──────
+    if is_evening_run or tomorrow_only:
+        log.info("=== Fetching tomorrow's starters — %s ===", tomorrow_str)
+        clear_stale_data(
+            target_dir   = TOMORROW_DIR,
+            splits_subdir= TOMORROW_SPLITS_DIR,
+            logs_subdir  = TOMORROW_LOGS_DIR,
+        )
+        df_tomorrow = build_tomorrow_report(tomorrow_str)
+        save_report(df_tomorrow, tomorrow_str, TOMORROW_DIR,
+                    TOMORROW_SPLITS_DIR, TOMORROW_LOGS_DIR, label="tomorrow")
     else:
-        out = os.path.join(DATA_DIR, "daily_starters.csv")
-        df.to_csv(out, index=False)
-        log.info("Summary -> %s (%d games)", out, len(df))
-
-        snap = os.path.join(DATA_DIR, f"starters_{today}.csv")
-        df.to_csv(snap, index=False)
-        log.info("Snapshot -> %s", snap)
-
-        # Write a timestamp file so the dashboard can show when data last refreshed
-        ts_path = os.path.join(DATA_DIR, "last_updated.txt")
-        with open(ts_path, "w") as f:
-            f.write(datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"))
-        log.info("Timestamp written -> %s", ts_path)
+        log.info("Skipping tomorrow fetch (not evening run). "
+                 "Re-run with --tomorrow-only to force.")
 
     log.info("Done.")
