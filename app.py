@@ -588,7 +588,7 @@ for _, game in summary.iterrows():
                     mc3.metric(
                         f"{pitcher}'s FIP vs this team",
                         fip_display,
-                        help=f"Higher is better for {full_team_name}. Lower is better for {pitcher}). Scale: <3.20 elite, 3.20–3.79 good, "
+                        help=f"Higher is better for {full_team_name}. Lower is better for {pitcher}. Scale: <3.20 elite, 3.20–3.79 good, "
                              "3.80–4.19 average, 4.20–4.79 below avg, 5.00+ poor."
                     )
 
