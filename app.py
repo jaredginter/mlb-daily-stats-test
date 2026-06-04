@@ -542,7 +542,7 @@ for _, game in summary.iterrows():
 
                 full_team_name = TEAM_NAMES.get(batting, batting)
                 st.subheader(f"{full_team_name} vs {pitcher}")
-                st.caption(f"Career Statcast splits — {full_team_name} hitters vs {pitcher}")
+                st.caption(f"{full_team_name} hitters vs {pitcher}")
 
                 if not pitcher or pitcher == "TBD":
                     st.info("Starter not yet announced.")
