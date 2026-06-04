@@ -542,7 +542,7 @@ for _, game in summary.iterrows():
 
                 full_team_name = TEAM_NAMES.get(batting, batting)
                 st.subheader(f"{full_team_name} vs {pitcher}")
-                st.caption(f"{full_team_name} hitters vs {pitcher}")
+                st.caption(f"{full_team_name} stats vs {pitcher}.")
 
                 if not pitcher or pitcher == "TBD":
                     st.info("Starter not yet announced.")
@@ -588,8 +588,8 @@ for _, game in summary.iterrows():
                     mc3.metric(
                         "FIP vs this team",
                         fip_display,
-                        help="Fielding Independent Pitching vs today's opposing lineup (career). "
-                             "Lower is better for the pitcher. Scale: <3.20 elite, 3.20–3.79 good, "
+                        help="{pitcher}FIP vs {full_team_name} (career). "
+                             "Lower is better for the pitcher (opposite side). Higher is better for {full_team_name}. Scale: <3.20 elite, 3.20–3.79 good, "
                              "3.80–4.19 average, 4.20–4.79 below avg, 5.00+ poor."
                     )
 
