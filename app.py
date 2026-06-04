@@ -493,9 +493,13 @@ for _, game in summary.iterrows():
             away_n         = game.get("away_hitters_with_history")
             home_n         = game.get("home_hitters_with_history")
 
-            away_pred, _, _, _, _ = predict_runs(away_xwoba, away_fip, None,
+            # Load splits so the banner uses the same signals as the per-pitcher badges
+            away_splits_df = load_splits(game_id, "away", current_mtime, root=data_root)
+            home_splits_df = load_splits(game_id, "home", current_mtime, root=data_root)
+
+            away_pred, _, _, _, _ = predict_runs(away_xwoba, away_fip, away_splits_df,
                                                   total_abs=away_total_abs, n_hitters=away_n)
-            home_pred, _, _, _, _ = predict_runs(home_xwoba, home_fip, None,
+            home_pred, _, _, _, _ = predict_runs(home_xwoba, home_fip, home_splits_df,
                                                   total_abs=home_total_abs, n_hitters=home_n)
 
             if away_pred is not None and home_pred is not None:
@@ -526,7 +530,7 @@ for _, game in summary.iterrows():
                             {home_team} <span style="color:#778da9;">~{home_pred}</span>
                         </div>
                         <div style="margin-left:auto;font-size:0.7rem;color:#778da9;">
-                            Model: xwOBA + FIP
+                            Model: xwOBA + FIP + HardHit% + Whiff%
                         </div>
                     </div>
                     """,
@@ -542,7 +546,7 @@ for _, game in summary.iterrows():
 
                 full_team_name = TEAM_NAMES.get(batting, batting)
                 st.subheader(f"{full_team_name} vs {pitcher}")
-                st.caption(f"{full_team_name} stats vs {pitcher}.")
+                st.caption(f"Career Statcast splits — {full_team_name} hitters vs {pitcher}")
 
                 if not pitcher or pitcher == "TBD":
                     st.info("Starter not yet announced.")
@@ -578,7 +582,7 @@ for _, game in summary.iterrows():
                 if n is not None and n > 0:
                     mc1, mc2, mc3 = st.columns(3)
                     mc1.metric("Hitters with history", int(n))
-                    mc2.metric(f"{full_team_name} avg xwOBA vs. {pitcher}", f"{avg_xwoba:.3f}" if avg_xwoba else "—")
+                    mc2.metric("Lineup avg xwOBA", f"{avg_xwoba:.3f}" if avg_xwoba else "—")
 
                     fip_display = (
                         f"{fip_val:.2f}"
@@ -586,9 +590,10 @@ for _, game in summary.iterrows():
                         else "—"
                     )
                     mc3.metric(
-                        f"{pitcher}'s FIP vs this team",
+                        "FIP vs this team",
                         fip_display,
-                        help=f"Higher is better for {full_team_name}. Lower is better for {pitcher}. Scale: <3.20 elite, 3.20–3.79 good, "
+                        help="Fielding Independent Pitching vs today's opposing lineup (career). "
+                             "Lower is better for the pitcher. Scale: <3.20 elite, 3.20–3.79 good, "
                              "3.80–4.19 average, 4.20–4.79 below avg, 5.00+ poor."
                     )
 
