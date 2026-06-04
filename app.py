@@ -430,7 +430,7 @@ with st.sidebar:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 st.title(f"Hitter Splits vs Starters — {selected_date.strftime('%A, %B %d %Y')}")
-st.caption("Each panel shows the **opposing lineup's** career Statcast numbers vs. that starting pitcher (all seasons since 2015).")
+st.caption("Each panel shows the **opposing lineup's** cast numbers vs. that starting pitcher (all seasons since 2015).")
 
 date_str      = selected_date.strftime("%Y-%m-%d")
 csv_path      = os.path.join(data_root, "daily_starters.csv")
@@ -542,7 +542,7 @@ for _, game in summary.iterrows():
 
                 full_team_name = TEAM_NAMES.get(batting, batting)
                 st.subheader(f"{full_team_name} vs {pitcher}")
-                st.caption(f"Career Statcast splits — {full_team_name} hitters vs {pitcher}")
+                st.caption(f"{full_team_name} hitters vs {pitcher}")
 
                 if not pitcher or pitcher == "TBD":
                     st.info("Starter not yet announced.")
