@@ -31,21 +31,21 @@ METRIC_COLS = {
 
 # Full team name lookup by abbreviation
 TEAM_NAMES = {
-    "AZ":  "Arizona Diamondbacks",   "ATL": "Atlanta Braves",
-    "BAL": "Baltimore Orioles",      "BOS": "Boston Red Sox",
-    "CHC": "Chicago Cubs",           "CWS": "Chicago White Sox",
-    "CIN": "Cincinnati Reds",        "CLE": "Cleveland Guardians",
-    "COL": "Colorado Rockies",       "DET": "Detroit Tigers",
-    "HOU": "Houston Astros",         "KC":  "Kansas City Royals",
-    "LAA": "Los Angeles Angels",     "LAD": "Los Angeles Dodgers",
-    "MIA": "Miami Marlins",          "MIL": "Milwaukee Brewers",
-    "MIN": "Minnesota Twins",        "NYM": "New York Mets",
-    "NYY": "New York Yankees",       "OAK": "Oakland Athletics",
-    "PHI": "Philadelphia Phillies",  "PIT": "Pittsburgh Pirates",
-    "SD":  "San Diego Padres",       "SF":  "San Francisco Giants",
-    "SEA": "Seattle Mariners",       "STL": "St. Louis Cardinals",
-    "TB":  "Tampa Bay Rays",         "TEX": "Texas Rangers",
-    "TOR": "Toronto Blue Jays",      "WSH": "Washington Nationals",
+    "AZ":  "Diamondbacks",  "ATL": "Braves",
+    "BAL": "Orioles",       "BOS": "Red Sox",
+    "CHC": "Cubs",          "CWS": "White Sox",
+    "CIN": "Reds",          "CLE": "Guardians",
+    "COL": "Rockies",       "DET": "Tigers",
+    "HOU": "Astros",        "KC":  "Royals",
+    "LAA": "Angels",        "LAD": "Dodgers",
+    "MIA": "Marlins",       "MIL": "Brewers",
+    "MIN": "Twins",         "NYM": "Mets",
+    "NYY": "Yankees",       "OAK": "Athletics",
+    "PHI": "Phillies",      "PIT": "Pirates",
+    "SD":  "Padres",        "SF":  "Giants",
+    "SEA": "Mariners",      "STL": "Cardinals",
+    "TB":  "Rays",          "TEX": "Rangers",
+    "TOR": "Blue Jays",     "WSH": "Nationals",
 }
 
 # xwOBA colour scale: green (low / pitcher-friendly) → red (high / hitter-friendly)
@@ -430,7 +430,7 @@ with st.sidebar:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 st.title(f"Hitter Splits vs Starters — {selected_date.strftime('%A, %B %d %Y')}")
-st.caption("Each panel shows the **opposing lineup's** cast numbers vs. that starting pitcher (all seasons since 2015).")
+st.caption("Each panel shows the **opposing lineup's** career Statcast numbers vs. that starting pitcher (all seasons since 2015).")
 
 date_str      = selected_date.strftime("%Y-%m-%d")
 csv_path      = os.path.join(data_root, "daily_starters.csv")
@@ -542,7 +542,7 @@ for _, game in summary.iterrows():
 
                 full_team_name = TEAM_NAMES.get(batting, batting)
                 st.subheader(f"{full_team_name} vs {pitcher}")
-                st.caption(f"{full_team_name} hitters vs {pitcher}")
+                st.caption(f"Career Statcast splits — {full_team_name} hitters vs {pitcher}")
 
                 if not pitcher or pitcher == "TBD":
                     st.info("Starter not yet announced.")
