@@ -1,0 +1,16 @@
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp
+824673,2026-06-05T18:20:00Z,SF @ CHC,CHC,SF,TBD,TBD,,,,,,,,,,
+824271,2026-06-05T22:40:00Z,SEA @ DET,DET,SEA,Framber Valdez,Bryan Woo,664285.0,693433.0,9.0,0.319,117.0,3.86,8.0,0.152,35.0,1.37
+823455,2026-06-05T22:40:00Z,CWS @ PHI,PHI,CWS,TBD,Anthony Kay,,641743.0,,,,,8.0,0.377,13.0,4.65
+823538,2026-06-05T23:05:00Z,BOS @ NYY,NYY,BOS,TBD,TBD,,,,,,,,,,
+822810,2026-06-05T23:07:00Z,BAL @ TOR,TOR,BAL,TBD,TBD,,,,,,,,,,
+823860,2026-06-05T23:10:00Z,TB @ MIA,MIA,TB,Tyler Phillips,Drew Rasmussen,663969.0,656876.0,9.0,0.219,18.0,7.02,12.0,0.361,47.0,2.68
+824914,2026-06-05T23:15:00Z,PIT @ ATL,ATL,PIT,TBD,TBD,,,,,,,,,,
+824186,2026-06-06T00:10:00Z,ATH @ HOU,HOU,ATH,TBD,Jack Perkins,,678022.0,,,,,3.0,0.014,3.0,1.1
+823049,2026-06-06T00:15:00Z,CIN @ STL,STL,CIN,Kyle Leahy,Brady Singer,681517.0,663903.0,11.0,0.317,40.0,3.1,9.0,0.265,47.0,3.7
+822892,2026-06-06T00:15:00Z,CLE @ TEX,TEX,CLE,Kumar Rocker,Parker Messick,677958.0,800048.0,1.0,,1.0,,0.0,,0.0,
+823699,2026-06-06T00:15:00Z,KC @ MIN,MIN,KC,Zebby Matthews,Michael Wacha,805673.0,608379.0,8.0,0.506,35.0,4.75,11.0,0.263,77.0,4.35
+824350,2026-06-06T00:40:00Z,MIL @ COL,COL,MIL,Ryan Feltner,Brandon Sproat,663372.0,687075.0,12.0,0.328,74.0,1.99,5.0,0.276,7.0,1.1
+825073,2026-06-06T01:40:00Z,WSH @ AZ,AZ,WSH,Merrill Kelly,Foster Griffin,518876.0,656492.0,6.0,0.357,27.0,4.99,0.0,,0.0,
+823293,2026-06-06T01:40:00Z,NYM @ SD,SD,NYM,Michael King,Christian Scott,650633.0,681035.0,7.0,0.366,47.0,5.06,0.0,,0.0,
+823943,2026-06-06T02:10:00Z,LAA @ LAD,LAD,LAA,TBD,TBD,,,,,,,,,,
