@@ -609,7 +609,20 @@ for _, game in summary.iterrows():
                 splits_df = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
 
                 if splits_df.empty:
-                    st.warning("Split data not found — try running the fetch script.")
+                    # Debug: show exactly what path was checked
+                    side      = panel["splits_side"]
+                    opp_side  = "home" if side == "away" else "away"
+                    fname     = f"{game_id}_{side}_vs_{opp_side}_pitcher.csv"
+                    full_path = os.path.join(data_root, "hitter_splits", fname)
+                    st.warning(f"Split data not found. Looking for: `{full_path}`")
+
+                    # List what IS in the hitter_splits folder
+                    hs_dir = os.path.join(data_root, "hitter_splits")
+                    if os.path.exists(hs_dir):
+                        files = os.listdir(hs_dir)
+                        st.caption(f"Files in {hs_dir}: {files[:5]}")
+                    else:
+                        st.caption(f"Folder does not exist: {hs_dir}")
                     continue
 
                 if show_chart:
