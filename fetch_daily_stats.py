@@ -340,16 +340,22 @@ def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
 # Daily report builder
 # ─────────────────────────────────────────────────────────────────────────────
 
-def build_daily_report(game_date=None):
+def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
     """
     For each game:
       - Fetch home pitcher career data → slice vs away lineup
       - Fetch away pitcher career data → slice vs home lineup
-    Saves per-game CSVs to data/hitter_splits/
+    Saves per-game CSVs to splits_dir (defaults to SPLITS_DIR).
     Returns a summary DataFrame (one row per game).
     """
     if game_date is None:
         game_date = date.today().strftime("%Y-%m-%d")
+    if splits_dir is None:
+        splits_dir = SPLITS_DIR
+    if logs_dir is None:
+        logs_dir = os.path.join(DATA_DIR, "gamelogs")
+    os.makedirs(splits_dir, exist_ok=True)
+    os.makedirs(logs_dir, exist_ok=True)
 
     starters = get_probable_starters(game_date)
     if not starters:
@@ -380,7 +386,7 @@ def build_daily_report(game_date=None):
             if pid:
                 gl = get_pitcher_game_log(pid)
                 if not gl.empty:
-                    gl_path = os.path.join(DATA_DIR, f"gamelogs/{pid}_gamelog.csv")
+                    gl_path = os.path.join(logs_dir, f"{pid}_gamelog.csv")
                     os.makedirs(os.path.dirname(gl_path), exist_ok=True)
                     gl.to_csv(gl_path, index=False)
 
@@ -392,7 +398,7 @@ def build_daily_report(game_date=None):
             )
             row["home_pitcher_fip_vs_opp"] = away_fip
             if not away_splits.empty:
-                path = os.path.join(SPLITS_DIR, f"{game_id}_away_vs_home_pitcher.csv")
+                path = os.path.join(splits_dir, f"{game_id}_away_vs_home_pitcher.csv")
                 away_splits.to_csv(path, index=False)
                 row["away_hitters_with_history"] = len(away_splits)
                 row["away_lineup_avg_xwoba"]     = round(away_splits["xwoba"].dropna().mean(), 3)
@@ -416,7 +422,7 @@ def build_daily_report(game_date=None):
             )
             row["away_pitcher_fip_vs_opp"] = home_fip
             if not home_splits.empty:
-                path = os.path.join(SPLITS_DIR, f"{game_id}_home_vs_away_pitcher.csv")
+                path = os.path.join(splits_dir, f"{game_id}_home_vs_away_pitcher.csv")
                 home_splits.to_csv(path, index=False)
                 row["home_hitters_with_history"] = len(home_splits)
                 row["home_lineup_avg_xwoba"]     = round(home_splits["xwoba"].dropna().mean(), 3)
@@ -490,26 +496,16 @@ def save_report(df, game_date, target_dir, splits_subdir, logs_subdir, label="")
 
 def build_tomorrow_report(tomorrow_str):
     """
-    Wrapper around build_daily_report that temporarily redirects
-    SPLITS_DIR and gamelogs to the tomorrow subdirectory.
+    Fetch tomorrow's starters and save splits/gamelogs to data/tomorrow/.
+    Passes directory params directly — no module-level variable swapping needed.
     """
-    import fetch_daily_stats as _self
-
-    # Swap directories so CSVs land in data/tomorrow/
-    orig_splits = _self.SPLITS_DIR
-    orig_logs   = None
-
     os.makedirs(TOMORROW_SPLITS_DIR, exist_ok=True)
     os.makedirs(TOMORROW_LOGS_DIR, exist_ok=True)
-
-    _self.SPLITS_DIR = TOMORROW_SPLITS_DIR
-
-    try:
-        df = build_daily_report(tomorrow_str)
-    finally:
-        _self.SPLITS_DIR = orig_splits  # always restore
-
-    return df
+    return build_daily_report(
+        tomorrow_str,
+        splits_dir=TOMORROW_SPLITS_DIR,
+        logs_dir=TOMORROW_LOGS_DIR,
+    )
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────
