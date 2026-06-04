@@ -524,7 +524,7 @@ if __name__ == "__main__":
     # UTC hour tells us which scheduled run this is
     # 03:00 UTC = 9 PM CST → the evening run that should also fetch tomorrow
     utc_hour = datetime.utcnow().hour
-    is_evening_run = (utc_hour >= 2 and utc_hour <= 4)  # 9 PM CST window
+    is_evening_run = True
 
     log.info("=== MLB Hitter Splits vs Starters — %s ===", today_str)
     log.info("UTC hour: %d | Evening run: %s | Tomorrow-only: %s",
