@@ -497,20 +497,43 @@ for _, game in summary.iterrows():
             away_splits_df = load_splits(game_id, "away", current_mtime, root=data_root)
             home_splits_df = load_splits(game_id, "home", current_mtime, root=data_root)
 
-            away_pred, _, _, _, _ = predict_runs(away_xwoba, away_fip, away_splits_df,
-                                                  total_abs=away_total_abs, n_hitters=away_n)
-            home_pred, _, _, _, _ = predict_runs(home_xwoba, home_fip, home_splits_df,
-                                                  total_abs=home_total_abs, n_hitters=home_n)
+            away_pred, away_conf, away_color, _, away_sw = predict_runs(
+                away_xwoba, away_fip, away_splits_df,
+                total_abs=away_total_abs, n_hitters=away_n)
+            home_pred, home_conf, home_color, _, home_sw = predict_runs(
+                home_xwoba, home_fip, home_splits_df,
+                total_abs=home_total_abs, n_hitters=home_n)
 
             if away_pred is not None and home_pred is not None:
-                total = round(away_pred + home_pred, 1)
-                away_team = game.get("away_team", "Away")
-                home_team = game.get("home_team", "Home")
+                total      = round(away_pred + home_pred, 1)
+                away_team  = game.get("away_team", "Away")
+                home_team  = game.get("home_team", "Home")
+
+                # Overall game confidence = lower of the two sides
+                conf_rank  = {
+                    "High confidence": 3, "Medium confidence": 2,
+                    "Low confidence": 1, "Very low — small sample": 0
+                }
+                away_rank  = conf_rank.get(away_conf, 0)
+                home_rank  = conf_rank.get(home_conf, 0)
+                if min(away_rank, home_rank) == 3:
+                    game_conf  = "High confidence"
+                    game_color = "#2ca02c"
+                elif min(away_rank, home_rank) == 2:
+                    game_conf  = "Medium confidence"
+                    game_color = "#ff7f0e"
+                elif min(away_rank, home_rank) == 1:
+                    game_conf  = "Low confidence"
+                    game_color = "#d62728"
+                else:
+                    game_conf  = "Very low — small sample"
+                    game_color = "#9467bd"
+
                 st.markdown(
                     f"""
                     <div style="
                         background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
-                        border: 1px solid #415a77;
+                        border: 1px solid {game_color};
                         border-radius: 10px;
                         padding: 10px 18px;
                         margin-bottom: 12px;
@@ -525,12 +548,31 @@ for _, game in summary.iterrows():
                             {total}
                         </div>
                         <div style="color:#aaa;font-size:0.8rem;">
-                            {away_team} <span style="color:#778da9;">~{away_pred}</span>
+                            {away_team}
+                            <span style="color:{away_color};">~{away_pred}</span>
                             &nbsp;·&nbsp;
-                            {home_team} <span style="color:#778da9;">~{home_pred}</span>
+                            {home_team}
+                            <span style="color:{home_color};">~{home_pred}</span>
                         </div>
-                        <div style="margin-left:auto;font-size:0.7rem;color:#778da9;">
-                            Model: xwOBA + FIP + HardHit% + Whiff%
+                        <div style="margin-left:auto;text-align:right;">
+                            <div style="
+                                font-size:0.7rem;
+                                font-weight:600;
+                                color:{game_color};
+                                border:1px solid {game_color};
+                                border-radius:20px;
+                                padding:2px 8px;
+                                display:inline-block;
+                                margin-bottom:4px;
+                            ">
+                                {game_conf}
+                            </div>
+                            <div style="font-size:0.65rem;color:#778da9;margin-top:2px;">
+                                {away_team}: {away_conf} · {home_team}: {home_conf}
+                            </div>
+                            <div style="font-size:0.65rem;color:#556;">
+                                Model: xwOBA + FIP + HardHit% + Whiff%
+                            </div>
                         </div>
                     </div>
                     """,
