@@ -29,6 +29,25 @@ METRIC_COLS = {
     "pitches_seen":  ("Pitches Seen",      "d"),
 }
 
+# Full team name lookup by abbreviation
+TEAM_NAMES = {
+    "AZ":  "Arizona Diamondbacks",   "ATL": "Atlanta Braves",
+    "BAL": "Baltimore Orioles",      "BOS": "Boston Red Sox",
+    "CHC": "Chicago Cubs",           "CWS": "Chicago White Sox",
+    "CIN": "Cincinnati Reds",        "CLE": "Cleveland Guardians",
+    "COL": "Colorado Rockies",       "DET": "Detroit Tigers",
+    "HOU": "Houston Astros",         "KC":  "Kansas City Royals",
+    "LAA": "Los Angeles Angels",     "LAD": "Los Angeles Dodgers",
+    "MIA": "Miami Marlins",          "MIL": "Milwaukee Brewers",
+    "MIN": "Minnesota Twins",        "NYM": "New York Mets",
+    "NYY": "New York Yankees",       "OAK": "Oakland Athletics",
+    "PHI": "Philadelphia Phillies",  "PIT": "Pittsburgh Pirates",
+    "SD":  "San Diego Padres",       "SF":  "San Francisco Giants",
+    "SEA": "Seattle Mariners",       "STL": "St. Louis Cardinals",
+    "TB":  "Tampa Bay Rays",         "TEX": "Texas Rangers",
+    "TOR": "Toronto Blue Jays",      "WSH": "Washington Nationals",
+}
+
 # xwOBA colour scale: green (low / pitcher-friendly) → red (high / hitter-friendly)
 def xwoba_color(val):
     if pd.isna(val):
@@ -521,8 +540,9 @@ for _, game in summary.iterrows():
                 pitcher = panel["pitcher_name"]
                 batting = panel["batting_team"]
 
-                st.subheader(f"{pitcher}")
-                st.caption(f"{batting} hitters vs this pitcher")
+                full_team_name = TEAM_NAMES.get(batting, batting)
+                st.subheader(f"{full_team_name} vs {pitcher}")
+                st.caption(f"Career Statcast splits — {full_team_name} hitters vs {pitcher}")
 
                 if not pitcher or pitcher == "TBD":
                     st.info("Starter not yet announced.")
