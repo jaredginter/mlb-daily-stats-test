@@ -589,7 +589,7 @@ for _, game in summary.iterrows():
                         "FIP vs this team",
                         fip_display,
                         help="{pitcher}FIP vs {full_team_name} (career). "
-                             "Lower is better for the pitcher (opposite side). Higher is better for {full_team_name}. Scale: <3.20 elite, 3.20–3.79 good, "
+                             "Lower is better for the opposing pitcher (opposite side). Higher is better for this team's side. Scale: <3.20 elite, 3.20–3.79 good, "
                              "3.80–4.19 average, 4.20–4.79 below avg, 5.00+ poor."
                     )
 
