@@ -578,7 +578,7 @@ for _, game in summary.iterrows():
                 if n is not None and n > 0:
                     mc1, mc2, mc3 = st.columns(3)
                     mc1.metric("Hitters with history", int(n))
-                    mc2.metric("Lineup avg xwOBA", f"{avg_xwoba:.3f}" if avg_xwoba else "—")
+                    mc2.metric(f"{full_team_name} avg xwOBA", f"{avg_xwoba:.3f}" if avg_xwoba else "—")
 
                     fip_display = (
                         f"{fip_val:.2f}"
