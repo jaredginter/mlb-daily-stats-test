@@ -127,14 +127,14 @@ def get_csv_mtime(path):
         return ""
 
 
-@st.cache_data(show_spinner="Loading today's starters…")
-def load_summary(game_date_str, _mtime):
+@st.cache_data(show_spinner="Loading starters…")
+def load_summary(game_date_str, _mtime, data_root="data"):
     """
     Read the CSV committed by GitHub Actions.
-    _mtime is the file modification time — changing it busts the cache
-    automatically whenever GitHub Actions commits fresh data.
+    data_root differentiates today vs tomorrow cache entries.
+    _mtime busts the cache when the file changes.
     """
-    csv_path = os.path.join("data", "daily_starters.csv")
+    csv_path = os.path.join(data_root, "daily_starters.csv")
     if os.path.exists(csv_path):
         return pd.read_csv(csv_path)
     return pd.DataFrame()
@@ -416,7 +416,7 @@ st.caption("Each panel shows the **opposing lineup's** career Statcast numbers v
 date_str      = selected_date.strftime("%Y-%m-%d")
 csv_path      = os.path.join(data_root, "daily_starters.csv")
 current_mtime = get_csv_mtime(csv_path)
-summary       = load_summary(date_str, current_mtime)
+summary       = load_summary(date_str, current_mtime, data_root=data_root)
 
 if summary.empty:
     st.warning("No games or probable starters found for this date. "
@@ -609,20 +609,7 @@ for _, game in summary.iterrows():
                 splits_df = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
 
                 if splits_df.empty:
-                    # Debug: show exactly what path was checked
-                    side      = panel["splits_side"]
-                    opp_side  = "home" if side == "away" else "away"
-                    fname     = f"{game_id}_{side}_vs_{opp_side}_pitcher.csv"
-                    full_path = os.path.join(data_root, "hitter_splits", fname)
-                    st.warning(f"Split data not found. Looking for: `{full_path}`")
-
-                    # List what IS in the hitter_splits folder
-                    hs_dir = os.path.join(data_root, "hitter_splits")
-                    if os.path.exists(hs_dir):
-                        files = os.listdir(hs_dir)
-                        st.caption(f"Files in {hs_dir}: {files[:5]}")
-                    else:
-                        st.caption(f"Folder does not exist: {hs_dir}")
+                    st.warning("Split data not found — try running the fetch script.")
                     continue
 
                 if show_chart:
