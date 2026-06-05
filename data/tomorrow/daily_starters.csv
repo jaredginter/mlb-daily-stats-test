@@ -1,7 +1,7 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824269,2026-06-06T17:10:00Z,SEA @ DET,DET,SEA,Keider Montero,Bryce Miller,672456.0,682243.0,6.1,9.0,0.369,27.0,1.85,10.0,0.379,55.0
 823697,2026-06-06T18:10:00Z,KC @ MIN,MIN,KC,Joe Ryan,Luinder Avila,657746.0,679883.0,3.28,11.0,0.366,94.0,-1.4,4.0,0.045,4.0
-823048,2026-06-06T18:15:00Z,CIN @ STL,STL,CIN,Matthew Liberatore,Nick Lodolo,669461.0,666157.0,5.57,12.0,0.392,44.0,1.93,6.0,0.278,15.0
+823048,2026-06-06T18:15:00Z,CIN @ STL,STL,CIN,Matthew Liberatore,Nick Lodolo,669461.0,666157.0,5.57,12.0,0.392,44.0,1.13,7.0,0.238,17.0
 824669,2026-06-06T18:20:00Z,SF @ CHC,CHC,SF,Ben Brown,Landen Roupp,676962.0,694738.0,1.5,7.0,0.249,19.0,3.62,9.0,0.393,35.0
 822808,2026-06-06T19:07:00Z,BAL @ TOR,TOR,BAL,TBD,Kyle Bradish,,680694.0,,,,,4.71,12.0,0.281,64.0
 823454,2026-06-06T20:05:00Z,CWS @ PHI,PHI,CWS,Andrew Painter,Sean Burke,691725.0,680732.0,,0.0,,0.0,,1.0,0.008,2.0
@@ -9,8 +9,8 @@ game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_nam
 824184,2026-06-06T20:10:00Z,ATH @ HOU,HOU,ATH,Tatsuya Imai,Kade Morris,837227.0,695034.0,0.85,6.0,0.201,13.0,,0.0,,0.0
 824915,2026-06-06T20:10:00Z,PIT @ ATL,ATL,PIT,Spencer Strider,Braxton Ashcraft,675911.0,677952.0,2.46,10.0,0.301,38.0,,2.0,0.265,2.0
 823859,2026-06-06T20:10:00Z,TB @ MIA,MIA,TB,TBD,Shane McClanahan,,663556.0,,,,,,1.0,0.559,2.0
-822891,2026-06-06T23:35:00Z,CLE @ TEX,TEX,CLE,Jack Leiter,Tanner Bibee,683004.0,676440.0,1.3,8.0,0.14,36.0,5.22,10.0,0.418,36.0
-823539,2026-06-06T23:35:00Z,BOS @ NYY,NYY,BOS,Will Warren,Ranger Suarez,701542.0,624133.0,5.24,8.0,0.377,38.0,4.0,13.0,0.324,94.0
+822891,2026-06-06T23:35:00Z,CLE @ TEX,TEX,CLE,Jack Leiter,Tanner Bibee,683004.0,676440.0,1.3,8.0,0.14,36.0,4.65,11.0,0.376,39.0
+823539,2026-06-06T23:35:00Z,BOS @ NYY,NYY,BOS,Will Warren,Ranger Suarez,701542.0,624133.0,5.24,8.0,0.377,38.0,3.74,13.0,0.288,93.0
 824351,2026-06-07T01:10:00Z,MIL @ COL,COL,MIL,Tanner Gordon,Jacob Misiorowski,685299.0,694819.0,,0.0,,0.0,1.43,6.0,0.15,11.0
 823942,2026-06-07T02:10:00Z,LAA @ LAD,LAD,LAA,Yoshinobu Yamamoto,TBD,808967.0,,6.1,8.0,0.386,16.0,,,,
 823292,2026-06-07T02:10:00Z,NYM @ SD,SD,NYM,Griffin Canning,Nolan McLean,656288.0,690997.0,5.8,6.0,0.473,39.0,,0.0,,0.0
