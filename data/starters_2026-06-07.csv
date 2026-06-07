@@ -1,5 +1,5 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-824916,2026-06-07T17:35:00Z,PIT @ ATL,ATL,PIT,Bryce Elder,Bubba Chandler,693821,696149,3.48,9,0.261,36,1.79,7,0.092,17
+824916,2026-06-07T17:35:00Z,PIT @ ATL,ATL,PIT,Bryce Elder,Mason Montgomery,693821,682254,3.48,9,0.261,36,4.81,7,0.44,9
 823453,2026-06-07T17:35:00Z,CWS @ PHI,PHI,CWS,Aaron Nola,Tyler Gilbert,605400,656457,3.28,5,0.335,30,10.1,6,0.582,8
 823537,2026-06-07T17:35:00Z,BOS @ NYY,NYY,BOS,Cam Schlittler,Ranger Suarez,693645,624133,2.29,10,0.231,42,4.07,13,0.321,91
 822807,2026-06-07T17:37:00Z,BAL @ TOR,TOR,BAL,Kevin Gausman,Shane Baz,592332,669358,5.11,9,0.408,94,3.1,8,0.295,58
