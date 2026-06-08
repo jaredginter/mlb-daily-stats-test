@@ -1,9 +1,9 @@
-game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-824829,2026-06-08T22:35:00Z,SEA @ BAL,BAL,SEA,TBD,Emerson Hancock,,676106,,,,,5.01,6,0.39,13
-822972,2026-06-08T22:40:00Z,BOS @ TB,TB,BOS,Ian Seymour,Connelly Early,693855.0,813349,7.0,0.18,12.0,0.92,2.62,9,0.29,32
-824427,2026-06-08T22:40:00Z,NYY @ CLE,CLE,NYY,Gavin Williams,Will Warren,668909.0,701542,9.0,0.336,42.0,4.83,3.65,7,0.319,13
-822806,2026-06-08T23:07:00Z,PHI @ TOR,TOR,PHI,Patrick Corbin,Cristopher Sánchez,571578.0,650911,10.0,0.444,115.0,6.34,2.77,9,0.293,52
-824025,2026-06-09T01:38:00Z,HOU @ LAA,LAA,HOU,Grayson Rodriguez,Spencer Arrighetti,680570.0,681293,6.0,0.296,26.0,5.2,5.6,6,0.255,21
-823289,2026-06-09T01:40:00Z,CIN @ SD,SD,CIN,Walker Buehler,Andrew Abbott,621111.0,671096,5.0,0.305,32.0,5.17,2.79,8,0.283,48
-823218,2026-06-09T01:45:00Z,WSH @ SF,SF,WSH,Logan Webb,Miles Mikolas,657277.0,571945,9.0,0.413,49.0,5.18,3.46,7,0.399,63
-824998,2026-06-09T02:05:00Z,MIL @ ATH,ATH,MIL,Jeffrey Springs,Kyle Harrison,605488.0,690986,11.0,0.257,33.0,6.98,2.1,9,0.216,15
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
+824829,2026-06-08T22:35:00Z,SEA @ BAL,BAL,SEA,Trey Gibson,Emerson Hancock,694346,676106,,0,,0,5.01,6,0.39,13
+822972,2026-06-08T22:40:00Z,BOS @ TB,TB,BOS,Ian Seymour,Connelly Early,693855,813349,0.92,8,0.18,13,2.62,9,0.29,32
+824427,2026-06-08T22:40:00Z,NYY @ CLE,CLE,NYY,Gavin Williams,Will Warren,668909,701542,4.83,9,0.336,42,3.65,7,0.319,13
+822806,2026-06-08T23:07:00Z,PHI @ TOR,TOR,PHI,Patrick Corbin,Cristopher Sánchez,571578,650911,6.34,10,0.444,115,2.77,9,0.293,52
+824025,2026-06-09T01:38:00Z,HOU @ LAA,LAA,HOU,Grayson Rodriguez,Spencer Arrighetti,680570,681293,5.2,6,0.296,26,5.6,6,0.255,21
+823289,2026-06-09T01:40:00Z,CIN @ SD,SD,CIN,Walker Buehler,Andrew Abbott,621111,671096,5.17,5,0.305,32,2.79,8,0.283,48
+823218,2026-06-09T01:45:00Z,WSH @ SF,SF,WSH,Logan Webb,Richard Lovelady,657277,663992,5.18,9,0.413,49,4.3,9,0.187,23
+824998,2026-06-09T02:05:00Z,MIL @ ATH,ATH,MIL,Jeffrey Springs,Kyle Harrison,605488,690986,6.98,11,0.257,33,1.6,9,0.216,15
