@@ -1,0 +1,5 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Kyle Tucker,663656,2,2021,0.5,1,0.791,1.0,0.0,100.6
+Alex Call,669743,1,2023,0.0,0,0.331,0.0,0.0,94.2
+Freddie Freeman,518692,1,2020,0.0,0,0.217,0.0,0.0,93.4
+Andy Pages,681624,1,2023,0.0,0,,0.0,0.0,
