@@ -1,6 +1,6 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 823694,2026-06-13T18:10:00Z,STL @ MIN,MIN,STL,Connor Prielipp,Matthew Liberatore,687570.0,669461,,0.0,,0.0,3.52,7,0.534,17
-822802,2026-06-13T19:07:00Z,NYY @ TOR,TOR,NYY,Kevin Gausman,Cam Schlittler,592332.0,693645,4.01,11.0,0.302,151.0,2.51,12,0.299,60
+822802,2026-06-13T19:07:00Z,NYY @ TOR,TOR,NYY,Kevin Gausman,Cam Schlittler,592332.0,693645,4.19,11.0,0.304,135.0,2.51,12,0.299,60
 824828,2026-06-13T20:05:00Z,SD @ BAL,BAL,SD,Trey Gibson,Randy Vásquez,694346.0,681190,,0.0,,0.0,11.31,6,0.558,17
 822725,2026-06-13T20:05:00Z,SEA @ WSH,WSH,SEA,Cade Cavalli,Luis Castillo,676917.0,622491,,0.0,,0.0,3.34,4,0.335,21
 823369,2026-06-13T20:05:00Z,MIA @ PIT,PIT,MIA,Bubba Chandler,Lake Bachar,696149.0,669199,,0.0,,0.0,11.6,6,0.596,10
