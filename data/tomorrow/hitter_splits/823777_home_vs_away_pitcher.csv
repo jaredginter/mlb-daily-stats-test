@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+David Hamilton,666152,2,2024,0.5,0,0.638,0.5,0.25,81.4
+Blake Perkins,663368,4,2023–2024,1.0,0,0.599,0.5,0.0,91.6
+Gary Sánchez,596142,5,2021–2025,0.2,1,0.377,0.667,0.467,85.8
+Luis Rengifo,650859,5,2023–2024,0.4,0,0.307,0.25,0.333,84.4
+Joey Ortiz,687401,3,2024,0.333,0,0.248,0.5,0.2,85.2
+William Contreras,661388,5,2023–2024,0.2,0,0.205,0.0,0.222,76.2
+Christian Yelich,592885,7,2022–2024,0.286,0,0.186,0.6,0.056,85.0
+Jackson Chourio,694192,2,2024,0.0,0,0.17,0.5,0.0,95.9
