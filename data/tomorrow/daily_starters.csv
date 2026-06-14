@@ -1,11 +1,11 @@
-game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp
-823452,2026-06-15T22:40:00Z,MIA @ PHI,PHI,MIA,TBD,TBD,,,,,,,,,,
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
+823452,2026-06-15T22:40:00Z,MIA @ PHI,PHI,MIA,TBD,Ryan Gusto,,687473.0,,,,,,0.0,,0.0
 822724,2026-06-15T22:45:00Z,KC @ WSH,WSH,KC,TBD,TBD,,,,,,,,,,
 824505,2026-06-15T23:10:00Z,NYM @ CIN,CIN,NYM,Chase Burns,TBD,695505.0,,9.0,0.271,20.0,3.66,,,,
 823046,2026-06-15T23:45:00Z,SD @ STL,STL,SD,Dustin May,TBD,669160.0,,9.0,0.458,79.0,4.58,,,,
-824666,2026-06-16T00:05:00Z,COL @ CHC,CHC,COL,TBD,Michael Lorenzen,,547179.0,,,,,10.0,0.217,55.0,4.3
+824666,2026-06-16T00:05:00Z,COL @ CHC,CHC,COL,TBD,Michael Lorenzen,,547179.0,,,,,4.3,10.0,0.217,55.0
 822887,2026-06-16T00:05:00Z,MIN @ TEX,TEX,MIN,TBD,TBD,,,,,,,,,,
-824181,2026-06-16T00:10:00Z,DET @ HOU,HOU,DET,TBD,Troy Melton,,675512.0,,,,,3.0,0.337,2.0,
+824181,2026-06-16T00:10:00Z,DET @ HOU,HOU,DET,TBD,Troy Melton,,675512.0,,,,,,3.0,0.337,2.0
 825071,2026-06-16T01:40:00Z,LAA @ AZ,AZ,LAA,TBD,TBD,,,,,,,,,,
-824993,2026-06-16T01:40:00Z,PIT @ ATH,ATH,PIT,TBD,TBD,,,,,,,,,,
+824993,2026-06-16T01:40:00Z,PIT @ ATH,ATH,PIT,TBD,Jared Jones,,683003.0,,,,,,1.0,0.074,2.0
 823938,2026-06-16T02:10:00Z,TB @ LAD,LAD,TB,TBD,TBD,,,,,,,,,,
