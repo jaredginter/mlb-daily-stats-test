@@ -1,0 +1,11 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Gary Sánchez,596142,2,2023–2026,0.0,0,0.726,,0.6,
+Luis Rengifo,650859,4,2024–2025,0.25,0,0.084,0.0,0.1,87.2
+Jake Bauers,641343,1,2023,0.0,0,0.064,0.0,0.0,72.3
+Andrew Vaughn,683734,1,2024,0.0,0,,,0.4,
+Brice Turang,668930,1,2025,0.0,0,,1.0,0.25,100.8
+Christian Yelich,592885,2,2026,0.0,0,,,0.5,
+Garrett Mitchell,669003,2,2026,0.0,0,,0.0,0.2,76.7
+Jackson Chourio,694192,1,2025,0.0,0,,0.0,0.5,77.6
+Joey Ortiz,687401,2,2025,1.0,0,,0.0,0.25,80.9
+Sal Frelick,686217,2,2025,1.0,1,,0.5,0.0,90.7
