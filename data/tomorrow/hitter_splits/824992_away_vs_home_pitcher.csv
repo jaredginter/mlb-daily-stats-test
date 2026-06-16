@@ -1,0 +1,8 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Nick Gonzales,693304,7,2023–2025,0.571,0,0.462,0.333,0.158,82.9
+Marcell Ozuna,542303,4,2024–2025,0.25,0,0.432,0.0,0.636,71.7
+Spencer Horwitz,687462,5,2025,0.4,1,0.372,0.333,0.182,95.2
+Bryan Reynolds,668804,18,2020–2025,0.333,2,0.353,0.471,0.186,90.8
+Ryan O'Hearn,656811,11,2021–2024,0.091,1,0.267,0.286,0.208,93.2
+Jared Triolo,669707,9,2023–2025,0.111,0,0.195,0.111,0.2,77.8
+Henry Davis,680779,4,2023–2024,0.5,1,0.114,0.0,0.5,71.4
