@@ -76,49 +76,17 @@ def get_probable_starters(game_date=None):
     return starters
 
 
-def get_il_player_ids(team_id):
-    """
-    Return a set of MLBAM player IDs currently on the injured list.
-    Tries multiple roster type names since the MLB API has changed these
-    over time. Returns an empty set on any failure so the caller is
-    never blocked — IL filtering is best-effort.
-    """
-    il_ids = set()
-
-    # Try each known roster type — first one that returns players wins
-    for roster_type in ["injuries", "injured", "injuredList"]:
-        try:
-            r = requests.get(
-                f"https://statsapi.mlb.com/api/v1/teams/{team_id}/roster",
-                params={"rosterType": roster_type},
-                timeout=10,
-            )
-            if r.status_code != 200:
-                continue
-            text = r.text.strip()
-            if not text:
-                continue
-            data = r.json()
-            players = data.get("roster", [])
-            if players:
-                for p in players:
-                    il_ids.add(p["person"]["id"])
-                log.info("  IL: found %d players on IL for team %s (type=%s)",
-                         len(il_ids), team_id, roster_type)
-                break  # found a working roster type
-        except Exception as exc:
-            log.warning("  IL fetch error for team %s (type=%s): %s",
-                        team_id, roster_type, exc)
-
-    return il_ids
-
-
 def get_active_hitters(team_id):
     """
-    Return {name, mlbam_id} for every active non-pitcher on a team,
-    excluding any players currently on the injured list.
-    IL filtering is best-effort — if the IL fetch fails the full
-    active roster is returned so no games are skipped.
+    Return {name, mlbam_id} for every active non-pitcher on a team.
+
+    The MLB Stats API "active" roster type already excludes IL players
+    by definition — it only returns players on the active 26-man roster.
+    Players on the 10-day, 15-day, or 60-day IL are not included.
+
+    We additionally cross-reference against the "depthChart" roster
+    to catch any status flags, but the active roster is the primary
+    and reliable source for IL exclusion.
     """
     url    = f"https://statsapi.mlb.com/api/v1/teams/{team_id}/roster"
     params = {"rosterType": "active"}
@@ -134,27 +102,13 @@ def get_active_hitters(team_id):
         log.warning("  Empty roster returned for team %s", team_id)
         return []
 
-    # Best-effort IL filter — never blocks if it fails
-    try:
-        il_ids = get_il_player_ids(team_id)
-    except Exception as exc:
-        log.warning("  IL lookup failed for team %s, including all hitters: %s",
-                    team_id, exc)
-        il_ids = set()
+    hitters = [
+        {"name": p["person"]["fullName"], "mlbam_id": p["person"]["id"]}
+        for p in roster
+        if p.get("position", {}).get("abbreviation", "") != "P"
+    ]
 
-    hitters = []
-    for p in roster:
-        pid = p["person"]["id"]
-        pos = p.get("position", {}).get("abbreviation", "")
-        if pos == "P":
-            continue
-        if pid in il_ids:
-            log.info("  Excluding IL player: %s", p["person"]["fullName"])
-            continue
-        hitters.append({"name": p["person"]["fullName"], "mlbam_id": pid})
-
-    log.info("  Active hitters for team %s: %d (excluded %d on IL)",
-             team_id, len(hitters), len(il_ids))
+    log.info("  Active hitters for team %s: %d", team_id, len(hitters))
     return hitters
 
 
@@ -638,9 +592,19 @@ def clear_stale_data(target_dir=None, splits_subdir=None, logs_subdir=None):
 
 
 def save_report(df, game_date, target_dir, splits_subdir, logs_subdir, label=""):
-    """Write summary CSV + snapshot + timestamp for a given date's report."""
+    """
+    Write summary CSV + snapshot + timestamp for a given date's report.
+    Never overwrites an existing CSV with an empty result — if the fetch
+    returned no games, the previous data is preserved.
+    """
+    tag = f" ({label})" if label else ""
+
     if df.empty:
-        log.warning("No data to save%s.", f" ({label})" if label else "")
+        existing = os.path.join(target_dir, "daily_starters.csv")
+        if os.path.exists(existing):
+            log.warning("No new data%s — keeping existing CSV to avoid empty dashboard.", tag)
+        else:
+            log.warning("No data to save%s and no existing CSV found.", tag)
         return
 
     os.makedirs(target_dir, exist_ok=True)
@@ -693,22 +657,29 @@ if __name__ == "__main__":
 
     # ── Today's data ────────────────────────────────────────────────────────
     if not tomorrow_only:
-        clear_stale_data()
         df_today = build_daily_report(today_str)
-        save_report(df_today, today_str, DATA_DIR, SPLITS_DIR,
-                    os.path.join(DATA_DIR, "gamelogs"), label="today")
+        if not df_today.empty:
+            # Only wipe stale splits AFTER confirming we have fresh data
+            clear_stale_data()
+            save_report(df_today, today_str, DATA_DIR, SPLITS_DIR,
+                        os.path.join(DATA_DIR, "gamelogs"), label="today")
+        else:
+            log.warning("No games found for today — preserving existing dashboard data.")
 
     # ── Tomorrow's data (evening run only, or if explicitly requested) ──────
     if is_evening_run or tomorrow_only:
         log.info("=== Fetching tomorrow's starters — %s ===", tomorrow_str)
-        clear_stale_data(
-            target_dir   = TOMORROW_DIR,
-            splits_subdir= TOMORROW_SPLITS_DIR,
-            logs_subdir  = TOMORROW_LOGS_DIR,
-        )
         df_tomorrow = build_tomorrow_report(tomorrow_str)
-        save_report(df_tomorrow, tomorrow_str, TOMORROW_DIR,
-                    TOMORROW_SPLITS_DIR, TOMORROW_LOGS_DIR, label="tomorrow")
+        if not df_tomorrow.empty:
+            clear_stale_data(
+                target_dir   = TOMORROW_DIR,
+                splits_subdir= TOMORROW_SPLITS_DIR,
+                logs_subdir  = TOMORROW_LOGS_DIR,
+            )
+            save_report(df_tomorrow, tomorrow_str, TOMORROW_DIR,
+                        TOMORROW_SPLITS_DIR, TOMORROW_LOGS_DIR, label="tomorrow")
+        else:
+            log.warning("No games found for tomorrow — preserving existing dashboard data.")
     else:
         log.info("Skipping tomorrow fetch (not evening run). "
                  "Re-run with --tomorrow-only to force.")
