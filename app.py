@@ -409,7 +409,6 @@ with st.sidebar:
     st.divider()
     show_chart      = st.toggle("Show xwOBA chart", value=True)
     show_table      = st.toggle("Show hitter table", value=True)
-    show_gamelog    = st.toggle("Show pitcher game log", value=True)
     show_prediction = st.toggle("Show run prediction", value=True)
     st.divider()
     if st.button("🔄 Force refresh", use_container_width=True):
@@ -693,12 +692,6 @@ for _, game in summary.iterrows():
                         key=f"table_{game_id}_{panel['splits_side']}",
                     )
 
-                # ── Game log ─────────────────────────────────────────────
-                pitcher_id = game.get(f"{panel['pitcher_side']}_pitcher_id")
-                if pitcher_id and show_gamelog:
-                    st.markdown("---")
-                    gl_df = load_game_log(pitcher_id, current_mtime, root=data_root)
-                    render_game_log(gl_df, pitcher, selected_date.year)
 
         with col_div:
             st.markdown(
