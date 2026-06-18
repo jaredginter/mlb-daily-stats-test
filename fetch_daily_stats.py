@@ -17,7 +17,7 @@ from datetime import date, datetime, timedelta
 
 import pandas as pd
 import requests
-from pybaseball import cache, statcast_pitcher
+from pybaseball import cache, statcast_pitcher, batting_stats
 
 logging.basicConfig(
     level=logging.INFO,
@@ -95,6 +95,79 @@ def get_active_hitters(team_id):
     ]
 
 
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Park factors + FanGraphs team offense
+# ─────────────────────────────────────────────────────────────────────────────
+
+PARK_FACTORS = {
+    "AZ": 1.05, "ATL": 0.98, "BAL": 1.01, "BOS": 1.03,
+    "CHC": 1.02, "CWS": 0.97, "CIN": 1.04, "CLE": 0.97,
+    "COL": 1.22, "DET": 0.99, "HOU": 1.03, "KC":  0.98,
+    "LAA": 0.97, "LAD": 0.96, "MIA": 0.95, "MIL": 1.00,
+    "MIN": 1.01, "NYM": 0.98, "NYY": 1.05, "OAK": 0.97,
+    "PHI": 1.02, "PIT": 0.99, "SD":  0.95, "SF":  0.95,
+    "SEA": 0.97, "STL": 0.99, "TB":  0.97, "TEX": 1.02,
+    "TOR": 1.00, "WSH": 1.00,
+}
+
+# FanGraphs team abbreviation → MLB Stats API abbreviation
+FG_TO_MLB = {
+    "ARI":"AZ",  "ATL":"ATL", "BAL":"BAL", "BOS":"BOS",
+    "CHC":"CHC", "CWS":"CWS", "CIN":"CIN", "CLE":"CLE",
+    "COL":"COL", "DET":"DET", "HOU":"HOU", "KCR":"KC",
+    "LAA":"LAA", "LAD":"LAD", "MIA":"MIA", "MIL":"MIL",
+    "MIN":"MIN", "NYM":"NYM", "NYY":"NYY", "OAK":"OAK",
+    "PHI":"PHI", "PIT":"PIT", "SDP":"SD",  "SFG":"SF",
+    "SEA":"SEA", "STL":"STL", "TBR":"TB",  "TEX":"TEX",
+    "TOR":"TOR", "WSN":"WSH",
+}
+
+
+def fetch_team_offense(season=None):
+    """
+    Pull team-level batting stats from FanGraphs.
+    Returns dict keyed by MLB abbreviation with wOBA, wRC+, OBP, OPS+,
+    Barrel%, HardHit%, K%, BB%, BABIP.
+    """
+    if season is None:
+        season = date.today().year
+    log.info("Fetching FanGraphs team batting stats for %d ...", season)
+    try:
+        df = batting_stats(season, qual=0, ind=0)
+        if "Team" not in df.columns:
+            log.warning("  Team column missing from batting_stats output")
+            return {}
+
+        def to_rate(val, default):
+            """Convert pct that may be expressed as 0-100 or 0-1 to 0-1."""
+            try:
+                v = float(val or default)
+                return round(v / 100 if v > 1 else v, 3)
+            except (TypeError, ValueError):
+                return default
+
+        result = {}
+        for _, r in df.iterrows():
+            fg  = str(r.get("Team", "")).strip()
+            mlb = FG_TO_MLB.get(fg, fg)
+            result[mlb] = {
+                "woba":     round(float(r.get("wOBA",   0.312) or 0.312), 3),
+                "wrc_plus": round(float(r.get("wRC+",   100)   or 100),   1),
+                "obp":      round(float(r.get("OBP",    0.318) or 0.318), 3),
+                "ops_plus": round(float(r.get("OPS+",   100)   or 100),   1),
+                "barrel":   to_rate(r.get("Barrel%",  0.080), 0.080),
+                "hard_hit": to_rate(r.get("HardHit%", 0.380), 0.380),
+                "k_pct":    to_rate(r.get("K%",       0.222), 0.222),
+                "bb_pct":   to_rate(r.get("BB%",      0.083), 0.083),
+                "babip":    round(float(r.get("BABIP",  0.296) or 0.296), 3),
+            }
+        log.info("  Team offense fetched for %d teams", len(result))
+        return result
+    except Exception as exc:
+        log.error("Failed to fetch team batting stats: %s", exc)
+        return {}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -361,12 +434,19 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
     if not starters:
         return pd.DataFrame()
 
+    # Fetch team offense once for all games
+    team_offense = fetch_team_offense(date.today().year)
+
     summary_rows = []
 
     for game in starters:
         matchup = f"{game['away_team']} @ {game['home_team']}"
         game_id = game["game_id"]
         log.info("Processing: %s", matchup)
+
+        away_off    = team_offense.get(game["away_team"], {})
+        home_off    = team_offense.get(game["home_team"], {})
+        park_factor = PARK_FACTORS.get(game["home_team"], 1.00)
 
         row = {
             "game_id":           game_id,
@@ -378,6 +458,28 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
             "away_pitcher_name": game["away_pitcher_name"],
             "home_pitcher_id":   game["home_pitcher_id"],
             "away_pitcher_id":   game["away_pitcher_id"],
+            # Park factor
+            "park_factor":       park_factor,
+            # Away team season offense
+            "away_woba":         away_off.get("woba"),
+            "away_wrc_plus":     away_off.get("wrc_plus"),
+            "away_obp":          away_off.get("obp"),
+            "away_ops_plus":     away_off.get("ops_plus"),
+            "away_barrel":       away_off.get("barrel"),
+            "away_hard_hit":     away_off.get("hard_hit"),
+            "away_k_pct":        away_off.get("k_pct"),
+            "away_bb_pct":       away_off.get("bb_pct"),
+            "away_babip":        away_off.get("babip"),
+            # Home team season offense
+            "home_woba":         home_off.get("woba"),
+            "home_wrc_plus":     home_off.get("wrc_plus"),
+            "home_obp":          home_off.get("obp"),
+            "home_ops_plus":     home_off.get("ops_plus"),
+            "home_barrel":       home_off.get("barrel"),
+            "home_hard_hit":     home_off.get("hard_hit"),
+            "home_k_pct":        home_off.get("k_pct"),
+            "home_bb_pct":       home_off.get("bb_pct"),
+            "home_babip":        home_off.get("babip"),
         }
 
         # ── Game logs for both pitchers ─────────────────────────────────────

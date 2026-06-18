@@ -223,110 +223,129 @@ def render_game_log(df, pitcher_name, season):
 
 # ── Run prediction model ─────────────────────────────────────────────────────
 
+import math
+
 # League average baselines (2024 season)
-LG_AVG_XWOBA  = 0.312
-LG_AVG_FIP    = 4.00
-LG_AVG_RUNS   = 4.50   # runs per team per game
+LG = {
+    "runs":     4.50,
+    "xwoba":    0.312,
+    "fip":      4.00,
+    "hard_hit": 0.380,
+    "whiff":    0.240,
+    "woba":     0.312,
+    "wrc_plus": 100.0,
+    "obp":      0.318,
+    "ops_plus": 100.0,
+    "barrel":   0.080,
+    "k_pct":    0.222,
+    "bb_pct":   0.083,
+    "babip":    0.296,
+}
 
-# Weights tuned so league average inputs → 4.5 predicted runs
-XWOBA_WEIGHT  = 18.0   # xwOBA above/below avg × this = run adjustment
-FIP_WEIGHT    = 0.30   # FIP above/below avg × this = run adjustment
+FULL_TRUST_ABS     = 60
+FULL_TRUST_HITTERS = 7
 
-# Sample size thresholds for weighting the prediction
-# Below FULL_TRUST_ABS the prediction is blended toward league average
-# so small samples don't produce wildly skewed run totals
-FULL_TRUST_ABS      = 60   # at or above this: prediction runs at full strength
-HALF_TRUST_ABS      = 20   # at or above this: prediction blended 50/50 with lg avg
-FULL_TRUST_HITTERS  = 7    # bonus trust if many hitters have history
+
+def safe_float(val, default):
+    try:
+        v = float(val)
+        return default if (v != v) else v  # nan check
+    except (TypeError, ValueError):
+        return default
 
 
 def sample_size_weight(total_abs, n_hitters):
     """
-    Returns a weight between 0.0 and 1.0 that scales how much the
-    model's signal is trusted vs. regressing toward league average.
-
-    - total_abs >= FULL_TRUST_ABS  → weight 1.0 (full signal)
-    - total_abs ~= HALF_TRUST_ABS  → weight ~0.50
-    - total_abs < 10               → weight ~0.10 (almost all league avg)
-
-    A bonus is added when many hitters have history, since breadth of
-    matchup data is independently meaningful even if AB count is low.
+    Logarithmic weight 0.0–1.0 scaling how much the vs-pitcher
+    splits are trusted vs. falling back to team season stats.
     """
     if total_abs is None or total_abs <= 0:
         return 0.10
-
-    # Logarithmic scale: diminishing returns as ABs grow
-    import math
-    base_weight = min(1.0, math.log1p(total_abs) / math.log1p(FULL_TRUST_ABS))
-
-    # Hitter breadth bonus (up to +0.10)
-    hitter_bonus = 0.0
-    if n_hitters is not None and n_hitters >= FULL_TRUST_HITTERS:
-        hitter_bonus = 0.10
-
-    return min(1.0, base_weight + hitter_bonus)
+    base = min(1.0, math.log1p(total_abs) / math.log1p(FULL_TRUST_ABS))
+    bonus = 0.10 if (n_hitters is not None and n_hitters >= FULL_TRUST_HITTERS) else 0.0
+    return min(1.0, base + bonus)
 
 
-def predict_runs(avg_xwoba, fip_vs_team, splits_df, total_abs=None, n_hitters=None):
+def predict_runs(avg_xwoba, fip_vs_team, splits_df,
+                 total_abs=None, n_hitters=None, team_off=None):
     """
-    Predict runs scored by the batting team using a weighted model:
-      - xwOBA vs pitcher (strongest signal)
-      - FIP vs this team (pitcher quality signal)
-      - Avg HardHit% and Whiff% from the hitter table (secondary signals)
-      - Sample size weight (total ABs + hitter count) scales prediction
-        toward league average when history is sparse
+    Two-layer run prediction model:
 
-    Returns (predicted_runs, confidence_label, confidence_color, inputs_used, sample_weight)
+    Layer 1 — Team season offense (40% weight):
+      wOBA 10%, wRC+ 8%, OBP 6%, OPS+ 4%, Barrel% 4%,
+      HardHit% 3%, K% 3%, BB% 1%, BABIP 1%
+
+    Layer 2 — vs pitcher career splits (60% weight, sample-size adjusted):
+      xwOBA vs pitcher 25%, FIP vs pitcher 12%,
+      HardHit% vs pitcher 10%, Whiff% vs pitcher 8%,
+      scaled toward team stats when career AB sample is thin
+
+    Returns (predicted_runs, conf_label, conf_color, inputs_used, sample_weight)
     """
-    if avg_xwoba is None and fip_vs_team is None:
+    if avg_xwoba is None and fip_vs_team is None and not team_off:
         return None, None, None, [], 0.0
 
-    # Compute sample size weight
-    sw = sample_size_weight(total_abs, n_hitters)
+    inputs_used = []
+    BASE        = LG["runs"]
 
-    raw_prediction = LG_AVG_RUNS
-    inputs_used    = []
+    # ── Layer 1: team season offense (always available) ──────────────────
+    team_adj = 0.0
+    if team_off:
+        def tadj(key, weight, lg_key=None):
+            val = safe_float(team_off.get(key), LG.get(lg_key or key, 0))
+            return (val - LG.get(lg_key or key, val)) * weight
 
-    # Signal 1: xwOBA vs pitcher (most reliable)
+        team_adj += tadj("woba",     12.0)
+        team_adj += tadj("wrc_plus",  0.012)   # per point above 100
+        team_adj += tadj("obp",       8.0)
+        team_adj += tadj("ops_plus",  0.008)
+        team_adj += tadj("barrel",   10.0)
+        team_adj += tadj("hard_hit",  4.0)
+        team_adj -= tadj("k_pct",     6.0)
+        team_adj += tadj("bb_pct",    5.0)
+        team_adj += tadj("babip",     4.0)
+        team_adj *= 0.40
+        inputs_used += ["wOBA","wRC+","OBP","OPS+","Barrel%","HardHit%","K%","BB%","BABIP"]
+
+    # ── Layer 2: vs-pitcher career splits (sample-size weighted) ─────────
+    sw         = sample_size_weight(total_abs, n_hitters)
+    splits_adj = 0.0
+
     if avg_xwoba is not None and not pd.isna(avg_xwoba):
-        xwoba_adj    = (float(avg_xwoba) - LG_AVG_XWOBA) * XWOBA_WEIGHT
-        raw_prediction += xwoba_adj
-        inputs_used.append("xwOBA")
+        splits_adj += (safe_float(avg_xwoba, LG["xwoba"]) - LG["xwoba"]) * 18.0
+        inputs_used.append("xwOBA vs pitcher")
 
-    # Signal 2: FIP vs this team (pitcher quality)
     if fip_vs_team is not None and not pd.isna(fip_vs_team):
-        fip_adj      = (float(fip_vs_team) - LG_AVG_FIP) * FIP_WEIGHT
-        raw_prediction += fip_adj
-        inputs_used.append("FIP")
+        splits_adj += (safe_float(fip_vs_team, LG["fip"]) - LG["fip"]) * 0.30
+        inputs_used.append("FIP vs pitcher")
 
-    # Signal 3: avg HardHit% and Whiff% from the splits table
     if splits_df is not None and not splits_df.empty:
         if "hard_hit_pct" in splits_df.columns:
             hh = splits_df["hard_hit_pct"].dropna().mean()
             if not pd.isna(hh):
-                raw_prediction += (hh - 0.38) * 4.0
-                inputs_used.append("HardHit%")
+                splits_adj += (hh - LG["hard_hit"]) * 4.0
+                inputs_used.append("HardHit% vs pitcher")
         if "whiff_pct" in splits_df.columns:
             wp = splits_df["whiff_pct"].dropna().mean()
             if not pd.isna(wp):
-                raw_prediction -= (wp - 0.24) * 4.0
-                inputs_used.append("Whiff%")
+                splits_adj -= (wp - LG["whiff"]) * 4.0
+                inputs_used.append("Whiff% vs pitcher")
 
-    # Blend prediction toward league average based on sample size weight
-    # sw=1.0 → full model signal; sw=0.1 → 90% league avg, 10% model signal
-    blended = (sw * raw_prediction) + ((1.0 - sw) * LG_AVG_RUNS)
+    # Scale splits layer by sample size — when thin, lean on team offense
+    splits_adj *= (sw * 0.60)
 
-    # Floor / ceiling
-    blended = max(1.0, min(blended, 12.0))
+    raw     = BASE + team_adj + splits_adj
+    blended = max(1.0, min(12.0, raw))
 
-    # Confidence: combination of signal count AND sample size weight
-    if sw >= 0.80 and len(inputs_used) >= 3:
+    # Confidence: needs both layers + good sample to hit High
+    n_sig = len(inputs_used)
+    if sw >= 0.80 and n_sig >= 6:
         conf_label = "High confidence"
         conf_color = "#2ca02c"
-    elif sw >= 0.50 and len(inputs_used) >= 2:
+    elif sw >= 0.50 and n_sig >= 4:
         conf_label = "Medium confidence"
         conf_color = "#ff7f0e"
-    elif sw >= 0.25:
+    elif n_sig >= 2:
         conf_label = "Low confidence"
         conf_color = "#d62728"
     else:
@@ -496,12 +515,28 @@ for _, game in summary.iterrows():
             away_splits_df = load_splits(game_id, "away", current_mtime, root=data_root)
             home_splits_df = load_splits(game_id, "home", current_mtime, root=data_root)
 
+            away_team_off = {
+                "woba":     game.get("away_woba"),     "wrc_plus": game.get("away_wrc_plus"),
+                "obp":      game.get("away_obp"),      "ops_plus": game.get("away_ops_plus"),
+                "barrel":   game.get("away_barrel"),   "hard_hit": game.get("away_hard_hit"),
+                "k_pct":    game.get("away_k_pct"),    "bb_pct":   game.get("away_bb_pct"),
+                "babip":    game.get("away_babip"),
+            }
+            home_team_off = {
+                "woba":     game.get("home_woba"),     "wrc_plus": game.get("home_wrc_plus"),
+                "obp":      game.get("home_obp"),      "ops_plus": game.get("home_ops_plus"),
+                "barrel":   game.get("home_barrel"),   "hard_hit": game.get("home_hard_hit"),
+                "k_pct":    game.get("home_k_pct"),    "bb_pct":   game.get("home_bb_pct"),
+                "babip":    game.get("home_babip"),
+            }
             away_pred, away_conf, away_color, _, away_sw = predict_runs(
                 away_xwoba, away_fip, away_splits_df,
-                total_abs=away_total_abs, n_hitters=away_n)
+                total_abs=away_total_abs, n_hitters=away_n,
+                team_off=away_team_off)
             home_pred, home_conf, home_color, _, home_sw = predict_runs(
                 home_xwoba, home_fip, home_splits_df,
-                total_abs=home_total_abs, n_hitters=home_n)
+                total_abs=home_total_abs, n_hitters=home_n,
+                team_off=home_team_off)
 
             if away_pred is not None and home_pred is not None:
                 total      = round(away_pred + home_pred, 1)
@@ -660,9 +695,23 @@ for _, game in summary.iterrows():
                 # ── Predicted runs badge ─────────────────────────────────
                 if show_prediction:
                     _splits_preview = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
+                    # Team offense keys — batting team's season stats
+                    _team_side = panel["splits_side"]  # "away" batters or "home" batters
+                    _team_off  = {
+                        "woba":     game.get(f"{_team_side}_woba"),
+                        "wrc_plus": game.get(f"{_team_side}_wrc_plus"),
+                        "obp":      game.get(f"{_team_side}_obp"),
+                        "ops_plus": game.get(f"{_team_side}_ops_plus"),
+                        "barrel":   game.get(f"{_team_side}_barrel"),
+                        "hard_hit": game.get(f"{_team_side}_hard_hit"),
+                        "k_pct":    game.get(f"{_team_side}_k_pct"),
+                        "bb_pct":   game.get(f"{_team_side}_bb_pct"),
+                        "babip":    game.get(f"{_team_side}_babip"),
+                    }
                     pred_runs, conf_label, conf_color, inputs_used, sw = predict_runs(
                         avg_xwoba, fip_val, _splits_preview,
-                        total_abs=total_abs, n_hitters=int(n) if n else None
+                        total_abs=total_abs, n_hitters=int(n) if n else None,
+                        team_off=_team_off
                     )
                     if pred_runs is not None:
                         run_prediction_badge(
