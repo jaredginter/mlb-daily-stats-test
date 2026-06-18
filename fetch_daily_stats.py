@@ -17,7 +17,7 @@ from datetime import date, datetime, timedelta
 
 import pandas as pd
 import requests
-from pybaseball import cache, statcast_pitcher, batting_stats, pitching_stats
+from pybaseball import cache, statcast_pitcher
 
 logging.basicConfig(
     level=logging.INFO,
@@ -95,127 +95,6 @@ def get_active_hitters(team_id):
     ]
 
 
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# FanGraphs team offense + pitcher stats
-# ─────────────────────────────────────────────────────────────────────────────
-
-# Park factors — 5-year averaged, updated for 2025 season
-# >1.00 = hitter-friendly, <1.00 = pitcher-friendly
-PARK_FACTORS = {
-    "AZ": 1.05, "ATL": 0.98, "BAL": 1.01, "BOS": 1.03,
-    "CHC": 1.02, "CWS": 0.97, "CIN": 1.04, "CLE": 0.97,
-    "COL": 1.22, "DET": 0.99, "HOU": 1.03, "KC":  0.98,
-    "LAA": 0.97, "LAD": 0.96, "MIA": 0.95, "MIL": 1.00,
-    "MIN": 1.01, "NYM": 0.98, "NYY": 1.05, "OAK": 0.97,
-    "PHI": 1.02, "PIT": 0.99, "SD":  0.95, "SF":  0.95,
-    "SEA": 0.97, "STL": 0.99, "TB":  0.97, "TEX": 1.02,
-    "TOR": 1.00, "WSH": 1.00,
-}
-
-# FanGraphs team abbreviation → MLB Stats API abbreviation mapping
-FG_TO_MLB = {
-    "ARI":"AZ", "ATL":"ATL", "BAL":"BAL", "BOS":"BOS",
-    "CHC":"CHC", "CWS":"CWS", "CIN":"CIN", "CLE":"CLE",
-    "COL":"COL", "DET":"DET", "HOU":"HOU", "KCR":"KC",
-    "LAA":"LAA", "LAD":"LAD", "MIA":"MIA", "MIL":"MIL",
-    "MIN":"MIN", "NYM":"NYM", "NYY":"NYY", "OAK":"OAK",
-    "PHI":"PHI", "PIT":"PIT", "SDP":"SD",  "SFG":"SF",
-    "SEA":"SEA", "STL":"STL", "TBR":"TB",  "TEX":"TEX",
-    "TOR":"TOR", "WSN":"WSH",
-}
-
-
-def fetch_team_offense(season=None):
-    """
-    Pull team-level batting stats from FanGraphs for the current season.
-    Returns a dict keyed by MLB team abbreviation.
-    Stats: wOBA, wRC+, OBP, OPS+, Barrel%, HardHit%, K%, BB%, BABIP
-    """
-    if season is None:
-        season = date.today().year
-    log.info("Fetching FanGraphs team batting stats for %d ...", season)
-    try:
-        df = batting_stats(season, qual=0, ind=0)
-        # Filter to team-level rows (FanGraphs uses "Team" column)
-        if "Team" not in df.columns:
-            log.warning("Team column not found in batting_stats output")
-            return {}
-
-        result = {}
-        for _, row in df.iterrows():
-            fg_abbr  = str(row.get("Team", "")).strip()
-            mlb_abbr = FG_TO_MLB.get(fg_abbr, fg_abbr)
-            result[mlb_abbr] = {
-                "woba":     round(float(row.get("wOBA",    0.312)), 3),
-                "wrc_plus": round(float(row.get("wRC+",    100)),   1),
-                "obp":      round(float(row.get("OBP",     0.318)), 3),
-                "ops_plus": round(float(row.get("OPS+",    100)),   1),
-                "barrel":   round(float(row.get("Barrel%", 0.080) or 0) / 100, 3)
-                             if float(row.get("Barrel%", 0) or 0) > 1
-                             else round(float(row.get("Barrel%", 0.080) or 0), 3),
-                "hard_hit": round(float(row.get("HardHit%", 0.380) or 0) / 100, 3)
-                             if float(row.get("HardHit%", 0) or 0) > 1
-                             else round(float(row.get("HardHit%", 0.380) or 0), 3),
-                "k_pct":    round(float(row.get("K%",     0.222) or 0) / 100, 3)
-                             if float(row.get("K%",     0) or 0) > 1
-                             else round(float(row.get("K%",     0.222) or 0), 3),
-                "bb_pct":   round(float(row.get("BB%",    0.083) or 0) / 100, 3)
-                             if float(row.get("BB%",    0) or 0) > 1
-                             else round(float(row.get("BB%",    0.083) or 0), 3),
-                "babip":    round(float(row.get("BABIP",   0.296)), 3),
-            }
-        log.info("  Fetched offense stats for %d teams", len(result))
-        return result
-    except Exception as exc:
-        log.error("Failed to fetch team batting stats: %s", exc)
-        return {}
-
-
-def fetch_pitcher_advanced(pitcher_name, season=None):
-    """
-    Pull advanced pitching stats from FanGraphs for a specific pitcher.
-    Stats: xFIP, GB%, HR/9, K%, BB%, Whiff%
-    Returns a dict or empty dict if not found.
-    """
-    if season is None:
-        season = date.today().year
-    log.info("  Fetching FanGraphs pitching stats for %s ...", pitcher_name)
-    try:
-        df = pitching_stats(season, qual=0)
-        if df.empty:
-            return {}
-
-        # Match by name — FanGraphs uses "Name" column
-        name_col = "Name" if "Name" in df.columns else df.columns[0]
-        match = df[df[name_col].str.lower() == pitcher_name.lower()]
-        if match.empty:
-            # Try partial match on last name
-            last = pitcher_name.split()[-1].lower()
-            match = df[df[name_col].str.lower().str.contains(last, na=False)]
-
-        if match.empty:
-            log.warning("  No FanGraphs stats found for %s", pitcher_name)
-            return {}
-
-        row = match.iloc[0]
-
-        def pct(col, default):
-            val = float(row.get(col, default) or default)
-            return round(val / 100 if val > 1 else val, 3)
-
-        return {
-            "xfip":   round(float(row.get("xFIP",   4.00) or 4.00), 2),
-            "gb_pct": pct("GB%",     0.440),
-            "hr9":    round(float(row.get("HR/9",   1.20) or 1.20), 2),
-            "k_pct":  pct("K%",      0.222),
-            "bb_pct": pct("BB%",     0.083),
-            "whiff":  pct("Whiff%",  0.240),
-        }
-    except Exception as exc:
-        log.error("  Failed FanGraphs pitching stats for %s: %s", pitcher_name, exc)
-        return {}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -482,27 +361,12 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
     if not starters:
         return pd.DataFrame()
 
-    # Fetch team offense stats once for all games
-    season       = date.today().year
-    team_offense = fetch_team_offense(season)
-
     summary_rows = []
 
     for game in starters:
         matchup = f"{game['away_team']} @ {game['home_team']}"
         game_id = game["game_id"]
         log.info("Processing: %s", matchup)
-
-        # Team offense stats
-        away_off = team_offense.get(game["away_team"], {})
-        home_off = team_offense.get(game["home_team"], {})
-
-        # Park factor for home team's ballpark
-        park_factor = PARK_FACTORS.get(game["home_team"], 1.00)
-
-        # Advanced pitcher stats from FanGraphs
-        home_pit_adv = fetch_pitcher_advanced(game["home_pitcher_name"], season)                        if game["home_pitcher_name"] != "TBD" else {}
-        away_pit_adv = fetch_pitcher_advanced(game["away_pitcher_name"], season)                        if game["away_pitcher_name"] != "TBD" else {}
 
         row = {
             "game_id":           game_id,
@@ -514,42 +378,6 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
             "away_pitcher_name": game["away_pitcher_name"],
             "home_pitcher_id":   game["home_pitcher_id"],
             "away_pitcher_id":   game["away_pitcher_id"],
-            # Park factor
-            "park_factor":       park_factor,
-            # Away team offense
-            "away_woba":         away_off.get("woba"),
-            "away_wrc_plus":     away_off.get("wrc_plus"),
-            "away_obp":          away_off.get("obp"),
-            "away_ops_plus":     away_off.get("ops_plus"),
-            "away_barrel":       away_off.get("barrel"),
-            "away_hard_hit":     away_off.get("hard_hit"),
-            "away_k_pct":        away_off.get("k_pct"),
-            "away_bb_pct":       away_off.get("bb_pct"),
-            "away_babip":        away_off.get("babip"),
-            # Home team offense
-            "home_woba":         home_off.get("woba"),
-            "home_wrc_plus":     home_off.get("wrc_plus"),
-            "home_obp":          home_off.get("obp"),
-            "home_ops_plus":     home_off.get("ops_plus"),
-            "home_barrel":       home_off.get("barrel"),
-            "home_hard_hit":     home_off.get("hard_hit"),
-            "home_k_pct":        home_off.get("k_pct"),
-            "home_bb_pct":       home_off.get("bb_pct"),
-            "home_babip":        home_off.get("babip"),
-            # Home pitcher advanced stats (faces away batters)
-            "home_pit_xfip":     home_pit_adv.get("xfip"),
-            "home_pit_gb_pct":   home_pit_adv.get("gb_pct"),
-            "home_pit_hr9":      home_pit_adv.get("hr9"),
-            "home_pit_k_pct":    home_pit_adv.get("k_pct"),
-            "home_pit_bb_pct":   home_pit_adv.get("bb_pct"),
-            "home_pit_whiff":    home_pit_adv.get("whiff"),
-            # Away pitcher advanced stats (faces home batters)
-            "away_pit_xfip":     away_pit_adv.get("xfip"),
-            "away_pit_gb_pct":   away_pit_adv.get("gb_pct"),
-            "away_pit_hr9":      away_pit_adv.get("hr9"),
-            "away_pit_k_pct":    away_pit_adv.get("k_pct"),
-            "away_pit_bb_pct":   away_pit_adv.get("bb_pct"),
-            "away_pit_whiff":    away_pit_adv.get("whiff"),
         }
 
         # ── Game logs for both pitchers ─────────────────────────────────────
