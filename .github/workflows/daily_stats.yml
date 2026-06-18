@@ -45,6 +45,12 @@ jobs:
         run: |
           git config --global user.email "mlb-stats-bot@github.com"
           git config --global user.name "MLB Stats Bot"
+          # Ensure folder placeholders exist so git always tracks them
+          mkdir -p data/hitter_splits data/gamelogs data/tomorrow/hitter_splits data/tomorrow/gamelogs
+          touch data/hitter_splits/.gitkeep
+          touch data/gamelogs/.gitkeep
+          touch data/tomorrow/hitter_splits/.gitkeep
+          touch data/tomorrow/gamelogs/.gitkeep
           git add data/
           git diff --cached --quiet && echo "No changes to commit" && exit 0
           git commit -m "chore: update starter stats $(date -u +%Y-%m-%d)"
