@@ -657,10 +657,11 @@ if __name__ == "__main__":
 
     # ── Today's data ────────────────────────────────────────────────────────
     if not tomorrow_only:
+        # Clear stale splits BEFORE building so we start fresh
+        # but only after confirming the previous run's data exists
+        clear_stale_data()
         df_today = build_daily_report(today_str)
         if not df_today.empty:
-            # Only wipe stale splits AFTER confirming we have fresh data
-            clear_stale_data()
             save_report(df_today, today_str, DATA_DIR, SPLITS_DIR,
                         os.path.join(DATA_DIR, "gamelogs"), label="today")
         else:
