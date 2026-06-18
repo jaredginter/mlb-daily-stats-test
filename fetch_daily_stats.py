@@ -76,8 +76,35 @@ def get_probable_starters(game_date=None):
     return starters
 
 
+def get_il_player_ids(team_id):
+    """
+    Return a set of MLBAM player IDs currently on the 7-day, 10-day,
+    15-day, or 60-day injured list for a given team.
+    Uses the MLB Stats API injured list roster endpoint.
+    """
+    il_ids = set()
+    # MLB API roster types for each IL tier
+    il_types = ["injuries"]
+    for roster_type in il_types:
+        url    = f"https://statsapi.mlb.com/api/v1/teams/{team_id}/roster"
+        params = {"rosterType": roster_type}
+        try:
+            r = requests.get(url, params=params, timeout=15)
+            r.raise_for_status()
+            for p in r.json().get("roster", []):
+                il_ids.add(p["person"]["id"])
+        except Exception as exc:
+            log.warning("  IL fetch failed for team %s (%s): %s", team_id, roster_type, exc)
+    if il_ids:
+        log.info("  Found %d players on IL for team %s", len(il_ids), team_id)
+    return il_ids
+
+
 def get_active_hitters(team_id):
-    """Return {name, mlbam_id} for every active non-pitcher on a team."""
+    """
+    Return {name, mlbam_id} for every active non-pitcher on a team,
+    excluding any players currently on the injured list.
+    """
     url    = f"https://statsapi.mlb.com/api/v1/teams/{team_id}/roster"
     params = {"rosterType": "active"}
     try:
@@ -88,11 +115,21 @@ def get_active_hitters(team_id):
         log.error("  Roster fetch failed for team %s: %s", team_id, exc)
         return []
 
-    return [
-        {"name": p["person"]["fullName"], "mlbam_id": p["person"]["id"]}
-        for p in roster
-        if p.get("position", {}).get("abbreviation", "") != "P"
-    ]
+    # Fetch IL players and exclude them
+    il_ids = get_il_player_ids(team_id)
+
+    hitters = []
+    for p in roster:
+        pid = p["person"]["id"]
+        pos = p.get("position", {}).get("abbreviation", "")
+        if pos == "P":
+            continue
+        if pid in il_ids:
+            log.info("  Excluding IL player: %s", p["person"]["fullName"])
+            continue
+        hitters.append({"name": p["person"]["fullName"], "mlbam_id": pid})
+
+    return hitters
 
 
 
