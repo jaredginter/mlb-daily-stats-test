@@ -1,6 +1,6 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp
 824263,2026-06-20T17:10:00Z,CWS @ DET,DET,CWS,Troy Melton,TBD,675512.0,,0.99,,,,,,,,,,,,,,,,,,,3.94,10.0,0.356,30.0,,,,
-823532,2026-06-20T17:35:00Z,CIN @ NYY,NYY,CIN,Will Warren,Andrew Abbott,701542.0,671096.0,1.05,,,,,,,,,,,,,,,,,,,2.5,4.0,0.211,11.0,9.0,0.323,36.0,2.63
+823532,2026-06-20T17:35:00Z,CIN @ NYY,NYY,CIN,Will Warren,Andrew Abbott,701542.0,671096.0,1.05,,,,,,,,,,,,,,,,,,,2.5,4.0,0.211,11.0,9.0,0.323,35.0,2.63
 824665,2026-06-20T18:20:00Z,TOR @ CHC,CHC,TOR,Colin Rea,Patrick Corbin,607067.0,571578.0,1.02,,,,,,,,,,,,,,,,,,,4.8,7.0,0.37,22.0,10.0,0.4,126.0,6.99
 822885,2026-06-20T20:05:00Z,SD @ TEX,TEX,SD,Nathan Eovaldi,Walker Buehler,543135.0,621111.0,1.02,,,,,,,,,,,,,,,,,,,4.0,8.0,0.29,64.0,9.0,0.309,51.0,3.57
 822967,2026-06-20T20:10:00Z,WSH @ TB,TB,WSH,TBD,Miles Mikolas,,571945.0,0.97,,,,,,,,,,,,,,,,,,,,,,,8.0,0.325,26.0,5.7
