@@ -646,14 +646,8 @@ if __name__ == "__main__":
     today_str    = date.today().strftime("%Y-%m-%d")
     tomorrow_str = (date.today() + timedelta(days=1)).strftime("%Y-%m-%d")
 
-    # UTC hour tells us which scheduled run this is
-    # 03:00 UTC = 9 PM CST → the evening run that should also fetch tomorrow
-    utc_hour = datetime.utcnow().hour
-    is_evening_run = (utc_hour >= 2 and utc_hour <= 4)  # 9 PM CST window
-
     log.info("=== MLB Hitter Splits vs Starters — %s ===", today_str)
-    log.info("UTC hour: %d | Evening run: %s | Tomorrow-only: %s",
-             utc_hour, is_evening_run, tomorrow_only)
+    log.info("Tomorrow-only flag: %s", tomorrow_only)
 
     # ── Today's data ────────────────────────────────────────────────────────
     if not tomorrow_only:
@@ -667,8 +661,10 @@ if __name__ == "__main__":
         else:
             log.warning("No games found for today — preserving existing dashboard data.")
 
-    # ── Tomorrow's data (evening run only, or if explicitly requested) ──────
-    if is_evening_run or tomorrow_only:
+    # ── Tomorrow's data (every run) ─────────────────────────────────────────
+    # Fetch on every run so the tomorrow tab always reflects the latest
+    # announced starters — MLB posts probable starters throughout the day
+    if not tomorrow_only:
         log.info("=== Fetching tomorrow's starters — %s ===", tomorrow_str)
         df_tomorrow = build_tomorrow_report(tomorrow_str)
         if not df_tomorrow.empty:
@@ -681,8 +677,5 @@ if __name__ == "__main__":
                         TOMORROW_SPLITS_DIR, TOMORROW_LOGS_DIR, label="tomorrow")
         else:
             log.warning("No games found for tomorrow — preserving existing dashboard data.")
-    else:
-        log.info("Skipping tomorrow fetch (not evening run). "
-                 "Re-run with --tomorrow-only to force.")
 
     log.info("Done.")
