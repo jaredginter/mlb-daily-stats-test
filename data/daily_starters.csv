@@ -1,15 +1,15 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824663,2026-06-19T18:20:00Z,TOR @ CHC,CHC,TOR,Ben Brown,Kevin Gausman,676962,592332,1.02,,,,,,,,,,,,,,,,,,,6.7,6,0.462,15,3.31,11,0.295,77
-824264,2026-06-19T22:40:00Z,CWS @ DET,DET,CWS,Tarik Skubal,Erick Fedde,669373,607200,0.99,,,,,,,,,,,,,,,,,,,2.01,6,0.206,37,7.72,10,0.321,45
+824264,2026-06-19T22:40:00Z,CWS @ DET,DET,CWS,Tarik Skubal,Brandon Eisert,669373,685126,0.99,,,,,,,,,,,,,,,,,,,2.01,6,0.206,37,7.69,11,0.402,26
 823534,2026-06-19T23:05:00Z,CIN @ NYY,NYY,CIN,Cam Schlittler,Rhett Lowder,693645,695076,1.05,,,,,,,,,,,,,,,,,,,4.1,2,0.215,4,6.13,2,0.442,4
-822966,2026-06-19T23:10:00Z,WSH @ TB,TB,WSH,Griffin Jax,Cade Cavalli,643377,676917,0.97,,,,,,,,,,,,,,,,,,,0.8,6,0.314,11,-0.5,2,0.092,6
+822966,2026-06-19T23:10:00Z,WSH @ TB,TB,WSH,Griffin Jax,PJ Poulin,643377,676571,0.97,,,,,,,,,,,,,,,,,,,0.8,6,0.314,11,1.6,4,0.303,6
 823853,2026-06-19T23:10:00Z,SF @ MIA,MIA,SF,Lake Bachar,Landen Roupp,669199,694738,0.95,,,,,,,,,,,,,,,,,,,5.72,7,0.195,10,2.55,8,0.249,23
 824910,2026-06-19T23:15:00Z,MIL @ ATL,ATL,MIL,Martín Pérez,Jacob Misiorowski,527048,694819,0.98,,,,,,,,,,,,,,,,,,,7.68,10,0.436,75,-0.9,1,0.002,3
-822886,2026-06-20T00:05:00Z,SD @ TEX,TEX,SD,Jacob deGrom,Randy Vásquez,594798,681190,1.02,,,,,,,,,,,,,,,,,,,1.44,4,0.263,29,4.85,9,0.233,32
+822886,2026-06-20T00:05:00Z,SD @ TEX,TEX,SD,Jacob deGrom,Randy Vásquez,594798,681190,1.02,,,,,,,,,,,,,,,,,,,1.44,4,0.263,29,3.91,9,0.176,36
 824179,2026-06-20T00:10:00Z,CLE @ HOU,HOU,CLE,Tatsuya Imai,Tanner Bibee,837227,676440,1.03,,,,,,,,,,,,,,,,,,,,0,,0,5.38,11,0.344,65
 824097,2026-06-20T00:15:00Z,STL @ KC,KC,STL,Seth Lugo,Michael McGreevy,607625,700241,0.98,,,,,,,,,,,,,,,,,,,9.75,4,0.606,8,0.7,2,0.126,6
 824345,2026-06-20T00:40:00Z,PIT @ COL,COL,PIT,Kyle Freeland,Bubba Chandler,607536,696149,1.22,,,,,,,,,,,,,,,,,,,4.7,6,0.347,36,3.1,5,0.252,5
 824990,2026-06-20T01:40:00Z,LAA @ ATH,ATH,LAA,Jeffrey Springs,José Soriano,605488,667755,1.0,,,,,,,,,,,,,,,,,,,4.17,7,0.358,36,5.11,11,0.286,82
 825069,2026-06-20T01:45:00Z,MIN @ AZ,AZ,MIN,Michael Soroka,Connor Prielipp,647336,687570,1.05,,,,,,,,,,,,,,,,,,,1.13,7,0.239,18,,0,,0
 823936,2026-06-20T02:10:00Z,BAL @ LAD,LAD,BAL,Roki Sasaki,Trey Gibson,808963,694346,0.96,,,,,,,,,,,,,,,,,,,,1,0.074,2,,0,,0
-823124,2026-06-20T02:10:00Z,BOS @ SEA,SEA,BOS,Bryce Miller,Ranger Suarez,682243,624133,0.97,,,,,,,,,,,,,,,,,,,3.39,8,0.4,26,2.91,10,0.246,43
+823124,2026-06-20T02:10:00Z,BOS @ SEA,SEA,BOS,Bryce Miller,Ranger Suarez,682243,624133,0.97,,,,,,,,,,,,,,,,,,,3.39,8,0.4,26,2.92,11,0.246,44
