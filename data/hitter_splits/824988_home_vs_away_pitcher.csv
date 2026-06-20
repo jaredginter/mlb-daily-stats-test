@@ -1,0 +1,10 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Carlos Cortes,666126,1,2026,0.0,0,0.486,0.0,0.0,67.4
+Jeff McNeil,643446,3,2026,0.333,0,0.479,1.0,0.0,100.1
+Zack Gelof,680869,2,2026,0.0,0,0.294,0.0,0.5,53.1
+Tyler Soderstrom,691016,3,2026,0.0,0,0.219,0.0,0.25,83.6
+Henry Bolte,703607,4,2026,0.25,0,0.129,0.0,0.714,72.4
+Shea Langeliers,669127,3,2026,0.333,0,0.104,0.0,0.0,87.2
+Nick Kurtz,701762,3,2026,0.333,0,0.071,0.0,0.2,86.5
+Colby Thomas,687515,2,2026,0.0,0,,0.0,0.5,
+Max Muncy,691777,1,2026,1.0,0,,1.0,0.5,107.3
