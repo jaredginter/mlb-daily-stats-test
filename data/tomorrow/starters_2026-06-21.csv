@@ -1,5 +1,5 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-823531,2026-06-21T17:35:00Z,CIN @ NYY,NYY,CIN,Gerrit Cole,Chase Burns,543037.0,695505.0,1.05,,,,,,,,,,,,,,,,,,,2.77,5.0,0.296,42.0,9.1,6.0,0.509,14.0
+823531,2026-06-21T17:35:00Z,CIN @ NYY,NYY,CIN,Elmer Rodríguez,Chase Burns,695684.0,695505.0,1.05,,,,,,,,,,,,,,,,,,,,0.0,,0.0,9.1,6.0,0.509,14.0
 824908,2026-06-21T17:35:00Z,MIL @ ATL,ATL,MIL,Bryce Elder,Robert Gasser,693821.0,688107.0,0.98,,,,,,,,,,,,,,,,,,,3.07,10.0,0.313,56.0,,1.0,0.606,2.0
 822968,2026-06-21T17:40:00Z,WSH @ TB,TB,WSH,Nick Martinez,Andrew Alvarez,607259.0,674841.0,0.97,,,,,,,,,,,,,,,,,,,4.24,6.0,0.232,24.0,,1.0,0.836,1.0
 824260,2026-06-21T17:40:00Z,CWS @ DET,DET,CWS,Keider Montero,Davis Martin,672456.0,663436.0,0.99,,,,,,,,,,,,,,,,,,,4.87,9.0,0.281,26.0,4.34,9.0,0.322,53.0
@@ -7,7 +7,7 @@ game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_nam
 824177,2026-06-21T18:10:00Z,CLE @ HOU,HOU,CLE,Kai-Wei Teng,Slade Cecconi,678906.0,677944.0,1.03,,,,,,,,,,,,,,,,,,,3.1,3.0,0.121,3.0,7.18,9.0,0.386,37.0
 824095,2026-06-21T18:10:00Z,STL @ KC,KC,STL,Stephen Kolek,Dustin May,663568.0,669160.0,0.98,,,,,,,,,,,,,,,,,,,6.96,8.0,0.423,29.0,5.05,9.0,0.297,43.0
 824664,2026-06-21T18:20:00Z,TOR @ CHC,CHC,TOR,Shota Imanaga,Dylan Cease,684007.0,656302.0,1.02,,,,,,,,,,,,,,,,,,,2.23,6.0,0.307,13.0,2.28,11.0,0.261,85.0
-822883,2026-06-21T18:35:00Z,SD @ TEX,TEX,SD,MacKenzie Gore,TBD,669022.0,,1.02,,,,,,,,,,,,,,,,,,,6.2,8.0,0.335,36.0,,,,
+822883,2026-06-21T18:35:00Z,SD @ TEX,TEX,SD,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,,,,,,,,
 824343,2026-06-21T19:10:00Z,PIT @ COL,COL,PIT,Michael Lorenzen,Jared Jones,547179.0,683003.0,1.22,,,,,,,,,,,,,,,,,,,3.97,9.0,0.273,62.0,7.13,4.0,0.468,11.0
 825067,2026-06-21T19:15:00Z,MIN @ AZ,AZ,MIN,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,,,,,,,,
 824987,2026-06-21T20:05:00Z,LAA @ ATH,ATH,LAA,Jack Perkins,TBD,678022.0,,1.0,,,,,,,,,,,,,,,,,,,4.72,7.0,0.344,15.0,,,,

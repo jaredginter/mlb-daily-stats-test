@@ -1,8 +1,8 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824263,2026-06-20T17:10:00Z,CWS @ DET,DET,CWS,Troy Melton,Sean Newcomb,675512,656794,0.99,,,,,,,,,,,,,,,,,,,3.94,10,0.356,30,2.95,10,0.279,22
 823532,2026-06-20T17:35:00Z,CIN @ NYY,NYY,CIN,Will Warren,Andrew Abbott,701542,671096,1.05,,,,,,,,,,,,,,,,,,,2.5,4,0.211,11,2.63,9,0.323,35
-824665,2026-06-20T18:20:00Z,TOR @ CHC,CHC,TOR,Colin Rea,Patrick Corbin,607067,571578,1.02,,,,,,,,,,,,,,,,,,,4.8,7,0.37,22,6.99,10,0.4,126
-822885,2026-06-20T20:05:00Z,SD @ TEX,TEX,SD,Nathan Eovaldi,Walker Buehler,543135,621111,1.02,,,,,,,,,,,,,,,,,,,4.0,8,0.29,64,3.63,9,0.309,50
+824665,2026-06-20T18:20:00Z,TOR @ CHC,CHC,TOR,Colin Rea,Patrick Corbin,607067,571578,1.02,,,,,,,,,,,,,,,,,,,4.71,8,0.339,24,6.99,10,0.4,126
+822885,2026-06-20T20:05:00Z,SD @ TEX,TEX,SD,MacKenzie Gore,Walker Buehler,669022,621111,1.02,,,,,,,,,,,,,,,,,,,6.2,8,0.335,36,3.63,9,0.309,50
 822967,2026-06-20T20:10:00Z,WSH @ TB,TB,WSH,Ian Seymour,Cade Cavalli,693855,676917,0.97,,,,,,,,,,,,,,,,,,,0.33,7,0.259,16,-0.5,2,0.092,6
 823854,2026-06-20T20:10:00Z,SF @ MIA,MIA,SF,Max Meyer,Trevor McDonald,676974,686790,0.95,,,,,,,,,,,,,,,,,,,1.85,7,0.372,20,,0,,0
 824909,2026-06-20T20:10:00Z,MIL @ ATL,ATL,MIL,Chris Sale,Kyle Harrison,519242,690986,0.98,,,,,,,,,,,,,,,,,,,1.15,10,0.242,67,1.13,6,0.288,18
@@ -12,4 +12,4 @@ game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_nam
 824988,2026-06-21T02:05:00Z,LAA @ ATH,ATH,LAA,J.T. Ginn,Walbert Ureña,669372,700712,1.0,,,,,,,,,,,,,,,,,,,4.06,7,0.333,31,2.35,9,0.255,22
 823937,2026-06-21T02:10:00Z,BAL @ LAD,LAD,BAL,Yoshinobu Yamamoto,Trevor Rogers,808967,669432,0.96,,,,,,,,,,,,,,,,,,,3.77,10,0.279,30,2.16,8,0.367,42
 823126,2026-06-21T02:10:00Z,BOS @ SEA,SEA,BOS,Emerson Hancock,Connelly Early,676106,813349,0.97,,,,,,,,,,,,,,,,,,,2.24,5,0.288,9,,0,,0
-825068,2026-06-21T02:10:00Z,MIN @ AZ,AZ,MIN,Zac Gallen,Taj Bradley,668678,671737,1.05,,,,,,,,,,,,,,,,,,,3.54,5,0.315,29,9.73,8,0.414,24
+825068,2026-06-21T02:10:00Z,MIN @ AZ,AZ,MIN,Zac Gallen,Taj Bradley,668678,671737,1.05,,,,,,,,,,,,,,,,,,,3.54,5,0.315,29,9.73,9,0.39,26
