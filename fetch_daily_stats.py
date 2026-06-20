@@ -666,13 +666,14 @@ if __name__ == "__main__":
     # announced starters — MLB posts probable starters throughout the day
     if not tomorrow_only:
         log.info("=== Fetching tomorrow's starters — %s ===", tomorrow_str)
+        # Clear stale splits BEFORE building — same pattern as today's data
+        clear_stale_data(
+            target_dir   = TOMORROW_DIR,
+            splits_subdir= TOMORROW_SPLITS_DIR,
+            logs_subdir  = TOMORROW_LOGS_DIR,
+        )
         df_tomorrow = build_tomorrow_report(tomorrow_str)
         if not df_tomorrow.empty:
-            clear_stale_data(
-                target_dir   = TOMORROW_DIR,
-                splits_subdir= TOMORROW_SPLITS_DIR,
-                logs_subdir  = TOMORROW_LOGS_DIR,
-            )
             save_report(df_tomorrow, tomorrow_str, TOMORROW_DIR,
                         TOMORROW_SPLITS_DIR, TOMORROW_LOGS_DIR, label="tomorrow")
         else:
