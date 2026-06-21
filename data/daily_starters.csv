@@ -1,16 +1,16 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-823531,2026-06-21T17:35:00Z,CIN @ NYY,NYY,CIN,Elmer Rodríguez,Chase Burns,695684,695505.0,1.05,,,,,,,,,,,,,,,,,,,,0,,0,9.1,6.0,0.509,14.0
-824908,2026-06-21T17:35:00Z,MIL @ ATL,ATL,MIL,Bryce Elder,Robert Gasser,693821,688107.0,0.98,,,,,,,,,,,,,,,,,,,3.07,10,0.313,56,,1.0,0.606,2.0
-822968,2026-06-21T17:40:00Z,WSH @ TB,TB,WSH,Nick Martinez,Andrew Alvarez,607259,674841.0,0.97,,,,,,,,,,,,,,,,,,,4.24,6,0.232,24,,1.0,0.836,1.0
-824260,2026-06-21T17:40:00Z,CWS @ DET,DET,CWS,Keider Montero,Davis Martin,672456,663436.0,0.99,,,,,,,,,,,,,,,,,,,4.87,9,0.281,26,4.34,9.0,0.322,53.0
-823852,2026-06-21T17:40:00Z,SF @ MIA,MIA,SF,Ryan Gusto,Logan Webb,687473,657277.0,0.95,,,,,,,,,,,,,,,,,,,0.7,4,0.37,8,3.54,9.0,0.351,32.0
-824177,2026-06-21T18:10:00Z,CLE @ HOU,HOU,CLE,Kai-Wei Teng,Slade Cecconi,678906,677944.0,1.03,,,,,,,,,,,,,,,,,,,3.1,3,0.121,3,7.18,9.0,0.386,37.0
-824095,2026-06-21T18:10:00Z,STL @ KC,KC,STL,Stephen Kolek,Dustin May,663568,669160.0,0.98,,,,,,,,,,,,,,,,,,,6.96,8,0.423,29,5.05,9.0,0.297,43.0
-824664,2026-06-21T18:20:00Z,TOR @ CHC,CHC,TOR,Shota Imanaga,Dylan Cease,684007,656302.0,1.02,,,,,,,,,,,,,,,,,,,2.23,6,0.307,13,2.28,11.0,0.261,85.0
-822883,2026-06-21T18:35:00Z,SD @ TEX,TEX,SD,Nathan Eovaldi,TBD,543135,,1.02,,,,,,,,,,,,,,,,,,,4.0,8,0.29,64,,,,
-824343,2026-06-21T19:10:00Z,PIT @ COL,COL,PIT,Michael Lorenzen,Jared Jones,547179,683003.0,1.22,,,,,,,,,,,,,,,,,,,3.97,9,0.273,62,7.13,4.0,0.468,11.0
-825067,2026-06-21T19:15:00Z,MIN @ AZ,AZ,MIN,Jose Cabrera,Mike Paredes,703615,702474.0,1.05,,,,,,,,,,,,,,,,,,,,0,,0,,0.0,,0.0
-824987,2026-06-21T20:05:00Z,LAA @ ATH,ATH,LAA,Jack Perkins,Reid Detmers,678022,672282.0,1.0,,,,,,,,,,,,,,,,,,,4.72,7,0.343,15,1.36,9.0,0.279,48.0
-823934,2026-06-21T20:10:00Z,BAL @ LAD,LAD,BAL,Emmet Sheehan,Brandon Young,686218,687064.0,0.96,,,,,,,,,,,,,,,,,,,10.35,4,0.43,9,,1.0,0.351,2.0
-823123,2026-06-21T20:10:00Z,BOS @ SEA,SEA,BOS,Logan Gilbert,Payton Tolle,669302,801139.0,0.97,,,,,,,,,,,,,,,,,,,3.13,11,0.228,42,,0.0,,0.0
-823449,2026-06-21T23:20:00Z,NYM @ PHI,PHI,NYM,Zack Wheeler,David Peterson,554430,656849.0,1.02,,,,,,,,,,,,,,,,,,,5.25,10,0.29,88,4.09,10.0,0.401,116.0
+823531,2026-06-21T17:35:00Z,CIN @ NYY,NYY,CIN,Elmer Rodríguez,Chase Burns,695684,695505,1.05,,,,,,,,,,,,,,,,,,,,0,,0,7.9,7,0.459,16
+824908,2026-06-21T17:35:00Z,MIL @ ATL,ATL,MIL,Bryce Elder,Robert Gasser,693821,688107,0.98,,,,,,,,,,,,,,,,,,,3.07,10,0.313,56,,1,0.606,2
+822968,2026-06-21T17:40:00Z,WSH @ TB,TB,WSH,Nick Martinez,Andrew Alvarez,607259,674841,0.97,,,,,,,,,,,,,,,,,,,4.24,6,0.232,24,,1,0.836,1
+824260,2026-06-21T17:40:00Z,CWS @ DET,DET,CWS,Keider Montero,Davis Martin,672456,663436,0.99,,,,,,,,,,,,,,,,,,,4.87,9,0.281,26,4.34,9,0.322,53
+823852,2026-06-21T17:40:00Z,SF @ MIA,MIA,SF,Ryan Gusto,Logan Webb,687473,657277,0.95,,,,,,,,,,,,,,,,,,,0.7,4,0.37,8,3.54,9,0.351,32
+824177,2026-06-21T18:10:00Z,CLE @ HOU,HOU,CLE,Kai-Wei Teng,Slade Cecconi,678906,677944,1.03,,,,,,,,,,,,,,,,,,,3.1,3,0.121,3,7.18,9,0.386,37
+824095,2026-06-21T18:10:00Z,STL @ KC,KC,STL,Stephen Kolek,Dustin May,663568,669160,0.98,,,,,,,,,,,,,,,,,,,6.96,8,0.423,29,5.05,9,0.297,43
+822883,2026-06-21T18:35:00Z,SD @ TEX,TEX,SD,Nathan Eovaldi,Wandy Peralta,543135,593974,1.02,,,,,,,,,,,,,,,,,,,4.0,8,0.29,64,6.78,8,0.191,26
+824343,2026-06-21T19:10:00Z,PIT @ COL,COL,PIT,Michael Lorenzen,Jared Jones,547179,683003,1.22,,,,,,,,,,,,,,,,,,,3.97,9,0.273,62,7.13,4,0.468,11
+825067,2026-06-21T19:15:00Z,MIN @ AZ,AZ,MIN,Jose Cabrera,Mike Paredes,703615,702474,1.05,,,,,,,,,,,,,,,,,,,,0,,0,,0,,0
+824987,2026-06-21T20:05:00Z,LAA @ ATH,ATH,LAA,Jack Perkins,Reid Detmers,678022,672282,1.0,,,,,,,,,,,,,,,,,,,4.72,7,0.343,15,1.36,9,0.279,48
+823934,2026-06-21T20:10:00Z,BAL @ LAD,LAD,BAL,Emmet Sheehan,Brandon Young,686218,687064,0.96,,,,,,,,,,,,,,,,,,,10.35,4,0.43,9,,1,0.351,2
+823123,2026-06-21T20:10:00Z,BOS @ SEA,SEA,BOS,Logan Gilbert,Payton Tolle,669302,801139,0.97,,,,,,,,,,,,,,,,,,,3.13,11,0.228,42,,0,,0
+823449,2026-06-21T23:20:00Z,NYM @ PHI,PHI,NYM,Zack Wheeler,David Peterson,554430,656849,1.02,,,,,,,,,,,,,,,,,,,5.25,10,0.29,88,4.09,10,0.401,116
+824664,2026-06-21T18:20:00Z,TOR @ CHC,CHC,TOR,Shota Imanaga,Dylan Cease,684007,656302,1.02,,,,,,,,,,,,,,,,,,,2.23,6,0.307,13,2.28,11,0.261,85
