@@ -1,14 +1,14 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-824261,2026-06-22T22:10:00Z,NYY @ DET,DET,NYY,Framber Valdez,Gerrit Cole,664285,543037.0,0.99,,,,,,,,,,,,,,,,,,,3.4,12,0.271,93,2.3,7.0,0.228,48.0
-822964,2026-06-22T22:40:00Z,KC @ TB,TB,KC,Drew Rasmussen,Michael Wacha,656876,608379.0,0.97,,,,,,,,,,,,,,,,,,,1.13,9,0.227,35,4.74,9.0,0.254,54.0
-823851,2026-06-22T22:40:00Z,TEX @ MIA,MIA,TEX,Tyler Phillips,Tyler Alexander,663969,641302.0,0.95,,,,,,,,,,,,,,,,,,,2.13,6,0.203,8,-1.37,3.0,0.243,5.0
-822720,2026-06-22T22:45:00Z,PHI @ WSH,WSH,PHI,Foster Griffin,TBD,656492,,1.0,,,,,,,,,,,,,,,,,,,3.63,8,0.318,18,,,,
-822800,2026-06-22T23:07:00Z,HOU @ TOR,TOR,HOU,Dylan Cease,Hunter Brown,656302,686613.0,1.0,,,,,,,,,,,,,,,,,,,3.55,9,0.305,76,5.85,9.0,0.32,39.0
-823613,2026-06-22T23:10:00Z,CHC @ NYM,NYM,CHC,Kodai Senga,Shota Imanaga,673540,684007.0,0.98,,,,,,,,,,,,,,,,,,,3.73,9,0.278,40,7.98,7.0,0.516,21.0
-824502,2026-06-22T23:10:00Z,MIL @ CIN,CIN,MIL,Brady Singer,TBD,663903,,1.04,,,,,,,,,,,,,,,,,,,3.34,12,0.378,105,,,,
-823692,2026-06-22T23:40:00Z,LAD @ MIN,MIN,LAD,Zebby Matthews,Eric Lauer,805673,641778.0,1.01,,,,,,,,,,,,,,,,,,,,0,,0,9.31,11.0,0.439,53.0
-824585,2026-06-22T23:40:00Z,CLE @ CWS,CWS,CLE,Anthony Kay,Gavin Williams,641743,668909.0,0.97,,,,,,,,,,,,,,,,,,,,2,0.258,2,3.31,5.0,0.426,15.0
-823040,2026-06-22T23:45:00Z,AZ @ STL,STL,AZ,Andre Pallante,Merrill Kelly,669467,518876.0,0.99,,,,,,,,,,,,,,,,,,,4.9,8,0.292,27,4.34,5.0,0.271,34.0
-824344,2026-06-23T00:40:00Z,BOS @ COL,COL,BOS,Ryan Feltner,Jake Bennett,663372,687562.0,1.22,,,,,,,,,,,,,,,,,,,,2,0.345,2,,0.0,,0.0
-824016,2026-06-23T01:38:00Z,BAL @ LAA,LAA,BAL,Sam Aldegheri,Kyle Bradish,691951,680694.0,0.97,,,,,,,,,,,,,,,,,,,,0,,0,4.05,4.0,0.171,13.0
-823288,2026-06-23T02:10:00Z,ATL @ SD,SD,ATL,Michael King,Grant Holmes,650633,656550.0,0.95,,,,,,,,,,,,,,,,,,,2.43,12,0.321,62,2.67,7.0,0.407,22.0
+824261,2026-06-22T22:10:00Z,NYY @ DET,DET,NYY,Framber Valdez,Gerrit Cole,664285,543037,0.99,,,,,,,,,,,,,,,,,,,3.4,12,0.271,93,2.3,7,0.228,48
+822964,2026-06-22T22:40:00Z,KC @ TB,TB,KC,Drew Rasmussen,Michael Wacha,656876,608379,0.97,,,,,,,,,,,,,,,,,,,1.13,9,0.227,35,4.74,9,0.254,54
+823851,2026-06-22T22:40:00Z,TEX @ MIA,MIA,TEX,Tyler Phillips,Tyler Alexander,663969,641302,0.95,,,,,,,,,,,,,,,,,,,2.13,6,0.203,8,-1.37,3,0.243,5
+822720,2026-06-22T22:45:00Z,PHI @ WSH,WSH,PHI,Foster Griffin,Tim Mayza,656492,641835,1.0,,,,,,,,,,,,,,,,,,,3.63,8,0.318,18,0.99,10,0.153,16
+822800,2026-06-22T23:07:00Z,HOU @ TOR,TOR,HOU,Dylan Cease,Hunter Brown,656302,686613,1.0,,,,,,,,,,,,,,,,,,,3.55,9,0.305,76,5.69,10,0.318,44
+824502,2026-06-22T23:10:00Z,MIL @ CIN,CIN,MIL,Brady Singer,Brandon Woodruff,663903,605540,1.04,,,,,,,,,,,,,,,,,,,3.34,12,0.378,105,3.68,5,0.189,41
+823692,2026-06-22T23:40:00Z,LAD @ MIN,MIN,LAD,Zebby Matthews,Eric Lauer,805673,641778,1.01,,,,,,,,,,,,,,,,,,,,0,,0,9.31,11,0.439,53
+824585,2026-06-22T23:40:00Z,CLE @ CWS,CWS,CLE,Anthony Kay,Gavin Williams,641743,668909,0.97,,,,,,,,,,,,,,,,,,,,2,0.258,2,3.31,5,0.426,15
+823040,2026-06-22T23:45:00Z,AZ @ STL,STL,AZ,Andre Pallante,Merrill Kelly,669467,518876,0.99,,,,,,,,,,,,,,,,,,,4.9,8,0.292,27,4.34,5,0.271,34
+824344,2026-06-23T00:40:00Z,BOS @ COL,COL,BOS,Ryan Feltner,Jake Bennett,663372,687562,1.22,,,,,,,,,,,,,,,,,,,,2,0.345,2,,0,,0
+824016,2026-06-23T01:38:00Z,BAL @ LAA,LAA,BAL,Sam Aldegheri,Kyle Bradish,691951,680694,0.97,,,,,,,,,,,,,,,,,,,,0,,0,2.88,4,0.145,14
+823288,2026-06-23T02:10:00Z,ATL @ SD,SD,ATL,Michael King,Grant Holmes,650633,656550,0.95,,,,,,,,,,,,,,,,,,,2.43,12,0.321,62,2.67,7,0.407,22
+823613,2026-06-22T23:10:00Z,CHC @ NYM,NYM,CHC,Kodai Senga,Shota Imanaga,673540,684007,0.98,,,,,,,,,,,,,,,,,,,3.73,9,0.278,40,7.98,7,0.516,21
