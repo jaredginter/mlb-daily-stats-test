@@ -150,10 +150,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
       Low xwOBA  + Low FIP  → Pitcher Strongly Favored   (green)
 
     Label qualifiers by sample weight:
-      ≥ 0.80  → label as-is          (strong sample)
-      0.50–0.79 → "Likely — {label}" (moderate sample)
-      0.20–0.49 → "Lean — {label}"   (thin sample)
-      < 0.20  → "Inconclusive"        (overrides quadrant)
+      ≥ 0.20  → label as-is (reliability communicated by the metric card)
+      < 0.20  → "Inconclusive — very small sample" (overrides quadrant, purple)
 
     Returns (fig, label, detail, color, emoji, sw) or None if inputs invalid.
     """
@@ -222,37 +220,22 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
         emoji = "🟢"
 
     # ── Apply sample-size qualifier to label ────────────────────────────
+    # Label stays clean — reliability communicated by the metric card above.
+    # Only override to purple when sample is truly too thin to trust at all.
     if sw < 0.20:
-        label        = "Inconclusive — very small sample"
-        display_color = "#9467bd"   # purple signals unreliable
+        label         = "Inconclusive — very small sample"
+        display_color = "#9467bd"
         display_emoji = "⚪"
         qualifier_note = (
-            f"Only {abs_str} across {hit_str} — not enough history to read this matchup. "
-            f"Quadrant position shown for reference only."
-        )
-    elif sw < 0.50:
-        label         = f"Lean — {base_label}"
-        display_color = color
-        display_emoji = emoji
-        qualifier_note = (
-            f"Thin sample ({abs_str} · {hit_str}, {sw_pct}% weight) — treat as a lean, "
-            f"not a strong signal."
-        )
-    elif sw < 0.80:
-        label         = f"Likely — {base_label}"
-        display_color = color
-        display_emoji = emoji
-        qualifier_note = (
-            f"Moderate sample ({abs_str} · {hit_str}, {sw_pct}% weight) — signal is "
-            f"reasonably reliable but not fully trusted."
+            f"Only {abs_str} across {hit_str} — not enough history to read this "
+            f"matchup. Quadrant position shown for reference only."
         )
     else:
         label         = base_label
         display_color = color
         display_emoji = emoji
         qualifier_note = (
-            f"Strong sample ({abs_str} · {hit_str}, {sw_pct}% weight) — signal is "
-            f"well-supported by career history."
+            f"{abs_str} · {hit_str} · {sw_pct}% sample reliability."
         )
 
     # ── Plotly quadrant chart ────────────────────────────────────────────
@@ -307,26 +290,6 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
             "<extra></extra>"
         ),
     ))
-
-    # Sample reliability bar rendered as a shape + annotation inside the chart
-    # Bar sits at the bottom of the plot area
-    BAR_Y     = Y_MIN + 0.006
-    BAR_X_END = X_MIN + sw * (X_MAX - X_MIN)
-    bar_r, bar_g, bar_b = hex_to_rgb(display_color)
-
-    fig.add_shape(type="rect",                                         # track (grey)
-                  x0=X_MIN, x1=X_MAX, y0=BAR_Y - 0.003, y1=BAR_Y + 0.003,
-                  fillcolor="rgba(80,80,80,0.4)", line_width=0, layer="above")
-    fig.add_shape(type="rect",                                         # fill
-                  x0=X_MIN, x1=BAR_X_END, y0=BAR_Y - 0.003, y1=BAR_Y + 0.003,
-                  fillcolor=f"rgba({bar_r},{bar_g},{bar_b},0.75)", line_width=0, layer="above")
-    fig.add_annotation(
-        x=X_MAX, y=BAR_Y,
-        text=f"Sample reliability: {sw_pct}%",
-        xanchor="right", yanchor="middle",
-        font=dict(size=8, color="rgba(255,255,255,0.45)"),
-        showarrow=False,
-    )
 
     fig.update_layout(
         height=255,
@@ -882,7 +845,24 @@ for _, game in summary.iterrows():
                     total_abs = 0
 
                 if n is not None and n > 0:
-                    mc1, mc2, mc3 = st.columns(3)
+                    # Compute sample weight here so the reliability card
+                    # is available before the quadrant tile renders below
+                    _sw_card = sample_size_weight(total_abs, int(n) if n else None)
+                    _sw_pct  = int(round(_sw_card * 100))
+                    if _sw_card >= 0.80:
+                        _rel_label = f"Strong ({_sw_pct}%)"
+                        _rel_color = "#43a047"
+                    elif _sw_card >= 0.50:
+                        _rel_label = f"Moderate ({_sw_pct}%)"
+                        _rel_color = "#ff7f0e"
+                    elif _sw_card >= 0.20:
+                        _rel_label = f"Thin ({_sw_pct}%)"
+                        _rel_color = "#f9a825"
+                    else:
+                        _rel_label = f"Very thin ({_sw_pct}%)"
+                        _rel_color = "#9467bd"
+
+                    mc1, mc2, mc3, mc4 = st.columns(4)
                     mc1.metric("Hitters with history", int(n))
                     mc2.metric("Lineup avg xwOBA", f"{avg_xwoba:.3f}" if avg_xwoba else "—")
 
@@ -897,6 +877,21 @@ for _, game in summary.iterrows():
                         help="Fielding Independent Pitching vs today's opposing lineup (career). "
                              "Lower is better for the pitcher. Scale: <3.20 elite, 3.20–3.79 good, "
                              "3.80–4.19 average, 4.20–4.79 below avg, 5.00+ poor."
+                    )
+                    mc4.metric(
+                        "Quadrant reliability",
+                        _rel_label,
+                        help="How much career AB history exists between this pitcher and the opposing "
+                             "lineup. Strong (≥80%) = well-supported by data. Moderate (50–79%) = "
+                             "reasonably reliable. Thin (20–49%) = treat as a lean. "
+                             "Very thin (<20%) = insufficient history, quadrant may mislead."
+                    )
+                    # Colour the metric value via a small style injection
+                    st.markdown(
+                        f"<style>div[data-testid='stMetric']:nth-child(4) "
+                        f"div[data-testid='stMetricValue'] p "
+                        f"{{ color: {_rel_color} !important; }}</style>",
+                        unsafe_allow_html=True,
                     )
 
                     # Sample size warning based on total career ABs vs this pitcher
