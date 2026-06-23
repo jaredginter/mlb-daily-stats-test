@@ -1,16 +1,16 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-822799,2026-06-23T20:07:00Z,HOU @ TOR,TOR,HOU,Shane Bieber,Peter Lambert,669456.0,663567,1.0,,,,,,,,,,,,,,,,,,,3.58,9.0,0.388,50.0,1.93,8,0.233,19
-823365,2026-06-23T22:40:00Z,SEA @ PIT,PIT,SEA,Mitch Keller,George Kirby,656605.0,669923,0.99,,,,,,,,,,,,,,,,,,,7.53,10.0,0.396,38.0,3.52,9,0.274,45
-822963,2026-06-23T22:40:00Z,KC @ TB,TB,KC,Shane McClanahan,Luinder Avila,663556.0,679883,0.97,,,,,,,,,,,,,,,,,,,6.15,4.0,0.515,11.0,,0,,0
-823849,2026-06-23T22:40:00Z,TEX @ MIA,MIA,TEX,Sandy Alcantara,Cal Quantrill,645261.0,615698,0.95,,,,,,,,,,,,,,,,,,,4.7,9.0,0.325,58.0,9.99,4,0.467,11
-824262,2026-06-23T22:40:00Z,NYY @ DET,DET,NYY,Casey Mize,Carlos Rodón,663554.0,607074,0.99,,,,,,,,,,,,,,,,,,,3.1,11.0,0.237,50.0,1.56,9,0.271,58
-822718,2026-06-23T22:45:00Z,PHI @ WSH,WSH,PHI,Zack Littell,Jesús Luzardo,641793.0,666200,1.0,,,,,,,,,,,,,,,,,,,4.51,10.0,0.386,46.0,4.55,9,0.262,66
-823614,2026-06-23T23:10:00Z,CHC @ NYM,NYM,CHC,Kodai Senga,Edward Cabrera,673540.0,665795,0.98,,,,,,,,,,,,,,,,,,,3.73,9.0,0.278,40.0,6.31,9,0.355,39
-824501,2026-06-23T23:10:00Z,MIL @ CIN,CIN,MIL,Nick Lodolo,Brandon Sproat,666157.0,687075,1.04,,,,,,,,,,,,,,,,,,,3.25,10.0,0.361,50.0,2.04,7,0.308,19
-823690,2026-06-23T23:40:00Z,LAD @ MIN,MIN,LAD,Kendry Rojas,Justin Wrobleski,696070.0,680736,1.01,,,,,,,,,,,,,,,,,,,,0.0,,0.0,-0.5,3,0.157,6
-824584,2026-06-23T23:40:00Z,CLE @ CWS,CWS,CLE,Sean Burke,Parker Messick,680732.0,800048,0.97,,,,,,,,,,,,,,,,,,,2.6,8.0,0.352,36.0,1.39,3,0.124,8
-823043,2026-06-23T23:45:00Z,AZ @ STL,STL,AZ,Kyle Leahy,Eduardo Rodriguez,681517.0,593958,0.99,,,,,,,,,,,,,,,,,,,1.6,5.0,0.397,5.0,,0,,0
-824340,2026-06-24T00:40:00Z,BOS @ COL,COL,BOS,Sean Sullivan,Sonny Gray,807743.0,543243,1.22,,,,,,,,,,,,,,,,,,,,0.0,,0.0,2.19,5,0.275,18
-824017,2026-06-24T01:38:00Z,BAL @ LAA,LAA,BAL,Ryan Johnson,Shane Baz,696270.0,669358,0.97,,,,,,,,,,,,,,,,,,,,1.0,0.065,1.0,0.55,8,0.21,23
-823286,2026-06-24T01:40:00Z,ATL @ SD,SD,ATL,TBD,JR Ritchie,,702275,0.95,,,,,,,,,,,,,,,,,,,,,,,,0,,0
-823210,2026-06-24T01:45:00Z,ATH @ SF,SF,ATH,Robbie Ray,Aaron Civale,592662.0,650644,0.95,,,,,,,,,,,,,,,,,,,6.52,6.0,0.448,31.0,3.34,8,0.301,59
+822799,2026-06-23T20:07:00Z,HOU @ TOR,TOR,HOU,Shane Bieber,Peter Lambert,669456,663567,1.0,,,,,,,,,,,,,,,,,,,3.58,9,0.388,50,1.93,8,0.233,19
+823365,2026-06-23T22:40:00Z,SEA @ PIT,PIT,SEA,Mitch Keller,George Kirby,656605,669923,0.99,,,,,,,,,,,,,,,,,,,8.15,10,0.41,37,3.52,9,0.274,45
+822963,2026-06-23T22:40:00Z,KC @ TB,TB,KC,Shane McClanahan,Luinder Avila,663556,679883,0.97,,,,,,,,,,,,,,,,,,,6.15,3,0.47,9,,0,,0
+823849,2026-06-23T22:40:00Z,TEX @ MIA,MIA,TEX,Sandy Alcantara,Cal Quantrill,645261,615698,0.95,,,,,,,,,,,,,,,,,,,4.7,9,0.325,58,9.99,4,0.467,11
+824262,2026-06-23T22:40:00Z,NYY @ DET,DET,NYY,Casey Mize,Carlos Rodón,663554,607074,0.99,,,,,,,,,,,,,,,,,,,3.1,11,0.237,50,1.56,9,0.271,58
+822718,2026-06-23T22:45:00Z,PHI @ WSH,WSH,PHI,PJ Poulin,Jesús Luzardo,676571,666200,1.0,,,,,,,,,,,,,,,,,,,2.89,7,0.298,15,4.55,9,0.262,66
+823614,2026-06-23T23:10:00Z,CHC @ NYM,NYM,CHC,Kodai Senga,Edward Cabrera,673540,665795,0.98,,,,,,,,,,,,,,,,,,,3.73,9,0.278,40,6.31,9,0.355,39
+824501,2026-06-23T23:10:00Z,MIL @ CIN,CIN,MIL,Nick Lodolo,Brandon Sproat,666157,687075,1.04,,,,,,,,,,,,,,,,,,,3.25,10,0.361,50,2.04,7,0.308,19
+823690,2026-06-23T23:40:00Z,LAD @ MIN,MIN,LAD,Kendry Rojas,Justin Wrobleski,696070,680736,1.01,,,,,,,,,,,,,,,,,,,,0,,0,-0.5,3,0.157,6
+824584,2026-06-23T23:40:00Z,CLE @ CWS,CWS,CLE,Sean Burke,Parker Messick,680732,800048,0.97,,,,,,,,,,,,,,,,,,,2.6,8,0.352,36,1.39,3,0.124,8
+823043,2026-06-23T23:45:00Z,AZ @ STL,STL,AZ,Kyle Leahy,Eduardo Rodriguez,681517,593958,0.99,,,,,,,,,,,,,,,,,,,1.6,5,0.397,5,,0,,0
+824340,2026-06-24T00:40:00Z,BOS @ COL,COL,BOS,Sean Sullivan,Sonny Gray,807743,543243,1.22,,,,,,,,,,,,,,,,,,,,0,,0,2.19,5,0.275,18
+824017,2026-06-24T01:38:00Z,BAL @ LAA,LAA,BAL,Ryan Johnson,Shane Baz,696270,669358,0.97,,,,,,,,,,,,,,,,,,,,1,0.065,1,0.55,8,0.21,23
+823286,2026-06-24T01:40:00Z,ATL @ SD,SD,ATL,Wandy Peralta,JR Ritchie,593974,702275,0.95,,,,,,,,,,,,,,,,,,,2.48,12,0.317,30,,0,,0
+823210,2026-06-24T01:45:00Z,ATH @ SF,SF,ATH,Robbie Ray,Aaron Civale,592662,650644,0.95,,,,,,,,,,,,,,,,,,,6.52,6,0.448,31,3.34,8,0.301,59
