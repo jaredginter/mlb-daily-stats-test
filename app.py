@@ -139,146 +139,273 @@ def splits_bar_chart(df, pitcher_name, batting_team):
 def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team,
                        total_abs=None, n_hitters=None):
     """
-    Renders a FIP vs xwOBA quadrant chart + scenario label for one matchup panel.
-    Sample size (total_abs, n_hitters) uses the same log-scale weight as the run
-    prediction model to fade/shrink the dot and qualify the label when data is thin.
+    3×3 heatmap of FIP zones (cols) vs xwOBA zones (rows).
 
-    Quadrants:
-      High xwOBA + High FIP → Offense Strongly Favored  (red)
-      High xwOBA + Low FIP  → Pitcher Holds Edge         (yellow)
-      Low xwOBA  + High FIP → Mixed Signal               (yellow)
-      Low xwOBA  + Low FIP  → Pitcher Strongly Favored   (green)
+    FIP zones  : Low <3.80 | Avg 3.80–4.80 | High >4.80
+    xwOBA zones: Low <0.300 | Avg 0.300–0.340 | High >0.340
 
-    Label qualifiers by sample weight:
-      ≥ 0.50  → label as-is (reliability communicated by the metric card)
-      < 0.50  → "Inconclusive — very small sample" (overrides quadrant, purple)
+    Active cell is highlighted; scenario label + detail returned for the banner.
+    Sample weight drives cell opacity and the reliability metric card.
 
     Returns (fig, label, detail, color, emoji, sw) or None if inputs invalid.
     """
-    FIP_THRESHOLD   = 4.20
-    XWOBA_THRESHOLD = 0.300
+    # ── Zone boundaries ──────────────────────────────────────────────────
+    FIP_LOW  = 3.80
+    FIP_HIGH = 4.80
+    XW_LOW   = 0.300
+    XW_HIGH  = 0.340
 
     try:
         avg_xwoba = float(avg_xwoba)
         fip       = float(fip)
     except (TypeError, ValueError):
         return None
-
-    if avg_xwoba != avg_xwoba or fip != fip:   # NaN guard
+    if avg_xwoba != avg_xwoba or fip != fip:
         return None
 
-    # ── Sample size weight (same log scale as predict_runs) ─────────────
-    sw = sample_size_weight(total_abs, n_hitters)
+    # ── Sample weight ────────────────────────────────────────────────────
+    sw      = sample_size_weight(total_abs, n_hitters)
+    sw_pct  = int(round(sw * 100))
+    abs_str = f"{total_abs} career ABs" if total_abs else "unknown ABs"
+    hit_str = f"{n_hitters} hitters"    if n_hitters else "unknown hitters"
 
-    # Dot visual properties scale with sample weight
-    dot_size    = int(10 + sw * 10)          # 10 (thin) → 20 (full)
-    dot_opacity = round(0.30 + sw * 0.70, 2) # 0.30 (thin) → 1.00 (full)
-    sw_pct      = int(round(sw * 100))
-    abs_str     = f"{total_abs} career ABs" if total_abs else "unknown ABs"
-    hit_str     = f"{n_hitters} hitters"    if n_hitters else "unknown hitters"
+    # ── Classify into zones ──────────────────────────────────────────────
+    # fip_col: 0=Low, 1=Avg, 2=High
+    fip_col = 0 if fip < FIP_LOW else (1 if fip <= FIP_HIGH else 2)
+    # xw_row: 0=Low (bottom), 1=Avg (middle), 2=High (top)
+    xw_row  = 0 if avg_xwoba < XW_LOW else (1 if avg_xwoba <= XW_HIGH else 2)
 
-    # ── Quadrant classification ──────────────────────────────────────────
-    high_xwoba = avg_xwoba >= XWOBA_THRESHOLD
-    high_fip   = fip        >= FIP_THRESHOLD
-
-    if high_xwoba and high_fip:
-        base_label = f"{batting_team} Offense Strongly Favored"
-        detail     = (
+    # ── 3×3 scenario table [xw_row][fip_col] ────────────────────────────
+    # Colors: green=#43a047, yellow=#f9a825, gray=#607d8b
+    SCENARIOS = {
+        # (xw_row, fip_col): (short_label, color, emoji, detail_fn)
+        (2, 0): (
+            f"{pitching_team} Pitching Holds Edge",
+            "#f9a825", "🟡",
+            f"Contested matchup — {batting_team} hitters make strong contact "
+            f"(xwOBA {avg_xwoba:.3f}) but {pitcher_name} has been elite (FIP {fip:.2f}). "
+            f"Hitters have a puncher's chance but the pitcher holds the edge."
+        ),
+        (2, 1): (
+            f"Slight {batting_team} Offensive Edge",
+            "#f9a825", "🟡",
+            f"Slight offensive lean — {batting_team} hitters are making good contact "
+            f"(xwOBA {avg_xwoba:.3f}) against an average FIP pitcher ({fip:.2f}). "
+            f"Mild edge to the offense but far from a slam dunk."
+        ),
+        (2, 2): (
+            f"{batting_team} Offense Strongly Favored",
+            "#43a047", "🟢",
             f"High scoring game likely — {batting_team} hitters are squaring up {pitcher_name} "
             f"(xwOBA {avg_xwoba:.3f}) and the pitcher has struggled vs this lineup (FIP {fip:.2f}). "
             f"Strong indicator to stack the {batting_team} lineup."
-        )
-        color = "#43a047"
-        emoji = "🟢"
-    elif high_xwoba and not high_fip:
-        base_label = f"{batting_team} Holds Slight Edge"
-        detail     = (
-            f"{batting_team} hitters have a puncher's chance. {pitcher_name} is elite but the {batting_team} consistently makes hard contact. This suggests the {batting_team} may be able to overcome even a dominant pitcher through quality at-bats. A competitive game where {batting_team} offense has a real shot despite facing a strong arm."
-        )
-        color = "#f9a825"
-        emoji = "🟡"
-    elif not high_xwoba and high_fip:
-        base_label = f"Mixed Signal — {batting_team} vs {pitching_team}"
-        detail     = (
+        ),
+        (1, 0): (
+            f"{pitching_team} Pitching Holds Edge",
+            "#f9a825", "🟡",
+            f"Pitcher holds the edge — {batting_team} hitters show average contact quality "
+            f"(xwOBA {avg_xwoba:.3f}) while {pitcher_name} has been elite (FIP {fip:.2f}). "
+            f"Low run environment expected."
+        ),
+        (1, 1): (
+            f"Toss-Up — {batting_team} vs {pitching_team}",
+            "#607d8b", "⚪",
+            f"True toss-up — both sides are average. {batting_team} hitters at xwOBA {avg_xwoba:.3f} "
+            f"vs {pitcher_name}'s FIP of {fip:.2f}. No clear edge — lean on other factors."
+        ),
+        (1, 2): (
+            f"Slight {batting_team} Offensive Edge",
+            "#f9a825", "🟡",
+            f"Slight offensive lean — average contact quality (xwOBA {avg_xwoba:.3f}) meets a "
+            f"struggling pitcher (FIP {fip:.2f}). Mild advantage to {batting_team} but not a "
+            f"strong signal on its own."
+        ),
+        (0, 0): (
+            f"{pitching_team} Pitching Strongly Favored",
+            "#43a047", "🟢",
+            f"Low scoring game likely — {pitcher_name} dominates this matchup. "
+            f"{batting_team} hitters have weak contact quality (xwOBA {avg_xwoba:.3f}) "
+            f"and the pitcher's FIP is elite ({fip:.2f}). Pitcher is firmly in control."
+        ),
+        (0, 1): (
+            f"{pitching_team} Pitching Holds Edge",
+            "#f9a825", "🟡",
+            f"Pitcher holds the edge — {batting_team} hitters are struggling (xwOBA {avg_xwoba:.3f}) "
+            f"against an average FIP pitcher ({fip:.2f}). Lean toward a quieter offensive game."
+        ),
+        (0, 2): (
+            f"Mixed Signal — {batting_team} vs {pitching_team}",
+            "#f9a825", "🟡",
             f"Murky matchup — {pitcher_name} is walk- or homer-prone (FIP {fip:.2f}) but "
             f"{batting_team} hitters haven't made strong contact (xwOBA {avg_xwoba:.3f}). "
             f"Unpredictable — lean on other factors before committing."
-        )
-        color = "#f9a825"
-        emoji = "🟡"
-    else:
-        base_label = f"{pitching_team} Pitching Strongly Favored"
-        detail     = (
-            f"Low scoring game likely — {pitcher_name} dominates this matchup. "
-            f"{batting_team} hitters have weak contact quality (xwOBA {avg_xwoba:.3f}) "
-            f"and the pitcher's FIP vs this lineup is strong ({fip:.2f}). "
-            f"Pitcher is firmly in control."
-        )
-        color = "#43a047"
-        emoji = "🟢"
+        ),
+    }
 
-    # ── Apply sample-size qualifier to label ────────────────────────────
-    # Label stays clean — reliability communicated by the metric card above.
-    # Only override to purple when sample is truly too thin to trust at all.
+    base_label, color, emoji, detail = SCENARIOS[(xw_row, fip_col)]
+
+    # ── Sample-size override ─────────────────────────────────────────────
     if sw < 0.50:
         label         = "Inconclusive — very small sample"
         display_color = "#9467bd"
         display_emoji = "⚪"
         qualifier_note = (
             f"Only {abs_str} across {hit_str} — not enough history to read this "
-            f"matchup. Quadrant position shown for reference only."
+            f"matchup. Heatmap position shown for reference only."
         )
     else:
         label         = base_label
         display_color = color
         display_emoji = emoji
-        qualifier_note = (
-            f"{abs_str} · {hit_str} · {sw_pct}% sample reliability."
-        )
+        qualifier_note = f"{abs_str} · {hit_str} · {sw_pct}% sample reliability."
 
-    # ── Plotly quadrant chart ────────────────────────────────────────────
-    X_MIN, X_MAX = 1.5, 8.5
-    Y_MIN, Y_MAX = 0.160, 0.430
+    # ── Build heatmap ────────────────────────────────────────────────────
+    # Grid: 3 cols (FIP) × 3 rows (xwOBA), rendered as SVG-style rectangles
+    # in a Plotly figure with axes suppressed.
+
+    # Cell display text (short labels for inside each cell)
+    CELL_TEXT = {
+        (2, 0): ("Pitcher", "Holds Edge"),
+        (2, 1): ("Slight Off.", "Edge"),
+        (2, 2): ("Offense", "Strongly Fav."),
+        (1, 0): ("Pitcher", "Holds Edge"),
+        (1, 1): ("Toss-Up", ""),
+        (1, 2): ("Slight Off.", "Edge"),
+        (0, 0): ("Pitcher", "Strongly Fav."),
+        (0, 1): ("Pitcher", "Holds Edge"),
+        (0, 2): ("Mixed", "Signal"),
+    }
+
+    # Cell fill colors (dimmed versions; active cell gets full opacity)
+    CELL_COLORS = {
+        (2, 0): "rgba(249,168,37,{a})",
+        (2, 1): "rgba(249,168,37,{a})",
+        (2, 2): "rgba(67,160,71,{a})",
+        (1, 0): "rgba(249,168,37,{a})",
+        (1, 1): "rgba(96,125,139,{a})",
+        (1, 2): "rgba(249,168,37,{a})",
+        (0, 0): "rgba(67,160,71,{a})",
+        (0, 1): "rgba(249,168,37,{a})",
+        (0, 2): "rgba(249,168,37,{a})",
+    }
 
     fig = go.Figure()
 
-    # Shaded quadrant backgrounds
-    fig.add_shape(type="rect", x0=X_MIN, x1=FIP_THRESHOLD, y0=Y_MIN, y1=XWOBA_THRESHOLD,
-                  fillcolor="rgba(67,160,71,0.20)",  line_width=0, layer="below")  # pitcher favored
-    fig.add_shape(type="rect", x0=X_MIN, x1=FIP_THRESHOLD, y0=XWOBA_THRESHOLD, y1=Y_MAX,
-                  fillcolor="rgba(249,168,37,0.12)", line_width=0, layer="below")  # pitcher edge
-    fig.add_shape(type="rect", x0=FIP_THRESHOLD, x1=X_MAX, y0=Y_MIN, y1=XWOBA_THRESHOLD,
-                  fillcolor="rgba(249,168,37,0.12)", line_width=0, layer="below")  # mixed
-    fig.add_shape(type="rect", x0=FIP_THRESHOLD, x1=X_MAX, y0=XWOBA_THRESHOLD, y1=Y_MAX,
-                  fillcolor="rgba(67,160,71,0.18)",  line_width=0, layer="below")  # offense favored
+    CELL_W = 1.0   # each cell is 1 unit wide/tall in plot space
+    GAP    = 0.04  # gap between cells
 
-    # Threshold divider lines
-    fig.add_vline(x=FIP_THRESHOLD,   line_dash="dot", line_color="rgba(255,255,255,0.25)", line_width=1)
-    fig.add_hline(y=XWOBA_THRESHOLD, line_dash="dot", line_color="rgba(255,255,255,0.25)", line_width=1)
+    col_labels = [f"Low FIP\n(<{FIP_LOW})", f"Avg FIP\n({FIP_LOW}–{FIP_HIGH})", f"High FIP\n(>{FIP_HIGH})"]
+    row_labels = [f"Low xwOBA\n(<{XW_LOW})", f"Avg xwOBA\n({XW_LOW}–{XW_HIGH})", f"High xwOBA\n(>{XW_HIGH})"]
 
-    # Quadrant corner labels
-    label_style = dict(font=dict(size=9, color="rgba(255,255,255,0.35)"), showarrow=False)
-    fig.add_annotation(x=X_MIN + 0.15, y=Y_MAX - 0.010, text="Pitcher edge",    xanchor="left",  yanchor="top",    **label_style)
-    fig.add_annotation(x=X_MAX - 0.15, y=Y_MAX - 0.010, text="Offense favored", xanchor="right", yanchor="top",    **label_style)
-    fig.add_annotation(x=X_MIN + 0.15, y=Y_MIN + 0.008, text="Pitcher favored", xanchor="left",  yanchor="bottom", **label_style)
-    fig.add_annotation(x=X_MAX - 0.15, y=Y_MIN + 0.008, text="Mixed signal",    xanchor="right", yanchor="bottom", **label_style)
+    for row in range(3):
+        for col in range(3):
+            active  = (row == xw_row and col == fip_col)
+            alpha   = "0.85" if active else "0.18"
+            fill    = CELL_COLORS[(row, col)].format(a=alpha)
+            x0 = col * (CELL_W + GAP)
+            x1 = x0 + CELL_W
+            y0 = row * (CELL_W + GAP)
+            y1 = y0 + CELL_W
+            cx = (x0 + x1) / 2
+            cy = (y0 + y1) / 2
 
-    # Matchup dot — size and opacity scale with sample weight
-    # Use hex color with manual opacity via rgba conversion for the marker fill
-    import re
-    hex_to_rgb = lambda h: tuple(int(h.lstrip("#")[i:i+2], 16) for i in (0, 2, 4))
-    r, g, b    = hex_to_rgb(color)
-    dot_color  = f"rgba({r},{g},{b},{dot_opacity})"
+            # Cell background
+            fig.add_shape(
+                type="rect", x0=x0, x1=x1, y0=y0, y1=y1,
+                fillcolor=fill,
+                line=dict(
+                    color="white" if active else "rgba(255,255,255,0.10)",
+                    width=3 if active else 1,
+                ),
+                layer="below",
+            )
 
-    fig.add_trace(go.Scatter(
-        x=[fip],
-        y=[avg_xwoba],
-        mode="markers",
-        marker=dict(
-            size=dot_size,
-            color=dot_color,
-            line=dict(color=f"rgba(255,255,255,{dot_opacity})", width=2),
+            # Active cell glow — extra outer border
+            if active:
+                fig.add_shape(
+                    type="rect",
+                    x0=x0 - 0.02, x1=x1 + 0.02,
+                    y0=y0 - 0.02, y1=y1 + 0.02,
+                    fillcolor="rgba(0,0,0,0)",
+                    line=dict(color=display_color, width=2),
+                    layer="above",
+                )
+
+            # Cell text
+            line1, line2 = CELL_TEXT[(row, col)]
+            txt_color    = "white" if active else "rgba(255,255,255,0.40)"
+            txt_size     = 10 if active else 8
+            txt_weight   = "bold" if active else "normal"
+            cell_text    = f"<b>{line1}</b><br>{line2}" if active else f"{line1}<br>{line2}"
+
+            fig.add_annotation(
+                x=cx, y=cy,
+                text=cell_text,
+                showarrow=False,
+                font=dict(size=txt_size, color=txt_color),
+                align="center",
+                xanchor="center",
+                yanchor="middle",
+            )
+
+    # Column headers (FIP labels) — above top row
+    for col, lbl in enumerate(col_labels):
+        cx = col * (CELL_W + GAP) + CELL_W / 2
+        fig.add_annotation(
+            x=cx, y=3 * (CELL_W + GAP) + 0.05,
+            text=lbl.replace("\n", "<br>"),
+            showarrow=False,
+            font=dict(size=8, color="rgba(255,255,255,0.55)"),
+            align="center", xanchor="center", yanchor="bottom",
+        )
+
+    # Row headers (xwOBA labels) — left of leftmost col
+    for row, lbl in enumerate(row_labels):
+        cy = row * (CELL_W + GAP) + CELL_W / 2
+        fig.add_annotation(
+            x=-0.08, y=cy,
+            text=lbl.replace("\n", "<br>"),
+            showarrow=False,
+            font=dict(size=8, color="rgba(255,255,255,0.55)"),
+            align="right", xanchor="right", yanchor="middle",
+        )
+
+    total_span = 3 * CELL_W + 2 * GAP
+
+    fig.update_layout(
+        height=310,
+        margin=dict(l=90, r=10, t=55, b=10),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="white", size=10),
+        xaxis=dict(
+            range=[-0.05, total_span + 0.05],
+            showgrid=False, zeroline=False,
+            showticklabels=False, visible=False,
         ),
+        yaxis=dict(
+            range=[-0.05, total_span + 0.55],
+            showgrid=False, zeroline=False,
+            showticklabels=False, visible=False,
+            scaleanchor="x", scaleratio=1,
+        ),
+        showlegend=False,
+        title=dict(
+            text=f"Matchup Heatmap — FIP vs xwOBA  "
+                 f"<span style='font-size:11px;color:rgba(255,255,255,0.45);'>"
+                 f"(FIP {fip:.2f} · xwOBA {avg_xwoba:.3f})</span>",
+            font=dict(size=12),
+            x=0.5, xanchor="center",
+        ),
+    )
+
+    # Invisible scatter so hover works on the active cell
+    cx_active = fip_col * (CELL_W + GAP) + CELL_W / 2
+    cy_active = xw_row  * (CELL_W + GAP) + CELL_W / 2
+    fig.add_trace(go.Scatter(
+        x=[cx_active], y=[cy_active],
+        mode="markers",
+        marker=dict(size=1, opacity=0),
         hovertemplate=(
             f"<b>{display_emoji} {label}</b><br>"
             f"FIP vs {batting_team}: <b>{fip:.2f}</b><br>"
@@ -287,37 +414,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
             f"<br><i style='color:#ccc'>{qualifier_note}</i>"
             "<extra></extra>"
         ),
-    ))
-
-    fig.update_layout(
-        height=255,
-        margin=dict(l=10, r=10, t=36, b=40),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        font=dict(color="white", size=11),
-        xaxis=dict(
-            title=dict(text="FIP vs This Lineup →", font=dict(size=10)),
-            range=[X_MIN, X_MAX],
-            showgrid=False,
-            zeroline=False,
-            tickfont=dict(size=10),
-        ),
-        yaxis=dict(
-            title=dict(text="Lineup Avg xwOBA →", font=dict(size=10)),
-            range=[Y_MIN, Y_MAX],
-            showgrid=False,
-            zeroline=False,
-            tickformat=".3f",
-            tickfont=dict(size=10),
-        ),
         showlegend=False,
-        title=dict(
-            text="Matchup Quadrant — FIP vs xwOBA",
-            font=dict(size=12),
-            x=0.5,
-            xanchor="center",
-        ),
-    )
+    ))
 
     return fig, label, detail, display_color, display_emoji, sw
 
