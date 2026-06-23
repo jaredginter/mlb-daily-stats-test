@@ -184,37 +184,35 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     if high_xwoba and high_fip:
         base_label = f"{batting_team} Offense Strongly Favored"
         detail     = (
-            f"{batting_team} hitters have squared up {pitcher_name} well — "
-            f"high contact quality (xwOBA {avg_xwoba:.3f}) and the pitcher has "
-            f"struggled vs this lineup (FIP {fip:.2f}). Both signals point to a "
-            f"productive offensive outing."
+            f"High scoring game likely — {batting_team} hitters are squaring up {pitcher_name} "
+            f"(xwOBA {avg_xwoba:.3f}) and the pitcher has struggled vs this lineup (FIP {fip:.2f}). "
+            f"Strong indicator to stack the {batting_team} lineup."
         )
         color = "#43a047"
         emoji = "🟢"
     elif high_xwoba and not high_fip:
-        base_label = f"{pitching_team} Pitching Holds Edge"
+        base_label = f"{batting_team} Holds Slight Edge"
         detail     = (
-            f"{batting_team} hitters show decent contact quality (xwOBA {avg_xwoba:.3f}), "
-            f"but {pitcher_name}'s FIP vs this lineup is strong ({fip:.2f}). The pitcher "
-            f"has limited real damage despite some hard contact — edge to the pitcher."
+            f"{batting_team} hitters have a puncher's chance. {pitcher_name} is elite but the {batting_team} consistently makes hard contact. This suggests the {batting_team} may be able to overcome even a dominant pitcher through quality at-bats. A competitive game where {batting_team} offense has a real shot despite facing a strong arm."
         )
         color = "#f9a825"
         emoji = "🟡"
     elif not high_xwoba and high_fip:
         base_label = f"Mixed Signal — {batting_team} vs {pitching_team}"
         detail     = (
-            f"{pitcher_name} carries a high FIP vs this lineup ({fip:.2f}), suggesting "
-            f"HR/BB vulnerability, but hitters haven't made strong contact (xwOBA {avg_xwoba:.3f}). "
-            f"Pitcher may be walk- or homer-prone without being hit hard — read with caution."
+            f"Murky matchup — {pitcher_name} is walk- or homer-prone (FIP {fip:.2f}) but "
+            f"{batting_team} hitters haven't made strong contact (xwOBA {avg_xwoba:.3f}). "
+            f"Unpredictable — lean on other factors before committing."
         )
         color = "#f9a825"
         emoji = "🟡"
     else:
         base_label = f"{pitching_team} Pitching Strongly Favored"
         detail     = (
-            f"{pitcher_name} has dominated this lineup — low contact quality "
-            f"(xwOBA {avg_xwoba:.3f}) and a strong FIP ({fip:.2f}) vs {batting_team}. "
-            f"Both signals favor a quiet offensive day for this team."
+            f"Low scoring game likely — {pitcher_name} dominates this matchup. "
+            f"{batting_team} hitters have weak contact quality (xwOBA {avg_xwoba:.3f}) "
+            f"and the pitcher's FIP vs this lineup is strong ({fip:.2f}). "
+            f"Pitcher is firmly in control."
         )
         color = "#43a047"
         emoji = "🟢"
