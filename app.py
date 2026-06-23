@@ -181,14 +181,14 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
         # (xw_row, fip_col): (short_label, color, emoji, detail_fn)
         (2, 0): (
             f"{pitching_team} Pitching Holds Edge",
-            "#f9a825", "🟡",
+            "#81c784", "🟢",
             f"Contested matchup — {batting_team} hitters make strong contact "
             f"(xwOBA {avg_xwoba:.3f}) but {pitcher_name} has been elite (FIP {fip:.2f}). "
             f"Hitters have a puncher's chance but the pitcher holds the edge."
         ),
         (2, 1): (
             f"Slight {batting_team} Offensive Edge",
-            "#f9a825", "🟡",
+            "#81c784", "🟢",
             f"Slight offensive lean — {batting_team} hitters are making good contact "
             f"(xwOBA {avg_xwoba:.3f}) against an average FIP pitcher ({fip:.2f}). "
             f"Mild edge to the offense but far from a slam dunk."
@@ -202,7 +202,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
         ),
         (1, 0): (
             f"{pitching_team} Pitching Holds Edge",
-            "#f9a825", "🟡",
+            "#81c784", "🟢",
             f"Pitcher holds the edge — {batting_team} hitters show average contact quality "
             f"(xwOBA {avg_xwoba:.3f}) while {pitcher_name} has been elite (FIP {fip:.2f}). "
             f"Low run environment expected."
@@ -215,7 +215,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
         ),
         (1, 2): (
             f"Slight {batting_team} Offensive Edge",
-            "#f9a825", "🟡",
+            "#81c784", "🟢",
             f"Slight offensive lean — average contact quality (xwOBA {avg_xwoba:.3f}) meets a "
             f"struggling pitcher (FIP {fip:.2f}). Mild advantage to {batting_team} but not a "
             f"strong signal on its own."
@@ -229,7 +229,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
         ),
         (0, 1): (
             f"{pitching_team} Pitching Holds Edge",
-            "#f9a825", "🟡",
+            "#81c784", "🟢",
             f"Pitcher holds the edge — {batting_team} hitters are struggling (xwOBA {avg_xwoba:.3f}) "
             f"against an average FIP pitcher ({fip:.2f}). Lean toward a quieter offensive game."
         ),
@@ -278,15 +278,15 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
 
     # Cell fill colors (dimmed versions; active cell gets full opacity)
     CELL_COLORS = {
-        (2, 0): "rgba(249,168,37,{a})",
-        (2, 1): "rgba(249,168,37,{a})",
-        (2, 2): "rgba(67,160,71,{a})",
-        (1, 0): "rgba(249,168,37,{a})",
-        (1, 1): "rgba(96,125,139,{a})",
-        (1, 2): "rgba(249,168,37,{a})",
-        (0, 0): "rgba(67,160,71,{a})",
-        (0, 1): "rgba(249,168,37,{a})",
-        (0, 2): "rgba(249,168,37,{a})",
+        (2, 0): "rgba(129,199,132,{a})",   # light green — Pitcher Holds Edge
+        (2, 1): "rgba(129,199,132,{a})",   # light green — Slight Offensive Edge
+        (2, 2): "rgba(67,160,71,{a})",     # green — Offense Strongly Favored
+        (1, 0): "rgba(129,199,132,{a})",   # light green — Pitcher Holds Edge
+        (1, 1): "rgba(96,125,139,{a})",    # gray — Toss-Up
+        (1, 2): "rgba(129,199,132,{a})",   # light green — Slight Offensive Edge
+        (0, 0): "rgba(67,160,71,{a})",     # green — Pitcher Strongly Favored
+        (0, 1): "rgba(129,199,132,{a})",   # light green — Pitcher Holds Edge
+        (0, 2): "rgba(249,168,37,{a})",    # yellow — Mixed Signal
     }
 
     fig = go.Figure()
