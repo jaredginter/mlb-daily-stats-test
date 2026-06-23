@@ -136,7 +136,7 @@ def splits_bar_chart(df, pitcher_name, batting_team):
     return fig
 
 
-def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
+def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team,
                        total_abs=None, n_hitters=None):
     """
     Renders a FIP vs xwOBA quadrant chart + scenario label for one matchup panel.
@@ -182,7 +182,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
     high_fip   = fip        >= FIP_THRESHOLD
 
     if high_xwoba and high_fip:
-        base_label = "Offense Strongly Favored"
+        base_label = f"{batting_team} Offense Strongly Favored"
         detail     = (
             f"{batting_team} hitters have squared up {pitcher_name} well — "
             f"high contact quality (xwOBA {avg_xwoba:.3f}) and the pitcher has "
@@ -192,7 +192,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
         color = "#43a047"
         emoji = "🟢"
     elif high_xwoba and not high_fip:
-        base_label = "Pitcher Holds Edge"
+        base_label = f"{pitching_team} Pitching Holds Edge"
         detail     = (
             f"{batting_team} hitters show decent contact quality (xwOBA {avg_xwoba:.3f}), "
             f"but {pitcher_name}'s FIP vs this lineup is strong ({fip:.2f}). The pitcher "
@@ -201,7 +201,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
         color = "#f9a825"
         emoji = "🟡"
     elif not high_xwoba and high_fip:
-        base_label = "Mixed Signal"
+        base_label = f"Mixed Signal — {batting_team} vs {pitching_team}"
         detail     = (
             f"{pitcher_name} carries a high FIP vs this lineup ({fip:.2f}), suggesting "
             f"HR/BB vulnerability, but hitters haven't made strong contact (xwOBA {avg_xwoba:.3f}). "
@@ -210,7 +210,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
         color = "#f9a825"
         emoji = "🟡"
     else:
-        base_label = "Pitcher Strongly Favored"
+        base_label = f"{pitching_team} Pitching Strongly Favored"
         detail     = (
             f"{pitcher_name} has dominated this lineup — low contact quality "
             f"(xwOBA {avg_xwoba:.3f}) and a strong FIP ({fip:.2f}) vs {batting_team}. "
@@ -953,8 +953,12 @@ for _, game in summary.iterrows():
 
                 # ── FIP vs xwOBA quadrant tile ───────────────────────────
                 if show_quadrant:
+                    _pitching_abbr = game.get(
+                        "home_team" if panel["pitcher_side"] == "home" else "away_team", ""
+                    )
+                    _pitching_team = TEAM_NAMES.get(_pitching_abbr, _pitching_abbr)
                     quad_result = fip_xwoba_quadrant(
-                        avg_xwoba, fip_val, pitcher, full_team_name,
+                        avg_xwoba, fip_val, pitcher, full_team_name, _pitching_team,
                         total_abs=total_abs, n_hitters=int(n) if n else None,
                     )
                     if quad_result is not None:
