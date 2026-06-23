@@ -136,9 +136,12 @@ def splits_bar_chart(df, pitcher_name, batting_team):
     return fig
 
 
-def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team):
+def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
+                       total_abs=None, n_hitters=None):
     """
     Renders a FIP vs xwOBA quadrant chart + scenario label for one matchup panel.
+    Sample size (total_abs, n_hitters) uses the same log-scale weight as the run
+    prediction model to fade/shrink the dot and qualify the label when data is thin.
 
     Quadrants:
       High xwOBA + High FIP → Offense Strongly Favored  (red)
@@ -146,10 +149,16 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team):
       Low xwOBA  + High FIP → Mixed Signal               (yellow)
       Low xwOBA  + Low FIP  → Pitcher Strongly Favored   (green)
 
-    Returns (fig, label, detail, color, emoji) or None if inputs invalid.
+    Label qualifiers by sample weight:
+      ≥ 0.80  → label as-is          (strong sample)
+      0.50–0.79 → "Likely — {label}" (moderate sample)
+      0.20–0.49 → "Lean — {label}"   (thin sample)
+      < 0.20  → "Inconclusive"        (overrides quadrant)
+
+    Returns (fig, label, detail, color, emoji, sw) or None if inputs invalid.
     """
-    FIP_THRESHOLD   = 4.20   # roughly league-avg ERA for a starter
-    XWOBA_THRESHOLD = 0.300  # below league avg — clean high/low split
+    FIP_THRESHOLD   = 4.20
+    XWOBA_THRESHOLD = 0.300
 
     try:
         avg_xwoba = float(avg_xwoba)
@@ -160,12 +169,23 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team):
     if avg_xwoba != avg_xwoba or fip != fip:   # NaN guard
         return None
 
+    # ── Sample size weight (same log scale as predict_runs) ─────────────
+    sw = sample_size_weight(total_abs, n_hitters)
+
+    # Dot visual properties scale with sample weight
+    dot_size    = int(10 + sw * 10)          # 10 (thin) → 20 (full)
+    dot_opacity = round(0.30 + sw * 0.70, 2) # 0.30 (thin) → 1.00 (full)
+    sw_pct      = int(round(sw * 100))
+    abs_str     = f"{total_abs} career ABs" if total_abs else "unknown ABs"
+    hit_str     = f"{n_hitters} hitters"    if n_hitters else "unknown hitters"
+
+    # ── Quadrant classification ──────────────────────────────────────────
     high_xwoba = avg_xwoba >= XWOBA_THRESHOLD
     high_fip   = fip        >= FIP_THRESHOLD
 
     if high_xwoba and high_fip:
-        label  = "Offense Strongly Favored"
-        detail = (
+        base_label = "Offense Strongly Favored"
+        detail     = (
             f"{batting_team} hitters have squared up {pitcher_name} well — "
             f"high contact quality (xwOBA {avg_xwoba:.3f}) and the pitcher has "
             f"struggled vs this lineup (FIP {fip:.2f}). Both signals point to a "
@@ -174,8 +194,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team):
         color = "#e53935"
         emoji = "🔴"
     elif high_xwoba and not high_fip:
-        label  = "Pitcher Holds Edge"
-        detail = (
+        base_label = "Pitcher Holds Edge"
+        detail     = (
             f"{batting_team} hitters show decent contact quality (xwOBA {avg_xwoba:.3f}), "
             f"but {pitcher_name}'s FIP vs this lineup is strong ({fip:.2f}). The pitcher "
             f"has limited real damage despite some hard contact — edge to the pitcher."
@@ -183,8 +203,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team):
         color = "#f9a825"
         emoji = "🟡"
     elif not high_xwoba and high_fip:
-        label  = "Mixed Signal"
-        detail = (
+        base_label = "Mixed Signal"
+        detail     = (
             f"{pitcher_name} carries a high FIP vs this lineup ({fip:.2f}), suggesting "
             f"HR/BB vulnerability, but hitters haven't made strong contact (xwOBA {avg_xwoba:.3f}). "
             f"Pitcher may be walk- or homer-prone without being hit hard — read with caution."
@@ -192,8 +212,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team):
         color = "#f9a825"
         emoji = "🟡"
     else:
-        label  = "Pitcher Strongly Favored"
-        detail = (
+        base_label = "Pitcher Strongly Favored"
+        detail     = (
             f"{pitcher_name} has dominated this lineup — low contact quality "
             f"(xwOBA {avg_xwoba:.3f}) and a strong FIP ({fip:.2f}) vs {batting_team}. "
             f"Both signals favor a quiet offensive day for this team."
@@ -201,25 +221,55 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team):
         color = "#43a047"
         emoji = "🟢"
 
+    # ── Apply sample-size qualifier to label ────────────────────────────
+    if sw < 0.20:
+        label        = "Inconclusive — very small sample"
+        display_color = "#9467bd"   # purple signals unreliable
+        display_emoji = "⚪"
+        qualifier_note = (
+            f"Only {abs_str} across {hit_str} — not enough history to read this matchup. "
+            f"Quadrant position shown for reference only."
+        )
+    elif sw < 0.50:
+        label         = f"Lean — {base_label}"
+        display_color = color
+        display_emoji = emoji
+        qualifier_note = (
+            f"Thin sample ({abs_str} · {hit_str}, {sw_pct}% weight) — treat as a lean, "
+            f"not a strong signal."
+        )
+    elif sw < 0.80:
+        label         = f"Likely — {base_label}"
+        display_color = color
+        display_emoji = emoji
+        qualifier_note = (
+            f"Moderate sample ({abs_str} · {hit_str}, {sw_pct}% weight) — signal is "
+            f"reasonably reliable but not fully trusted."
+        )
+    else:
+        label         = base_label
+        display_color = color
+        display_emoji = emoji
+        qualifier_note = (
+            f"Strong sample ({abs_str} · {hit_str}, {sw_pct}% weight) — signal is "
+            f"well-supported by career history."
+        )
+
     # ── Plotly quadrant chart ────────────────────────────────────────────
     X_MIN, X_MAX = 1.5, 8.5
     Y_MIN, Y_MAX = 0.160, 0.430
 
     fig = go.Figure()
 
-    # Shaded quadrant backgrounds (four quadrants around the threshold lines)
-    # Bottom-left: low FIP + low xwOBA → pitcher strongly favored (deep green)
+    # Shaded quadrant backgrounds
     fig.add_shape(type="rect", x0=X_MIN, x1=FIP_THRESHOLD, y0=Y_MIN, y1=XWOBA_THRESHOLD,
-                  fillcolor="rgba(67,160,71,0.20)", line_width=0, layer="below")
-    # Top-left: low FIP + high xwOBA → pitcher holds edge (yellow)
+                  fillcolor="rgba(67,160,71,0.20)",  line_width=0, layer="below")  # pitcher favored
     fig.add_shape(type="rect", x0=X_MIN, x1=FIP_THRESHOLD, y0=XWOBA_THRESHOLD, y1=Y_MAX,
-                  fillcolor="rgba(249,168,37,0.12)", line_width=0, layer="below")
-    # Bottom-right: high FIP + low xwOBA → mixed (yellow)
+                  fillcolor="rgba(249,168,37,0.12)", line_width=0, layer="below")  # pitcher edge
     fig.add_shape(type="rect", x0=FIP_THRESHOLD, x1=X_MAX, y0=Y_MIN, y1=XWOBA_THRESHOLD,
-                  fillcolor="rgba(249,168,37,0.12)", line_width=0, layer="below")
-    # Top-right: high FIP + high xwOBA → offense strongly favored (red)
+                  fillcolor="rgba(249,168,37,0.12)", line_width=0, layer="below")  # mixed
     fig.add_shape(type="rect", x0=FIP_THRESHOLD, x1=X_MAX, y0=XWOBA_THRESHOLD, y1=Y_MAX,
-                  fillcolor="rgba(229,57,53,0.18)", line_width=0, layer="below")
+                  fillcolor="rgba(229,57,53,0.18)",  line_width=0, layer="below")  # offense favored
 
     # Threshold divider lines
     fig.add_vline(x=FIP_THRESHOLD,   line_dash="dot", line_color="rgba(255,255,255,0.25)", line_width=1)
@@ -227,28 +277,59 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team):
 
     # Quadrant corner labels
     label_style = dict(font=dict(size=9, color="rgba(255,255,255,0.35)"), showarrow=False)
-    fig.add_annotation(x=X_MIN + 0.15, y=Y_MAX - 0.010, text="Pitcher edge",      xanchor="left",  yanchor="top",    **label_style)
-    fig.add_annotation(x=X_MAX - 0.15, y=Y_MAX - 0.010, text="Offense favored",   xanchor="right", yanchor="top",    **label_style)
-    fig.add_annotation(x=X_MIN + 0.15, y=Y_MIN + 0.008, text="Pitcher favored",   xanchor="left",  yanchor="bottom", **label_style)
-    fig.add_annotation(x=X_MAX - 0.15, y=Y_MIN + 0.008, text="Mixed signal",      xanchor="right", yanchor="bottom", **label_style)
+    fig.add_annotation(x=X_MIN + 0.15, y=Y_MAX - 0.010, text="Pitcher edge",    xanchor="left",  yanchor="top",    **label_style)
+    fig.add_annotation(x=X_MAX - 0.15, y=Y_MAX - 0.010, text="Offense favored", xanchor="right", yanchor="top",    **label_style)
+    fig.add_annotation(x=X_MIN + 0.15, y=Y_MIN + 0.008, text="Pitcher favored", xanchor="left",  yanchor="bottom", **label_style)
+    fig.add_annotation(x=X_MAX - 0.15, y=Y_MIN + 0.008, text="Mixed signal",    xanchor="right", yanchor="bottom", **label_style)
 
-    # Matchup dot
+    # Matchup dot — size and opacity scale with sample weight
+    # Use hex color with manual opacity via rgba conversion for the marker fill
+    import re
+    hex_to_rgb = lambda h: tuple(int(h.lstrip("#")[i:i+2], 16) for i in (0, 2, 4))
+    r, g, b    = hex_to_rgb(color)
+    dot_color  = f"rgba({r},{g},{b},{dot_opacity})"
+
     fig.add_trace(go.Scatter(
         x=[fip],
         y=[avg_xwoba],
         mode="markers",
-        marker=dict(size=16, color=color, line=dict(color="white", width=2)),
+        marker=dict(
+            size=dot_size,
+            color=dot_color,
+            line=dict(color=f"rgba(255,255,255,{dot_opacity})", width=2),
+        ),
         hovertemplate=(
-            f"<b>{emoji} {label}</b><br>"
+            f"<b>{display_emoji} {label}</b><br>"
             f"FIP vs {batting_team}: <b>{fip:.2f}</b><br>"
             f"Lineup avg xwOBA: <b>{avg_xwoba:.3f}</b><br>"
-            f"<br><i style='color:#ccc'>{detail}</i>"
+            f"Sample weight: <b>{sw_pct}%</b> ({abs_str} · {hit_str})<br>"
+            f"<br><i style='color:#ccc'>{qualifier_note}</i>"
             "<extra></extra>"
         ),
     ))
 
+    # Sample reliability bar rendered as a shape + annotation inside the chart
+    # Bar sits at the bottom of the plot area
+    BAR_Y     = Y_MIN + 0.006
+    BAR_X_END = X_MIN + sw * (X_MAX - X_MIN)
+    bar_r, bar_g, bar_b = hex_to_rgb(display_color)
+
+    fig.add_shape(type="rect",                                         # track (grey)
+                  x0=X_MIN, x1=X_MAX, y0=BAR_Y - 0.003, y1=BAR_Y + 0.003,
+                  fillcolor="rgba(80,80,80,0.4)", line_width=0, layer="above")
+    fig.add_shape(type="rect",                                         # fill
+                  x0=X_MIN, x1=BAR_X_END, y0=BAR_Y - 0.003, y1=BAR_Y + 0.003,
+                  fillcolor=f"rgba({bar_r},{bar_g},{bar_b},0.75)", line_width=0, layer="above")
+    fig.add_annotation(
+        x=X_MAX, y=BAR_Y,
+        text=f"Sample reliability: {sw_pct}%",
+        xanchor="right", yanchor="middle",
+        font=dict(size=8, color="rgba(255,255,255,0.45)"),
+        showarrow=False,
+    )
+
     fig.update_layout(
-        height=240,
+        height=255,
         margin=dict(l=10, r=10, t=36, b=40),
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
@@ -277,7 +358,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team):
         ),
     )
 
-    return fig, label, detail, color, emoji
+    return fig, label, detail, display_color, display_emoji, sw
 
 
 # ── Data loading ──────────────────────────────────────────────────────────────
@@ -867,9 +948,13 @@ for _, game in summary.iterrows():
 
                 # ── FIP vs xwOBA quadrant tile ───────────────────────────
                 if show_quadrant:
-                    quad_result = fip_xwoba_quadrant(avg_xwoba, fip_val, pitcher, full_team_name)
+                    quad_result = fip_xwoba_quadrant(
+                        avg_xwoba, fip_val, pitcher, full_team_name,
+                        total_abs=total_abs, n_hitters=int(n) if n else None,
+                    )
                     if quad_result is not None:
-                        q_fig, q_label, q_detail, q_color, q_emoji = quad_result
+                        q_fig, q_label, q_detail, q_color, q_emoji, q_sw = quad_result
+                        q_sw_pct = int(round(q_sw * 100))
                         st.markdown(
                             f"""<div style="
                                 background: rgba(255,255,255,0.04);
