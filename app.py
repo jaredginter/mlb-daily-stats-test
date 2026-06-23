@@ -150,8 +150,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
       Low xwOBA  + Low FIP  → Pitcher Strongly Favored   (green)
 
     Label qualifiers by sample weight:
-      ≥ 0.20  → label as-is (reliability communicated by the metric card)
-      < 0.20  → "Inconclusive — very small sample" (overrides quadrant, purple)
+      ≥ 0.50  → label as-is (reliability communicated by the metric card)
+      < 0.50  → "Inconclusive — very small sample" (overrides quadrant, purple)
 
     Returns (fig, label, detail, color, emoji, sw) or None if inputs invalid.
     """
@@ -222,7 +222,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
     # ── Apply sample-size qualifier to label ────────────────────────────
     # Label stays clean — reliability communicated by the metric card above.
     # Only override to purple when sample is truly too thin to trust at all.
-    if sw < 0.20:
+    if sw < 0.50:
         label         = "Inconclusive — very small sample"
         display_color = "#9467bd"
         display_emoji = "⚪"
@@ -849,17 +849,20 @@ for _, game in summary.iterrows():
                     # is available before the quadrant tile renders below
                     _sw_card = sample_size_weight(total_abs, int(n) if n else None)
                     _sw_pct  = int(round(_sw_card * 100))
-                    if _sw_card >= 0.80:
+                    if _sw_card >= 0.95:
+                        _rel_label = f"Very Strong ({_sw_pct}%)"
+                        _rel_color = "#1b7e24"
+                    elif _sw_card >= 0.80:
                         _rel_label = f"Strong ({_sw_pct}%)"
                         _rel_color = "#43a047"
-                    elif _sw_card >= 0.50:
+                    elif _sw_card >= 0.65:
                         _rel_label = f"Moderate ({_sw_pct}%)"
                         _rel_color = "#ff7f0e"
-                    elif _sw_card >= 0.20:
-                        _rel_label = f"Thin ({_sw_pct}%)"
+                    elif _sw_card >= 0.50:
+                        _rel_label = f"Weak ({_sw_pct}%)"
                         _rel_color = "#f9a825"
                     else:
-                        _rel_label = f"Very thin ({_sw_pct}%)"
+                        _rel_label = f"Very Weak ({_sw_pct}%)"
                         _rel_color = "#9467bd"
 
                     mc1, mc2, mc3, mc4 = st.columns(4)
@@ -882,9 +885,9 @@ for _, game in summary.iterrows():
                         "Quadrant reliability",
                         _rel_label,
                         help="How much career AB history exists between this pitcher and the opposing "
-                             "lineup. Strong (≥80%) = well-supported by data. Moderate (50–79%) = "
-                             "reasonably reliable. Thin (20–49%) = treat as a lean. "
-                             "Very thin (<20%) = insufficient history, quadrant may mislead."
+                             "lineup. Very Strong (≥95%) = excellent data. Strong (80–94%) = well-supported. "
+                             "Moderate (65–79%) = reasonably reliable. Weak (50–64%) = treat as a lean. "
+                             "Very Weak (<50%) = insufficient history, quadrant may mislead."
                     )
                     # Colour the metric value via a small style injection
                     st.markdown(
