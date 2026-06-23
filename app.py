@@ -189,8 +189,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
             f"struggled vs this lineup (FIP {fip:.2f}). Both signals point to a "
             f"productive offensive outing."
         )
-        color = "#e53935"
-        emoji = "🔴"
+        color = "#43a047"
+        emoji = "🟢"
     elif high_xwoba and not high_fip:
         base_label = "Pitcher Holds Edge"
         detail     = (
@@ -252,7 +252,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team,
     fig.add_shape(type="rect", x0=FIP_THRESHOLD, x1=X_MAX, y0=Y_MIN, y1=XWOBA_THRESHOLD,
                   fillcolor="rgba(249,168,37,0.12)", line_width=0, layer="below")  # mixed
     fig.add_shape(type="rect", x0=FIP_THRESHOLD, x1=X_MAX, y0=XWOBA_THRESHOLD, y1=Y_MAX,
-                  fillcolor="rgba(229,57,53,0.18)",  line_width=0, layer="below")  # offense favored
+                  fillcolor="rgba(67,160,71,0.18)",  line_width=0, layer="below")  # offense favored
 
     # Threshold divider lines
     fig.add_vline(x=FIP_THRESHOLD,   line_dash="dot", line_color="rgba(255,255,255,0.25)", line_width=1)
