@@ -136,6 +136,150 @@ def splits_bar_chart(df, pitcher_name, batting_team):
     return fig
 
 
+def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team):
+    """
+    Renders a FIP vs xwOBA quadrant chart + scenario label for one matchup panel.
+
+    Quadrants:
+      High xwOBA + High FIP → Offense Strongly Favored  (red)
+      High xwOBA + Low FIP  → Pitcher Holds Edge         (yellow)
+      Low xwOBA  + High FIP → Mixed Signal               (yellow)
+      Low xwOBA  + Low FIP  → Pitcher Strongly Favored   (green)
+
+    Returns (fig, label, detail, color, emoji) or None if inputs invalid.
+    """
+    FIP_THRESHOLD   = 4.20   # roughly league-avg ERA for a starter
+    XWOBA_THRESHOLD = 0.300  # below league avg — clean high/low split
+
+    try:
+        avg_xwoba = float(avg_xwoba)
+        fip       = float(fip)
+    except (TypeError, ValueError):
+        return None
+
+    if avg_xwoba != avg_xwoba or fip != fip:   # NaN guard
+        return None
+
+    high_xwoba = avg_xwoba >= XWOBA_THRESHOLD
+    high_fip   = fip        >= FIP_THRESHOLD
+
+    if high_xwoba and high_fip:
+        label  = "Offense Strongly Favored"
+        detail = (
+            f"{batting_team} hitters have squared up {pitcher_name} well — "
+            f"high contact quality (xwOBA {avg_xwoba:.3f}) and the pitcher has "
+            f"struggled vs this lineup (FIP {fip:.2f}). Both signals point to a "
+            f"productive offensive outing."
+        )
+        color = "#e53935"
+        emoji = "🔴"
+    elif high_xwoba and not high_fip:
+        label  = "Pitcher Holds Edge"
+        detail = (
+            f"{batting_team} hitters show decent contact quality (xwOBA {avg_xwoba:.3f}), "
+            f"but {pitcher_name}'s FIP vs this lineup is strong ({fip:.2f}). The pitcher "
+            f"has limited real damage despite some hard contact — edge to the pitcher."
+        )
+        color = "#f9a825"
+        emoji = "🟡"
+    elif not high_xwoba and high_fip:
+        label  = "Mixed Signal"
+        detail = (
+            f"{pitcher_name} carries a high FIP vs this lineup ({fip:.2f}), suggesting "
+            f"HR/BB vulnerability, but hitters haven't made strong contact (xwOBA {avg_xwoba:.3f}). "
+            f"Pitcher may be walk- or homer-prone without being hit hard — read with caution."
+        )
+        color = "#f9a825"
+        emoji = "🟡"
+    else:
+        label  = "Pitcher Strongly Favored"
+        detail = (
+            f"{pitcher_name} has dominated this lineup — low contact quality "
+            f"(xwOBA {avg_xwoba:.3f}) and a strong FIP ({fip:.2f}) vs {batting_team}. "
+            f"Both signals favor a quiet offensive day for this team."
+        )
+        color = "#43a047"
+        emoji = "🟢"
+
+    # ── Plotly quadrant chart ────────────────────────────────────────────
+    X_MIN, X_MAX = 1.5, 8.5
+    Y_MIN, Y_MAX = 0.160, 0.430
+
+    fig = go.Figure()
+
+    # Shaded quadrant backgrounds (four quadrants around the threshold lines)
+    # Bottom-left: low FIP + low xwOBA → pitcher strongly favored (deep green)
+    fig.add_shape(type="rect", x0=X_MIN, x1=FIP_THRESHOLD, y0=Y_MIN, y1=XWOBA_THRESHOLD,
+                  fillcolor="rgba(67,160,71,0.20)", line_width=0, layer="below")
+    # Top-left: low FIP + high xwOBA → pitcher holds edge (yellow)
+    fig.add_shape(type="rect", x0=X_MIN, x1=FIP_THRESHOLD, y0=XWOBA_THRESHOLD, y1=Y_MAX,
+                  fillcolor="rgba(249,168,37,0.12)", line_width=0, layer="below")
+    # Bottom-right: high FIP + low xwOBA → mixed (yellow)
+    fig.add_shape(type="rect", x0=FIP_THRESHOLD, x1=X_MAX, y0=Y_MIN, y1=XWOBA_THRESHOLD,
+                  fillcolor="rgba(249,168,37,0.12)", line_width=0, layer="below")
+    # Top-right: high FIP + high xwOBA → offense strongly favored (red)
+    fig.add_shape(type="rect", x0=FIP_THRESHOLD, x1=X_MAX, y0=XWOBA_THRESHOLD, y1=Y_MAX,
+                  fillcolor="rgba(229,57,53,0.18)", line_width=0, layer="below")
+
+    # Threshold divider lines
+    fig.add_vline(x=FIP_THRESHOLD,   line_dash="dot", line_color="rgba(255,255,255,0.25)", line_width=1)
+    fig.add_hline(y=XWOBA_THRESHOLD, line_dash="dot", line_color="rgba(255,255,255,0.25)", line_width=1)
+
+    # Quadrant corner labels
+    label_style = dict(font=dict(size=9, color="rgba(255,255,255,0.35)"), showarrow=False)
+    fig.add_annotation(x=X_MIN + 0.15, y=Y_MAX - 0.010, text="Pitcher edge",      xanchor="left",  yanchor="top",    **label_style)
+    fig.add_annotation(x=X_MAX - 0.15, y=Y_MAX - 0.010, text="Offense favored",   xanchor="right", yanchor="top",    **label_style)
+    fig.add_annotation(x=X_MIN + 0.15, y=Y_MIN + 0.008, text="Pitcher favored",   xanchor="left",  yanchor="bottom", **label_style)
+    fig.add_annotation(x=X_MAX - 0.15, y=Y_MIN + 0.008, text="Mixed signal",      xanchor="right", yanchor="bottom", **label_style)
+
+    # Matchup dot
+    fig.add_trace(go.Scatter(
+        x=[fip],
+        y=[avg_xwoba],
+        mode="markers",
+        marker=dict(size=16, color=color, line=dict(color="white", width=2)),
+        hovertemplate=(
+            f"<b>{emoji} {label}</b><br>"
+            f"FIP vs {batting_team}: <b>{fip:.2f}</b><br>"
+            f"Lineup avg xwOBA: <b>{avg_xwoba:.3f}</b><br>"
+            f"<br><i style='color:#ccc'>{detail}</i>"
+            "<extra></extra>"
+        ),
+    ))
+
+    fig.update_layout(
+        height=240,
+        margin=dict(l=10, r=10, t=36, b=40),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="white", size=11),
+        xaxis=dict(
+            title=dict(text="FIP vs This Lineup →", font=dict(size=10)),
+            range=[X_MIN, X_MAX],
+            showgrid=False,
+            zeroline=False,
+            tickfont=dict(size=10),
+        ),
+        yaxis=dict(
+            title=dict(text="Lineup Avg xwOBA →", font=dict(size=10)),
+            range=[Y_MIN, Y_MAX],
+            showgrid=False,
+            zeroline=False,
+            tickformat=".3f",
+            tickfont=dict(size=10),
+        ),
+        showlegend=False,
+        title=dict(
+            text="Matchup Quadrant — FIP vs xwOBA",
+            font=dict(size=12),
+            x=0.5,
+            xanchor="center",
+        ),
+    )
+
+    return fig, label, detail, color, emoji
+
+
 # ── Data loading ──────────────────────────────────────────────────────────────
 
 def get_csv_mtime(path):
@@ -429,6 +573,7 @@ with st.sidebar:
     show_chart      = st.toggle("Show xwOBA chart", value=True)
     show_table      = st.toggle("Show hitter table", value=True)
     show_prediction = st.toggle("Show run prediction", value=True)
+    show_quadrant   = st.toggle("Show FIP vs xwOBA quadrant", value=True)
     st.divider()
     if st.button("🔄 Force refresh", use_container_width=True):
         st.cache_data.clear()
@@ -718,6 +863,33 @@ for _, game in summary.iterrows():
                             pred_runs, conf_label, conf_color, batting, inputs_used,
                             sample_weight=sw, total_abs=total_abs,
                             n_hitters=int(n) if n else None
+                        )
+
+                # ── FIP vs xwOBA quadrant tile ───────────────────────────
+                if show_quadrant:
+                    quad_result = fip_xwoba_quadrant(avg_xwoba, fip_val, pitcher, full_team_name)
+                    if quad_result is not None:
+                        q_fig, q_label, q_detail, q_color, q_emoji = quad_result
+                        st.markdown(
+                            f"""<div style="
+                                background: rgba(255,255,255,0.04);
+                                border-left: 4px solid {q_color};
+                                border-radius: 8px;
+                                padding: 10px 14px;
+                                margin: 10px 0 4px 0;
+                            ">
+                                <span style="font-size:1.0em;font-weight:700;color:{q_color};">
+                                    {q_emoji} {q_label}
+                                </span><br>
+                                <span style="font-size:0.82em;color:#bbb;">{q_detail}</span>
+                            </div>""",
+                            unsafe_allow_html=True,
+                        )
+                        st.plotly_chart(
+                            q_fig,
+                            use_container_width=True,
+                            config={"displayModeBar": False},
+                            key=f"quadrant_{game_id}_{panel['splits_side']}",
                         )
 
                 splits_df = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
