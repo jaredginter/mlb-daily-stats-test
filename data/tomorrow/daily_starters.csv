@@ -1,10 +1,10 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-822961,2026-06-25T16:10:00Z,KC @ TB,TB,KC,Ian Seymour,Seth Lugo,693855.0,607625.0,0.97,,,,,,,,,,,,,,,,,,,,1.0,0.133,1.0,4.6,10.0,0.29,39.0
-823366,2026-06-25T16:35:00Z,SEA @ PIT,PIT,SEA,Bubba Chandler,Bryce Miller,696149.0,682243.0,0.99,,,,,,,,,,,,,,,,,,,,0.0,,0.0,0.58,3.0,0.175,21.0
-823209,2026-06-25T19:45:00Z,ATH @ SF,SF,ATH,Landen Roupp,Jeffrey Springs,694738.0,605488.0,0.95,,,,,,,,,,,,,,,,,,,2.64,7.0,0.291,16.0,2.89,9.0,0.238,71.0
-824258,2026-06-25T22:40:00Z,HOU @ DET,DET,HOU,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,,,,,,,,
-822717,2026-06-25T22:45:00Z,PHI @ WSH,WSH,PHI,Cade Cavalli,Cristopher Sánchez,676917.0,650911.0,1.0,,,,,,,,,,,,,,,,,,,3.03,9.0,0.285,57.0,2.08,12.0,0.175,72.0
-822797,2026-06-25T23:07:00Z,TEX @ TOR,TOR,TEX,TBD,MacKenzie Gore,,669022.0,1.0,,,,,,,,,,,,,,,,,,,,,,,5.52,9.0,0.374,49.0
-823612,2026-06-25T23:10:00Z,CHC @ NYM,NYM,CHC,Freddy Peralta,Matthew Boyd,642547.0,571510.0,0.98,,,,,,,,,,,,,,,,,,,4.5,11.0,0.276,168.0,10.72,7.0,0.48,29.0
-824747,2026-06-25T23:10:00Z,NYY @ BOS,BOS,NYY,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,,,,,,,,
-823042,2026-06-25T23:45:00Z,AZ @ STL,STL,AZ,Michael McGreevy,Zac Gallen,700241.0,668678.0,0.99,,,,,,,,,,,,,,,,,,,,0.0,,0.0,5.75,5.0,0.256,18.0
+822961,2026-06-25T16:10:00Z,KC @ TB,TB,KC,Ian Seymour,Seth Lugo,693855,607625.0,0.97,,,,,,,,,,,,,,,,,,,,1,0.133,1,4.6,10.0,0.29,39.0
+823366,2026-06-25T16:35:00Z,SEA @ PIT,PIT,SEA,Bubba Chandler,Bryce Miller,696149,682243.0,0.99,,,,,,,,,,,,,,,,,,,,0,,0,0.58,3.0,0.175,21.0
+823209,2026-06-25T19:45:00Z,ATH @ SF,SF,ATH,Landen Roupp,Jeffrey Springs,694738,605488.0,0.95,,,,,,,,,,,,,,,,,,,2.64,7,0.291,16,2.89,9.0,0.238,71.0
+824258,2026-06-25T22:40:00Z,HOU @ DET,DET,HOU,Troy Melton,TBD,675512,,0.99,,,,,,,,,,,,,,,,,,,,3,0.337,2,,,,
+822717,2026-06-25T22:45:00Z,PHI @ WSH,WSH,PHI,Cade Cavalli,Cristopher Sánchez,676917,650911.0,1.0,,,,,,,,,,,,,,,,,,,3.03,9,0.285,57,2.08,12.0,0.175,72.0
+822797,2026-06-25T23:07:00Z,TEX @ TOR,TOR,TEX,Kevin Gausman,MacKenzie Gore,592332,669022.0,1.0,,,,,,,,,,,,,,,,,,,3.15,11,0.289,78,5.52,9.0,0.374,49.0
+823612,2026-06-25T23:10:00Z,CHC @ NYM,NYM,CHC,Freddy Peralta,Matthew Boyd,642547,571510.0,0.98,,,,,,,,,,,,,,,,,,,4.5,11,0.276,168,8.35,8.0,0.459,54.0
+824747,2026-06-25T23:10:00Z,NYY @ BOS,BOS,NYY,Connelly Early,Cam Schlittler,813349,693645.0,1.03,,,,,,,,,,,,,,,,,,,1.4,8,0.238,34,2.14,10.0,0.277,60.0
+823042,2026-06-25T23:45:00Z,AZ @ STL,STL,AZ,Michael McGreevy,Zac Gallen,700241,668678.0,0.99,,,,,,,,,,,,,,,,,,,,0,,0,5.75,5.0,0.256,18.0

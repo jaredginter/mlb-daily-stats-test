@@ -1,14 +1,14 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 823850,2026-06-24T16:10:00Z,TEX @ MIA,MIA,TEX,Eury Pérez,Jacob deGrom,691587,594798,0.95,,,,,,,,,,,,,,,,,,,2.16,10,0.215,23,-2.85,1,0.0,3
-823613,2026-06-24T17:10:00Z,CHC @ NYM,NYM,CHC,Nolan McLean,Javier Assad,690997,665871,0.98,,,,,,,,,,,,,,,,,,,8.89,8,0.357,18,4.17,10,0.301,38
-823611,2026-06-24T23:10:00Z,CHC @ NYM,NYM,CHC,Sean Manaea,Shota Imanaga,640455,684007,0.98,,,,,,,,,,,,,,,,,,,5.04,11,0.323,97,7.98,7,0.516,21
+823613,2026-06-24T17:10:00Z,CHC @ NYM,NYM,CHC,Nolan McLean,Javier Assad,690997,665871,0.98,,,,,,,,,,,,,,,,,,,8.89,8,0.357,18,5.4,10,0.313,42
+823611,2026-06-24T23:10:00Z,CHC @ NYM,NYM,CHC,Sean Manaea,Shota Imanaga,640455,684007,0.98,,,,,,,,,,,,,,,,,,,5.04,11,0.323,97,9.93,7,0.559,25
 824583,2026-06-24T18:10:00Z,CLE @ CWS,CWS,CLE,Erick Fedde,Tanner Bibee,607200,676440,0.97,,,,,,,,,,,,,,,,,,,6.46,8,0.322,61,3.52,8,0.303,51
 824341,2026-06-24T19:10:00Z,BOS @ COL,COL,BOS,Kyle Freeland,Ranger Suarez,607536,624133,1.22,,,,,,,,,,,,,,,,,,,3.91,7,0.316,30,1.44,6,0.206,29
 824018,2026-06-24T20:07:00Z,BAL @ LAA,LAA,BAL,José Soriano,Trey Gibson,667755,694346,0.97,,,,,,,,,,,,,,,,,,,4.42,7,0.352,19,,0,,0
 823367,2026-06-24T22:40:00Z,SEA @ PIT,PIT,SEA,Braxton Ashcraft,Bryan Woo,677952,693433,0.99,,,,,,,,,,,,,,,,,,,1.1,7,0.237,8,1.34,6,0.269,24
 822965,2026-06-24T22:40:00Z,KC @ TB,TB,KC,Griffin Jax,Noah Cameron,643377,702070,0.97,,,,,,,,,,,,,,,,,,,3.33,7,0.243,32,3.56,6,0.34,13
-824259,2026-06-24T22:40:00Z,NYY @ DET,DET,NYY,Tarik Skubal,Ryan Weathers,669373,677960,0.99,,,,,,,,,,,,,,,,,,,3.19,11,0.218,55,0.82,6,0.214,14
-822719,2026-06-24T22:45:00Z,PHI @ WSH,WSH,PHI,Miles Mikolas,Aaron Nola,571945,605400,1.0,,,,,,,,,,,,,,,,,,,3.96,10,0.443,125,3.01,12,0.249,119
+824259,2026-06-24T22:40:00Z,NYY @ DET,DET,NYY,Tarik Skubal,Ryan Weathers,669373,677960,0.99,,,,,,,,,,,,,,,,,,,3.33,11,0.232,52,0.82,6,0.214,14
+822719,2026-06-24T22:45:00Z,PHI @ WSH,WSH,PHI,Carson Palmquist,Aaron Nola,687223,605400,1.0,,,,,,,,,,,,,,,,,,,13.43,7,0.45,16,3.01,12,0.249,119
 822798,2026-06-24T23:07:00Z,HOU @ TOR,TOR,HOU,Trey Yesavage,Mike Burrows,702056,681347,1.0,,,,,,,,,,,,,,,,,,,,0,,0,2.29,5,0.004,6
 824500,2026-06-24T23:10:00Z,MIL @ CIN,CIN,MIL,Rhett Lowder,Shane Drohan,695076,675660,1.04,,,,,,,,,,,,,,,,,,,3.56,11,0.329,18,,0,,0
 823691,2026-06-24T23:40:00Z,LAD @ MIN,MIN,LAD,Joe Ryan,Shohei Ohtani,657746,660271,1.01,,,,,,,,,,,,,,,,,,,8.56,7,0.329,23,3.85,5,0.34,14
