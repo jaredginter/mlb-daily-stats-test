@@ -492,17 +492,14 @@ def fetch_regression_data(seasons_tuple):
     """
     Fetch and join team batting + runs data for regression.
     Cached 24 hours — the network calls are the slow step.
-    Returns an empty DataFrame on failure.
+    Raises on failure so the caller can surface the real error.
     """
     if not _REGRESSION_AVAILABLE:
-        return pd.DataFrame()
+        raise RuntimeError("mlb_regression_analysis module not importable.")
     seasons = list(seasons_tuple)
-    try:
-        batting_df = fetch_batting(seasons)
-        runs_df    = fetch_runs_per_game(seasons)
-        return build_dataset(batting_df, runs_df)
-    except Exception:
-        return pd.DataFrame()
+    batting_df = fetch_batting(seasons)
+    runs_df    = fetch_runs_per_game(seasons)
+    return build_dataset(batting_df, runs_df)
 
 
 @st.cache_data(ttl=300)  # re-checks the live MLB API every 5 minutes
@@ -856,12 +853,22 @@ if view == "📊 Regression Analysis":
         st.stop()
 
     with st.spinner("Fetching data… (30–60 s on first run, then cached for 24 h)"):
-        reg_dataset = fetch_regression_data(tuple(sorted(reg_seasons)))
+        try:
+            reg_dataset = fetch_regression_data(tuple(sorted(reg_seasons)))
+        except Exception as _reg_err:
+            import traceback as _tb
+            st.error(f"**Data fetch failed:** {_reg_err}")
+            with st.expander("Full traceback"):
+                st.code(_tb.format_exc())
+            st.caption("Try clicking **Clear Cache** above, then reload. "
+                       "If the error mentions FanGraphs or Baseball Reference, "
+                       "the external site may be temporarily rate-limiting requests.")
+            st.stop()
 
     if reg_dataset.empty:
         st.error(
-            "Dataset is empty — data fetch may have failed. "
-            "Check your internet connection and try clearing the cache."
+            "Dataset is empty after fetching — the FanGraphs/Baseball Reference "
+            "data joined to 0 rows. Try clearing the cache and reloading."
         )
         st.stop()
 
