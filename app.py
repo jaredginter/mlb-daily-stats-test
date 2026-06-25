@@ -559,8 +559,10 @@ LG = {
     "babip":    0.296,
 }
 
-FULL_TRUST_ABS     = 60
-FULL_TRUST_HITTERS = 7
+# AB score saturates at 80 ABs (65% of weight)
+# Hitter score saturates at 9 hitters (35% of weight)
+FULL_TRUST_ABS     = 80
+FULL_TRUST_HITTERS = 9
 
 
 def safe_float(val, default):
@@ -573,14 +575,29 @@ def safe_float(val, default):
 
 def sample_size_weight(total_abs, n_hitters):
     """
-    Logarithmic weight 0.0–1.0 scaling how much the vs-pitcher
-    splits are trusted vs. falling back to team season stats.
+    Dual-component reliability score 0.0–1.0.
+
+    Two factors scored independently on a log scale, then blended:
+      - AB score     (65% weight): how many total career ABs vs this pitcher
+      - Hitter score (35% weight): how many roster hitters have history
+
+    Both scale continuously — more ABs and more hitters each independently
+    increase reliability rather than a binary bonus flip.
+
+    Saturation points: 80 ABs = full AB score, 9 hitters = full hitter score.
+    Minimum floor of 0.05 when no data exists.
     """
     if total_abs is None or total_abs <= 0:
-        return 0.10
-    base = min(1.0, math.log1p(total_abs) / math.log1p(FULL_TRUST_ABS))
-    bonus = 0.10 if (n_hitters is not None and n_hitters >= FULL_TRUST_HITTERS) else 0.0
-    return min(1.0, base + bonus)
+        return 0.05
+
+    ab_score = min(1.0, math.log1p(total_abs) / math.log1p(FULL_TRUST_ABS))
+
+    if n_hitters is not None and n_hitters > 0:
+        hitter_score = min(1.0, math.log1p(n_hitters) / math.log1p(FULL_TRUST_HITTERS))
+    else:
+        hitter_score = 0.0
+
+    return min(1.0, (ab_score * 0.65) + (hitter_score * 0.35))
 
 
 def predict_runs(avg_xwoba, fip_vs_team, splits_df,
