@@ -3,12 +3,26 @@ app.py  —  MLB Hitter Splits vs Today's Starting Pitchers
 Run locally:  streamlit run app.py
 """
 
+import contextlib
+import io
 import os
 from datetime import date, datetime, timedelta, timezone
 
+import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
+import statsmodels.api as sm
 import streamlit as st
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+try:
+    from mlb_regression_analysis import (
+        fetch_batting, fetch_runs_per_game, build_dataset,
+        run_ols, run_ridge_lasso, FEATURES,
+    )
+    _REGRESSION_AVAILABLE = True
+except ImportError:
+    _REGRESSION_AVAILABLE = False
 
 st.set_page_config(
     page_title="MLB Hitter Splits vs Starters",
@@ -471,6 +485,26 @@ def load_game_log(pitcher_id, mtime, root="data"):
     return load_game_log_cached(pitcher_id, mtime, root)
 
 
+# ── Regression data loader ────────────────────────────────────────────────────
+
+@st.cache_data(ttl=86400, show_spinner=False)
+def fetch_regression_data(seasons_tuple):
+    """
+    Fetch and join team batting + runs data for regression.
+    Cached 24 hours — the network calls are the slow step.
+    Returns an empty DataFrame on failure.
+    """
+    if not _REGRESSION_AVAILABLE:
+        return pd.DataFrame()
+    seasons = list(seasons_tuple)
+    try:
+        batting_df = fetch_batting(seasons)
+        runs_df    = fetch_runs_per_game(seasons)
+        return build_dataset(batting_df, runs_df)
+    except Exception:
+        return pd.DataFrame()
+
+
 @st.cache_data(ttl=300)  # re-checks the live MLB API every 5 minutes
 def check_live_starters(game_date_str: str) -> dict:
     """
@@ -744,6 +778,13 @@ def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample
 
 with st.sidebar:
     st.header("⚾ MLB Starter Splits")
+    view = st.radio(
+        "View",
+        ["⚾ Today's Splits", "📊 Regression Analysis"],
+        horizontal=True,
+        label_visibility="collapsed",
+    )
+    st.divider()
 
     # Today / Tomorrow toggle
     tomorrow_available = os.path.exists(os.path.join("data", "tomorrow", "daily_starters.csv"))
@@ -782,6 +823,159 @@ with st.sidebar:
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
+# ── Regression view (renders and exits via st.stop()) ────────────────────────
+if view == "📊 Regression Analysis":
+    st.title("📊 Team Regression Analysis")
+    st.caption("OLS regression predicting team runs per game from sabermetric batting features.")
+
+    if not _REGRESSION_AVAILABLE:
+        st.error(
+            "Regression module not available. "
+            "Install `pybaseball`, `statsmodels`, and `scikit-learn`, then restart Streamlit."
+        )
+        st.stop()
+
+    # Controls
+    ctrl1, ctrl2 = st.columns([3, 1])
+    with ctrl1:
+        reg_seasons = st.multiselect(
+            "Seasons",
+            [2018, 2019, 2021, 2022, 2023, 2024],
+            default=[2018, 2019, 2021, 2022, 2023, 2024],
+            help="2020 excluded by default — 60-game season distorts metrics.",
+        )
+    with ctrl2:
+        st.write("")
+        if st.button("🔄 Clear Cache", use_container_width=True,
+                     help="Force re-fetch from FanGraphs / Baseball Reference."):
+            fetch_regression_data.clear()
+            st.rerun()
+
+    if len(reg_seasons) < 2:
+        st.warning("Select at least 2 seasons to run the regression.")
+        st.stop()
+
+    with st.spinner("Fetching data… (30–60 s on first run, then cached for 24 h)"):
+        reg_dataset = fetch_regression_data(tuple(sorted(reg_seasons)))
+
+    if reg_dataset.empty:
+        st.error(
+            "Dataset is empty — data fetch may have failed. "
+            "Check your internet connection and try clearing the cache."
+        )
+        st.stop()
+
+    # Fit model (fast — data fetch is the slow step)
+    with contextlib.redirect_stdout(io.StringIO()):
+        ols_model, reg_X, reg_y = run_ols(reg_dataset)
+
+    # Model summary cards
+    st.subheader("Model Summary")
+    mc1, mc2, mc3, mc4 = st.columns(4)
+    mc1.metric("R²",             f"{ols_model.rsquared:.4f}")
+    mc2.metric("Adj. R²",        f"{ols_model.rsquared_adj:.4f}")
+    mc3.metric("F-stat p-value", f"{ols_model.f_pvalue:.4f}")
+    mc4.metric("Observations",   int(ols_model.nobs))
+
+    # OLS Coefficients table
+    st.subheader("OLS Coefficients")
+    ols_rows = []
+    for feat in FEATURES:
+        ols_rows.append({
+            "Feature":     feat,
+            "Coefficient": round(float(ols_model.params[feat]), 4),
+            "Std Error":   round(float(ols_model.bse[feat]), 4),
+            "t-stat":      round(float(ols_model.tvalues[feat]), 3),
+            "p-value":     round(float(ols_model.pvalues[feat]), 4),
+            "Significant": "✅ Yes" if ols_model.pvalues[feat] < 0.05 else "❌ No",
+        })
+    st.dataframe(pd.DataFrame(ols_rows), hide_index=True, use_container_width=True)
+
+    # VIF table
+    st.subheader("VIF — Multicollinearity Check")
+    reg_X_const = sm.add_constant(reg_X)
+    vif_rows = []
+    for i, feat in enumerate(reg_X.columns):
+        vif_val = variance_inflation_factor(reg_X_const.values, i + 1)
+        vif_rows.append({
+            "Feature": feat,
+            "VIF":     round(float(vif_val), 2),
+            "Flag":    ("🔴 HIGH (>10)" if vif_val > 10
+                        else ("🟡 MODERATE (5–10)" if vif_val > 5 else "✅ OK (<5)")),
+        })
+    vif_df = pd.DataFrame(vif_rows)
+    vif_triggered = float(vif_df["VIF"].max()) > 5
+
+    if vif_triggered:
+        st.warning("⚠️ Multicollinearity detected (VIF > 5). Ridge and Lasso results shown below.")
+    else:
+        st.success("✅ No multicollinearity detected (all VIF < 5). OLS coefficients are reliable.")
+    st.dataframe(vif_df, hide_index=True, use_container_width=True)
+
+    # Ridge / Lasso (only if VIF triggered)
+    if vif_triggered:
+        with contextlib.redirect_stdout(io.StringIO()):
+            reg_coef_df, _ridge, _lasso, _scaler = run_ridge_lasso(reg_X, reg_y)
+        st.subheader("Ridge vs Lasso — Standardized Coefficients")
+        st.caption("Coefficients per 1 SD change in each feature. 'YES' in Lasso_zeroed = potentially redundant.")
+        st.dataframe(reg_coef_df, hide_index=True, use_container_width=True)
+
+    # Actual vs Predicted scatter
+    st.subheader("Actual vs Predicted — Runs per Game")
+    pred_vals  = ols_model.predict(reg_X_const)
+    scatter_df = reg_dataset[["team", "season"]].copy()
+    scatter_df["Actual R/G"]    = reg_y.values
+    scatter_df["Predicted R/G"] = pred_vals.values.round(3)
+    scatter_df["Residual"]      = (scatter_df["Actual R/G"] - scatter_df["Predicted R/G"]).round(3)
+
+    lo = float(min(scatter_df["Actual R/G"].min(), scatter_df["Predicted R/G"].min())) - 0.15
+    hi = float(max(scatter_df["Actual R/G"].max(), scatter_df["Predicted R/G"].max())) + 0.15
+
+    fig_reg = go.Figure()
+    fig_reg.add_trace(go.Scatter(
+        x=scatter_df["Actual R/G"],
+        y=scatter_df["Predicted R/G"],
+        mode="markers",
+        text=scatter_df["team"] + " " + scatter_df["season"].astype(str),
+        hovertemplate="%{text}<br>Actual: %{x:.2f}<br>Predicted: %{y:.2f}<extra></extra>",
+        marker=dict(size=8, color="#1f77b4", opacity=0.75),
+        name="Team-season",
+    ))
+    fig_reg.add_trace(go.Scatter(
+        x=[lo, hi], y=[lo, hi],
+        mode="lines", name="Perfect fit",
+        line=dict(dash="dash", color="rgba(180,180,180,0.5)", width=1),
+    ))
+    fig_reg.update_layout(
+        xaxis_title="Actual R/G",
+        yaxis_title="Predicted R/G",
+        height=480,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        legend=dict(orientation="h", y=1.02, x=1, xanchor="right"),
+    )
+    fig_reg.update_xaxes(gridcolor="rgba(128,128,128,0.15)")
+    fig_reg.update_yaxes(gridcolor="rgba(128,128,128,0.15)")
+    st.plotly_chart(fig_reg, use_container_width=True,
+                    config={"displayModeBar": False}, key="reg_scatter")
+
+    # Full predictions table
+    st.subheader("Team-Season Predictions")
+    st.dataframe(
+        scatter_df.sort_values(["season", "team"]).reset_index(drop=True),
+        hide_index=True,
+        use_container_width=True,
+    )
+
+    st.divider()
+    st.caption(
+        "Regression data: FanGraphs (via pybaseball) · Baseball Reference · MLB Stats API · "
+        "Seasons: " + ", ".join(str(s) for s in sorted(reg_seasons))
+    )
+    st.stop()
+
+
+# ── Splits view ───────────────────────────────────────────────────────────────
 st.title(f"Hitter Splits vs Starters — {selected_date.strftime('%A, %B %d %Y')}")
 st.caption("Each panel shows the **opposing lineup's** career Statcast numbers vs. that starting pitcher (all seasons since 2015).")
 
