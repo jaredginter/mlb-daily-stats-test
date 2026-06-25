@@ -1,11 +1,11 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824255,2026-06-26T22:40:00Z,HOU @ DET,DET,HOU,Keider Montero,Spencer Arrighetti,672456.0,681293.0,0.99,,,,,,,,,,,,,,,,,,,7.6,9.0,0.352,13.0,21.68,8.0,0.557,22.0
-823363,2026-06-26T22:40:00Z,CIN @ PIT,PIT,CIN,TBD,Andrew Abbott,,671096.0,0.99,,,,,,,,,,,,,,,,,,,,,,,3.34,9.0,0.263,45.0
-824824,2026-06-26T23:05:00Z,WSH @ BAL,BAL,WSH,Trevor Rogers,TBD,669432.0,,1.01,,,,,,,,,,,,,,,,,,,4.85,8.0,0.422,39.0,,,,
+823363,2026-06-26T22:40:00Z,CIN @ PIT,PIT,CIN,Paul Skenes,Andrew Abbott,694973.0,671096.0,0.99,,,,,,,,,,,,,,,,,,,0.1,9.0,0.215,64.0,3.34,9.0,0.263,45.0
+824824,2026-06-26T23:05:00Z,WSH @ BAL,BAL,WSH,Trevor Rogers,Andrew Alvarez,669432.0,674841.0,1.01,,,,,,,,,,,,,,,,,,,4.85,8.0,0.422,39.0,0.96,8.0,0.477,12.0
 822796,2026-06-26T23:07:00Z,TEX @ TOR,TOR,TEX,Patrick Corbin,Nathan Eovaldi,571578.0,543135.0,1.0,,,,,,,,,,,,,,,,,,,2.58,9.0,0.252,103.0,4.39,10.0,0.274,97.0
 824423,2026-06-26T23:10:00Z,SEA @ CLE,CLE,SEA,Joey Cantillo,Luis Castillo,676282.0,622491.0,0.97,,,,,,,,,,,,,,,,,,,1.7,10.0,0.4,22.0,3.94,9.0,0.232,48.0
-822962,2026-06-26T23:10:00Z,AZ @ TB,TB,AZ,Nick Martinez,TBD,607259.0,,0.97,,,,,,,,,,,,,,,,,,,5.31,8.0,0.366,50.0,,,,
-823610,2026-06-26T23:10:00Z,PHI @ NYM,NYM,PHI,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,,,,,,,,
+822962,2026-06-26T23:10:00Z,AZ @ TB,TB,AZ,Nick Martinez,TBD,607259.0,,0.97,,,,,,,,,,,,,,,,,,,6.28,9.0,0.426,52.0,,,,
+823610,2026-06-26T23:10:00Z,PHI @ NYM,NYM,PHI,TBD,Zack Wheeler,,554430.0,0.98,,,,,,,,,,,,,,,,,,,,,,,4.94,12.0,0.306,113.0
 824743,2026-06-26T23:10:00Z,NYY @ BOS,BOS,NYY,Payton Tolle,Will Warren,801139.0,701542.0,1.03,,,,,,,,,,,,,,,,,,,4.0,6.0,0.178,13.0,5.62,7.0,0.399,34.0
 824582,2026-06-26T23:40:00Z,KC @ CWS,CWS,KC,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,,,,,,,,
 823773,2026-06-26T23:45:00Z,CHC @ MIL,MIL,CHC,Jacob Misiorowski,TBD,694819.0,,1.0,,,,,,,,,,,,,,,,,,,1.84,11.0,0.21,73.0,,,,
