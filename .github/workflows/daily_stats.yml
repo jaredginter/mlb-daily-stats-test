@@ -2,10 +2,11 @@ name: Daily Starter Stats
 
 on:
   schedule:
-    - cron: '0 15 * * *'   #  9:00 AM CST (UTC-6) / 10:00 AM CDT (UTC-5)
-    - cron: '0 21 * * *'   #  3:00 PM CST (UTC-6) /  4:00 PM CDT (UTC-5)
-    - cron: '0 3 * * *'    #  9:00 PM CST (UTC-6) / 10:00 PM CDT (UTC-5)
-    - cron: '0 9 * * *'    #  3:00 AM CST (UTC-6) /  4:00 AM CDT (UTC-5)
+    # Every 30 min during MLB hours (11 AM – 1 AM CDT = 16:00–06:00 UTC)
+    - cron: '*/30 16-23 * * *'
+    - cron: '*/30 0-5 * * *'
+    # Hourly overnight (quiet hours — still catches early morning lineup news)
+    - cron: '0 6-15 * * *'
   workflow_dispatch:   # allows manual trigger from the GitHub UI
 
 jobs:

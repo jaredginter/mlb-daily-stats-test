@@ -562,6 +562,79 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Change detection — fast pre-check before expensive Statcast pulls
+# ─────────────────────────────────────────────────────────────────────────────
+
+def starters_changed(game_date: str, summary_csv: str) -> bool:
+    """
+    Compare live MLB API probable starters against what is saved in
+    summary_csv.  Returns True if any pitcher changed, any new game
+    appeared, or if no saved data exists yet.
+
+    This is intentionally cheap — one MLB schedule endpoint call, no
+    pybaseball — so it can run on every cron tick without burning quota.
+    """
+    saved_path = os.path.join(*summary_csv.split("/")) if "/" in summary_csv else summary_csv
+    if not os.path.exists(saved_path):
+        log.info("No saved data at %s — treating as changed.", saved_path)
+        return True
+
+    try:
+        url    = "https://statsapi.mlb.com/api/v1/schedule"
+        params = {"sportId": 1, "date": game_date, "hydrate": "probablePitcher,team"}
+        r      = requests.get(url, params=params, timeout=10)
+        r.raise_for_status()
+        dates  = r.json().get("dates", [])
+    except Exception as exc:
+        log.warning("MLB API change-check failed: %s — assuming changed to be safe.", exc)
+        return True
+
+    # No games at all on this date (off day, etc.)
+    if not dates:
+        log.info("No games returned from MLB API for %s — skipping rebuild.", game_date)
+        return False
+
+    # Build {game_id: (home_pitcher_id, away_pitcher_id)} from live data
+    live: dict = {}
+    for game in dates[0].get("games", []):
+        gid    = str(game["gamePk"])
+        home_p = game.get("teams", {}).get("home", {}).get("probablePitcher", {}).get("id")
+        away_p = game.get("teams", {}).get("away", {}).get("probablePitcher", {}).get("id")
+        live[gid] = (home_p, away_p)
+
+    try:
+        saved_df = pd.read_csv(saved_path, dtype={"game_id": str})
+    except Exception as exc:
+        log.warning("Could not read saved CSV (%s): %s — treating as changed.", saved_path, exc)
+        return True
+
+    saved_lookup: dict = {}
+    for _, row in saved_df.iterrows():
+        gid = str(row["game_id"])
+        try:
+            hp = int(row["home_pitcher_id"]) if pd.notna(row.get("home_pitcher_id")) else None
+            ap = int(row["away_pitcher_id"]) if pd.notna(row.get("away_pitcher_id")) else None
+        except (ValueError, TypeError):
+            hp, ap = None, None
+        saved_lookup[gid] = (hp, ap)
+
+    for gid, (live_home, live_away) in live.items():
+        if gid not in saved_lookup:
+            log.info("New game detected (%s) — rebuild needed.", gid)
+            return True
+        saved_home, saved_away = saved_lookup[gid]
+        if live_home != saved_home or live_away != saved_away:
+            log.info(
+                "Starter change in game %s: home %s→%s, away %s→%s",
+                gid, saved_home, live_home, saved_away, live_away,
+            )
+            return True
+
+    log.info("No starter changes detected for %s — skipping full rebuild.", game_date)
+    return False
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Entry point
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -642,35 +715,42 @@ def build_tomorrow_report(tomorrow_str):
 if __name__ == "__main__":
     # Accept optional --tomorrow-only flag for targeted runs
     tomorrow_only = "--tomorrow-only" in sys.argv
+    # Accept optional --force flag to bypass change detection
+    force_rebuild = "--force" in sys.argv
 
     today_str    = date.today().strftime("%Y-%m-%d")
     tomorrow_str = (date.today() + timedelta(days=1)).strftime("%Y-%m-%d")
 
     log.info("=== MLB Hitter Splits vs Starters — %s ===", today_str)
-    log.info("Tomorrow-only flag: %s", tomorrow_only)
+    log.info("Tomorrow-only: %s | Force rebuild: %s", tomorrow_only, force_rebuild)
 
     # ── Today's data ────────────────────────────────────────────────────────
     if not tomorrow_only:
-        # Clear stale splits BEFORE building so we start fresh
-        # but only after confirming the previous run's data exists
-        clear_stale_data()
-        df_today = build_daily_report(today_str)
-        if not df_today.empty:
-            save_report(df_today, today_str, DATA_DIR, SPLITS_DIR,
-                        os.path.join(DATA_DIR, "gamelogs"), label="today")
+        today_csv = os.path.join(DATA_DIR, "daily_starters.csv")
+        if force_rebuild or starters_changed(today_str, today_csv):
+            log.info("=== Rebuilding today's data — starters changed ===")
+            # Clear stale splits BEFORE building so we start fresh
+            clear_stale_data()
+            df_today = build_daily_report(today_str)
+            if not df_today.empty:
+                save_report(df_today, today_str, DATA_DIR, SPLITS_DIR,
+                            os.path.join(DATA_DIR, "gamelogs"), label="today")
+            else:
+                log.warning("No games found for today — preserving existing dashboard data.")
         else:
-            log.warning("No games found for today — preserving existing dashboard data.")
+            log.info("=== Today's starters unchanged — skipping rebuild ===")
 
     # ── Tomorrow's data (every run) ─────────────────────────────────────────
     # Fetch on every run so the tomorrow tab always reflects the latest
     # announced starters — MLB posts probable starters throughout the day
-    if not tomorrow_only:
-        log.info("=== Fetching tomorrow's starters — %s ===", tomorrow_str)
+    tomorrow_csv = os.path.join(TOMORROW_DIR, "daily_starters.csv")
+    if force_rebuild or starters_changed(tomorrow_str, tomorrow_csv):
+        log.info("=== Rebuilding tomorrow's data — starters changed ===")
         # Clear stale splits BEFORE building — same pattern as today's data
         clear_stale_data(
-            target_dir   = TOMORROW_DIR,
-            splits_subdir= TOMORROW_SPLITS_DIR,
-            logs_subdir  = TOMORROW_LOGS_DIR,
+            target_dir    = TOMORROW_DIR,
+            splits_subdir = TOMORROW_SPLITS_DIR,
+            logs_subdir   = TOMORROW_LOGS_DIR,
         )
         df_tomorrow = build_tomorrow_report(tomorrow_str)
         if not df_tomorrow.empty:
@@ -678,5 +758,7 @@ if __name__ == "__main__":
                         TOMORROW_SPLITS_DIR, TOMORROW_LOGS_DIR, label="tomorrow")
         else:
             log.warning("No games found for tomorrow — preserving existing dashboard data.")
+    else:
+        log.info("=== Tomorrow's starters unchanged — skipping rebuild ===")
 
     log.info("Done.")

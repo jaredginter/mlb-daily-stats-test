@@ -471,6 +471,39 @@ def load_game_log(pitcher_id, mtime, root="data"):
     return load_game_log_cached(pitcher_id, mtime, root)
 
 
+@st.cache_data(ttl=300)  # re-checks the live MLB API every 5 minutes
+def check_live_starters(game_date_str: str) -> dict:
+    """
+    Lightweight check against the live MLB schedule endpoint.
+    Returns {game_id: (home_pitcher_name, away_pitcher_name)} from the API.
+    No pybaseball, no Statcast — just the schedule endpoint, so it's fast.
+    TTL of 300 s means Streamlit re-polls every 5 minutes automatically.
+    """
+    import requests as _req
+    try:
+        url  = "https://statsapi.mlb.com/api/v1/schedule"
+        r    = _req.get(
+            url,
+            params={"sportId": 1, "date": game_date_str, "hydrate": "probablePitcher,team"},
+            timeout=8,
+        )
+        r.raise_for_status()
+        dates = r.json().get("dates", [])
+    except Exception:
+        return {}
+
+    live = {}
+    for date_entry in dates:
+        for game in date_entry.get("games", []):
+            gid       = str(game["gamePk"])
+            home_name = (game.get("teams", {}).get("home", {})
+                             .get("probablePitcher", {}).get("fullName", "TBD"))
+            away_name = (game.get("teams", {}).get("away", {})
+                             .get("probablePitcher", {}).get("fullName", "TBD"))
+            live[gid] = (home_name, away_name)
+    return live
+
+
 def render_game_log(df, pitcher_name, season):
     """Render a styled game log table matching the screenshot layout."""
     if df.empty:
@@ -746,6 +779,37 @@ if summary.empty:
     st.stop()
 
 st.caption(f"{len(summary)} game{'s' if len(summary) != 1 else ''} today")
+
+# ── Stale starter banner ──────────────────────────────────────────────────────
+# Poll the live MLB API (cached 5 min) and warn if any pitcher changed since
+# the last GitHub Actions rebuild.  The banner disappears automatically once
+# the next Actions run commits fresh data and Streamlit picks up the new mtime.
+
+live_starters = check_live_starters(date_str)
+if live_starters:
+    stale_notes = []
+    for _, _row in summary.iterrows():
+        _gid       = str(_row["game_id"])
+        _live      = live_starters.get(_gid)
+        if _live is None:
+            continue
+        _live_home, _live_away = _live
+        _saved_home = str(_row.get("home_pitcher_name", "TBD"))
+        _saved_away = str(_row.get("away_pitcher_name", "TBD"))
+        _changes = []
+        if _live_home not in ("TBD", "") and _live_home != _saved_home:
+            _changes.append(f"Home: {_saved_home} → **{_live_home}**")
+        if _live_away not in ("TBD", "") and _live_away != _saved_away:
+            _changes.append(f"Away: {_saved_away} → **{_live_away}**")
+        if _changes:
+            _matchup = _row.get("matchup", _gid)
+            stale_notes.append(f"**{_matchup}** — " + ", ".join(_changes))
+
+    if stale_notes:
+        st.warning(
+            "⚠️ **Starter update detected** — the dashboard is refreshing automatically "
+            "and will update within ~5 minutes.\n\n" + "\n\n".join(stale_notes)
+        )
 
 # ── Game cards ────────────────────────────────────────────────────────────────
 
