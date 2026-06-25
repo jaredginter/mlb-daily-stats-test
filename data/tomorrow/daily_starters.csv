@@ -1,16 +1,16 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824255,2026-06-26T22:40:00Z,HOU @ DET,DET,HOU,Keider Montero,Spencer Arrighetti,672456.0,681293.0,0.99,,,,,,,,,,,,,,,,,,,7.6,9.0,0.352,13.0,21.68,8.0,0.557,22.0
-823363,2026-06-26T22:40:00Z,CIN @ PIT,PIT,CIN,TBD,Andrew Abbott,,671096.0,0.99,,,,,,,,,,,,,,,,,,,,,,,3.02,10.0,0.236,47.0
+823363,2026-06-26T22:40:00Z,CIN @ PIT,PIT,CIN,TBD,Andrew Abbott,,671096.0,0.99,,,,,,,,,,,,,,,,,,,,,,,3.34,9.0,0.263,45.0
 824824,2026-06-26T23:05:00Z,WSH @ BAL,BAL,WSH,Trevor Rogers,TBD,669432.0,,1.01,,,,,,,,,,,,,,,,,,,4.85,8.0,0.422,39.0,,,,
 822796,2026-06-26T23:07:00Z,TEX @ TOR,TOR,TEX,Patrick Corbin,Nathan Eovaldi,571578.0,543135.0,1.0,,,,,,,,,,,,,,,,,,,2.76,8.0,0.248,79.0,4.39,10.0,0.274,97.0
-824423,2026-06-26T23:10:00Z,SEA @ CLE,CLE,SEA,Joey Cantillo,TBD,676282.0,,0.97,,,,,,,,,,,,,,,,,,,1.7,10.0,0.4,22.0,,,,
-822962,2026-06-26T23:10:00Z,AZ @ TB,TB,AZ,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,,,,,,,,
+824423,2026-06-26T23:10:00Z,SEA @ CLE,CLE,SEA,Joey Cantillo,Luis Castillo,676282.0,622491.0,0.97,,,,,,,,,,,,,,,,,,,1.7,10.0,0.4,22.0,3.94,9.0,0.232,48.0
+822962,2026-06-26T23:10:00Z,AZ @ TB,TB,AZ,Nick Martinez,TBD,607259.0,,0.97,,,,,,,,,,,,,,,,,,,5.31,8.0,0.366,50.0,,,,
 823610,2026-06-26T23:10:00Z,PHI @ NYM,NYM,PHI,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,,,,,,,,
 824743,2026-06-26T23:10:00Z,NYY @ BOS,BOS,NYY,Payton Tolle,Will Warren,801139.0,701542.0,1.03,,,,,,,,,,,,,,,,,,,4.0,6.0,0.178,13.0,5.62,7.0,0.399,34.0
 824582,2026-06-26T23:40:00Z,KC @ CWS,CWS,KC,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,,,,,,,,
 823773,2026-06-26T23:45:00Z,CHC @ MIL,MIL,CHC,Jacob Misiorowski,TBD,694819.0,,1.0,,,,,,,,,,,,,,,,,,,1.84,11.0,0.21,73.0,,,,
 823688,2026-06-27T00:10:00Z,COL @ MIN,MIN,COL,Taj Bradley,Tomoyuki Sugano,671737.0,608372.0,1.01,,,,,,,,,,,,,,,,,,,3.79,6.0,0.31,29.0,6.81,8.0,0.35,21.0
 823039,2026-06-27T00:15:00Z,MIA @ STL,STL,MIA,Dustin May,Max Meyer,669160.0,676974.0,0.99,,,,,,,,,,,,,,,,,,,5.89,7.0,0.394,22.0,1.77,7.0,0.222,19.0
-824014,2026-06-27T01:38:00Z,ATH @ LAA,LAA,ATH,Walbert Ureña,TBD,700712.0,,0.97,,,,,,,,,,,,,,,,,,,1.55,12.0,0.261,40.0,,,,
+824014,2026-06-27T01:38:00Z,ATH @ LAA,LAA,ATH,Walbert Ureña,TBD,700712.0,,0.97,,,,,,,,,,,,,,,,,,,1.65,11.0,0.257,38.0,,,,
 823285,2026-06-27T01:45:00Z,LAD @ SD,SD,LAD,Walker Buehler,Roki Sasaki,621111.0,808963.0,0.95,,,,,,,,,,,,,,,,,,,6.69,8.0,0.35,44.0,,1.0,0.104,1.0
 823206,2026-06-27T02:15:00Z,ATL @ SF,SF,ATL,TBD,Reynaldo López,,625643.0,0.95,,,,,,,,,,,,,,,,,,,,,,,2.83,9.0,0.312,65.0
