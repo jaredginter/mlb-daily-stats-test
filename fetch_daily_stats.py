@@ -359,10 +359,16 @@ def compute_pitcher_fip_vs_team(pitcher_df, opposing_batter_ids):
     bb = pa_endings["events"].isin(["walk", "intent_walk"]).sum()
     k  = pa_endings["events"].isin(["strikeout", "strikeout_double_play"]).sum()
 
-    # Fly balls for xFIP: use bb_type column when available
-    fb = 0
-    if "bb_type" in vs.columns:
-        fb = (vs["bb_type"] == "fly_ball").sum()
+    # Fly balls for xFIP: count from batted ball events only (where bb_type is meaningful).
+    # bb_type is populated on contact (type == "X"); counting it across all pitches
+    # would include NaN rows and silently return 0 fly balls.
+    # If the column is absent entirely, set xfip to None rather than computing with 0 FBs.
+    has_bb_type = "bb_type" in vs.columns
+    if has_bb_type:
+        bbe_rows = vs[vs["type"] == "X"] if "type" in vs.columns else vs
+        fb = (bbe_rows["bb_type"] == "fly_ball").sum()
+    else:
+        fb = None  # signals xFIP cannot be computed
 
     # Estimate innings pitched: each out = 1/3 inning
     out_events = {
@@ -387,11 +393,16 @@ def compute_pitcher_fip_vs_team(pitcher_df, opposing_batter_ids):
     fip_c = FIP_CONSTANTS.get(season, 3.10)
     fip   = ((13 * hr) + (3 * bb) - (2 * k)) / ip + fip_c
 
-    # xFIP: swap actual HRs for expected HRs (fly balls × league HR/FB rate)
-    hr_expected = fb * LG_HR_FB_RATE
-    xfip = ((13 * hr_expected) + (3 * bb) - (2 * k)) / ip + fip_c
+    # xFIP: swap actual HRs for expected HRs (fly balls × league HR/FB rate).
+    # Return None if bb_type was absent so the dashboard shows "—" honestly
+    # rather than silently computing with 0 fly balls.
+    if fb is not None:
+        hr_expected = fb * LG_HR_FB_RATE
+        xfip = round(((13 * hr_expected) + (3 * bb) - (2 * k)) / ip + fip_c, 2)
+    else:
+        xfip = None
 
-    return {"fip": round(fip, 2), "xfip": round(xfip, 2)}
+    return {"fip": round(fip, 2), "xfip": xfip}
 
 
 def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
@@ -406,16 +417,16 @@ def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
         pitcher_df = statcast_pitcher(STATCAST_ERA_START, today, player_id=pitcher_mlbam_id)
     except Exception as exc:
         log.error("  Failed to fetch pitcher data for %s: %s", pitcher_name, exc)
-        return pd.DataFrame(), None
+        return pd.DataFrame(), None, None
 
     # Guard: ensure we got a proper DataFrame back, not a tuple or None
     if not isinstance(pitcher_df, pd.DataFrame):
         log.warning("  Unexpected return type for %s: %s", pitcher_name, type(pitcher_df))
-        return pd.DataFrame(), None
+        return pd.DataFrame(), None, None
 
     if pitcher_df.empty:
         log.warning("  No Statcast data found for %s", pitcher_name)
-        return pd.DataFrame(), None
+        return pd.DataFrame(), None, None
 
     log.info("  Got %d pitches — slicing by opposing hitters ...", len(pitcher_df))
 
