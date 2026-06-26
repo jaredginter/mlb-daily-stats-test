@@ -525,32 +525,36 @@ def train_ridge_model(seasons_tuple=(2018, 2019, 2021, 2022, 2023, 2024)):
     Cached 24 hours.
     """
     if not _REGRESSION_AVAILABLE:
-        return None
-    try:
-        dataset = fetch_regression_data(seasons_tuple)
-        if dataset.empty:
-            return None
-        missing = [f for f in RIDGE_FEATURES if f not in dataset.columns]
-        if missing:
-            return None
-        X = dataset[RIDGE_FEATURES].values
-        y = dataset["R_per_G"].values
-        scaler   = StandardScaler()
-        X_scaled = scaler.fit_transform(X)
-        alphas   = np.logspace(-3, 3, 100)
-        ridge    = RidgeCV(alphas=alphas, cv=5).fit(X_scaled, y)
-        cv_r2    = float(cross_val_score(ridge, X_scaled, y, cv=5, scoring="r2").mean())
-        return {
-            "model":    ridge,
-            "scaler":   scaler,
-            "features": RIDGE_FEATURES,
-            "cv_r2":    round(cv_r2, 4),
-            "n_obs":    len(dataset),
-            "seasons":  sorted(list(seasons_tuple)),
-            "alpha":    round(float(ridge.alpha_), 4),
-        }
-    except Exception:
-        return None
+        raise RuntimeError(
+            "Regression module unavailable — sklearn/statsmodels may not be installed. "
+            "Check requirements.txt and redeploy."
+        )
+    dataset = fetch_regression_data(seasons_tuple)
+    if dataset.empty:
+        raise RuntimeError(
+            "Dataset is empty after fetching. The FanGraphs or Baseball Reference "
+            "data fetch likely failed. Try clicking 'Clear Cache' on the Regression "
+            "Analysis tab first, then retry."
+        )
+    missing = [f for f in RIDGE_FEATURES if f not in dataset.columns]
+    if missing:
+        raise RuntimeError(f"Dataset is missing required columns: {missing}")
+    X = dataset[RIDGE_FEATURES].values
+    y = dataset["R_per_G"].values
+    scaler   = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+    alphas   = np.logspace(-3, 3, 100)
+    ridge    = RidgeCV(alphas=alphas, cv=5).fit(X_scaled, y)
+    cv_r2    = float(cross_val_score(ridge, X_scaled, y, cv=5, scoring="r2").mean())
+    return {
+        "model":    ridge,
+        "scaler":   scaler,
+        "features": RIDGE_FEATURES,
+        "cv_r2":    round(cv_r2, 4),
+        "n_obs":    len(dataset),
+        "seasons":  sorted(list(seasons_tuple)),
+        "alpha":    round(float(ridge.alpha_), 4),
+    }
 
 
 @st.cache_data(ttl=300)  # re-checks the live MLB API every 5 minutes
