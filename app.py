@@ -471,7 +471,6 @@ def load_game_log(pitcher_id, mtime, root="data"):
     return load_game_log_cached(pitcher_id, mtime, root)
 
 
-
 @st.cache_data(ttl=300)  # re-checks the live MLB API every 5 minutes
 def check_live_starters(game_date_str: str) -> dict:
     """
@@ -560,10 +559,8 @@ LG = {
     "babip":    0.296,
 }
 
-# AB score saturates at 80 ABs (65% of weight)
-# Hitter score saturates at 9 hitters (35% of weight)
-FULL_TRUST_ABS     = 80
-FULL_TRUST_HITTERS = 9
+FULL_TRUST_ABS     = 60
+FULL_TRUST_HITTERS = 7
 
 
 def safe_float(val, default):
@@ -576,44 +573,29 @@ def safe_float(val, default):
 
 def sample_size_weight(total_abs, n_hitters):
     """
-    Dual-component reliability score 0.0–1.0.
-
-    Two factors scored independently on a log scale, then blended:
-      - AB score     (65% weight): how many total career ABs vs this pitcher
-      - Hitter score (35% weight): how many roster hitters have history
-
-    Both scale continuously — more ABs and more hitters each independently
-    increase reliability rather than a binary bonus flip.
-
-    Saturation points: 80 ABs = full AB score, 9 hitters = full hitter score.
-    Minimum floor of 0.05 when no data exists.
+    Logarithmic weight 0.0–1.0 scaling how much the vs-pitcher
+    splits are trusted vs. falling back to team season stats.
     """
     if total_abs is None or total_abs <= 0:
-        return 0.05
-
-    ab_score = min(1.0, math.log1p(total_abs) / math.log1p(FULL_TRUST_ABS))
-
-    if n_hitters is not None and n_hitters > 0:
-        hitter_score = min(1.0, math.log1p(n_hitters) / math.log1p(FULL_TRUST_HITTERS))
-    else:
-        hitter_score = 0.0
-
-    return min(1.0, (ab_score * 0.65) + (hitter_score * 0.35))
+        return 0.10
+    base = min(1.0, math.log1p(total_abs) / math.log1p(FULL_TRUST_ABS))
+    bonus = 0.10 if (n_hitters is not None and n_hitters >= FULL_TRUST_HITTERS) else 0.0
+    return min(1.0, base + bonus)
 
 
 def predict_runs(avg_xwoba, fip_vs_team, splits_df,
                  total_abs=None, n_hitters=None, team_off=None):
     """
-    Two-layer run prediction model.
+    Two-layer run prediction model:
 
     Layer 1 — Team season offense (40% weight):
-      Static regression-derived weights for wOBA, Barrel%, HardHit%, K%, BB%.
-      Coefficients from Ridge regression on 6 seasons (2018–2024) of team-season data.
-      Collinear/low-signal features (OBP, wRC+, OPS+, BABIP) excluded per VIF/Lasso analysis.
+      wOBA 10%, wRC+ 8%, OBP 6%, OPS+ 4%, Barrel% 4%,
+      HardHit% 3%, K% 3%, BB% 1%, BABIP 1%
 
     Layer 2 — vs pitcher career splits (60% weight, sample-size adjusted):
-      xwOBA vs pitcher, FIP vs pitcher, HardHit% vs pitcher, Whiff% vs pitcher.
-      Scaled toward team stats when career AB sample is thin.
+      xwOBA vs pitcher 25%, FIP vs pitcher 12%,
+      HardHit% vs pitcher 10%, Whiff% vs pitcher 8%,
+      scaled toward team stats when career AB sample is thin
 
     Returns (predicted_runs, conf_label, conf_color, inputs_used, sample_weight)
     """
@@ -623,65 +605,47 @@ def predict_runs(avg_xwoba, fip_vs_team, splits_df,
     inputs_used = []
     BASE        = LG["runs"]
 
-    # ── Layer 1: team season offense — regression-derived static weights ──
-    # Coefficients from Ridge regression (2018–2024 team-season data).
-    # Format: (team_off_key, league_avg, coefficient)
-    #   wOBA:     +18.0  (dominant predictor; 1-SD ≈ 0.015 → ~0.27 R/G effect)
-    #   Barrel%:  + 8.5  (strong; Lasso retained, VIF OK)
-    #   HardHit%: + 4.5  (moderate; correlated with Barrel% but additive signal)
-    #   K%:       - 7.5  (negative; Lasso retained)
-    #   BB%:      + 5.5  (positive; Lasso retained)
-    _RIDGE_WEIGHTS = [
-        ("woba",     "woba",     0.312, 18.0),
-        ("barrel",   "barrel",   0.080,  8.5),
-        ("hard_hit", "hard_hit", 0.380,  4.5),
-        ("k_pct",    "k_pct",    0.222, -7.5),
-        ("bb_pct",   "bb_pct",   0.083,  5.5),
-    ]
-    team_adj    = 0.0
-    layer1_rows = []  # [(label, team_val, lg_avg, coef, contribution)]
+    # ── Layer 1: team season offense (always available) ──────────────────
+    team_adj = 0.0
     if team_off:
-        for off_key, lg_key, lg_avg, coef in _RIDGE_WEIGHTS:
-            val   = safe_float(team_off.get(off_key), lg_avg)
-            delta = (val - lg_avg) * coef
-            team_adj += delta
-            layer1_rows.append((off_key, val, lg_avg, coef, delta))
+        def tadj(key, weight, lg_key=None):
+            val = safe_float(team_off.get(key), LG.get(lg_key or key, 0))
+            return (val - LG.get(lg_key or key, val)) * weight
+
+        team_adj += tadj("woba",     12.0)
+        team_adj += tadj("wrc_plus",  0.012)   # per point above 100
+        team_adj += tadj("obp",       8.0)
+        team_adj += tadj("ops_plus",  0.008)
+        team_adj += tadj("barrel",   10.0)
+        team_adj += tadj("hard_hit",  4.0)
+        team_adj -= tadj("k_pct",     6.0)
+        team_adj += tadj("bb_pct",    5.0)
+        team_adj += tadj("babip",     4.0)
         team_adj *= 0.40
-        inputs_used += ["wOBA", "Barrel%", "HardHit%", "K%", "BB%"]
+        inputs_used += ["wOBA","wRC+","OBP","OPS+","Barrel%","HardHit%","K%","BB%","BABIP"]
 
     # ── Layer 2: vs-pitcher career splits (sample-size weighted) ─────────
     sw         = sample_size_weight(total_abs, n_hitters)
     splits_adj = 0.0
-    layer2_rows = []  # [(label, val, lg_avg, weight, raw_contrib)]
 
     if avg_xwoba is not None and not pd.isna(avg_xwoba):
-        v = safe_float(avg_xwoba, LG["xwoba"])
-        c = (v - LG["xwoba"]) * 18.0
-        splits_adj += c
-        layer2_rows.append(("xwOBA vs pitcher", v, LG["xwoba"], 18.0, c))
+        splits_adj += (safe_float(avg_xwoba, LG["xwoba"]) - LG["xwoba"]) * 18.0
         inputs_used.append("xwOBA vs pitcher")
 
     if fip_vs_team is not None and not pd.isna(fip_vs_team):
-        v = safe_float(fip_vs_team, LG["fip"])
-        c = (v - LG["fip"]) * 0.30
-        splits_adj += c
-        layer2_rows.append(("FIP vs pitcher", v, LG["fip"], 0.30, c))
+        splits_adj += (safe_float(fip_vs_team, LG["fip"]) - LG["fip"]) * 0.30
         inputs_used.append("FIP vs pitcher")
 
     if splits_df is not None and not splits_df.empty:
         if "hard_hit_pct" in splits_df.columns:
             hh = splits_df["hard_hit_pct"].dropna().mean()
             if not pd.isna(hh):
-                c = (hh - LG["hard_hit"]) * 4.0
-                splits_adj += c
-                layer2_rows.append(("HardHit% vs pitcher", hh, LG["hard_hit"], 4.0, c))
+                splits_adj += (hh - LG["hard_hit"]) * 4.0
                 inputs_used.append("HardHit% vs pitcher")
         if "whiff_pct" in splits_df.columns:
             wp = splits_df["whiff_pct"].dropna().mean()
             if not pd.isna(wp):
-                c = -(wp - LG["whiff"]) * 4.0
-                splits_adj += c
-                layer2_rows.append(("Whiff% vs pitcher", wp, LG["whiff"], -4.0, c))
+                splits_adj -= (wp - LG["whiff"]) * 4.0
                 inputs_used.append("Whiff% vs pitcher")
 
     # Scale splits layer by sample size — when thin, lean on team offense
@@ -705,21 +669,11 @@ def predict_runs(avg_xwoba, fip_vs_team, splits_df,
         conf_label = "Very low — small sample"
         conf_color = "#9467bd"
 
-    breakdown = {
-        "base":        BASE,
-        "team_adj":    round(team_adj, 3),
-        "splits_adj":  round(splits_adj, 3),
-        "sample_wt":   round(sw, 2),
-        "layer1_rows": layer1_rows,
-        "layer2_rows": layer2_rows,
-    }
-    return round(blended, 1), conf_label, conf_color, inputs_used, round(sw, 2), breakdown
+    return round(blended, 1), conf_label, conf_color, inputs_used, round(sw, 2)
 
 
-def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used,
-                         sample_weight=1.0, total_abs=None, n_hitters=None,
-                         breakdown=None):
-    """Render a styled predicted runs badge with an expandable calculation breakdown."""
+def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample_weight=1.0, total_abs=None, n_hitters=None):
+    """Render a styled predicted runs badge."""
     signals = ", ".join(inputs_used) if inputs_used else "insufficient data"
     sw_pct  = int(round(sample_weight * 100))
     abs_str = f"{total_abs} career ABs" if total_abs else "unknown ABs"
@@ -768,83 +722,11 @@ def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used,
         unsafe_allow_html=True,
     )
 
-    if breakdown:
-        with st.expander("📐 How is this calculated?"):
-            base      = breakdown["base"]
-            team_adj  = breakdown["team_adj"]
-            split_adj = breakdown["splits_adj"]
-            sw        = breakdown["sample_wt"]
-
-            st.markdown(
-                f"**Formula:** `{base} (league avg) + {team_adj:+.2f} (team offense) "
-                f"+ {split_adj:+.2f} (vs pitcher splits) = {runs}`"
-            )
-            st.markdown(
-                "_Team offense is 40% of the adjustment; vs-pitcher splits are 60%, "
-                f"scaled by {int(sw*100)}% sample weight._"
-            )
-
-            # Layer 1 table
-            _LABEL_MAP = {
-                "woba":     "wOBA",
-                "barrel":   "Barrel%",
-                "hard_hit": "HardHit%",
-                "k_pct":    "K%",
-                "bb_pct":   "BB%",
-            }
-            if breakdown["layer1_rows"]:
-                st.markdown("**Layer 1 — Team Season Offense (×0.40 weight)**")
-                l1_data = []
-                for off_key, val, lg_avg, coef, delta in breakdown["layer1_rows"]:
-                    label   = _LABEL_MAP.get(off_key, off_key)
-                    is_pct  = off_key in ("barrel", "hard_hit", "k_pct", "bb_pct")
-                    fmt     = lambda x: f"{x:.1%}" if is_pct else f"{x:.3f}"
-                    contrib = delta * 0.40  # actual contribution after layer weight
-                    l1_data.append({
-                        "Stat":        label,
-                        "Team":        fmt(val),
-                        "League Avg":  fmt(lg_avg),
-                        "Coefficient": f"×{coef:+.1f}",
-                        "Contribution": f"{contrib:+.3f} R/G",
-                    })
-                st.dataframe(
-                    pd.DataFrame(l1_data),
-                    hide_index=True,
-                    use_container_width=True,
-                )
-
-            # Layer 2 table
-            if breakdown["layer2_rows"]:
-                st.markdown(f"**Layer 2 — vs Pitcher Splits (×0.60 weight · {int(sw*100)}% sample)**")
-                _L2_FMT = {
-                    "xwOBA vs pitcher":    lambda x: f"{x:.3f}",
-                    "FIP vs pitcher":      lambda x: f"{x:.2f}",
-                    "HardHit% vs pitcher": lambda x: f"{x:.1%}",
-                    "Whiff% vs pitcher":   lambda x: f"{x:.1%}",
-                }
-                l2_data = []
-                for label, val, lg_avg, weight, raw_c in breakdown["layer2_rows"]:
-                    fmt     = _L2_FMT.get(label, lambda x: f"{x:.3f}")
-                    contrib = raw_c * sw * 0.60
-                    l2_data.append({
-                        "Stat":         label,
-                        "Value":        fmt(val),
-                        "League Avg":   fmt(lg_avg),
-                        "Weight":       f"×{abs(weight):.1f}{'↓' if weight < 0 else '↑'}",
-                        "Contribution": f"{contrib:+.3f} R/G",
-                    })
-                st.dataframe(
-                    pd.DataFrame(l2_data),
-                    hide_index=True,
-                    use_container_width=True,
-                )
-
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 
 with st.sidebar:
     st.header("⚾ MLB Starter Splits")
-    st.divider()
 
     # Today / Tomorrow toggle
     tomorrow_available = os.path.exists(os.path.join("data", "tomorrow", "daily_starters.csv"))
@@ -880,7 +762,6 @@ with st.sidebar:
 
     if not tomorrow_available:
         st.caption("Tomorrow's data posts after 9 PM CST once MLB announces starters.")
-
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
@@ -997,11 +878,11 @@ for _, game in summary.iterrows():
                 "k_pct":    game.get("home_k_pct"),    "bb_pct":   game.get("home_bb_pct"),
                 "babip":    game.get("home_babip"),
             }
-            away_pred, away_conf, away_color, _, away_sw, _away_bd = predict_runs(
+            away_pred, away_conf, away_color, _, away_sw = predict_runs(
                 away_xwoba, away_fip, away_splits_df,
                 total_abs=away_total_abs, n_hitters=away_n,
                 team_off=away_team_off)
-            home_pred, home_conf, home_color, _, home_sw, _home_bd = predict_runs(
+            home_pred, home_conf, home_color, _, home_sw = predict_runs(
                 home_xwoba, home_fip, home_splits_df,
                 total_abs=home_total_abs, n_hitters=home_n,
                 team_off=home_team_off)
@@ -1149,7 +1030,7 @@ for _, game in summary.iterrows():
                         _rel_tier  = "Very Weak"
                         _rel_color = "#9467bd"
 
-                    mc1, mc2, mc3, mc4 = st.columns(4)
+                    mc1, mc2, mc3, mc4, mc5 = st.columns(5)
                     mc1.metric("Hitters with history", int(n))
                     mc2.metric("Lineup avg xwOBA", f"{avg_xwoba:.3f}" if avg_xwoba else "—")
 
@@ -1165,7 +1046,27 @@ for _, game in summary.iterrows():
                              "Lower is better for the pitcher. Scale: <3.20 elite, 3.20–3.79 good, "
                              "3.80–4.19 average, 4.20–4.79 below avg, 5.00+ poor."
                     )
-                    with mc4:
+
+                    xfip_key = (
+                        "home_pitcher_xfip_vs_opp"
+                        if panel["pitcher_side"] == "home"
+                        else "away_pitcher_xfip_vs_opp"
+                    )
+                    xfip_val = game.get(xfip_key)
+                    xfip_display = (
+                        f"{xfip_val:.2f}"
+                        if xfip_val is not None and str(xfip_val) != "nan"
+                        else "—"
+                    )
+                    mc4.metric(
+                        "xFIP vs this team",
+                        xfip_display,
+                        help="Expected Fielding Independent Pitching — same as FIP but replaces actual HRs "
+                             "with expected HRs (fly balls × league-avg HR/FB rate of ~10.5%). "
+                             "Removes HR luck; often a better predictor than FIP. "
+                             "Same scale: <3.20 elite, 3.20–3.79 good, 3.80–4.19 avg, 4.20–4.79 below avg, 5.00+ poor."
+                    )
+                    with mc5:
                         st.markdown(
                             f"""<div style="padding: 4px 0;">
                                 <div style="font-size:0.8rem;color:#888;margin-bottom:4px;">
@@ -1186,16 +1087,16 @@ for _, game in summary.iterrows():
                     # Sample size warning based on total career ABs vs this pitcher
                     if total_abs < FIP_UNRELIABLE_ABS:
                         st.error(
-                            f"🚨 **FIP unreliable — very small sample.** "
+                            f"🚨 **FIP & xFIP unreliable — very small sample.** "
                             f"Only **{total_abs} total career ABs** across {int(n)} hitters vs this pitcher. "
-                            f"With fewer than {FIP_UNRELIABLE_ABS} ABs, a single home run can swing FIP "
-                            f"by several points. Disregard FIP for this matchup."
+                            f"With fewer than {FIP_UNRELIABLE_ABS} ABs, a single home run or fly ball can swing "
+                            f"FIP and xFIP by several points. Disregard both for this matchup."
                         )
                     elif total_abs < FIP_CAUTION_ABS:
                         st.warning(
-                            f"⚠️ **Small sample — interpret FIP with caution.** "
+                            f"⚠️ **Small sample — interpret FIP & xFIP with caution.** "
                             f"**{total_abs} total career ABs** across {int(n)} hitters vs this pitcher. "
-                            f"FIP is most reliable with 40+ total ABs."
+                            f"Both metrics are most reliable with 40+ total ABs."
                         )
                 else:
                     st.info("No head-to-head Statcast history found for this matchup yet "
@@ -1218,7 +1119,7 @@ for _, game in summary.iterrows():
                         "bb_pct":   game.get(f"{_team_side}_bb_pct"),
                         "babip":    game.get(f"{_team_side}_babip"),
                     }
-                    pred_runs, conf_label, conf_color, inputs_used, sw, _bd = predict_runs(
+                    pred_runs, conf_label, conf_color, inputs_used, sw = predict_runs(
                         avg_xwoba, fip_val, _splits_preview,
                         total_abs=total_abs, n_hitters=int(n) if n else None,
                         team_off=_team_off
@@ -1227,8 +1128,7 @@ for _, game in summary.iterrows():
                         run_prediction_badge(
                             pred_runs, conf_label, conf_color, batting, inputs_used,
                             sample_weight=sw, total_abs=total_abs,
-                            n_hitters=int(n) if n else None,
-                            breakdown=_bd,
+                            n_hitters=int(n) if n else None
                         )
 
                 # ── FIP vs xwOBA quadrant tile ───────────────────────────
