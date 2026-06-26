@@ -20,9 +20,23 @@ try:
         fetch_batting, fetch_runs_per_game, build_dataset,
         run_ols, run_ridge_lasso, FEATURES,
     )
+    from sklearn.linear_model import RidgeCV
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.model_selection import cross_val_score
     _REGRESSION_AVAILABLE = True
 except ImportError:
     _REGRESSION_AVAILABLE = False
+
+# Features used by the trimmed Ridge model (obp + babip dropped after VIF/Lasso analysis)
+RIDGE_FEATURES = ["woba", "barrel_pct", "hard_hit", "k_pct", "bb_pct"]
+# Maps RIDGE_FEATURES names → keys used in the team_off dict passed to predict_runs
+RIDGE_FEATURE_TO_TEAM_OFF = {
+    "woba":       "woba",
+    "barrel_pct": "barrel",
+    "hard_hit":   "hard_hit",
+    "k_pct":      "k_pct",
+    "bb_pct":     "bb_pct",
+}
 
 st.set_page_config(
     page_title="MLB Hitter Splits vs Starters",
@@ -502,6 +516,43 @@ def fetch_regression_data(seasons_tuple):
     return build_dataset(batting_df, runs_df)
 
 
+@st.cache_data(ttl=86400, show_spinner=False)
+def train_ridge_model(seasons_tuple=(2018, 2019, 2021, 2022, 2023, 2024)):
+    """
+    Fit a trimmed 5-feature Ridge regression model on historical team-season data.
+    Features: woba, barrel_pct, hard_hit, k_pct, bb_pct (obp + babip dropped after VIF/Lasso).
+    Returns a dict with the fitted scaler + model ready for predict_runs(), or None on failure.
+    Cached 24 hours.
+    """
+    if not _REGRESSION_AVAILABLE:
+        return None
+    try:
+        dataset = fetch_regression_data(seasons_tuple)
+        if dataset.empty:
+            return None
+        missing = [f for f in RIDGE_FEATURES if f not in dataset.columns]
+        if missing:
+            return None
+        X = dataset[RIDGE_FEATURES].values
+        y = dataset["R_per_G"].values
+        scaler   = StandardScaler()
+        X_scaled = scaler.fit_transform(X)
+        alphas   = np.logspace(-3, 3, 100)
+        ridge    = RidgeCV(alphas=alphas, cv=5).fit(X_scaled, y)
+        cv_r2    = float(cross_val_score(ridge, X_scaled, y, cv=5, scoring="r2").mean())
+        return {
+            "model":    ridge,
+            "scaler":   scaler,
+            "features": RIDGE_FEATURES,
+            "cv_r2":    round(cv_r2, 4),
+            "n_obs":    len(dataset),
+            "seasons":  sorted(list(seasons_tuple)),
+            "alpha":    round(float(ridge.alpha_), 4),
+        }
+    except Exception:
+        return None
+
+
 @st.cache_data(ttl=300)  # re-checks the live MLB API every 5 minutes
 def check_live_starters(game_date_str: str) -> dict:
     """
@@ -632,18 +683,19 @@ def sample_size_weight(total_abs, n_hitters):
 
 
 def predict_runs(avg_xwoba, fip_vs_team, splits_df,
-                 total_abs=None, n_hitters=None, team_off=None):
+                 total_abs=None, n_hitters=None, team_off=None,
+                 ridge_data=None):
     """
-    Two-layer run prediction model:
+    Two-layer run prediction model.
 
     Layer 1 — Team season offense (40% weight):
-      wOBA 10%, wRC+ 8%, OBP 6%, OPS+ 4%, Barrel% 4%,
-      HardHit% 3%, K% 3%, BB% 1%, BABIP 1%
+      If ridge_data is supplied: uses the fitted 5-feature Ridge regression model
+      (wOBA, Barrel%, HardHit%, K%, BB%) trained on 6 seasons of historical data.
+      Otherwise falls back to hand-coded sabermetric weights.
 
     Layer 2 — vs pitcher career splits (60% weight, sample-size adjusted):
-      xwOBA vs pitcher 25%, FIP vs pitcher 12%,
-      HardHit% vs pitcher 10%, Whiff% vs pitcher 8%,
-      scaled toward team stats when career AB sample is thin
+      xwOBA vs pitcher, FIP vs pitcher, HardHit% vs pitcher, Whiff% vs pitcher.
+      Scaled toward team stats when career AB sample is thin.
 
     Returns (predicted_runs, conf_label, conf_color, inputs_used, sample_weight)
     """
@@ -654,23 +706,41 @@ def predict_runs(avg_xwoba, fip_vs_team, splits_df,
     BASE        = LG["runs"]
 
     # ── Layer 1: team season offense (always available) ──────────────────
-    team_adj = 0.0
+    team_adj   = 0.0
+    using_ridge = False
     if team_off:
-        def tadj(key, weight, lg_key=None):
-            val = safe_float(team_off.get(key), LG.get(lg_key or key, 0))
-            return (val - LG.get(lg_key or key, val)) * weight
+        if ridge_data is not None:
+            # Use the Ridge model trained on historical team-season data
+            try:
+                vals = [
+                    safe_float(team_off.get(RIDGE_FEATURE_TO_TEAM_OFF[f]), LG.get(f, 0))
+                    for f in RIDGE_FEATURES
+                ]
+                X_scaled   = ridge_data["scaler"].transform([vals])
+                ridge_pred = float(ridge_data["model"].predict(X_scaled)[0])
+                team_adj   = (ridge_pred - BASE) * 0.40
+                inputs_used  += ["wOBA (Ridge)", "Barrel% (Ridge)", "HardHit% (Ridge)",
+                                  "K% (Ridge)", "BB% (Ridge)"]
+                using_ridge = True
+            except Exception:
+                ridge_data = None  # fall through to hand-coded weights
 
-        team_adj += tadj("woba",     12.0)
-        team_adj += tadj("wrc_plus",  0.012)   # per point above 100
-        team_adj += tadj("obp",       8.0)
-        team_adj += tadj("ops_plus",  0.008)
-        team_adj += tadj("barrel",   10.0)
-        team_adj += tadj("hard_hit",  4.0)
-        team_adj -= tadj("k_pct",     6.0)
-        team_adj += tadj("bb_pct",    5.0)
-        team_adj += tadj("babip",     4.0)
-        team_adj *= 0.40
-        inputs_used += ["wOBA","wRC+","OBP","OPS+","Barrel%","HardHit%","K%","BB%","BABIP"]
+        if not using_ridge:
+            def tadj(key, weight, lg_key=None):
+                val = safe_float(team_off.get(key), LG.get(lg_key or key, 0))
+                return (val - LG.get(lg_key or key, val)) * weight
+
+            team_adj += tadj("woba",     12.0)
+            team_adj += tadj("wrc_plus",  0.012)
+            team_adj += tadj("obp",       8.0)
+            team_adj += tadj("ops_plus",  0.008)
+            team_adj += tadj("barrel",   10.0)
+            team_adj += tadj("hard_hit",  4.0)
+            team_adj -= tadj("k_pct",     6.0)
+            team_adj += tadj("bb_pct",    5.0)
+            team_adj += tadj("babip",     4.0)
+            team_adj *= 0.40
+            inputs_used += ["wOBA","wRC+","OBP","OPS+","Barrel%","HardHit%","K%","BB%","BABIP"]
 
     # ── Layer 2: vs-pitcher career splits (sample-size weighted) ─────────
     sw         = sample_size_weight(total_abs, n_hitters)
@@ -720,13 +790,20 @@ def predict_runs(avg_xwoba, fip_vs_team, splits_df,
     return round(blended, 1), conf_label, conf_color, inputs_used, round(sw, 2)
 
 
-def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample_weight=1.0, total_abs=None, n_hitters=None):
+def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample_weight=1.0, total_abs=None, n_hitters=None, using_ridge=False):
     """Render a styled predicted runs badge."""
     signals = ", ".join(inputs_used) if inputs_used else "insufficient data"
     sw_pct  = int(round(sample_weight * 100))
     abs_str = f"{total_abs} career ABs" if total_abs else "unknown ABs"
     hit_str = f"{n_hitters} hitters" if n_hitters else "unknown hitters"
     sample_note = f"Sample weight: {sw_pct}% ({abs_str} · {hit_str})"
+    model_tag   = (
+        "<span style='font-size:0.65rem;color:#4a9eff;margin-left:6px;"
+        "border:1px solid #4a9eff;border-radius:10px;padding:1px 6px;'>Ridge model</span>"
+        if using_ridge else
+        "<span style='font-size:0.65rem;color:#888;margin-left:6px;"
+        "border:1px solid #555;border-radius:10px;padding:1px 6px;'>Baseline</span>"
+    )
     st.markdown(
         f"""
         <div style="
@@ -741,7 +818,7 @@ def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample
         ">
             <div>
                 <div style="font-size:0.75rem;color:#aaa;margin-bottom:2px;">
-                    📊 Predicted runs — {team}
+                    📊 Predicted runs — {team}{model_tag}
                 </div>
                 <div style="font-size:2rem;font-weight:700;color:white;line-height:1.1;">
                     {runs}
@@ -817,6 +894,36 @@ with st.sidebar:
 
     if not tomorrow_available:
         st.caption("Tomorrow's data posts after 9 PM CST once MLB announces starters.")
+
+    # ── Regression model loader (splits view only) ────────────────────────
+    if view == "⚾ Today's Splits":
+        st.divider()
+        _rm = st.session_state.get("ridge_model_data")
+        if _rm:
+            st.caption(
+                f"📊 **Ridge model active**  \n"
+                f"CV R² {_rm['cv_r2']:.3f} · {_rm['n_obs']} obs · "
+                f"α {_rm['alpha']}"
+            )
+            if st.button("↺ Retrain model", use_container_width=True):
+                st.session_state.pop("ridge_model_data", None)
+                train_ridge_model.clear()
+                st.rerun()
+        else:
+            st.caption("📊 **Regression model** not loaded  \nRun predictions use baseline weights.")
+            if st.button("Load regression model", use_container_width=True,
+                         help="Trains a 5-feature Ridge model on 6 seasons of team batting data. "
+                              "Takes 30–60 s on first load, then cached for 24 h."):
+                with st.spinner("Fetching data and training Ridge model…"):
+                    try:
+                        _rd = train_ridge_model((2018, 2019, 2021, 2022, 2023, 2024))
+                        if _rd:
+                            st.session_state["ridge_model_data"] = _rd
+                            st.rerun()
+                        else:
+                            st.error("Training returned no model — check data availability.")
+                    except Exception as _me:
+                        st.error(f"Training failed: {_me}")
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
@@ -1096,14 +1203,15 @@ for _, game in summary.iterrows():
                 "k_pct":    game.get("home_k_pct"),    "bb_pct":   game.get("home_bb_pct"),
                 "babip":    game.get("home_babip"),
             }
+            _ridge_data = st.session_state.get("ridge_model_data")
             away_pred, away_conf, away_color, _, away_sw = predict_runs(
                 away_xwoba, away_fip, away_splits_df,
                 total_abs=away_total_abs, n_hitters=away_n,
-                team_off=away_team_off)
+                team_off=away_team_off, ridge_data=_ridge_data)
             home_pred, home_conf, home_color, _, home_sw = predict_runs(
                 home_xwoba, home_fip, home_splits_df,
                 total_abs=home_total_abs, n_hitters=home_n,
-                team_off=home_team_off)
+                team_off=home_team_off, ridge_data=_ridge_data)
 
             if away_pred is not None and home_pred is not None:
                 total      = round(away_pred + home_pred, 1)
@@ -1317,16 +1425,18 @@ for _, game in summary.iterrows():
                         "bb_pct":   game.get(f"{_team_side}_bb_pct"),
                         "babip":    game.get(f"{_team_side}_babip"),
                     }
+                    _ridge_data = st.session_state.get("ridge_model_data")
                     pred_runs, conf_label, conf_color, inputs_used, sw = predict_runs(
                         avg_xwoba, fip_val, _splits_preview,
                         total_abs=total_abs, n_hitters=int(n) if n else None,
-                        team_off=_team_off
+                        team_off=_team_off, ridge_data=_ridge_data
                     )
                     if pred_runs is not None:
                         run_prediction_badge(
                             pred_runs, conf_label, conf_color, batting, inputs_used,
                             sample_weight=sw, total_abs=total_abs,
-                            n_hitters=int(n) if n else None
+                            n_hitters=int(n) if n else None,
+                            using_ridge=(_ridge_data is not None)
                         )
 
                 # ── FIP vs xwOBA quadrant tile ───────────────────────────
