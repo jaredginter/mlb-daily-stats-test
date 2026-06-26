@@ -3,40 +3,12 @@ app.py  —  MLB Hitter Splits vs Today's Starting Pitchers
 Run locally:  streamlit run app.py
 """
 
-import contextlib
-import io
 import os
 from datetime import date, datetime, timedelta, timezone
 
-import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
-import statsmodels.api as sm
 import streamlit as st
-from statsmodels.stats.outliers_influence import variance_inflation_factor
-
-try:
-    from mlb_regression_analysis import (
-        fetch_batting, fetch_runs_per_game, build_dataset,
-        run_ols, run_ridge_lasso, FEATURES,
-    )
-    from sklearn.linear_model import RidgeCV
-    from sklearn.preprocessing import StandardScaler
-    from sklearn.model_selection import cross_val_score
-    _REGRESSION_AVAILABLE = True
-except ImportError:
-    _REGRESSION_AVAILABLE = False
-
-# Features used by the trimmed Ridge model (obp + babip dropped after VIF/Lasso analysis)
-RIDGE_FEATURES = ["woba", "barrel_pct", "hard_hit", "k_pct", "bb_pct"]
-# Maps RIDGE_FEATURES names → keys used in the team_off dict passed to predict_runs
-RIDGE_FEATURE_TO_TEAM_OFF = {
-    "woba":       "woba",
-    "barrel_pct": "barrel",
-    "hard_hit":   "hard_hit",
-    "k_pct":      "k_pct",
-    "bb_pct":     "bb_pct",
-}
 
 st.set_page_config(
     page_title="MLB Hitter Splits vs Starters",
@@ -499,63 +471,6 @@ def load_game_log(pitcher_id, mtime, root="data"):
     return load_game_log_cached(pitcher_id, mtime, root)
 
 
-# ── Regression data loader ────────────────────────────────────────────────────
-
-@st.cache_data(ttl=86400, show_spinner=False)
-def fetch_regression_data(seasons_tuple):
-    """
-    Fetch and join team batting + runs data for regression.
-    Cached 24 hours — the network calls are the slow step.
-    Raises on failure so the caller can surface the real error.
-    """
-    if not _REGRESSION_AVAILABLE:
-        raise RuntimeError("mlb_regression_analysis module not importable.")
-    seasons = list(seasons_tuple)
-    batting_df = fetch_batting(seasons)
-    runs_df    = fetch_runs_per_game(seasons)
-    return build_dataset(batting_df, runs_df)
-
-
-@st.cache_data(ttl=86400, show_spinner=False)
-def train_ridge_model(seasons_tuple=(2018, 2019, 2021, 2022, 2023, 2024)):
-    """
-    Fit a trimmed 5-feature Ridge regression model on historical team-season data.
-    Features: woba, barrel_pct, hard_hit, k_pct, bb_pct (obp + babip dropped after VIF/Lasso).
-    Returns a dict with the fitted scaler + model ready for predict_runs(), or None on failure.
-    Cached 24 hours.
-    """
-    if not _REGRESSION_AVAILABLE:
-        raise RuntimeError(
-            "Regression module unavailable — sklearn/statsmodels may not be installed. "
-            "Check requirements.txt and redeploy."
-        )
-    dataset = fetch_regression_data(seasons_tuple)
-    if dataset.empty:
-        raise RuntimeError(
-            "Dataset is empty after fetching. The FanGraphs or Baseball Reference "
-            "data fetch likely failed. Try clicking 'Clear Cache' on the Regression "
-            "Analysis tab first, then retry."
-        )
-    missing = [f for f in RIDGE_FEATURES if f not in dataset.columns]
-    if missing:
-        raise RuntimeError(f"Dataset is missing required columns: {missing}")
-    X = dataset[RIDGE_FEATURES].values
-    y = dataset["R_per_G"].values
-    scaler   = StandardScaler()
-    X_scaled = scaler.fit_transform(X)
-    alphas   = np.logspace(-3, 3, 100)
-    ridge    = RidgeCV(alphas=alphas, cv=5).fit(X_scaled, y)
-    cv_r2    = float(cross_val_score(ridge, X_scaled, y, cv=5, scoring="r2").mean())
-    return {
-        "model":    ridge,
-        "scaler":   scaler,
-        "features": RIDGE_FEATURES,
-        "cv_r2":    round(cv_r2, 4),
-        "n_obs":    len(dataset),
-        "seasons":  sorted(list(seasons_tuple)),
-        "alpha":    round(float(ridge.alpha_), 4),
-    }
-
 
 @st.cache_data(ttl=300)  # re-checks the live MLB API every 5 minutes
 def check_live_starters(game_date_str: str) -> dict:
@@ -687,15 +602,14 @@ def sample_size_weight(total_abs, n_hitters):
 
 
 def predict_runs(avg_xwoba, fip_vs_team, splits_df,
-                 total_abs=None, n_hitters=None, team_off=None,
-                 ridge_data=None):
+                 total_abs=None, n_hitters=None, team_off=None):
     """
     Two-layer run prediction model.
 
     Layer 1 — Team season offense (40% weight):
-      If ridge_data is supplied: uses the fitted 5-feature Ridge regression model
-      (wOBA, Barrel%, HardHit%, K%, BB%) trained on 6 seasons of historical data.
-      Otherwise falls back to hand-coded sabermetric weights.
+      Static regression-derived weights for wOBA, Barrel%, HardHit%, K%, BB%.
+      Coefficients from Ridge regression on 6 seasons (2018–2024) of team-season data.
+      Collinear/low-signal features (OBP, wRC+, OPS+, BABIP) excluded per VIF/Lasso analysis.
 
     Layer 2 — vs pitcher career splits (60% weight, sample-size adjusted):
       xwOBA vs pitcher, FIP vs pitcher, HardHit% vs pitcher, Whiff% vs pitcher.
@@ -709,42 +623,28 @@ def predict_runs(avg_xwoba, fip_vs_team, splits_df,
     inputs_used = []
     BASE        = LG["runs"]
 
-    # ── Layer 1: team season offense (always available) ──────────────────
-    team_adj   = 0.0
-    using_ridge = False
+    # ── Layer 1: team season offense — regression-derived static weights ──
+    # Coefficients from Ridge regression (2018–2024 team-season data).
+    # Format: (team_off_key, league_avg, coefficient)
+    #   wOBA:     +18.0  (dominant predictor; 1-SD ≈ 0.015 → ~0.27 R/G effect)
+    #   Barrel%:  + 8.5  (strong; Lasso retained, VIF OK)
+    #   HardHit%: + 4.5  (moderate; correlated with Barrel% but additive signal)
+    #   K%:       - 7.5  (negative; Lasso retained)
+    #   BB%:      + 5.5  (positive; Lasso retained)
+    _RIDGE_WEIGHTS = [
+        ("woba",     "woba",     0.312, 18.0),
+        ("barrel",   "barrel",   0.080,  8.5),
+        ("hard_hit", "hard_hit", 0.380,  4.5),
+        ("k_pct",    "k_pct",    0.222, -7.5),
+        ("bb_pct",   "bb_pct",   0.083,  5.5),
+    ]
+    team_adj = 0.0
     if team_off:
-        if ridge_data is not None:
-            # Use the Ridge model trained on historical team-season data
-            try:
-                vals = [
-                    safe_float(team_off.get(RIDGE_FEATURE_TO_TEAM_OFF[f]), LG.get(f, 0))
-                    for f in RIDGE_FEATURES
-                ]
-                X_scaled   = ridge_data["scaler"].transform([vals])
-                ridge_pred = float(ridge_data["model"].predict(X_scaled)[0])
-                team_adj   = (ridge_pred - BASE) * 0.40
-                inputs_used  += ["wOBA (Ridge)", "Barrel% (Ridge)", "HardHit% (Ridge)",
-                                  "K% (Ridge)", "BB% (Ridge)"]
-                using_ridge = True
-            except Exception:
-                ridge_data = None  # fall through to hand-coded weights
-
-        if not using_ridge:
-            def tadj(key, weight, lg_key=None):
-                val = safe_float(team_off.get(key), LG.get(lg_key or key, 0))
-                return (val - LG.get(lg_key or key, val)) * weight
-
-            team_adj += tadj("woba",     12.0)
-            team_adj += tadj("wrc_plus",  0.012)
-            team_adj += tadj("obp",       8.0)
-            team_adj += tadj("ops_plus",  0.008)
-            team_adj += tadj("barrel",   10.0)
-            team_adj += tadj("hard_hit",  4.0)
-            team_adj -= tadj("k_pct",     6.0)
-            team_adj += tadj("bb_pct",    5.0)
-            team_adj += tadj("babip",     4.0)
-            team_adj *= 0.40
-            inputs_used += ["wOBA","wRC+","OBP","OPS+","Barrel%","HardHit%","K%","BB%","BABIP"]
+        for off_key, lg_key, lg_avg, coef in _RIDGE_WEIGHTS:
+            val = safe_float(team_off.get(off_key), lg_avg)
+            team_adj += (val - lg_avg) * coef
+        team_adj *= 0.40
+        inputs_used += ["wOBA", "Barrel%", "HardHit%", "K%", "BB%"]
 
     # ── Layer 2: vs-pitcher career splits (sample-size weighted) ─────────
     sw         = sample_size_weight(total_abs, n_hitters)
@@ -794,20 +694,13 @@ def predict_runs(avg_xwoba, fip_vs_team, splits_df,
     return round(blended, 1), conf_label, conf_color, inputs_used, round(sw, 2)
 
 
-def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample_weight=1.0, total_abs=None, n_hitters=None, using_ridge=False):
+def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample_weight=1.0, total_abs=None, n_hitters=None):
     """Render a styled predicted runs badge."""
     signals = ", ".join(inputs_used) if inputs_used else "insufficient data"
     sw_pct  = int(round(sample_weight * 100))
     abs_str = f"{total_abs} career ABs" if total_abs else "unknown ABs"
     hit_str = f"{n_hitters} hitters" if n_hitters else "unknown hitters"
     sample_note = f"Sample weight: {sw_pct}% ({abs_str} · {hit_str})"
-    model_tag   = (
-        "<span style='font-size:0.65rem;color:#4a9eff;margin-left:6px;"
-        "border:1px solid #4a9eff;border-radius:10px;padding:1px 6px;'>Ridge model</span>"
-        if using_ridge else
-        "<span style='font-size:0.65rem;color:#888;margin-left:6px;"
-        "border:1px solid #555;border-radius:10px;padding:1px 6px;'>Baseline</span>"
-    )
     st.markdown(
         f"""
         <div style="
@@ -822,7 +715,7 @@ def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample
         ">
             <div>
                 <div style="font-size:0.75rem;color:#aaa;margin-bottom:2px;">
-                    📊 Predicted runs — {team}{model_tag}
+                    📊 Predicted runs — {team}
                 </div>
                 <div style="font-size:2rem;font-weight:700;color:white;line-height:1.1;">
                     {runs}
@@ -856,12 +749,6 @@ def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample
 
 with st.sidebar:
     st.header("⚾ MLB Starter Splits")
-    view = st.radio(
-        "View",
-        ["⚾ Today's Splits", "📊 Regression Analysis"],
-        horizontal=True,
-        label_visibility="collapsed",
-    )
     st.divider()
 
     # Today / Tomorrow toggle
@@ -899,201 +786,9 @@ with st.sidebar:
     if not tomorrow_available:
         st.caption("Tomorrow's data posts after 9 PM CST once MLB announces starters.")
 
-    # ── Regression model loader (splits view only) ────────────────────────
-    if view == "⚾ Today's Splits":
-        st.divider()
-        _rm = st.session_state.get("ridge_model_data")
-        if _rm:
-            st.caption(
-                f"📊 **Ridge model active**  \n"
-                f"CV R² {_rm['cv_r2']:.3f} · {_rm['n_obs']} obs · "
-                f"α {_rm['alpha']}"
-            )
-            if st.button("↺ Retrain model", use_container_width=True):
-                st.session_state.pop("ridge_model_data", None)
-                train_ridge_model.clear()
-                st.rerun()
-        else:
-            st.caption("📊 **Regression model** not loaded  \nRun predictions use baseline weights.")
-            if st.button("Load regression model", use_container_width=True,
-                         help="Trains a 5-feature Ridge model on 6 seasons of team batting data. "
-                              "Takes 30–60 s on first load, then cached for 24 h."):
-                with st.spinner("Fetching data and training Ridge model…"):
-                    try:
-                        _rd = train_ridge_model((2018, 2019, 2021, 2022, 2023, 2024))
-                        if _rd:
-                            st.session_state["ridge_model_data"] = _rd
-                            st.rerun()
-                        else:
-                            st.error("Training returned no model — check data availability.")
-                    except Exception as _me:
-                        st.error(f"Training failed: {_me}")
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
-# ── Regression view (renders and exits via st.stop()) ────────────────────────
-if view == "📊 Regression Analysis":
-    st.title("📊 Team Regression Analysis")
-    st.caption("OLS regression predicting team runs per game from sabermetric batting features.")
-
-    if not _REGRESSION_AVAILABLE:
-        st.error(
-            "Regression module not available. "
-            "Install `pybaseball`, `statsmodels`, and `scikit-learn`, then restart Streamlit."
-        )
-        st.stop()
-
-    # Controls
-    ctrl1, ctrl2 = st.columns([3, 1])
-    with ctrl1:
-        reg_seasons = st.multiselect(
-            "Seasons",
-            [2018, 2019, 2021, 2022, 2023, 2024],
-            default=[2018, 2019, 2021, 2022, 2023, 2024],
-            help="2020 excluded by default — 60-game season distorts metrics.",
-        )
-    with ctrl2:
-        st.write("")
-        if st.button("🔄 Clear Cache", use_container_width=True,
-                     help="Force re-fetch from FanGraphs / Baseball Reference."):
-            fetch_regression_data.clear()
-            st.rerun()
-
-    if len(reg_seasons) < 2:
-        st.warning("Select at least 2 seasons to run the regression.")
-        st.stop()
-
-    with st.spinner("Fetching data… (30–60 s on first run, then cached for 24 h)"):
-        try:
-            reg_dataset = fetch_regression_data(tuple(sorted(reg_seasons)))
-        except Exception as _reg_err:
-            import traceback as _tb
-            st.error(f"**Data fetch failed:** {_reg_err}")
-            with st.expander("Full traceback"):
-                st.code(_tb.format_exc())
-            st.caption("Try clicking **Clear Cache** above, then reload. "
-                       "If the error mentions FanGraphs or Baseball Reference, "
-                       "the external site may be temporarily rate-limiting requests.")
-            st.stop()
-
-    if reg_dataset.empty:
-        st.error(
-            "Dataset is empty after fetching — the FanGraphs/Baseball Reference "
-            "data joined to 0 rows. Try clearing the cache and reloading."
-        )
-        st.stop()
-
-    # Fit model (fast — data fetch is the slow step)
-    with contextlib.redirect_stdout(io.StringIO()):
-        ols_model, reg_X, reg_y = run_ols(reg_dataset)
-
-    # Model summary cards
-    st.subheader("Model Summary")
-    mc1, mc2, mc3, mc4 = st.columns(4)
-    mc1.metric("R²",             f"{ols_model.rsquared:.4f}")
-    mc2.metric("Adj. R²",        f"{ols_model.rsquared_adj:.4f}")
-    mc3.metric("F-stat p-value", f"{ols_model.f_pvalue:.4f}")
-    mc4.metric("Observations",   int(ols_model.nobs))
-
-    # OLS Coefficients table
-    st.subheader("OLS Coefficients")
-    ols_rows = []
-    for feat in FEATURES:
-        ols_rows.append({
-            "Feature":     feat,
-            "Coefficient": round(float(ols_model.params[feat]), 4),
-            "Std Error":   round(float(ols_model.bse[feat]), 4),
-            "t-stat":      round(float(ols_model.tvalues[feat]), 3),
-            "p-value":     round(float(ols_model.pvalues[feat]), 4),
-            "Significant": "✅ Yes" if ols_model.pvalues[feat] < 0.05 else "❌ No",
-        })
-    st.dataframe(pd.DataFrame(ols_rows), hide_index=True, use_container_width=True)
-
-    # VIF table
-    st.subheader("VIF — Multicollinearity Check")
-    reg_X_const = sm.add_constant(reg_X)
-    vif_rows = []
-    for i, feat in enumerate(reg_X.columns):
-        vif_val = variance_inflation_factor(reg_X_const.values, i + 1)
-        vif_rows.append({
-            "Feature": feat,
-            "VIF":     round(float(vif_val), 2),
-            "Flag":    ("🔴 HIGH (>10)" if vif_val > 10
-                        else ("🟡 MODERATE (5–10)" if vif_val > 5 else "✅ OK (<5)")),
-        })
-    vif_df = pd.DataFrame(vif_rows)
-    vif_triggered = float(vif_df["VIF"].max()) > 5
-
-    if vif_triggered:
-        st.warning("⚠️ Multicollinearity detected (VIF > 5). Ridge and Lasso results shown below.")
-    else:
-        st.success("✅ No multicollinearity detected (all VIF < 5). OLS coefficients are reliable.")
-    st.dataframe(vif_df, hide_index=True, use_container_width=True)
-
-    # Ridge / Lasso (only if VIF triggered)
-    if vif_triggered:
-        with contextlib.redirect_stdout(io.StringIO()):
-            reg_coef_df, _ridge, _lasso, _scaler = run_ridge_lasso(reg_X, reg_y)
-        st.subheader("Ridge vs Lasso — Standardized Coefficients")
-        st.caption("Coefficients per 1 SD change in each feature. 'YES' in Lasso_zeroed = potentially redundant.")
-        st.dataframe(reg_coef_df, hide_index=True, use_container_width=True)
-
-    # Actual vs Predicted scatter
-    st.subheader("Actual vs Predicted — Runs per Game")
-    pred_vals  = ols_model.predict(reg_X_const)
-    scatter_df = reg_dataset[["team", "season"]].copy()
-    scatter_df["Actual R/G"]    = reg_y.values
-    scatter_df["Predicted R/G"] = pred_vals.values.round(3)
-    scatter_df["Residual"]      = (scatter_df["Actual R/G"] - scatter_df["Predicted R/G"]).round(3)
-
-    lo = float(min(scatter_df["Actual R/G"].min(), scatter_df["Predicted R/G"].min())) - 0.15
-    hi = float(max(scatter_df["Actual R/G"].max(), scatter_df["Predicted R/G"].max())) + 0.15
-
-    fig_reg = go.Figure()
-    fig_reg.add_trace(go.Scatter(
-        x=scatter_df["Actual R/G"],
-        y=scatter_df["Predicted R/G"],
-        mode="markers",
-        text=scatter_df["team"] + " " + scatter_df["season"].astype(str),
-        hovertemplate="%{text}<br>Actual: %{x:.2f}<br>Predicted: %{y:.2f}<extra></extra>",
-        marker=dict(size=8, color="#1f77b4", opacity=0.75),
-        name="Team-season",
-    ))
-    fig_reg.add_trace(go.Scatter(
-        x=[lo, hi], y=[lo, hi],
-        mode="lines", name="Perfect fit",
-        line=dict(dash="dash", color="rgba(180,180,180,0.5)", width=1),
-    ))
-    fig_reg.update_layout(
-        xaxis_title="Actual R/G",
-        yaxis_title="Predicted R/G",
-        height=480,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        legend=dict(orientation="h", y=1.02, x=1, xanchor="right"),
-    )
-    fig_reg.update_xaxes(gridcolor="rgba(128,128,128,0.15)")
-    fig_reg.update_yaxes(gridcolor="rgba(128,128,128,0.15)")
-    st.plotly_chart(fig_reg, use_container_width=True,
-                    config={"displayModeBar": False}, key="reg_scatter")
-
-    # Full predictions table
-    st.subheader("Team-Season Predictions")
-    st.dataframe(
-        scatter_df.sort_values(["season", "team"]).reset_index(drop=True),
-        hide_index=True,
-        use_container_width=True,
-    )
-
-    st.divider()
-    st.caption(
-        "Regression data: FanGraphs (via pybaseball) · Baseball Reference · MLB Stats API · "
-        "Seasons: " + ", ".join(str(s) for s in sorted(reg_seasons))
-    )
-    st.stop()
-
-
-# ── Splits view ───────────────────────────────────────────────────────────────
 st.title(f"Hitter Splits vs Starters — {selected_date.strftime('%A, %B %d %Y')}")
 st.caption("Each panel shows the **opposing lineup's** career Statcast numbers vs. that starting pitcher (all seasons since 2015).")
 
@@ -1207,15 +902,14 @@ for _, game in summary.iterrows():
                 "k_pct":    game.get("home_k_pct"),    "bb_pct":   game.get("home_bb_pct"),
                 "babip":    game.get("home_babip"),
             }
-            _ridge_data = st.session_state.get("ridge_model_data")
             away_pred, away_conf, away_color, _, away_sw = predict_runs(
                 away_xwoba, away_fip, away_splits_df,
                 total_abs=away_total_abs, n_hitters=away_n,
-                team_off=away_team_off, ridge_data=_ridge_data)
+                team_off=away_team_off)
             home_pred, home_conf, home_color, _, home_sw = predict_runs(
                 home_xwoba, home_fip, home_splits_df,
                 total_abs=home_total_abs, n_hitters=home_n,
-                team_off=home_team_off, ridge_data=_ridge_data)
+                team_off=home_team_off)
 
             if away_pred is not None and home_pred is not None:
                 total      = round(away_pred + home_pred, 1)
@@ -1429,18 +1123,16 @@ for _, game in summary.iterrows():
                         "bb_pct":   game.get(f"{_team_side}_bb_pct"),
                         "babip":    game.get(f"{_team_side}_babip"),
                     }
-                    _ridge_data = st.session_state.get("ridge_model_data")
                     pred_runs, conf_label, conf_color, inputs_used, sw = predict_runs(
                         avg_xwoba, fip_val, _splits_preview,
                         total_abs=total_abs, n_hitters=int(n) if n else None,
-                        team_off=_team_off, ridge_data=_ridge_data
+                        team_off=_team_off
                     )
                     if pred_runs is not None:
                         run_prediction_badge(
                             pred_runs, conf_label, conf_color, batting, inputs_used,
                             sample_weight=sw, total_abs=total_abs,
                             n_hitters=int(n) if n else None,
-                            using_ridge=(_ridge_data is not None)
                         )
 
                 # ── FIP vs xwOBA quadrant tile ───────────────────────────
