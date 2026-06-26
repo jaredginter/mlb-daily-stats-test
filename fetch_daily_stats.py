@@ -430,6 +430,19 @@ def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
 
     log.info("  Got %d pitches — slicing by opposing hitters ...", len(pitcher_df))
 
+    # ── DIAGNOSTIC: log column presence and sample values for xFIP debugging ──
+    has_type = "type"    in pitcher_df.columns
+    has_bb   = "bb_type" in pitcher_df.columns
+    log.info("  [DIAG] has 'type' col: %s | has 'bb_type' col: %s", has_type, has_bb)
+    if has_type:
+        log.info("  [DIAG] 'type' value_counts: %s",
+                 pitcher_df["type"].value_counts().to_dict())
+    if has_bb:
+        log.info("  [DIAG] 'bb_type' value_counts: %s",
+                 pitcher_df["bb_type"].value_counts(dropna=False).to_dict())
+    log.info("  [DIAG] all columns: %s", list(pitcher_df.columns))
+    # ── END DIAGNOSTIC ────────────────────────────────────────────────────────
+
     # Compute FIP and xFIP vs this entire opposing team using the full pitcher_df
     opposing_ids   = [h["mlbam_id"] for h in hitters]
     fip_result     = compute_pitcher_fip_vs_team(pitcher_df, opposing_ids)
