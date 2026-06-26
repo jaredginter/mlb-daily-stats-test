@@ -1,16 +1,16 @@
-game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp
-824257,2026-06-27T17:10:00Z,HOU @ DET,DET,HOU,Framber Valdez,TBD,664285.0,,0.99,,,,,,,,,,,,,,,,,,,3.19,10.0,0.257,39.0,,,,
-824745,2026-06-27T17:10:00Z,NYY @ BOS,BOS,NYY,Jake Bennett,Gerrit Cole,687562.0,543037.0,1.03,,,,,,,,,,,,,,,,,,,,0.0,,0.0,8.0,0.259,42.0,1.56
-822794,2026-06-27T19:07:00Z,TEX @ TOR,TOR,TEX,Dylan Cease,TBD,656302.0,,1.0,,,,,,,,,,,,,,,,,,,3.13,11.0,0.343,76.0,,,,
-823364,2026-06-27T20:05:00Z,CIN @ PIT,PIT,CIN,Jared Jones,Chase Burns,683003.0,695505.0,0.99,,,,,,,,,,,,,,,,,,,6.63,4.0,0.498,10.0,7.0,0.182,33.0,1.28
-823609,2026-06-27T20:10:00Z,PHI @ NYM,NYM,PHI,TBD,Alan Rangel,,660604.0,0.98,,,,,,,,,,,,,,,,,,,,,,,1.0,,1.0,
-824581,2026-06-27T20:10:00Z,KC @ CWS,CWS,KC,Davis Martin,Michael Wacha,663436.0,608379.0,0.97,,,,,,,,,,,,,,,,,,,2.53,10.0,0.36,49.0,8.0,0.227,47.0,2.54
-822960,2026-06-27T22:10:00Z,AZ @ TB,TB,AZ,TBD,Jose Cabrera,,703615.0,0.97,,,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,
-824825,2026-06-27T23:05:00Z,WSH @ BAL,BAL,WSH,Brandon Young,Foster Griffin,687064.0,656492.0,1.01,,,,,,,,,,,,,,,,,,,9.1,8.0,0.441,13.0,3.0,0.81,3.0,
-824421,2026-06-27T23:10:00Z,SEA @ CLE,CLE,SEA,Slade Cecconi,Logan Gilbert,677944.0,669302.0,0.97,,,,,,,,,,,,,,,,,,,1.98,9.0,0.291,30.0,10.0,0.219,45.0,2.96
-823689,2026-06-27T23:10:00Z,COL @ MIN,MIN,COL,Mike Paredes,TBD,702474.0,,1.01,,,,,,,,,,,,,,,,,,,,0.0,,0.0,,,,
-823770,2026-06-27T23:10:00Z,CHC @ MIL,MIL,CHC,Kyle Harrison,TBD,690986.0,,1.0,,,,,,,,,,,,,,,,,,,0.34,9.0,0.134,28.0,,,,
-823038,2026-06-27T23:15:00Z,MIA @ STL,STL,MIA,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,,,,,,,,
-823283,2026-06-28T00:40:00Z,LAD @ SD,SD,LAD,Randy Vásquez,Yoshinobu Yamamoto,681190.0,808967.0,0.95,,,,,,,,,,,,,,,,,,,6.72,10.0,0.384,42.0,10.0,0.332,59.0,5.04
-823207,2026-06-28T01:05:00Z,ATL @ SF,SF,ATL,TBD,Bryce Elder,,693821.0,0.95,,,,,,,,,,,,,,,,,,,,,,,6.0,0.326,46.0,5.76
-824015,2026-06-28T01:38:00Z,ATH @ LAA,LAA,ATH,Reid Detmers,Jack Perkins,672282.0,678022.0,0.97,,,,,,,,,,,,,,,,,,,2.18,11.0,0.298,63.0,11.0,0.329,32.0,4.17
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp
+824257,2026-06-27T17:10:00Z,HOU @ DET,DET,HOU,Framber Valdez,TBD,664285.0,,0.99,,,,,,,,,,,,,,,,,,,3.19,3.91,10.0,0.257,39.0,,,,,
+824745,2026-06-27T17:10:00Z,NYY @ BOS,BOS,NYY,Jake Bennett,Gerrit Cole,687562.0,543037.0,1.03,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,8.0,0.259,42.0,1.56,1.62
+822794,2026-06-27T19:07:00Z,TEX @ TOR,TOR,TEX,Dylan Cease,TBD,656302.0,,1.0,,,,,,,,,,,,,,,,,,,3.13,2.4,11.0,0.343,76.0,,,,,
+823364,2026-06-27T20:05:00Z,CIN @ PIT,PIT,CIN,Jared Jones,Chase Burns,683003.0,695505.0,0.99,,,,,,,,,,,,,,,,,,,6.63,1.5,4.0,0.498,10.0,7.0,0.182,33.0,1.28,1.78
+823609,2026-06-27T20:10:00Z,PHI @ NYM,NYM,PHI,TBD,Alan Rangel,,660604.0,0.98,,,,,,,,,,,,,,,,,,,,,,,,1.0,,1.0,,
+824581,2026-06-27T20:10:00Z,KC @ CWS,CWS,KC,Davis Martin,Michael Wacha,663436.0,608379.0,0.97,,,,,,,,,,,,,,,,,,,2.53,2.59,10.0,0.36,49.0,8.0,0.227,47.0,2.54,2.59
+822960,2026-06-27T22:10:00Z,AZ @ TB,TB,AZ,TBD,Jose Cabrera,,703615.0,0.97,,,,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,,
+824825,2026-06-27T23:05:00Z,WSH @ BAL,BAL,WSH,Brandon Young,Foster Griffin,687064.0,656492.0,1.01,,,,,,,,,,,,,,,,,,,9.1,5.22,8.0,0.441,13.0,3.0,0.81,3.0,,
+824421,2026-06-27T23:10:00Z,SEA @ CLE,CLE,SEA,Slade Cecconi,Logan Gilbert,677944.0,669302.0,0.97,,,,,,,,,,,,,,,,,,,1.98,3.0,9.0,0.291,30.0,10.0,0.219,45.0,2.96,1.91
+823689,2026-06-27T23:10:00Z,COL @ MIN,MIN,COL,Mike Paredes,TBD,702474.0,,1.01,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,,,,,
+823770,2026-06-27T23:10:00Z,CHC @ MIL,MIL,CHC,Kyle Harrison,TBD,690986.0,,1.0,,,,,,,,,,,,,,,,,,,0.34,1.49,9.0,0.134,28.0,,,,,
+823038,2026-06-27T23:15:00Z,MIA @ STL,STL,MIA,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+823283,2026-06-28T00:40:00Z,LAD @ SD,SD,LAD,Randy Vásquez,Yoshinobu Yamamoto,681190.0,808967.0,0.95,,,,,,,,,,,,,,,,,,,6.72,5.5,10.0,0.384,42.0,10.0,0.332,59.0,5.04,3.1
+823207,2026-06-28T01:05:00Z,ATL @ SF,SF,ATL,TBD,Bryce Elder,,693821.0,0.95,,,,,,,,,,,,,,,,,,,,,,,,6.0,0.326,46.0,5.76,4.05
+824015,2026-06-28T01:38:00Z,ATH @ LAA,LAA,ATH,Reid Detmers,Jack Perkins,672282.0,678022.0,0.97,,,,,,,,,,,,,,,,,,,2.18,3.36,11.0,0.298,63.0,11.0,0.329,32.0,4.17,2.56
