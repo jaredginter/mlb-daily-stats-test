@@ -1,7 +1,7 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824257,2026-06-27T17:10:00Z,HOU @ DET,DET,HOU,Framber Valdez,Kai-Wei Teng,664285,678906,0.99,,,,,,,,,,,,,,,,,,,3.19,3.91,10,0.257,39,12.77,1.13,9,0.471,15
 824745,2026-06-27T17:10:00Z,NYY @ BOS,BOS,NYY,Jake Bennett,Gerrit Cole,687562,543037,1.03,,,,,,,,,,,,,,,,,,,,,0,,0,1.56,1.62,8,0.259,42
-822794,2026-06-27T19:07:00Z,TEX @ TOR,TOR,TEX,Dylan Cease,Cal Quantrill,656302,615698,1.0,,,,,,,,,,,,,,,,,,,3.13,2.4,11,0.343,76,5.66,4.87,6,0.283,20
+822794,2026-06-27T19:07:00Z,TEX @ TOR,TOR,TEX,Dylan Cease,Cal Quantrill,656302,615698,1.0,,,,,,,,,,,,,,,,,,,3.13,2.4,11,0.343,76,5.31,4.0,5,0.224,15
 823364,2026-06-27T20:05:00Z,CIN @ PIT,PIT,CIN,Jared Jones,Chase Burns,683003,695505,0.99,,,,,,,,,,,,,,,,,,,6.63,1.5,4,0.498,10,1.21,1.68,8,0.178,35
 823609,2026-06-27T20:10:00Z,PHI @ NYM,NYM,PHI,Christian Scott,Tim Mayza,681035,641835,0.98,,,,,,,,,,,,,,,,,,,,,0,,0,3.13,4.15,4,0.436,8
 824581,2026-06-27T20:10:00Z,KC @ CWS,CWS,KC,Davis Martin,Michael Wacha,663436,608379,0.97,,,,,,,,,,,,,,,,,,,2.53,2.59,10,0.36,49,2.54,2.59,8,0.227,47
