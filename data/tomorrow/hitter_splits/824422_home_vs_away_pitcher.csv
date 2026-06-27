@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Steven Kwan,680757,14,2022–2026,0.357,0,0.435,0.167,0.0,82.4
+Kyle Manzardo,700932,9,2025–2026,0.333,1,0.35,0.6,0.174,97.0
+Rhys Hoskins,656555,1,2026,0.0,0,0.35,,0.333,
+Daniel Schneemann,682177,4,2025,0.25,0,0.334,0.0,0.25,83.7
+Brayan Rocchio,677587,6,2024–2026,0.333,0,0.311,0.167,0.0,78.3
+Austin Hedges,595978,3,2022–2023,0.333,0,0.27,0.0,0.0,76.8
+Gabriel Arias,672356,5,2024–2026,0.0,0,0.259,0.0,0.308,77.3
+Patrick Bailey,672275,1,2024,0.0,0,,,,
