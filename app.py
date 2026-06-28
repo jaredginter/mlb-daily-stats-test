@@ -144,6 +144,9 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     FIP zones  : Low <3.80 | Avg 3.80–4.80 | High >4.80
     xwOBA zones: Low <0.300 | Avg 0.300–0.340 | High >0.340
 
+    NOTE: The "FIP" axis uses xFIP (expected FIP) rather than raw FIP,
+    as xFIP removes HR/FB luck and is a better predictor of future performance.
+
     Active cell is highlighted; scenario label + detail returned for the banner.
     Sample weight drives cell opacity and the reliability metric card.
 
@@ -183,41 +186,41 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
             f"{pitching_team} Pitching Holds Edge",
             "#81c784", "🟢",
             f"Contested matchup — {batting_team} hitters make strong contact "
-            f"(xwOBA {avg_xwoba:.3f}) but {pitcher_name} has been elite (FIP {fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) but {pitcher_name} has been elite (xFIP {fip:.2f}). "
             f"Hitters have a puncher's chance but the pitcher holds the edge."
         ),
         (2, 1): (
             f"Slight {batting_team} Offensive Edge",
             "#81c784", "🟢",
             f"Slight offensive lean — {batting_team} hitters are making good contact "
-            f"(xwOBA {avg_xwoba:.3f}) against an average FIP pitcher ({fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) against an average xFIP pitcher ({fip:.2f}). "
             f"Mild edge to the offense but far from a slam dunk."
         ),
         (2, 2): (
             f"{batting_team} Offense Strongly Favored",
             "#43a047", "🟢",
             f"High scoring game likely — {batting_team} hitters are squaring up {pitcher_name} "
-            f"(xwOBA {avg_xwoba:.3f}) and the pitcher has struggled vs this lineup (FIP {fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) and the pitcher has struggled vs this lineup (xFIP {fip:.2f}). "
             f"Strong indicator to stack the {batting_team} lineup."
         ),
         (1, 0): (
             f"{pitching_team} Pitching Holds Edge",
             "#81c784", "🟢",
             f"Pitcher holds the edge — {batting_team} hitters show average contact quality "
-            f"(xwOBA {avg_xwoba:.3f}) while {pitcher_name} has been elite (FIP {fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) while {pitcher_name} has been elite (xFIP {fip:.2f}). "
             f"Low run environment expected."
         ),
         (1, 1): (
             f"Toss-Up — {batting_team} vs {pitching_team}",
             "#607d8b", "⚪",
             f"True toss-up — both sides are average. {batting_team} hitters at xwOBA {avg_xwoba:.3f} "
-            f"vs {pitcher_name}'s FIP of {fip:.2f}. No clear edge — lean on other factors."
+            f"vs {pitcher_name}'s xFIP of {fip:.2f}. No clear edge — lean on other factors."
         ),
         (1, 2): (
             f"Slight {batting_team} Offensive Edge",
             "#81c784", "🟢",
             f"Slight offensive lean — average contact quality (xwOBA {avg_xwoba:.3f}) meets a "
-            f"struggling pitcher (FIP {fip:.2f}). Mild advantage to {batting_team} but not a "
+            f"struggling pitcher (xFIP {fip:.2f}). Mild advantage to {batting_team} but not a "
             f"strong signal on its own."
         ),
         (0, 0): (
@@ -225,18 +228,18 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
             "#43a047", "🟢",
             f"Low scoring game likely — {pitcher_name} dominates this matchup. "
             f"{batting_team} hitters have weak contact quality (xwOBA {avg_xwoba:.3f}) "
-            f"and the pitcher's FIP is elite ({fip:.2f}). Pitcher is firmly in control."
+            f"and the pitcher's xFIP is elite ({fip:.2f}). Pitcher is firmly in control."
         ),
         (0, 1): (
             f"{pitching_team} Pitching Holds Edge",
             "#81c784", "🟢",
             f"Pitcher holds the edge — {batting_team} hitters are struggling (xwOBA {avg_xwoba:.3f}) "
-            f"against an average FIP pitcher ({fip:.2f}). Lean toward a quieter offensive game."
+            f"against an average xFIP pitcher ({fip:.2f}). Lean toward a quieter offensive game."
         ),
         (0, 2): (
             f"Mixed Signal — {batting_team} vs {pitching_team}",
             "#f9a825", "🟡",
-            f"Murky matchup — {pitcher_name} is walk- or homer-prone (FIP {fip:.2f}) but "
+            f"Murky matchup — {pitcher_name} is walk- or homer-prone (xFIP {fip:.2f}) but "
             f"{batting_team} hitters haven't made strong contact (xwOBA {avg_xwoba:.3f}). "
             f"Unpredictable — lean on other factors before committing."
         ),
@@ -294,7 +297,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     CELL_W = 1.0   # each cell is 1 unit wide/tall in plot space
     GAP    = 0.04  # gap between cells
 
-    col_labels = [f"Low FIP\n(<{FIP_LOW})", f"Avg FIP\n({FIP_LOW}–{FIP_HIGH})", f"High FIP\n(>{FIP_HIGH})"]
+    col_labels = [f"Low xFIP\n(<{FIP_LOW})", f"Avg xFIP\n({FIP_LOW}–{FIP_HIGH})", f"High xFIP\n(>{FIP_HIGH})"]
     row_labels = [f"Low xwOBA\n(<{XW_LOW})", f"Avg xwOBA\n({XW_LOW}–{XW_HIGH})", f"High xwOBA\n(>{XW_HIGH})"]
 
     for row in range(3):
@@ -391,9 +394,9 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
         ),
         showlegend=False,
         title=dict(
-            text=f"Matchup Heatmap — FIP vs xwOBA  "
+            text=f"Matchup Heatmap — xFIP vs xwOBA  "
                  f"<span style='font-size:11px;color:rgba(255,255,255,0.45);'>"
-                 f"(FIP {fip:.2f} · xwOBA {avg_xwoba:.3f})</span>",
+                 f"(xFIP {fip:.2f} · xwOBA {avg_xwoba:.3f})</span>",
             font=dict(size=12),
             x=0.5, xanchor="center",
         ),
@@ -408,7 +411,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
         marker=dict(size=1, opacity=0),
         hovertemplate=(
             f"<b>{display_emoji} {label}</b><br>"
-            f"FIP vs {batting_team}: <b>{fip:.2f}</b><br>"
+            f"xFIP vs {batting_team}: <b>{fip:.2f}</b><br>"
             f"Lineup avg xwOBA: <b>{avg_xwoba:.3f}</b><br>"
             f"Sample weight: <b>{sw_pct}%</b> ({abs_str} · {hit_str})<br>"
             f"<br><i style='color:#ccc'>{qualifier_note}</i>"
@@ -746,7 +749,7 @@ with st.sidebar:
     show_chart      = st.toggle("Show xwOBA chart", value=True)
     show_table      = st.toggle("Show hitter table", value=True)
     show_prediction = st.toggle("Show run prediction", value=True)
-    show_quadrant   = st.toggle("Show FIP vs xwOBA quadrant", value=True)
+    show_quadrant   = st.toggle("Show xFIP vs xwOBA quadrant", value=True)
     st.divider()
     if st.button("🔄 Force refresh", use_container_width=True):
         st.cache_data.clear()
@@ -1131,14 +1134,14 @@ for _, game in summary.iterrows():
                             n_hitters=int(n) if n else None
                         )
 
-                # ── FIP vs xwOBA quadrant tile ───────────────────────────
+                # ── xFIP vs xwOBA quadrant tile ──────────────────────────
                 if show_quadrant:
                     _pitching_abbr = game.get(
                         "home_team" if panel["pitcher_side"] == "home" else "away_team", ""
                     )
                     _pitching_team = TEAM_NAMES.get(_pitching_abbr, _pitching_abbr)
                     quad_result = fip_xwoba_quadrant(
-                        avg_xwoba, fip_val, pitcher, full_team_name, _pitching_team,
+                        avg_xwoba, xfip_val, pitcher, full_team_name, _pitching_team,
                         total_abs=total_abs, n_hitters=int(n) if n else None,
                     )
                     if quad_result is not None:
