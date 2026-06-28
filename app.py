@@ -141,8 +141,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     """
     3×3 heatmap of FIP zones (cols) vs xwOBA zones (rows).
 
-    FIP zones  : Low <3.75 | Avg 3.76–4.19 | High ≥4.20
-    xwOBA zones: Low <0.290 | Avg 0.290–0.330 | High >0.330
+    FIP zones  : Low ≤3.40 | Avg 3.41–4.50 | High >4.50
+    xwOBA zones: Low ≤0.290 | Avg 0.291–0.340 | High ≥0.350
 
     NOTE: The "FIP" axis uses xFIP (expected FIP) rather than raw FIP,
     as xFIP removes HR/FB luck and is a better predictor of future performance.
@@ -153,10 +153,10 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     Returns (fig, label, detail, color, emoji, sw) or None if inputs invalid.
     """
     # ── Zone boundaries ──────────────────────────────────────────────────
-    FIP_LOW  = 3.75
-    FIP_HIGH = 4.19
+    FIP_LOW  = 3.40
+    FIP_HIGH = 4.50
     XW_LOW   = 0.290
-    XW_HIGH  = 0.330
+    XW_HIGH  = 0.340
 
     try:
         avg_xwoba = float(avg_xwoba)
@@ -309,8 +309,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     CELL_W = 1.0   # each cell is 1 unit wide/tall in plot space
     GAP    = 0.04  # gap between cells
 
-    col_labels = [f"Low xFIP\n(<{FIP_LOW})", f"Avg xFIP\n({FIP_LOW}–{FIP_HIGH})", f"High xFIP\n(≥4.20)"]
-    row_labels = [f"Low xwOBA\n(<{XW_LOW})", f"Avg xwOBA\n({XW_LOW}–{XW_HIGH})", f"High xwOBA\n(>{XW_HIGH})"]
+    col_labels = [f"Low xFIP\n(≤{FIP_LOW})", f"Avg xFIP\n({FIP_LOW}–{FIP_HIGH})", f"High xFIP\n(>{FIP_HIGH})"]
+    row_labels = [f"Low xwOBA\n(≤{XW_LOW})", f"Avg xwOBA\n({XW_LOW}–{XW_HIGH})", f"High xwOBA\n(≥0.350)"]
 
     for row in range(3):
         for col in range(3):
