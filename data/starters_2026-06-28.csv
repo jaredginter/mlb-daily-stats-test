@@ -1,16 +1,16 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-824821,2026-06-28T17:35:00Z,WSH @ BAL,BAL,WSH,Kyle Bradish,Zack Littell,680694.0,641793.0,1.01,,,,,,,,,,,,,,,,,,,2.9,3.46,10.0,0.329,48.0,5.91,3.68,12.0,0.409,91.0
-823362,2026-06-28T17:35:00Z,CIN @ PIT,PIT,CIN,Mitch Keller,Brady Singer,656605.0,663903.0,0.99,,,,,,,,,,,,,,,,,,,4.13,3.58,11.0,0.359,94.0,5.12,4.27,11.0,0.38,63.0
-822795,2026-06-28T17:37:00Z,TEX @ TOR,TOR,TEX,Shane Bieber,Kumar Rocker,669456.0,677958.0,1.0,,,,,,,,,,,,,,,,,,,2.15,2.32,11.0,0.309,60.0,3.73,5.37,4.0,0.227,5.0
-824256,2026-06-28T17:40:00Z,HOU @ DET,DET,HOU,Jack Flaherty,Hunter Brown,656427.0,686613.0,0.99,,,,,,,,,,,,,,,,,,,3.46,2.74,10.0,0.23,85.0,2.28,2.76,11.0,0.226,92.0
-824422,2026-06-28T17:40:00Z,SEA @ CLE,CLE,SEA,Gavin Williams,Emerson Hancock,668909.0,676106.0,0.97,,,,,,,,,,,,,,,,,,,3.9,3.39,9.0,0.322,54.0,1.32,1.78,7.0,0.116,27.0
-822959,2026-06-28T17:40:00Z,AZ @ TB,TB,AZ,Drew Rasmussen,Merrill Kelly,656876.0,518876.0,0.97,,,,,,,,,,,,,,,,,,,5.85,4.14,8.0,0.386,32.0,3.8,4.71,6.0,0.446,15.0
-823608,2026-06-28T17:40:00Z,PHI @ NYM,NYM,PHI,TBD,Jesús Luzardo,,666200.0,0.98,,,,,,,,,,,,,,,,,,,,,,,,4.47,4.07,10.0,0.441,87.0
-823686,2026-06-28T18:10:00Z,COL @ MIN,MIN,COL,Connor Prielipp,Ryan Feltner,687570.0,663372.0,1.01,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,5.12,5.12,4.0,0.448,11.0
-824580,2026-06-28T18:10:00Z,KC @ CWS,CWS,KC,Anthony Kay,Luinder Avila,641743.0,679883.0,0.97,,,,,,,,,,,,,,,,,,,2.58,3.29,7.0,0.385,28.0,2.6,3.28,6.0,0.192,6.0
-823769,2026-06-28T18:10:00Z,CHC @ MIL,MIL,CHC,Brandon Woodruff,TBD,605540.0,,1.0,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,,,,,
-823037,2026-06-28T18:15:00Z,MIA @ STL,STL,MIA,Kyle Leahy,TBD,681517.0,,0.99,,,,,,,,,,,,,,,,,,,2.3,2.57,8.0,0.328,20.0,,,,,
-824011,2026-06-28T19:15:00Z,ATH @ LAA,LAA,ATH,Sam Aldegheri,Aaron Civale,691951.0,650644.0,0.97,,,,,,,,,,,,,,,,,,,,,1.0,0.463,1.0,5.7,2.55,9.0,0.445,61.0
-823204,2026-06-28T20:05:00Z,ATL @ SF,SF,ATL,Robbie Ray,Chris Sale,592662.0,519242.0,0.95,,,,,,,,,,,,,,,,,,,2.92,2.8,12.0,0.269,79.0,2.56,1.63,6.0,0.244,52.0
-823281,2026-06-28T20:10:00Z,LAD @ SD,SD,LAD,Michael King,Emmet Sheehan,650633.0,686218.0,0.95,,,,,,,,,,,,,,,,,,,6.68,4.09,9.0,0.385,71.0,6.6,4.09,8.0,0.383,25.0
-824744,2026-06-28T23:20:00Z,NYY @ BOS,BOS,NYY,Sonny Gray,Carlos Rodón,543243.0,607074.0,1.03,,,,,,,,,,,,,,,,,,,3.56,3.45,11.0,0.333,87.0,4.82,3.34,9.0,0.279,64.0
+824821,2026-06-28T17:35:00Z,WSH @ BAL,BAL,WSH,Kyle Bradish,Zack Littell,680694,641793,1.01,,,,,,,,,,,,,,,,,,,2.9,3.46,10,0.329,48,5.91,3.68,12,0.409,91
+823362,2026-06-28T17:35:00Z,CIN @ PIT,PIT,CIN,Mitch Keller,Brady Singer,656605,663903,0.99,,,,,,,,,,,,,,,,,,,4.13,3.58,11,0.359,94,5.12,4.27,11,0.38,63
+822795,2026-06-28T17:37:00Z,TEX @ TOR,TOR,TEX,Shane Bieber,Kumar Rocker,669456,677958,1.0,,,,,,,,,,,,,,,,,,,2.15,2.32,11,0.309,60,3.73,5.37,4,0.227,5
+824256,2026-06-28T17:40:00Z,HOU @ DET,DET,HOU,Jack Flaherty,Hunter Brown,656427,686613,0.99,,,,,,,,,,,,,,,,,,,3.46,2.74,10,0.23,85,2.28,2.76,11,0.226,92
+824422,2026-06-28T17:40:00Z,SEA @ CLE,CLE,SEA,Gavin Williams,Emerson Hancock,668909,676106,0.97,,,,,,,,,,,,,,,,,,,3.9,3.39,9,0.322,54,1.32,1.78,7,0.116,27
+822959,2026-06-28T17:40:00Z,AZ @ TB,TB,AZ,Drew Rasmussen,Merrill Kelly,656876,518876,0.97,,,,,,,,,,,,,,,,,,,5.85,4.14,8,0.386,32,3.8,4.71,6,0.446,15
+823608,2026-06-28T17:40:00Z,PHI @ NYM,NYM,PHI,Cionel Pérez,Jesús Luzardo,672335,666200,0.98,,,,,,,,,,,,,,,,,,,5.96,3.8,11,0.33,34,4.47,4.07,10,0.441,87
+823686,2026-06-28T18:10:00Z,COL @ MIN,MIN,COL,Connor Prielipp,Ryan Feltner,687570,663372,1.01,,,,,,,,,,,,,,,,,,,,,0,,0,5.12,5.12,4,0.448,11
+824580,2026-06-28T18:10:00Z,KC @ CWS,CWS,KC,Anthony Kay,Luinder Avila,641743,679883,0.97,,,,,,,,,,,,,,,,,,,2.58,3.29,7,0.385,28,2.6,3.28,6,0.192,6
+823769,2026-06-28T18:10:00Z,CHC @ MIL,MIL,CHC,Brandon Woodruff,Ryan Rolison,605540,669020,1.0,,,,,,,,,,,,,,,,,,,5.86,4.01,11,0.334,75,2.01,2.01,10,0.31,15
+823037,2026-06-28T18:15:00Z,MIA @ STL,STL,MIA,Kyle Leahy,Tyler Phillips,681517,663969,0.99,,,,,,,,,,,,,,,,,,,2.3,2.57,8,0.328,20,0.1,1.64,7,0.12,11
+824011,2026-06-28T19:15:00Z,ATH @ LAA,LAA,ATH,Sam Aldegheri,Aaron Civale,691951,650644,0.97,,,,,,,,,,,,,,,,,,,,,1,0.463,1,5.7,2.55,9,0.445,61
+823204,2026-06-28T20:05:00Z,ATL @ SF,SF,ATL,Robbie Ray,Chris Sale,592662,519242,0.95,,,,,,,,,,,,,,,,,,,2.92,2.8,12,0.269,79,2.56,1.63,6,0.244,52
+823281,2026-06-28T20:10:00Z,LAD @ SD,SD,LAD,Michael King,Emmet Sheehan,650633,686218,0.95,,,,,,,,,,,,,,,,,,,6.68,4.09,9,0.385,71,6.6,4.09,8,0.383,25
+824744,2026-06-28T23:20:00Z,NYY @ BOS,BOS,NYY,Sonny Gray,Carlos Rodón,543243,607074,1.03,,,,,,,,,,,,,,,,,,,3.56,3.45,11,0.333,87,4.82,3.34,9,0.279,64
