@@ -1,14 +1,14 @@
-game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp
-824822,2026-06-29T22:35:00Z,CWS @ BAL,BAL,CWS,TBD,TBD,,,1.01,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-823444,2026-06-29T22:40:00Z,PIT @ PHI,PHI,PIT,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp
+824822,2026-06-29T22:35:00Z,CWS @ BAL,BAL,CWS,Shane Baz,TBD,669358.0,,1.01,,,,,,,,,,,,,,,,,,,8.35,3.99,7.0,0.277,15.0,,,,,
+823444,2026-06-29T22:40:00Z,PIT @ PHI,PHI,PIT,TBD,Braxton Ashcraft,,677952.0,1.02,,,,,,,,,,,,,,,,,,,,,,,,11.0,0.412,37.0,5.41,3.35
 823529,2026-06-29T23:05:00Z,DET @ NYY,NYY,DET,TBD,Casey Mize,,663554.0,1.05,,,,,,,,,,,,,,,,,,,,,,,,11.0,0.267,62.0,3.2,2.85
-822792,2026-06-29T23:07:00Z,NYM @ TOR,TOR,NYM,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+822792,2026-06-29T23:07:00Z,NYM @ TOR,TOR,NYM,TBD,Sean Manaea,,640455.0,1.0,,,,,,,,,,,,,,,,,,,,,,,,8.0,0.257,49.0,2.5,2.69
 824741,2026-06-29T23:10:00Z,WSH @ BOS,BOS,WSH,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-824420,2026-06-29T23:10:00Z,TEX @ CLE,CLE,TEX,Parker Messick,TBD,800048.0,,0.97,,,,,,,,,,,,,,,,,,,9.0,0.387,22.0,7.3,3.74,,,,,
-823771,2026-06-29T23:40:00Z,CIN @ MIL,MIL,CIN,Robert Gasser,Nick Lodolo,688107.0,666157.0,1.0,,,,,,,,,,,,,,,,,,,9.0,0.311,19.0,11.85,4.15,12.0,0.289,62.0,2.7,2.81
+824420,2026-06-29T23:10:00Z,TEX @ CLE,CLE,TEX,Parker Messick,TBD,800048.0,,0.97,,,,,,,,,,,,,,,,,,,7.3,3.74,9.0,0.387,22.0,,,,,
+823771,2026-06-29T23:40:00Z,CIN @ MIL,MIL,CIN,Robert Gasser,Nick Lodolo,688107.0,666157.0,1.0,,,,,,,,,,,,,,,,,,,8.91,3.14,10.0,0.285,23.0,12.0,0.289,62.0,2.7,2.81
 824662,2026-06-30T00:05:00Z,SD @ CHC,CHC,SD,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 824176,2026-06-30T00:10:00Z,MIN @ HOU,HOU,MIN,TBD,Zebby Matthews,,805673.0,1.03,,,,,,,,,,,,,,,,,,,,,,,,6.0,0.382,16.0,5.35,3.12
 824339,2026-06-30T00:40:00Z,MIA @ COL,COL,MIA,TBD,Sandy Alcantara,,645261.0,1.22,,,,,,,,,,,,,,,,,,,,,,,,9.0,0.236,50.0,1.96,3.61
 824986,2026-06-30T01:40:00Z,LAD @ ATH,ATH,LAD,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-823121,2026-06-30T01:40:00Z,LAA @ SEA,SEA,LAA,George Kirby,TBD,669923.0,,0.97,,,,,,,,,,,,,,,,,,,10.0,0.319,59.0,1.96,2.56,,,,,
-825065,2026-06-30T01:40:00Z,SF @ AZ,AZ,SF,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+823121,2026-06-30T01:40:00Z,LAA @ SEA,SEA,LAA,George Kirby,TBD,669923.0,,0.97,,,,,,,,,,,,,,,,,,,1.96,2.56,10.0,0.319,59.0,,,,,
+825065,2026-06-30T01:40:00Z,SF @ AZ,AZ,SF,Eduardo Rodriguez,TBD,593958.0,,1.05,,,,,,,,,,,,,,,,,,,4.49,3.22,9.0,0.357,83.0,,,,,
