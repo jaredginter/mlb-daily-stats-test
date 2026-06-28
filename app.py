@@ -240,7 +240,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
         (0, 2): (
             f"Mixed Signal — {batting_team} vs {pitching_team}",
             "#f9a825", "🟡",
-            f"The pitcher generally retains the advantage in this matchup, even though their own underlying metrics suggest they are a below-average pitcher. Because the offense consistently generates weak contact, the pitcher’s tendency to put balls in play is mitigated. Instead of turning into extra-base hits, the pitcher's mistakes result in routine pop-ups and weak groundouts"
+            f"{pitcher_name} generally retains the advantage in this matchup, even though their own underlying metrics suggest they are a below-average pitcher. Because the {batting_team} consistently generates weak contact, the pitcher’s tendency to put balls in play is mitigated. Instead of turning into extra-base hits, the pitcher's mistakes result in routine pop-ups and weak groundouts"
         ),
     }
 
@@ -1066,7 +1066,7 @@ for _, game in summary.iterrows():
                         help="Expected Fielding Independent Pitching — same as FIP but replaces actual HRs "
                              "with expected HRs (fly balls × league-avg HR/FB rate of ~10.5%). "
                              "Removes HR luck; often a better predictor than FIP. "
-                             "Same scale: <3.20 elite, 3.20–3.79 good, 3.80–4.19 avg, 4.20–4.79 below avg, 5.00+ poor."
+                             "Same scale: <2.75 elite, 3.00–3.25 excellent, 3.25–3.75 good, 3.76-4.19 avg, 4.20–4.50 below avg, 4.75+ very poor."
                     )
                     with mc5:
                         st.markdown(
