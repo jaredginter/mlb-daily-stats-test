@@ -1047,53 +1047,81 @@ for _, game in summary.iterrows():
 
                     mc1, mc2, mc3, mc4, mc5 = st.columns(5)
                     mc1.metric("Hitters with history", int(n))
-                    mc2.metric("Lineup avg xwOBA", f"{avg_xwoba:.3f}" if avg_xwoba else "—",
-                        help=(
-                            "Expected Weighted On-Base Average — measures the quality of contact "
-                            "and plate appearances using exit velocity and launch angle, independent "
-                            "of park and defense. Higher is better for the offense.\n\n"
-                            "Elite: .370 or higher\n"
-                            "Great: .340 – .365\n"
-                            "Above Average: .325 – .335\n"
-                            "League Average: ~.315\n"
-                            "Below Average: .290 – .310\n"
-                            "Poor: .270 – .285\n"
-                            "Awful: under .260"
+
+                    # ── Color helpers ────────────────────────────────────
+                    def xwoba_tier_color(v):
+                        if v is None: return "#888888"
+                        if v >= 0.370: return "#1b7e24"   # elite — dark green
+                        if v >= 0.340: return "#43a047"   # great — green
+                        if v >= 0.325: return "#81c784"   # above avg — light green
+                        if v >= 0.305: return "#aaaaaa"   # league avg — gray
+                        if v >= 0.290: return "#ff7f0e"   # below avg — orange
+                        if v >= 0.270: return "#d62728"   # poor — red
+                        return "#9c0006"                  # awful — dark red
+
+                    def fip_tier_color(v):
+                        """Lower FIP = better for pitcher = green."""
+                        if v is None: return "#888888"
+                        if v < 2.75:  return "#1b7e24"   # elite — dark green
+                        if v < 3.00:  return "#43a047"   # excellent — green
+                        if v <= 3.75: return "#81c784"   # great — light green
+                        if v <= 4.19: return "#aaaaaa"   # average — gray
+                        if v <= 4.50: return "#ff7f0e"   # below avg — orange
+                        return "#d62728"                  # poor — red
+
+                    def colored_metric(col, label, display_val, color, help_text):
+                        col.markdown(
+                            f"""<div style="padding:4px 0 8px 0;">
+                                <div style="font-size:0.8rem;color:#888;margin-bottom:4px;">
+                                    {label}
+                                    <span title="{help_text}" style="cursor:help;"> ⓘ</span>
+                                </div>
+                                <div style="font-size:1.9rem;font-weight:700;
+                                            color:{color};line-height:1.1;">
+                                    {display_val}
+                                </div>
+                            </div>""",
+                            unsafe_allow_html=True,
                         )
+
+                    # xwOBA
+                    _xw_color = xwoba_tier_color(avg_xwoba)
+                    _xw_disp  = f"{avg_xwoba:.3f}" if avg_xwoba else "—"
+                    colored_metric(
+                        mc2, "Lineup avg xwOBA", _xw_disp, _xw_color,
+                        "Expected Weighted On-Base Average — measures contact quality using exit "
+                        "velocity &amp; launch angle, independent of park and defense. Higher = better "
+                        "for the offense. Scale: .370+ elite · .340–.365 great · .325–.335 above avg · "
+                        "~.315 league avg · .290–.310 below avg · .270–.285 poor · &lt;.260 awful"
                     )
 
-                    fip_display = (
-                        f"{fip_val:.2f}"
-                        if fip_val is not None and str(fip_val) != "nan"
-                        else "—"
-                    )
-                    mc3.metric(
-                        "FIP vs this team",
-                        fip_display,
-                        help="Fielding Independent Pitching vs today's opposing lineup (career). "
-                             "Lower is better for the pitcher. Scale: <2.75 elite, 3.00–3.25 excellent, "
-                             "3.25–3.75 great, 3.76–4.19 average, 4.20–4.50 below avg, 4.75+ poor."
+                    # FIP
+                    _fip_val  = fip_val if (fip_val is not None and str(fip_val) != "nan") else None
+                    _fip_disp = f"{_fip_val:.2f}" if _fip_val is not None else "—"
+                    _fip_color = fip_tier_color(_fip_val)
+                    colored_metric(
+                        mc3, "FIP vs this team", _fip_disp, _fip_color,
+                        "Fielding Independent Pitching vs today&#39;s opposing lineup (career). "
+                        "Lower = better for the pitcher. Scale: &lt;2.75 elite · 3.00–3.25 excellent · "
+                        "3.25–3.75 great · 3.76–4.19 average · 4.20–4.50 below avg · 4.75+ poor"
                     )
 
+                    # xFIP
                     xfip_key = (
                         "home_pitcher_xfip_vs_opp"
                         if panel["pitcher_side"] == "home"
                         else "away_pitcher_xfip_vs_opp"
                     )
                     xfip_val = game.get(xfip_key)
-                    xfip_display = (
-                        f"{xfip_val:.2f}"
-                        if xfip_val is not None and str(xfip_val) != "nan"
-                        else "—"
-                    )
-                    mc4.metric(
-                        "xFIP vs this team",
-                        xfip_display,
-                        help="Expected Fielding Independent Pitching — same as FIP but replaces actual HRs "
-                             "with expected HRs (fly balls × league-avg HR/FB rate of ~10.5%). "
-                             "Removes HR luck; often a better predictor than FIP. "
-                             "Scale: <2.75 elite, 3.00–3.25 excellent, 3.25–3.75 great, "
-                             "3.76–4.19 average, 4.20–4.50 below avg, 4.75+ poor."
+                    _xfip_val  = xfip_val if (xfip_val is not None and str(xfip_val) != "nan") else None
+                    xfip_display = f"{_xfip_val:.2f}" if _xfip_val is not None else "—"
+                    _xfip_color  = fip_tier_color(_xfip_val)
+                    colored_metric(
+                        mc4, "xFIP vs this team", xfip_display, _xfip_color,
+                        "Expected FIP — same as FIP but replaces actual HRs with expected HRs "
+                        "(fly balls × league-avg HR/FB ~10.5%). Removes HR luck; better predictor "
+                        "than FIP. Scale: &lt;2.75 elite · 3.00–3.25 excellent · 3.25–3.75 great · "
+                        "3.76–4.19 average · 4.20–4.50 below avg · 4.75+ poor"
                     )
                     with mc5:
                         st.markdown(
