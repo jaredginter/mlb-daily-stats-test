@@ -1052,7 +1052,6 @@ for _, game in summary.iterrows():
                             "Expected Weighted On-Base Average — measures the quality of contact "
                             "and plate appearances using exit velocity and launch angle, independent "
                             "of park and defense. Higher is better for the offense.\n\n"
-                            "Scale:\n"
                             "Elite: .370 or higher\n"
                             "Great: .340 – .365\n"
                             "Above Average: .325 – .335\n"
