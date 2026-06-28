@@ -141,8 +141,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     """
     3×3 heatmap of FIP zones (cols) vs xwOBA zones (rows).
 
-    FIP zones  : Low <3.80 | Avg 3.80–4.80 | High >4.80
-    xwOBA zones: Low <0.300 | Avg 0.300–0.340 | High >0.340
+    FIP zones  : Low <3.75 | Avg 3.76–4.19 | High ≥4.20
+    xwOBA zones: Low <0.290 | Avg 0.290–0.330 | High >0.330
 
     NOTE: The "FIP" axis uses xFIP (expected FIP) rather than raw FIP,
     as xFIP removes HR/FB luck and is a better predictor of future performance.
@@ -153,8 +153,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     Returns (fig, label, detail, color, emoji, sw) or None if inputs invalid.
     """
     # ── Zone boundaries ──────────────────────────────────────────────────
-    FIP_LOW  = 3.80
-    FIP_HIGH = 4.80
+    FIP_LOW  = 3.75
+    FIP_HIGH = 4.19
     XW_LOW   = 0.290
     XW_HIGH  = 0.330
 
@@ -180,47 +180,59 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
 
     # ── 3×3 scenario table [xw_row][fip_col] ────────────────────────────
     # Colors: green=#43a047, yellow=#f9a825, gray=#607d8b
+    # ── xFIP tier label (used in scenario narratives) ────────────────────
+    def xfip_tier(v):
+        if v < 2.75:  return "elite"
+        if v < 3.00:  return "excellent"
+        if v < 3.25:  return "excellent"
+        if v <= 3.75: return "great"
+        if v <= 4.19: return "average"
+        if v <= 4.50: return "below average"
+        return "poor"
+
+    fip_tier = xfip_tier(fip)
+
     SCENARIOS = {
-        # (xw_row, fip_col): (short_label, color, emoji, detail_fn)
+        # (xw_row, fip_col): (short_label, color, emoji, detail)
         (2, 0): (
             f"{pitching_team} Pitching Holds Edge",
             "#81c784", "🟢",
             f"Contested matchup — {batting_team} hitters make strong contact "
-            f"(xwOBA {avg_xwoba:.3f}) but {pitcher_name} has been elite (xFIP {fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) but {pitcher_name} has been {fip_tier} (xFIP {fip:.2f}). "
             f"Hitters have a puncher's chance but the pitcher holds the edge."
         ),
         (2, 1): (
             f"Slight {batting_team} Offensive Edge",
             "#81c784", "🟢",
             f"Slight offensive lean — {batting_team} hitters are making good contact "
-            f"(xwOBA {avg_xwoba:.3f}) against an average xFIP pitcher ({fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) against a {fip_tier} xFIP pitcher ({fip:.2f}). "
             f"Mild edge to the offense but far from a slam dunk."
         ),
         (2, 2): (
             f"{batting_team} Offense Strongly Favored",
             "#43a047", "🟢",
             f"High scoring game likely — {batting_team} hitters are squaring up {pitcher_name} "
-            f"(xwOBA {avg_xwoba:.3f}) and the pitcher has struggled vs this lineup (xFIP {fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) and the pitcher has a {fip_tier} xFIP ({fip:.2f}). "
             f"Strong indicator to stack the {batting_team} lineup."
         ),
         (1, 0): (
             f"{pitching_team} Pitching Holds Edge",
             "#81c784", "🟢",
             f"Pitcher holds the edge — {batting_team} hitters show average contact quality "
-            f"(xwOBA {avg_xwoba:.3f}) while {pitcher_name} has been elite (xFIP {fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) while {pitcher_name} has been {fip_tier} (xFIP {fip:.2f}). "
             f"Low run environment expected."
         ),
         (1, 1): (
             f"Toss-Up — {batting_team} vs {pitching_team}",
             "#607d8b", "⚪",
             f"True toss-up — both sides are average. {batting_team} hitters at xwOBA {avg_xwoba:.3f} "
-            f"vs {pitcher_name}'s xFIP of {fip:.2f}. No clear edge — lean on other factors."
+            f"vs {pitcher_name}'s {fip_tier} xFIP of {fip:.2f}. No clear edge — lean on other factors."
         ),
         (1, 2): (
             f"Slight {batting_team} Offensive Edge",
             "#81c784", "🟢",
             f"Slight offensive lean — average contact quality (xwOBA {avg_xwoba:.3f}) meets a "
-            f"struggling pitcher (xFIP {fip:.2f}). Mild advantage to {batting_team} but not a "
+            f"{fip_tier} pitcher (xFIP {fip:.2f}). Mild advantage to {batting_team} but not a "
             f"strong signal on its own."
         ),
         (0, 0): (
@@ -228,18 +240,18 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
             "#43a047", "🟢",
             f"Low scoring game likely — {pitcher_name} dominates this matchup. "
             f"{batting_team} hitters have weak contact quality (xwOBA {avg_xwoba:.3f}) "
-            f"and the pitcher's xFIP is elite ({fip:.2f}). Pitcher is firmly in control."
+            f"and the pitcher's xFIP is {fip_tier} ({fip:.2f}). Pitcher is firmly in control."
         ),
         (0, 1): (
             f"{pitching_team} Pitching Holds Edge",
             "#81c784", "🟢",
             f"Pitcher holds the edge — {batting_team} hitters are struggling (xwOBA {avg_xwoba:.3f}) "
-            f"against an average xFIP pitcher ({fip:.2f}). Lean toward a quieter offensive game."
+            f"against a {fip_tier} xFIP pitcher ({fip:.2f}). Lean toward a quieter offensive game."
         ),
         (0, 2): (
             f"Mixed Signal — {batting_team} vs {pitching_team}",
             "#f9a825", "🟡",
-            f"Murky matchup — {pitcher_name} is walk- or homer-prone (xFIP {fip:.2f}) but "
+            f"Murky matchup — {pitcher_name} has a {fip_tier} xFIP ({fip:.2f}) but "
             f"{batting_team} hitters haven't made strong contact (xwOBA {avg_xwoba:.3f}). "
             f"Unpredictable — lean on other factors before committing."
         ),
@@ -297,7 +309,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     CELL_W = 1.0   # each cell is 1 unit wide/tall in plot space
     GAP    = 0.04  # gap between cells
 
-    col_labels = [f"Low xFIP\n(<{FIP_LOW})", f"Avg xFIP\n({FIP_LOW}–{FIP_HIGH})", f"High xFIP\n(>{FIP_HIGH})"]
+    col_labels = [f"Low xFIP\n(<{FIP_LOW})", f"Avg xFIP\n({FIP_LOW}–{FIP_HIGH})", f"High xFIP\n(≥4.20)"]
     row_labels = [f"Low xwOBA\n(<{XW_LOW})", f"Avg xwOBA\n({XW_LOW}–{XW_HIGH})", f"High xwOBA\n(>{XW_HIGH})"]
 
     for row in range(3):
@@ -1046,8 +1058,8 @@ for _, game in summary.iterrows():
                         "FIP vs this team",
                         fip_display,
                         help="Fielding Independent Pitching vs today's opposing lineup (career). "
-                             "Lower is better for the pitcher. Scale: <3.20 elite, 3.20–3.79 good, "
-                             "3.80–4.19 average, 4.20–4.79 below avg, 5.00+ poor."
+                             "Lower is better for the pitcher. Scale: <2.75 elite, 3.00–3.25 excellent, "
+                             "3.25–3.75 great, 3.76–4.19 average, 4.20–4.50 below avg, 4.75+ poor."
                     )
 
                     xfip_key = (
@@ -1067,7 +1079,8 @@ for _, game in summary.iterrows():
                         help="Expected Fielding Independent Pitching — same as FIP but replaces actual HRs "
                              "with expected HRs (fly balls × league-avg HR/FB rate of ~10.5%). "
                              "Removes HR luck; often a better predictor than FIP. "
-                             "Same scale: <3.20 elite, 3.20–3.79 good, 3.80–4.19 avg, 4.20–4.79 below avg, 5.00+ poor."
+                             "Scale: <2.75 elite, 3.00–3.25 excellent, 3.25–3.75 great, "
+                             "3.76–4.19 average, 4.20–4.50 below avg, 4.75+ poor."
                     )
                     with mc5:
                         st.markdown(
