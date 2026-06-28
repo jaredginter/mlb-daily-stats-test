@@ -1047,7 +1047,21 @@ for _, game in summary.iterrows():
 
                     mc1, mc2, mc3, mc4, mc5 = st.columns(5)
                     mc1.metric("Hitters with history", int(n))
-                    mc2.metric("Lineup avg xwOBA", f"{avg_xwoba:.3f}" if avg_xwoba else "—")
+                    mc2.metric("Lineup avg xwOBA", f"{avg_xwoba:.3f}" if avg_xwoba else "—",
+                        help=(
+                            "Expected Weighted On-Base Average — measures the quality of contact "
+                            "and plate appearances using exit velocity and launch angle, independent "
+                            "of park and defense. Higher is better for the offense.\n\n"
+                            "Scale:\n"
+                            "• Elite: .370 or higher\n"
+                            "• Great: .340 – .365\n"
+                            "• Above Average: .325 – .335\n"
+                            "• League Average: ~.315\n"
+                            "• Below Average: .290 – .310\n"
+                            "• Poor: .270 – .285\n"
+                            "• Awful: under .260"
+                        )
+                    )
 
                     fip_display = (
                         f"{fip_val:.2f}"
