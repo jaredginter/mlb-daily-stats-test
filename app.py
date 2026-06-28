@@ -155,8 +155,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     # ── Zone boundaries ──────────────────────────────────────────────────
     FIP_LOW  = 3.80
     FIP_HIGH = 4.80
-    XW_LOW   = 0.300
-    XW_HIGH  = 0.340
+    XW_LOW   = 0.290
+    XW_HIGH  = 0.330
 
     try:
         avg_xwoba = float(avg_xwoba)
@@ -183,12 +183,11 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     SCENARIOS = {
         # (xw_row, fip_col): (short_label, color, emoji, detail_fn)
         (2, 0): (
-            f"{pitching_team} Pitching Slight Advantage",
+            f"{pitching_team} Pitching Holds Edge",
             "#81c784", "🟢",
-            f"Strikeouts nullify xwOBA: A hitter cannot use their elite exit velocity or launch angle if they do not touch the ball. A low xFIP requires a high strikeout rate, meaning the pitcher will often bypass the hitter's contact skills entirely."
-            f" Pitchers with low xFIPs excel at forcing ground balls. Even if a hitter hits a ground ball hard (yielding a decent xwOBA), ground balls rarely result in extra-base hits or home runs."
-            f" The hitter only gains the upper hand if they can force the pitcher to throw a strike when behind in the count. If the pitcher makes a mistake over the heart of the plate, the hitter's high xwOBA profile means they will punish the ball. Because a low xFIP pitcher dictates the plate appearance through strikeouts and ground balls, they hold the edge in this matchup."
-
+            f"Contested matchup — {batting_team} hitters make strong contact "
+            f"(xwOBA {avg_xwoba:.3f}) but {pitcher_name} has been elite (xFIP {fip:.2f}). "
+            f"Hitters have a puncher's chance but the pitcher holds the edge."
         ),
         (2, 1): (
             f"Slight {batting_team} Offensive Edge",
@@ -240,7 +239,9 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
         (0, 2): (
             f"Mixed Signal — {batting_team} vs {pitching_team}",
             "#f9a825", "🟡",
-            f"{pitcher_name} generally retains the advantage in this matchup, even though their own underlying metrics suggest they are a below-average pitcher. Because the {batting_team} consistently generates weak contact, the pitcher’s tendency to put balls in play is mitigated. Instead of turning into extra-base hits, the pitcher's mistakes result in routine pop-ups and weak groundouts"
+            f"Murky matchup — {pitcher_name} is walk- or homer-prone (xFIP {fip:.2f}) but "
+            f"{batting_team} hitters haven't made strong contact (xwOBA {avg_xwoba:.3f}). "
+            f"Unpredictable — lean on other factors before committing."
         ),
     }
 
@@ -1066,7 +1067,7 @@ for _, game in summary.iterrows():
                         help="Expected Fielding Independent Pitching — same as FIP but replaces actual HRs "
                              "with expected HRs (fly balls × league-avg HR/FB rate of ~10.5%). "
                              "Removes HR luck; often a better predictor than FIP. "
-                             "Same scale: <2.75 elite, 3.00–3.25 excellent, 3.25–3.75 good, 3.76-4.19 avg, 4.20–4.50 below avg, 4.75+ very poor."
+                             "Same scale: <3.20 elite, 3.20–3.79 good, 3.80–4.19 avg, 4.20–4.79 below avg, 5.00+ poor."
                     )
                     with mc5:
                         st.markdown(
