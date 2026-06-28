@@ -240,9 +240,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
         (0, 2): (
             f"Mixed Signal — {batting_team} vs {pitching_team}",
             "#f9a825", "🟡",
-            f"Murky matchup — {pitcher_name} is walk- or homer-prone (xFIP {fip:.2f}) but "
-            f"{batting_team} hitters haven't made strong contact (xwOBA {avg_xwoba:.3f}). "
-            f"Unpredictable — lean on other factors before committing."
+            f"The pitcher generally retains the advantage in this matchup, even though their own underlying metrics suggest they are a below-average pitcher. Because the offense consistently generates weak contact, the pitcher’s tendency to put balls in play is mitigated. Instead of turning into extra-base hits, the pitcher's mistakes result in routine pop-ups and weak groundouts"
         ),
     }
 
