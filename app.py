@@ -1171,34 +1171,6 @@ for _, game in summary.iterrows():
                             "(common early in the season or for new pitchers).")
                     continue
 
-                # ── Predicted runs badge ─────────────────────────────────
-                if show_prediction:
-                    _splits_preview = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
-                    # Team offense keys — batting team's season stats
-                    _team_side = panel["splits_side"]  # "away" batters or "home" batters
-                    _team_off  = {
-                        "woba":     game.get(f"{_team_side}_woba"),
-                        "wrc_plus": game.get(f"{_team_side}_wrc_plus"),
-                        "obp":      game.get(f"{_team_side}_obp"),
-                        "ops_plus": game.get(f"{_team_side}_ops_plus"),
-                        "barrel":   game.get(f"{_team_side}_barrel"),
-                        "hard_hit": game.get(f"{_team_side}_hard_hit"),
-                        "k_pct":    game.get(f"{_team_side}_k_pct"),
-                        "bb_pct":   game.get(f"{_team_side}_bb_pct"),
-                        "babip":    game.get(f"{_team_side}_babip"),
-                    }
-                    pred_runs, conf_label, conf_color, inputs_used, sw = predict_runs(
-                        avg_xwoba, fip_val, _splits_preview,
-                        total_abs=total_abs, n_hitters=int(n) if n else None,
-                        team_off=_team_off
-                    )
-                    if pred_runs is not None:
-                        run_prediction_badge(
-                            pred_runs, conf_label, conf_color, batting, inputs_used,
-                            sample_weight=sw, total_abs=total_abs,
-                            n_hitters=int(n) if n else None
-                        )
-
                 # ── xFIP vs xwOBA quadrant tile ──────────────────────────
                 if show_quadrant:
                     _pitching_abbr = game.get(
@@ -1232,6 +1204,33 @@ for _, game in summary.iterrows():
                             use_container_width=True,
                             config={"displayModeBar": False},
                             key=f"quadrant_{game_id}_{panel['splits_side']}",
+                        )
+
+                # ── Predicted runs badge ─────────────────────────────────
+                if show_prediction:
+                    _splits_preview = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
+                    _team_side = panel["splits_side"]
+                    _team_off  = {
+                        "woba":     game.get(f"{_team_side}_woba"),
+                        "wrc_plus": game.get(f"{_team_side}_wrc_plus"),
+                        "obp":      game.get(f"{_team_side}_obp"),
+                        "ops_plus": game.get(f"{_team_side}_ops_plus"),
+                        "barrel":   game.get(f"{_team_side}_barrel"),
+                        "hard_hit": game.get(f"{_team_side}_hard_hit"),
+                        "k_pct":    game.get(f"{_team_side}_k_pct"),
+                        "bb_pct":   game.get(f"{_team_side}_bb_pct"),
+                        "babip":    game.get(f"{_team_side}_babip"),
+                    }
+                    pred_runs, conf_label, conf_color, inputs_used, sw = predict_runs(
+                        avg_xwoba, fip_val, _splits_preview,
+                        total_abs=total_abs, n_hitters=int(n) if n else None,
+                        team_off=_team_off
+                    )
+                    if pred_runs is not None:
+                        run_prediction_badge(
+                            pred_runs, conf_label, conf_color, batting, inputs_used,
+                            sample_weight=sw, total_abs=total_abs,
+                            n_hitters=int(n) if n else None
                         )
 
                 splits_df = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
