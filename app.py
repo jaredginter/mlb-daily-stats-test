@@ -1046,7 +1046,18 @@ for _, game in summary.iterrows():
                         _rel_color = "#9467bd"
 
                     mc1, mc2, mc3, mc4, mc5 = st.columns(5)
-                    mc1.metric("Hitters with history", int(n))
+                    mc1.markdown(
+                        f"""<div style="padding:4px 0 8px 0;">
+                            <div style="font-size:0.8rem;color:#888;margin-bottom:4px;">
+                                Hitters with history
+                            </div>
+                            <div style="font-size:1.9rem;font-weight:700;
+                                        color:white;line-height:1.1;">
+                                {int(n)}
+                            </div>
+                        </div>""",
+                        unsafe_allow_html=True,
+                    )
 
                     # ── Color helpers ────────────────────────────────────
                     def xwoba_tier_color(v):
