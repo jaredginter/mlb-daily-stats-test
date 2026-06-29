@@ -1,6 +1,6 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824819,2026-06-30T22:35:00Z,CWS @ BAL,BAL,CWS,Trey Gibson,Erick Fedde,694346.0,607200,1.01,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,6.36,5.33,10,0.392,55
-824418,2026-06-30T22:40:00Z,TEX @ CLE,CLE,TEX,Tanner Bibee,Jacob deGrom,676440.0,594798,0.97,,,,,,,,,,,,,,,,,,,4.05,3.71,10.0,0.337,58.0,2.74,3.72,9,0.245,41
+824418,2026-06-30T22:40:00Z,TEX @ CLE,CLE,TEX,Tanner Bibee,Jacob deGrom,676440.0,594798,0.97,,,,,,,,,,,,,,,,,,,4.34,3.89,9.0,0.374,55.0,2.74,3.72,9,0.245,41
 823445,2026-06-30T22:40:00Z,PIT @ PHI,PHI,PIT,Cristopher Sánchez,Bubba Chandler,650911.0,696149,1.02,,,,,,,,,,,,,,,,,,,1.72,2.8,9.0,0.27,71.0,12.96,9.14,8,0.535,10
 823528,2026-06-30T23:05:00Z,DET @ NYY,NYY,DET,Cam Schlittler,Tarik Skubal,693645.0,669373,1.05,,,,,,,,,,,,,,,,,,,4.4,3.96,10.0,0.509,27.0,4.22,2.2,11,0.239,66
 822793,2026-06-30T23:07:00Z,NYM @ TOR,TOR,NYM,Kevin Gausman,Nolan McLean,592332.0,690997,1.0,,,,,,,,,,,,,,,,,,,14.09,8.91,6.0,0.379,34.0,,,0,,0
@@ -11,6 +11,6 @@ game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_nam
 824661,2026-07-01T00:05:00Z,SD @ CHC,CHC,SD,Matthew Boyd,JP Sears,571510.0,676664,1.02,,,,,,,,,,,,,,,,,,,3.14,3.52,10.0,0.285,76.0,7.57,6.49,8,0.541,39
 824175,2026-07-01T00:10:00Z,MIN @ HOU,HOU,MIN,Mike Burrows,Joe Ryan,681347.0,657746,1.03,,,,,,,,,,,,,,,,,,,10.36,6.14,10.0,0.476,26.0,3.77,1.78,13,0.233,94
 824338,2026-07-01T00:40:00Z,MIA @ COL,COL,MIA,TBD,Eury Pérez,,691587,1.22,,,,,,,,,,,,,,,,,,,,,,,,4.86,3.23,11,0.385,39
-824984,2026-07-01T01:40:00Z,LAD @ ATH,ATH,LAD,Jeffrey Springs,Justin Wrobleski,605488.0,680736,1.0,,,,,,,,,,,,,,,,,,,4.88,4.11,9.0,0.24,37.0,0.92,1.29,7,0.194,12
+824984,2026-07-01T01:40:00Z,LAD @ ATH,ATH,LAD,Jeffrey Springs,Justin Wrobleski,605488.0,680736,1.0,,,,,,,,,,,,,,,,,,,4.88,4.11,9.0,0.24,37.0,0.1,0.78,5,0.286,7
 823122,2026-07-01T01:40:00Z,LAA @ SEA,SEA,LAA,Bryan Woo,José Soriano,693433.0,667755,0.97,,,,,,,,,,,,,,,,,,,3.43,2.71,9.0,0.215,70.0,3.47,3.3,10,0.342,81
 825066,2026-07-01T01:40:00Z,SF @ AZ,AZ,SF,TBD,Landen Roupp,,694738,1.05,,,,,,,,,,,,,,,,,,,,,,,,3.65,3.38,11,0.403,58
