@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Bryce Harper,547180,1,2026,1.0,1,2.0,1.0,0.0,111.3
+Trea Turner,607208,1,2026,1.0,0,0.757,0.0,0.0,94.3
+J.T. Realmuto,592663,0,2026,,0,0.7,,,
+Kyle Schwarber,656941,1,2026,1.0,0,0.583,1.0,0.0,110.4
+Alec Bohm,664761,2,2026,0.0,0,0.095,0.0,0.0,91.4
+Brandon Marsh,669016,2,2026,0.0,0,0.092,1.0,0.167,106.4
+Bryson Stott,681082,2,2026,0.0,0,0.04,0.0,0.0,89.4
+Justin Crawford,702222,1,2026,0.0,0,0.013,0.0,0.0,85.3
