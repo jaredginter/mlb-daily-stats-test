@@ -1,0 +1,5 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Taylor Walls,670764,1,2024,0.0,0,0.482,1.0,0.0,98.0
+Yandy Díaz,650490,2,2024,0.5,0,0.391,1.0,0.2,108.4
+Cedric Mullins,656775,2,2024,0.0,0,0.008,0.0,0.333,88.6
+Ryan Vilade,668723,1,2025,1.0,0,,0.0,0.0,72.6
