@@ -1,10 +1,10 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-823442,2026-07-02T16:35:00Z,PIT @ PHI,PHI,PIT,Alan Rangel,Jared Jones,660604,683003.0,1.02,,,,,,,,,,,,,,,,,,,9.7,2.72,5,0.334,7,4.96,1.54,10.0,0.317,26.0
-823765,2026-07-02T18:10:00Z,CIN @ MIL,MIL,CIN,Jacob Misiorowski,Chase Burns,694819,695505.0,1.0,,,,,,,,,,,,,,,,,,,4.1,4.56,7,0.352,11,3.27,2.46,9.0,0.271,23.0
-824335,2026-07-02T19:10:00Z,MIA @ COL,COL,MIA,Michael Lorenzen,TBD,547179,,1.22,,,,,,,,,,,,,,,,,,,3.7,2.19,8,0.31,18,,,,,
-824416,2026-07-02T22:40:00Z,CWS @ CLE,CLE,CWS,Slade Cecconi,Davis Martin,677944,663436.0,0.97,,,,,,,,,,,,,,,,,,,9.7,3.54,5,0.408,14,6.35,3.95,6.0,0.292,29.0
-824906,2026-07-02T23:15:00Z,STL @ ATL,ATL,STL,Hurston Waldrep,Dustin May,694462,669160.0,0.98,,,,,,,,,,,,,,,,,,,,,0,,0,3.86,2.57,12.0,0.276,65.0
-824093,2026-07-02T23:40:00Z,TB @ KC,KC,TB,Stephen Kolek,Ian Seymour,663568,693855.0,0.98,,,,,,,,,,,,,,,,,,,1.1,1.1,4,0.441,6,1.53,2.31,9.0,0.143,21.0
-822884,2026-07-03T00:05:00Z,DET @ TEX,TEX,DET,Nathan Eovaldi,Framber Valdez,543135,664285.0,1.02,,,,,,,,,,,,,,,,,,,3.68,3.28,7,0.233,32,1.66,1.31,10.0,0.213,100.0
-823119,2026-07-03T01:40:00Z,LAA @ SEA,SEA,LAA,Bryce Miller,Walbert Ureña,682243,700712.0,0.97,,,,,,,,,,,,,,,,,,,3.1,3.24,8,0.343,45,1.1,2.46,4.0,,5.0
-823935,2026-07-03T02:10:00Z,SD @ LAD,LAD,SD,Roki Sasaki,Randy Vásquez,808963,681190.0,0.96,,,,,,,,,,,,,,,,,,,8.83,6.77,8,0.429,14,6.81,4.98,11.0,0.44,61.0
+823442,2026-07-02T16:35:00Z,PIT @ PHI,PHI,PIT,Alan Rangel,Jared Jones,660604,683003,1.02,,,,,,,,,,,,,,,,,,,9.7,2.72,5,0.334,7,4.96,1.54,10,0.317,26
+823765,2026-07-02T18:10:00Z,CIN @ MIL,MIL,CIN,Jacob Misiorowski,Chase Burns,694819,695505,1.0,,,,,,,,,,,,,,,,,,,4.1,4.56,7,0.352,11,3.27,2.46,9,0.271,23
+824335,2026-07-02T19:10:00Z,MIA @ COL,COL,MIA,Michael Lorenzen,Ryan Gusto,547179,687473,1.22,,,,,,,,,,,,,,,,,,,3.7,2.19,8,0.31,18,,,2,0.346,1
+824416,2026-07-02T22:40:00Z,CWS @ CLE,CLE,CWS,Slade Cecconi,Davis Martin,677944,663436,0.97,,,,,,,,,,,,,,,,,,,9.7,3.54,5,0.408,14,6.35,3.95,6,0.292,29
+824906,2026-07-02T23:15:00Z,STL @ ATL,ATL,STL,Hurston Waldrep,Dustin May,694462,669160,0.98,,,,,,,,,,,,,,,,,,,,,0,,0,3.86,2.57,12,0.276,65
+824093,2026-07-02T23:40:00Z,TB @ KC,KC,TB,Stephen Kolek,Ian Seymour,663568,693855,0.98,,,,,,,,,,,,,,,,,,,1.1,1.1,4,0.441,6,1.53,2.31,9,0.143,21
+822884,2026-07-03T00:05:00Z,DET @ TEX,TEX,DET,Nathan Eovaldi,Framber Valdez,543135,664285,1.02,,,,,,,,,,,,,,,,,,,3.68,3.28,7,0.233,32,1.66,1.31,10,0.213,100
+823119,2026-07-03T01:40:00Z,LAA @ SEA,SEA,LAA,Bryce Miller,Walbert Ureña,682243,700712,0.97,,,,,,,,,,,,,,,,,,,3.1,3.24,8,0.343,45,1.1,2.46,4,,5
+823935,2026-07-03T02:10:00Z,SD @ LAD,LAD,SD,Roki Sasaki,Randy Vásquez,808963,681190,0.96,,,,,,,,,,,,,,,,,,,8.83,6.77,8,0.429,14,6.81,4.98,11,0.44,61
