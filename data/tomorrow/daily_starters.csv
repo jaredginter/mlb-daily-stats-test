@@ -1,6 +1,6 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-824902,2026-07-05T16:30:00Z,NYM @ ATL,ATL,NYM,Martín Pérez,Nolan McLean,527048,690997.0,0.98,,,,,,,,,,,,,,,,,,,5.2,5.24,10,0.332,57,2.5,2.7,9.0,0.276,24.0
-822715,2026-07-05T17:00:00Z,PIT @ WSH,WSH,PIT,Miles Mikolas,Bubba Chandler,571945,696149.0,1.0,,,,,,,,,,,,,,,,,,,4.65,3.95,9,0.355,57,0.92,1.29,5.0,0.226,12.0
+824902,2026-07-05T16:30:00Z,NYM @ ATL,ATL,NYM,Martín Pérez,Nolan McLean,527048,690997.0,0.98,,,,,,,,,,,,,,,,,,,5.2,5.24,10,0.332,57,1.99,2.21,8.0,0.264,23.0
+822715,2026-07-05T17:00:00Z,PIT @ WSH,WSH,PIT,Cade Cavalli,Bubba Chandler,676917,696149.0,1.0,,,,,,,,,,,,,,,,,,,5.6,6.28,8,0.48,11,0.92,1.29,5.0,0.226,12.0
 824497,2026-07-05T17:05:00Z,BAL @ CIN,CIN,BAL,Nick Lodolo,Kyle Bradish,666157,680694.0,1.04,,,,,,,,,,,,,,,,,,,2.98,3.39,7,0.382,25,3.55,1.77,3.0,0.359,21.0
 823525,2026-07-05T17:35:00Z,MIN @ NYY,NYY,MIN,Ryan Weathers,Joe Ryan,677960,657746.0,1.05,,,,,,,,,,,,,,,,,,,0.88,0.88,5,0.413,12,2.3,2.15,11.0,0.226,66.0
 824413,2026-07-05T18:00:00Z,CWS @ CLE,CLE,CWS,Tanner Bibee,Erick Fedde,676440,607200.0,0.97,,,,,,,,,,,,,,,,,,,3.25,3.49,11,0.305,69,6.13,4.93,11.0,0.351,73.0
