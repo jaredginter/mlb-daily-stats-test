@@ -1,5 +1,5 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-822716,2026-07-04T15:05:00Z,PIT @ WSH,WSH,PIT,Zack Littell,Braxton Ashcraft,641793,677952,1.0,,,,,,,,,,,,,,,,,,,3.39,3.59,7,0.496,46,1.81,2.69,9,0.265,19
+822716,2026-07-04T15:05:00Z,PIT @ WSH,WSH,PIT,Carson Palmquist,Braxton Ashcraft,687223,677952,1.0,,,,,,,,,,,,,,,,,,,,,3,0.536,3,1.81,2.69,9,0.265,19
 823526,2026-07-04T17:35:00Z,MIN @ NYY,NYY,MIN,Brendan Beck,Zebby Matthews,694341,805673,1.05,,,,,,,,,,,,,,,,,,,,,0,,0,8.32,3.67,8,0.435,34
 822882,2026-07-04T20:05:00Z,DET @ TEX,TEX,DET,Kumar Rocker,Jack Flaherty,677958,656427,1.02,,,,,,,,,,,,,,,,,,,3.63,2.06,8,0.426,21,6.6,3.16,11,0.325,72
 823118,2026-07-04T20:10:00Z,TOR @ SEA,SEA,TOR,Logan Gilbert,Shane Bieber,669302,669456,0.97,,,,,,,,,,,,,,,,,,,4.33,3.12,7,0.321,70,0.58,0.97,8,0.2,70
