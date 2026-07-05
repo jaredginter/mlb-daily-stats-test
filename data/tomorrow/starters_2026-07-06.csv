@@ -1,9 +1,9 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824089,2026-07-06T18:10:00Z,PHI @ KC,KC,PHI,Noah Cameron,Cristopher Sánchez,702070.0,650911.0,0.98,,,,,,,,,,,,,,,,,,,9.92,4.32,6.0,0.493,15.0,4.24,3.25,6.0,0.22,36.0
 822958,2026-07-06T22:40:00Z,NYY @ TB,TB,NYY,TBD,Cam Schlittler,,693645.0,0.97,,,,,,,,,,,,,,,,,,,,,,,,2.24,1.83,10.0,0.271,49.0
-822712,2026-07-06T22:45:00Z,HOU @ WSH,WSH,HOU,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+822712,2026-07-06T22:45:00Z,HOU @ WSH,WSH,HOU,Miles Mikolas,Mike Burrows,571945.0,681347.0,1.0,,,,,,,,,,,,,,,,,,,5.29,4.13,10.0,0.383,43.0,2.62,3.11,9.0,0.243,27.0
 824900,2026-07-06T23:15:00Z,NYM @ ATL,ATL,NYM,Reynaldo López,Freddy Peralta,625643.0,642547.0,0.98,,,,,,,,,,,,,,,,,,,4.54,4.23,9.0,0.304,38.0,5.42,3.65,12.0,0.341,85.0
-823036,2026-07-06T23:45:00Z,MIL @ STL,STL,MIL,Michael McGreevy,Shane Drohan,700241.0,675660.0,0.99,,,,,,,,,,,,,,,,,,,5.83,3.4,8.0,0.338,18.0,3.53,4.7,5.0,0.314,8.0
+823036,2026-07-06T23:45:00Z,MIL @ STL,STL,MIL,Dustin May,Shane Drohan,669160.0,675660.0,0.99,,,,,,,,,,,,,,,,,,,0.26,1.12,8.0,0.192,20.0,3.53,4.7,5.0,0.314,8.0
 823282,2026-07-07T01:40:00Z,AZ @ SD,SD,AZ,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 823205,2026-07-07T01:45:00Z,TOR @ SF,SF,TOR,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 823930,2026-07-07T02:10:00Z,COL @ LAD,LAD,COL,TBD,TBD,,,0.96,,,,,,,,,,,,,,,,,,,,,,,,,,,,
