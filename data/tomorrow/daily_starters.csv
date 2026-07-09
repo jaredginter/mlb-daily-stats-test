@@ -1,16 +1,16 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp
 824252,2026-07-10T22:40:00Z,PHI @ DET,DET,PHI,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-823357,2026-07-10T22:40:00Z,MIL @ PIT,PIT,MIL,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-822709,2026-07-10T22:45:00Z,NYY @ WSH,WSH,NYY,Zack Littell,TBD,641793.0,,1.0,,,,,,,,,,,,,,,,,,,11.0,0.301,76.0,5.82,4.05,,,,,
-824817,2026-07-10T23:05:00Z,KC @ BAL,BAL,KC,TBD,TBD,,,1.01,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+823357,2026-07-10T22:40:00Z,MIL @ PIT,PIT,MIL,Braxton Ashcraft,TBD,677952.0,,0.99,,,,,,,,,,,,,,,,,,,7.0,0.242,8.0,2.24,2.83,,,,,
+822709,2026-07-10T22:45:00Z,NYY @ WSH,WSH,NYY,Zack Littell,Ryan Weathers,641793.0,677960.0,1.0,,,,,,,,,,,,,,,,,,,11.0,0.301,76.0,5.82,4.05,11.0,0.29,32.0,1.71,2.73
+824817,2026-07-10T23:05:00Z,KC @ BAL,BAL,KC,Brandon Young,Luinder Avila,687064.0,679883.0,1.01,,,,,,,,,,,,,,,,,,,0.0,,0.0,,,0.0,,0.0,,
 824493,2026-07-10T23:10:00Z,CHC @ CIN,CIN,CHC,Hunter Greene,Shota Imanaga,668881.0,684007.0,1.04,,,,,,,,,,,,,,,,,,,11.0,0.345,99.0,5.37,4.05,10.0,0.342,55.0,5.29,3.49
-822955,2026-07-10T23:10:00Z,SEA @ TB,TB,SEA,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+822955,2026-07-10T23:10:00Z,SEA @ TB,TB,SEA,Nick Martinez,TBD,607259.0,,0.97,,,,,,,,,,,,,,,,,,,10.0,0.445,41.0,5.52,3.94,,,,,
 823845,2026-07-10T23:10:00Z,CLE @ MIA,MIA,CLE,TBD,Parker Messick,,800048.0,0.95,,,,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,,
 823604,2026-07-10T23:15:00Z,BOS @ NYM,NYM,BOS,Nolan McLean,Sonny Gray,690997.0,543243.0,0.98,,,,,,,,,,,,,,,,,,,0.0,,0.0,,,9.0,0.328,70.0,7.08,3.55
 824575,2026-07-10T23:40:00Z,ATH @ CWS,CWS,ATH,Sean Burke,TBD,680732.0,,0.97,,,,,,,,,,,,,,,,,,,7.0,0.344,30.0,8.71,4.06,,,,,
 822878,2026-07-11T00:05:00Z,HOU @ TEX,TEX,HOU,TBD,Hunter Brown,,686613.0,1.02,,,,,,,,,,,,,,,,,,,,,,,,11.0,0.267,86.0,2.33,1.8
 823685,2026-07-11T00:10:00Z,LAA @ MIN,MIN,LAA,Zebby Matthews,TBD,805673.0,,1.01,,,,,,,,,,,,,,,,,,,4.0,0.451,11.0,6.6,2.83,,,,,
-823033,2026-07-11T00:15:00Z,ATL @ STL,STL,ATL,Kyle Leahy,TBD,681517.0,,0.99,,,,,,,,,,,,,,,,,,,9.0,0.44,21.0,1.8,2.48,,,,,
+823033,2026-07-11T00:15:00Z,ATL @ STL,STL,ATL,Kyle Leahy,Chris Sale,681517.0,519242.0,0.99,,,,,,,,,,,,,,,,,,,8.0,0.474,19.0,2.01,2.77,2.0,0.246,4.0,3.9,4.92
 823278,2026-07-11T01:40:00Z,TOR @ SD,SD,TOR,JP Sears,TBD,676664.0,,0.95,,,,,,,,,,,,,,,,,,,9.0,0.307,55.0,3.46,3.93,,,,,
 823927,2026-07-11T02:10:00Z,AZ @ LAD,LAD,AZ,Shohei Ohtani,TBD,660271.0,,0.96,,,,,,,,,,,,,,,,,,,11.0,0.305,49.0,2.72,2.56,,,,,
 823200,2026-07-11T02:15:00Z,COL @ SF,SF,COL,TBD,Tanner Gordon,,685299.0,0.95,,,,,,,,,,,,,,,,,,,,,,,,9.0,0.347,44.0,7.51,4.29
