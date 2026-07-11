@@ -1,0 +1,5 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Nick Kurtz,701762,1,2026,0.0,0,0.35,,1.0,
+Shea Langeliers,669127,2,2026,0.0,0,0.275,1.0,0.333,99.3
+Jacob Wilson,805779,2,2026,0.0,0,0.031,0.0,0.5,79.0
+Tyler Soderstrom,691016,2,2026,0.0,0,0.014,1.0,0.0,99.9
