@@ -1,17 +1,17 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-823357,2026-07-11T16:05:00Z,MIL @ PIT,PIT,MIL,Braxton Ashcraft,Brandon Sproat,677952,687075.0,0.99,,,,,,,,,,,,,,,,,,,2.24,2.83,7,0.242,8,,,0.0,,0.0
-823356,2026-07-11T20:05:00Z,MIL @ PIT,PIT,MIL,Bubba Chandler,Shane Drohan,696149,675660.0,0.99,,,,,,,,,,,,,,,,,,,5.1,5.1,5,0.446,9,3.37,4.12,6.0,0.285,13.0
-823682,2026-07-11T18:10:00Z,LAA @ MIN,MIN,LAA,Joe Ryan,Ryan Johnson,657746,696270.0,1.01,,,,,,,,,,,,,,,,,,,0.77,1.97,8,0.268,40,,,2.0,0.002,2.0
-824576,2026-07-11T18:10:00Z,ATH @ CWS,CWS,ATH,Bryan Hudson,Gage Jump,663542,695611.0,0.97,,,,,,,,,,,,,,,,,,,6.1,6.1,5,0.449,8,,,1.0,,2.0
-823198,2026-07-11T20:05:00Z,COL @ SF,SF,COL,Tyler Mahle,Kyle Freeland,641816,607536.0,0.95,,,,,,,,,,,,,,,,,,,1.14,2.75,11,0.251,32,5.9,3.53,7.0,0.388,49.0
-822711,2026-07-11T20:05:00Z,NYY @ WSH,WSH,NYY,PJ Poulin,Cam Schlittler,676571,693645.0,1.0,,,,,,,,,,,,,,,,,,,3.96,6.3,10,0.375,8,0.43,1.34,6.0,0.291,12.0
-823603,2026-07-11T20:10:00Z,BOS @ NYM,NYM,BOS,Freddy Peralta,TBD,642547,,0.98,,,,,,,,,,,,,,,,,,,8.43,1.13,6,0.391,17,,,,,
-822953,2026-07-11T20:10:00Z,SEA @ TB,TB,SEA,Griffin Jax,Logan Gilbert,643377,669302.0,0.97,,,,,,,,,,,,,,,,,,,6.24,4.72,11,0.281,39,2.66,3.09,6.0,0.221,25.0
-823844,2026-07-11T20:10:00Z,CLE @ MIA,MIA,CLE,Eury Pérez,Tanner Bibee,691587,676440.0,0.95,,,,,,,,,,,,,,,,,,,5.6,0.47,7,0.262,14,1.85,3.9,6.0,0.181,17.0
-824249,2026-07-11T22:10:00Z,PHI @ DET,DET,PHI,Casey Mize,Cristopher Sánchez,663554,650911.0,0.99,,,,,,,,,,,,,,,,,,,8.38,2.22,9,0.328,31,1.24,1.63,6.0,0.194,23.0
-824813,2026-07-11T23:05:00Z,KC @ BAL,BAL,KC,Kyle Bradish,Noah Cameron,680694,702070.0,1.01,,,,,,,,,,,,,,,,,,,6.1,5.14,9,0.425,23,6.1,7.12,3.0,0.366,5.0
-822875,2026-07-11T23:05:00Z,HOU @ TEX,TEX,HOU,Kumar Rocker,Peter Lambert,677958,663567.0,1.02,,,,,,,,,,,,,,,,,,,4.9,3.12,8,0.266,18,6.38,3.88,10.0,0.296,39.0
-824492,2026-07-11T23:10:00Z,CHC @ CIN,CIN,CHC,Nick Lodolo,Javier Assad,666157,665871.0,1.04,,,,,,,,,,,,,,,,,,,4.4,4.25,9,0.316,83,3.65,2.79,8.0,0.228,55.0
-823030,2026-07-11T23:15:00Z,ATL @ STL,STL,ATL,Matthew Liberatore,Reynaldo López,669461,625643.0,0.99,,,,,,,,,,,,,,,,,,,3.1,3.15,11,0.284,44,1.67,2.84,9.0,0.267,22.0
-823276,2026-07-12T00:40:00Z,TOR @ SD,SD,TOR,Walker Buehler,Trey Yesavage,621111,702056.0,0.95,,,,,,,,,,,,,,,,,,,6.1,3.6,8,0.372,38,,,0.0,,0.0
-823926,2026-07-12T01:10:00Z,AZ @ LAD,LAD,AZ,Yoshinobu Yamamoto,Brandon Pfaadt,808967,694297.0,0.96,,,,,,,,,,,,,,,,,,,3.33,2.61,9,0.199,84,4.66,3.39,13.0,0.329,121.0
+823357,2026-07-11T16:05:00Z,MIL @ PIT,PIT,MIL,Braxton Ashcraft,Brandon Sproat,677952,687075,0.99,,,,,,,,,,,,,,,,,,,2.24,2.83,7,0.242,8,,,0,,0
+823356,2026-07-11T20:05:00Z,MIL @ PIT,PIT,MIL,Bubba Chandler,Shane Drohan,696149,675660,0.99,,,,,,,,,,,,,,,,,,,5.1,5.1,5,0.446,9,3.37,4.12,6,0.285,13
+823682,2026-07-11T18:10:00Z,LAA @ MIN,MIN,LAA,Joe Ryan,Ryan Johnson,657746,696270,1.01,,,,,,,,,,,,,,,,,,,0.77,1.97,8,0.268,40,,,2,0.002,2
+824576,2026-07-11T18:10:00Z,ATH @ CWS,CWS,ATH,Bryan Hudson,Gage Jump,663542,695611,0.97,,,,,,,,,,,,,,,,,,,6.1,6.1,5,0.449,8,,,1,,2
+823198,2026-07-11T20:05:00Z,COL @ SF,SF,COL,Tyler Mahle,Kyle Freeland,641816,607536,0.95,,,,,,,,,,,,,,,,,,,1.14,2.75,11,0.251,32,5.9,3.53,7,0.388,49
+822711,2026-07-11T20:05:00Z,NYY @ WSH,WSH,NYY,PJ Poulin,Cam Schlittler,676571,693645,1.0,,,,,,,,,,,,,,,,,,,3.96,6.3,10,0.375,8,0.43,1.34,6,0.291,12
+823603,2026-07-11T20:10:00Z,BOS @ NYM,NYM,BOS,Freddy Peralta,Eduardo Rivera,642547,700842,0.98,,,,,,,,,,,,,,,,,,,8.43,1.13,6,0.391,17,,,0,,0
+822953,2026-07-11T20:10:00Z,SEA @ TB,TB,SEA,Griffin Jax,Logan Gilbert,643377,669302,0.97,,,,,,,,,,,,,,,,,,,6.24,4.72,11,0.281,39,2.66,3.09,6,0.221,25
+823844,2026-07-11T20:10:00Z,CLE @ MIA,MIA,CLE,Eury Pérez,Tanner Bibee,691587,676440,0.95,,,,,,,,,,,,,,,,,,,5.6,0.47,7,0.262,14,1.85,3.9,6,0.181,17
+824249,2026-07-11T22:10:00Z,PHI @ DET,DET,PHI,Casey Mize,Cristopher Sánchez,663554,650911,0.99,,,,,,,,,,,,,,,,,,,8.38,2.22,9,0.328,31,1.24,1.63,6,0.194,23
+824813,2026-07-11T23:05:00Z,KC @ BAL,BAL,KC,Kyle Bradish,Noah Cameron,680694,702070,1.01,,,,,,,,,,,,,,,,,,,6.1,5.14,9,0.425,23,6.1,7.12,3,0.366,5
+822875,2026-07-11T23:05:00Z,HOU @ TEX,TEX,HOU,Kumar Rocker,Peter Lambert,677958,663567,1.02,,,,,,,,,,,,,,,,,,,4.9,3.12,8,0.266,18,6.38,3.88,10,0.296,39
+824492,2026-07-11T23:10:00Z,CHC @ CIN,CIN,CHC,Nick Lodolo,Javier Assad,666157,665871,1.04,,,,,,,,,,,,,,,,,,,4.4,4.25,9,0.316,83,3.65,2.79,8,0.228,55
+823030,2026-07-11T23:15:00Z,ATL @ STL,STL,ATL,Matthew Liberatore,Reynaldo López,669461,625643,0.99,,,,,,,,,,,,,,,,,,,3.1,3.15,11,0.284,44,1.67,2.84,9,0.267,22
+823276,2026-07-12T00:40:00Z,TOR @ SD,SD,TOR,Walker Buehler,Trey Yesavage,621111,702056,0.95,,,,,,,,,,,,,,,,,,,6.1,3.6,8,0.372,38,,,0,,0
+823926,2026-07-12T01:10:00Z,AZ @ LAD,LAD,AZ,Yoshinobu Yamamoto,Brandon Pfaadt,808967,694297,0.96,,,,,,,,,,,,,,,,,,,3.33,2.61,9,0.199,84,4.66,3.39,13,0.329,121
