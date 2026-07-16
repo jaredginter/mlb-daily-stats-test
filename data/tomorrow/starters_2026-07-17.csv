@@ -1,15 +1,15 @@
-game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-824766,2026-07-17T17:35:00Z,TB @ BOS,BOS,TB,TBD,Griffin Jax,,643377.0,1.03,,,,,,,,,,,,,,,,,,,,,,,,2.84,1.86,10.0,0.246,31.0
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
+824766,2026-07-17T17:35:00Z,TB @ BOS,BOS,TB,Jake Bennett,Griffin Jax,687562.0,643377.0,1.03,,,,,,,,,,,,,,,,,,,3.21,4.27,9.0,0.286,33.0,2.84,1.86,10.0,0.246,31.0
 824737,2026-07-17T23:10:00Z,TB @ BOS,BOS,TB,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 823524,2026-07-17T23:05:00Z,LAD @ NYY,NYY,LAD,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-824414,2026-07-17T23:10:00Z,PIT @ CLE,CLE,PIT,Gavin Williams,Jared Jones,668909.0,683003.0,0.97,,,,,,,,,,,,,,,,,,,5.0,0.441,23.0,5.96,2.31,13.63,5.93,2.0,0.657,7.0
-824901,2026-07-17T23:15:00Z,TEX @ ATL,ATL,TEX,Chris Sale,TBD,519242.0,,0.98,,,,,,,,,,,,,,,,,,,7.0,0.236,28.0,1.51,2.36,,,,,
-822789,2026-07-17T23:15:00Z,CWS @ TOR,TOR,CWS,Spencer Miles,Anthony Kay,693686.0,641743.0,1.0,,,,,,,,,,,,,,,,,,,5.0,0.239,5.0,1.6,3.65,6.74,5.13,7.0,0.449,17.0
+824414,2026-07-17T23:10:00Z,PIT @ CLE,CLE,PIT,Gavin Williams,Jared Jones,668909.0,683003.0,0.97,,,,,,,,,,,,,,,,,,,5.96,2.31,5.0,0.441,23.0,13.63,5.93,2.0,0.657,7.0
+824901,2026-07-17T23:15:00Z,TEX @ ATL,ATL,TEX,Chris Sale,TBD,519242.0,,0.98,,,,,,,,,,,,,,,,,,,1.51,2.36,7.0,0.236,28.0,,,,,
+822789,2026-07-17T23:15:00Z,CWS @ TOR,TOR,CWS,Spencer Miles,Anthony Kay,693686.0,641743.0,1.0,,,,,,,,,,,,,,,,,,,1.6,3.65,5.0,0.239,5.0,6.74,5.13,7.0,0.449,17.0
 823766,2026-07-17T23:40:00Z,MIA @ MIL,MIL,MIA,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-824655,2026-07-18T00:05:00Z,MIN @ CHC,CHC,MIN,Colin Rea,TBD,607067.0,,1.02,,,,,,,,,,,,,,,,,,,8.0,0.295,26.0,4.0,3.48,,,,,
+824655,2026-07-18T00:05:00Z,MIN @ CHC,CHC,MIN,Colin Rea,TBD,607067.0,,1.02,,,,,,,,,,,,,,,,,,,4.0,3.48,8.0,0.295,26.0,,,,,
 824170,2026-07-18T00:10:00Z,BAL @ HOU,HOU,BAL,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-824090,2026-07-18T00:10:00Z,SD @ KC,KC,SD,Seth Lugo,Michael King,607625.0,650633.0,0.98,,,,,,,,,,,,,,,,,,,9.0,0.318,55.0,4.74,3.01,2.51,3.22,9.0,0.307,33.0
-824332,2026-07-18T00:40:00Z,CIN @ COL,COL,CIN,TBD,Brady Singer,,663903.0,1.22,,,,,,,,,,,,,,,,,,,,,,,,2.97,2.58,12.0,0.28,56.0
+824090,2026-07-18T00:10:00Z,SD @ KC,KC,SD,Seth Lugo,Michael King,607625.0,650633.0,0.98,,,,,,,,,,,,,,,,,,,4.74,3.01,9.0,0.318,55.0,2.51,3.22,9.0,0.307,33.0
+824332,2026-07-18T00:40:00Z,CIN @ COL,COL,CIN,Gabriel Hughes,Brady Singer,687312.0,663903.0,1.22,,,,,,,,,,,,,,,,,,,,,1.0,,1.0,2.97,2.58,12.0,0.28,56.0
 824009,2026-07-18T01:38:00Z,DET @ LAA,LAA,DET,TBD,Troy Melton,,675512.0,0.97,,,,,,,,,,,,,,,,,,,,,,,,10.9,4.74,5.0,0.353,6.0
 824981,2026-07-18T01:40:00Z,WSH @ ATH,ATH,WSH,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 825060,2026-07-18T01:40:00Z,STL @ AZ,AZ,STL,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,,,,,,,,,,
