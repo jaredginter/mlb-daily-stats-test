@@ -1,0 +1,6 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Kyle Manzardo,700932,3,2025,0.333,1,0.626,0.5,0.167,95.7
+Daniel Schneemann,682177,2,2025,0.5,0,0.549,1.0,0.0,97.8
+Steven Kwan,680757,3,2025,0.333,0,0.302,0.0,0.0,79.1
+Rhys Hoskins,656555,4,2025,0.25,0,0.241,0.0,0.2,71.2
+Brayan Rocchio,677587,2,2025,0.0,0,0.078,0.0,0.0,79.4
