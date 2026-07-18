@@ -1,10 +1,10 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 822786,2026-07-19T16:15:00Z,CWS @ TOR,TOR,CWS,Trey Yesavage,Sean Burke,702056.0,680732.0,1.0,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,4.42,3.68,9.0,0.349,32.0
-823523,2026-07-19T16:35:00Z,LAD @ NYY,NYY,LAD,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-823521,2026-07-19T23:20:00Z,LAD @ NYY,NYY,LAD,Cam Schlittler,Yoshinobu Yamamoto,693645.0,808967.0,1.05,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,4.59,2.84,9.0,0.413,41.0
+823523,2026-07-19T16:35:00Z,LAD @ NYY,NYY,LAD,TBD,Yoshinobu Yamamoto,,808967.0,1.05,,,,,,,,,,,,,,,,,,,,,,,,4.59,2.84,9.0,0.413,41.0
+823521,2026-07-19T23:20:00Z,LAD @ NYY,NYY,LAD,Cam Schlittler,TBD,693645.0,,1.05,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,,,,,
 824739,2026-07-19T17:35:00Z,TB @ BOS,BOS,TB,Sonny Gray,Shane McClanahan,543243.0,663556.0,1.03,,,,,,,,,,,,,,,,,,,3.73,3.13,8.0,0.28,37.0,0.58,1.4,10.0,0.223,28.0
 823439,2026-07-19T17:35:00Z,NYM @ PHI,PHI,NYM,Alan Rangel,Nolan McLean,660604.0,690997.0,1.02,,,,,,,,,,,,,,,,,,,3.1,5.97,8.0,0.302,15.0,2.35,3.37,7.0,0.263,28.0
-824897,2026-07-19T17:35:00Z,TEX @ ATL,ATL,TEX,Grant Holmes,TBD,656550.0,,0.98,,,,,,,,,,,,,,,,,,,6.33,2.22,7.0,0.427,22.0,,,,,
+824897,2026-07-19T17:35:00Z,TEX @ ATL,ATL,TEX,Grant Holmes,Nathan Eovaldi,656550.0,543135.0,0.98,,,,,,,,,,,,,,,,,,,6.33,2.22,7.0,0.427,22.0,2.44,3.33,8.0,0.342,61.0
 824411,2026-07-19T17:40:00Z,PIT @ CLE,CLE,PIT,Joey Cantillo,Paul Skenes,676282.0,694973.0,0.97,,,,,,,,,,,,,,,,,,,1.6,2.62,2.0,0.202,4.0,6.1,3.02,5.0,0.359,14.0
 824168,2026-07-19T18:10:00Z,BAL @ HOU,HOU,BAL,Hunter Brown,Kyle Bradish,686613.0,680694.0,1.03,,,,,,,,,,,,,,,,,,,5.2,4.22,7.0,0.354,42.0,2.51,2.9,10.0,0.323,54.0
 824086,2026-07-19T18:10:00Z,SD @ KC,KC,SD,Noah Cameron,Germán Márquez,702070.0,608566.0,0.98,,,,,,,,,,,,,,,,,,,5.16,4.26,7.0,0.452,22.0,4.78,3.48,11.0,0.308,60.0
