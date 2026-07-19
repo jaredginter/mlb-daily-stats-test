@@ -1,12 +1,12 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824410,2026-07-20T22:40:00Z,MIN @ CLE,CLE,MIN,Tanner Bibee,Joe Ryan,676440.0,657746.0,0.97,,,,,,,,,,,,,,,,,,,1.73,2.52,12.0,0.258,65.0,3.34,3.5,11.0,0.316,80.0
 823522,2026-07-20T23:05:00Z,PIT @ NYY,NYY,PIT,Ryan Weathers,Braxton Ashcraft,677960.0,677952.0,1.05,,,,,,,,,,,,,,,,,,,3.31,4.45,7.0,0.22,21.0,,,0.0,,0.0
-822788,2026-07-20T23:07:00Z,TB @ TOR,TOR,TB,Dylan Cease,TBD,656302.0,,1.0,,,,,,,,,,,,,,,,,,,3.96,4.76,12.0,0.315,69.0,,,,,
-824736,2026-07-20T23:10:00Z,BAL @ BOS,BOS,BAL,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-823436,2026-07-20T23:10:00Z,LAD @ PHI,PHI,LAD,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+822788,2026-07-20T23:07:00Z,TB @ TOR,TOR,TB,Dylan Cease,Nick Martinez,656302.0,607259.0,1.0,,,,,,,,,,,,,,,,,,,3.96,4.76,12.0,0.315,69.0,8.18,4.41,11.0,0.322,67.0
+824736,2026-07-20T23:10:00Z,BAL @ BOS,BOS,BAL,Payton Tolle,TBD,801139.0,,1.03,,,,,,,,,,,,,,,,,,,2.7,4.06,8.0,0.29,22.0,,,,,
+823436,2026-07-20T23:10:00Z,LAD @ PHI,PHI,LAD,TBD,Emmet Sheehan,,686218.0,1.02,,,,,,,,,,,,,,,,,,,,,,,,2.04,3.25,6.0,0.251,19.0
 824898,2026-07-20T23:15:00Z,SD @ ATL,ATL,SD,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 824087,2026-07-20T23:40:00Z,SF @ KC,KC,SF,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-823762,2026-07-20T23:40:00Z,NYM @ MIL,MIL,NYM,Brandon Sproat,Freddy Peralta,687075.0,642547.0,1.0,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,0.17,0.68,3.0,0.394,12.0
+823762,2026-07-20T23:40:00Z,NYM @ MIL,MIL,NYM,Jacob Misiorowski,Freddy Peralta,694819.0,642547.0,1.0,,,,,,,,,,,,,,,,,,,13.1,7.96,5.0,0.381,7.0,0.17,0.68,3.0,0.394,12.0
 824654,2026-07-21T00:05:00Z,DET @ CHC,CHC,DET,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 822874,2026-07-21T00:05:00Z,CWS @ TEX,TEX,CWS,TBD,Erick Fedde,,607200.0,1.02,,,,,,,,,,,,,,,,,,,,,,,,2.77,3.37,11.0,0.237,52.0
 824167,2026-07-21T00:10:00Z,MIA @ HOU,HOU,MIA,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,,,,,,,,,,
