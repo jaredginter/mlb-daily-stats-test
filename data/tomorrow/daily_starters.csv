@@ -1,6 +1,6 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp
 824409,2026-07-21T22:40:00Z,MIN @ CLE,CLE,MIN,Parker Messick,TBD,800048.0,,0.97,,,,,,,,,,,,,,,,,,,0.96,2.32,8.0,0.242,30.0,,,,,
-823437,2026-07-21T22:40:00Z,LAD @ PHI,PHI,LAD,Zack Wheeler,TBD,554430.0,,1.02,,,,,,,,,,,,,,,,,,,5.93,3.7,11.0,0.308,110.0,,,,,
+823437,2026-07-21T22:40:00Z,LAD @ PHI,PHI,LAD,Zack Wheeler,Eric Lauer,554430.0,641778.0,1.02,,,,,,,,,,,,,,,,,,,5.93,3.7,11.0,0.308,110.0,11.0,0.3,54.0,4.53,3.26
 823519,2026-07-21T23:05:00Z,PIT @ NYY,NYY,PIT,Will Warren,Bubba Chandler,701542.0,696149.0,1.05,,,,,,,,,,,,,,,,,,,5.41,0.35,7.0,0.303,24.0,7.0,,6.0,3.85,4.87
 822787,2026-07-21T23:07:00Z,TB @ TOR,TOR,TB,Kevin Gausman,Drew Rasmussen,592332.0,656876.0,1.0,,,,,,,,,,,,,,,,,,,2.89,2.83,11.0,0.333,97.0,12.0,0.309,86.0,4.54,3.48
 824735,2026-07-21T23:10:00Z,BAL @ BOS,BOS,BAL,TBD,Kyle Bradish,,680694.0,1.03,,,,,,,,,,,,,,,,,,,,,,,,9.0,0.394,37.0,7.2,2.96
