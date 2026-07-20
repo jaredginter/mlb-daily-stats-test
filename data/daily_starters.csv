@@ -1,5 +1,5 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-824410,2026-07-20T22:40:00Z,MIN @ CLE,CLE,MIN,Tanner Bibee,Joe Ryan,676440,657746,0.97,,,,,,,,,,,,,,,,,,,1.73,2.52,12,0.258,65,3.34,3.5,11,0.316,80
+824410,2026-07-20T22:40:00Z,MIN @ CLE,CLE,MIN,Tanner Bibee,Joe Ryan,676440,657746,0.97,,,,,,,,,,,,,,,,,,,2.66,2.48,12,0.243,76,3.34,3.5,11,0.316,80
 823522,2026-07-20T23:05:00Z,PIT @ NYY,NYY,PIT,Ryan Weathers,Braxton Ashcraft,677960,677952,1.05,,,,,,,,,,,,,,,,,,,3.31,4.45,7,0.22,21,,,0,,0
 822788,2026-07-20T23:07:00Z,TB @ TOR,TOR,TB,Dylan Cease,Nick Martinez,656302,607259,1.0,,,,,,,,,,,,,,,,,,,3.96,4.76,12,0.315,69,8.18,4.41,11,0.322,67
 824736,2026-07-20T23:10:00Z,BAL @ BOS,BOS,BAL,Payton Tolle,Shane Baz,801139,669358,1.03,,,,,,,,,,,,,,,,,,,2.7,4.06,8,0.29,22,1.68,2.38,9,0.199,57
