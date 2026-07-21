@@ -1,16 +1,16 @@
-game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp
-824409,2026-07-21T22:40:00Z,MIN @ CLE,CLE,MIN,Parker Messick,TBD,800048.0,,0.97,,,,,,,,,,,,,,,,,,,0.91,2.17,9.0,0.25,36.0,,,,,
-823437,2026-07-21T22:40:00Z,LAD @ PHI,PHI,LAD,Zack Wheeler,Justin Wrobleski,554430.0,680736.0,1.02,,,,,,,,,,,,,,,,,,,5.93,3.7,11.0,0.308,110.0,9.0,0.3,24.0,4.77,2.03
-823519,2026-07-21T23:05:00Z,PIT @ NYY,NYY,PIT,Will Warren,Bubba Chandler,701542.0,696149.0,1.05,,,,,,,,,,,,,,,,,,,5.41,0.35,7.0,0.303,24.0,7.0,,6.0,3.85,4.87
-822787,2026-07-21T23:07:00Z,TB @ TOR,TOR,TB,Kevin Gausman,Drew Rasmussen,592332.0,656876.0,1.0,,,,,,,,,,,,,,,,,,,2.89,2.83,11.0,0.333,97.0,12.0,0.309,86.0,4.54,3.48
-824735,2026-07-21T23:10:00Z,BAL @ BOS,BOS,BAL,Ranger Suarez,Kyle Bradish,624133.0,680694.0,1.03,,,,,,,,,,,,,,,,,,,4.32,4.55,13.0,0.317,52.0,9.0,0.394,37.0,7.2,2.96
-824895,2026-07-21T23:15:00Z,SD @ ATL,ATL,SD,Reynaldo López,Walker Buehler,625643.0,621111.0,0.98,,,,,,,,,,,,,,,,,,,3.71,3.56,10.0,0.385,76.0,10.0,0.418,79.0,2.78,3.47
-824085,2026-07-21T23:40:00Z,SF @ KC,KC,SF,Luinder Avila,Tyler Mahle,679883.0,641816.0,0.98,,,,,,,,,,,,,,,,,,,,,2.0,,2.0,8.0,0.274,52.0,3.62,3.36
-823760,2026-07-21T23:40:00Z,NYM @ MIL,MIL,NYM,Brandon Sproat,Zac Thornton,687075.0,804267.0,1.0,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,0.0,,0.0,,
-824652,2026-07-22T00:05:00Z,DET @ CHC,CHC,DET,David Peterson,Framber Valdez,656849.0,664285.0,1.02,,,,,,,,,,,,,,,,,,,10.33,4.17,3.0,0.417,8.0,8.0,0.236,37.0,1.55,1.93
-822871,2026-07-22T00:05:00Z,CWS @ TEX,TEX,CWS,TBD,Noah Schultz,,702273.0,1.02,,,,,,,,,,,,,,,,,,,,,,,,1.0,0.252,2.0,,
-824165,2026-07-22T00:10:00Z,MIA @ HOU,HOU,MIA,Tatsuya Imai,Tyler Phillips,837227.0,663969.0,1.03,,,,,,,,,,,,,,,,,,,1.6,2.42,7.0,,10.0,6.0,0.016,7.0,1.1,1.78
-824329,2026-07-22T00:40:00Z,WSH @ COL,COL,WSH,Michael Lorenzen,Miles Mikolas,547179.0,571945.0,1.22,,,,,,,,,,,,,,,,,,,5.77,4.62,9.0,0.247,18.0,9.0,0.24,33.0,1.81,2.4
-824005,2026-07-22T01:38:00Z,STL @ LAA,LAA,STL,Walbert Ureña,Matthew Liberatore,700712.0,669461.0,0.97,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,10.0,0.289,24.0,1.75,2.36
-825056,2026-07-22T01:40:00Z,ATH @ AZ,AZ,ATH,TBD,Jack Perkins,,678022.0,1.05,,,,,,,,,,,,,,,,,,,,,,,,3.0,0.333,5.0,,
-823114,2026-07-22T01:40:00Z,CIN @ SEA,SEA,CIN,Luis Castillo,Chase Burns,622491.0,695505.0,0.97,,,,,,,,,,,,,,,,,,,5.38,3.8,8.0,0.305,48.0,0.0,,0.0,,
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
+824409,2026-07-21T22:40:00Z,MIN @ CLE,CLE,MIN,Parker Messick,Kendry Rojas,800048.0,696070,0.97,,,,,,,,,,,,,,,,,,,0.91,2.17,9.0,0.25,36.0,7.02,4.97,9,0.281,19
+823437,2026-07-21T22:40:00Z,LAD @ PHI,PHI,LAD,Zack Wheeler,Justin Wrobleski,554430.0,680736,1.02,,,,,,,,,,,,,,,,,,,5.93,3.7,11.0,0.308,110.0,4.77,2.03,9,0.3,24
+823519,2026-07-21T23:05:00Z,PIT @ NYY,NYY,PIT,Will Warren,Bubba Chandler,701542.0,696149,1.05,,,,,,,,,,,,,,,,,,,5.41,0.35,7.0,0.303,24.0,3.85,4.87,7,,6
+822787,2026-07-21T23:07:00Z,TB @ TOR,TOR,TB,Kevin Gausman,Drew Rasmussen,592332.0,656876,1.0,,,,,,,,,,,,,,,,,,,2.89,2.83,11.0,0.333,97.0,4.54,3.48,12,0.309,86
+824735,2026-07-21T23:10:00Z,BAL @ BOS,BOS,BAL,Ranger Suarez,Kyle Bradish,624133.0,680694,1.03,,,,,,,,,,,,,,,,,,,4.32,4.55,13.0,0.317,52.0,7.2,2.96,9,0.394,37
+824895,2026-07-21T23:15:00Z,SD @ ATL,ATL,SD,Reynaldo López,Walker Buehler,625643.0,621111,0.98,,,,,,,,,,,,,,,,,,,3.71,3.56,10.0,0.385,76.0,2.78,3.47,10,0.418,79
+824085,2026-07-21T23:40:00Z,SF @ KC,KC,SF,Luinder Avila,Tyler Mahle,679883.0,641816,0.98,,,,,,,,,,,,,,,,,,,,,2.0,,2.0,3.62,3.36,8,0.274,52
+823760,2026-07-21T23:40:00Z,NYM @ MIL,MIL,NYM,Brandon Sproat,Zac Thornton,687075.0,804267,1.0,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,,,0,,0
+824652,2026-07-22T00:05:00Z,DET @ CHC,CHC,DET,David Peterson,Framber Valdez,656849.0,664285,1.02,,,,,,,,,,,,,,,,,,,10.33,4.17,3.0,0.417,8.0,1.55,1.93,8,0.236,37
+822871,2026-07-22T00:05:00Z,CWS @ TEX,TEX,CWS,Kumar Rocker,Noah Schultz,677958.0,702273,1.02,,,,,,,,,,,,,,,,,,,1.6,2.62,4.0,0.115,9.0,,,1,0.252,2
+824165,2026-07-22T00:10:00Z,MIA @ HOU,HOU,MIA,Tatsuya Imai,Tyler Phillips,837227.0,663969,1.03,,,,,,,,,,,,,,,,,,,1.6,2.42,7.0,,10.0,1.1,1.78,6,0.016,7
+824329,2026-07-22T00:40:00Z,WSH @ COL,COL,WSH,Michael Lorenzen,Miles Mikolas,547179.0,571945,1.22,,,,,,,,,,,,,,,,,,,5.77,4.62,9.0,0.247,18.0,1.81,2.4,9,0.24,33
+824005,2026-07-22T01:38:00Z,STL @ LAA,LAA,STL,Walbert Ureña,Matthew Liberatore,700712.0,669461,0.97,,,,,,,,,,,,,,,,,,,,,0.0,,0.0,1.75,2.36,10,0.289,24
+825056,2026-07-22T01:40:00Z,ATH @ AZ,AZ,ATH,TBD,Jack Perkins,,678022,1.05,,,,,,,,,,,,,,,,,,,,,,,,,,3,0.333,5
+823114,2026-07-22T01:40:00Z,CIN @ SEA,SEA,CIN,Luis Castillo,Chase Burns,622491.0,695505,0.97,,,,,,,,,,,,,,,,,,,5.38,3.8,8.0,0.305,48.0,,,0,,0
