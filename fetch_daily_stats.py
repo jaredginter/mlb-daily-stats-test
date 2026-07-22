@@ -187,6 +187,61 @@ def fetch_team_offense(season=None):
         return {}
 
 
+def fetch_last_ten_records():
+    """
+    Pull each team's last-10 record from the MLB standings endpoint.
+
+    Returns {team_abbreviation: (wins, losses)} for all 30 teams, or {}
+    on any failure — callers must treat the empty dict as "unavailable"
+    rather than "0-0".
+
+    Keyed by abbreviation to match the rest of the pipeline. The standings
+    payload nests the last-10 split under:
+        records[].teamRecords[].records.splitRecords[] where type == "lastTen"
+    """
+    url = "https://statsapi.mlb.com/api/v1/standings"
+    params = {
+        "leagueId":       "103,104",
+        "season":         date.today().year,
+        "standingsTypes": "byDivision",
+        "hydrate":        "team",
+    }
+
+    log.info("Fetching last-10 records from MLB standings ...")
+    try:
+        r = requests.get(url, params=params, timeout=15)
+        r.raise_for_status()
+        divisions = r.json().get("records", [])
+    except Exception as exc:
+        log.error("Failed to fetch standings: %s", exc)
+        return {}
+
+    result = {}
+    for division in divisions:
+        for tr in division.get("teamRecords", []):
+            team = tr.get("team", {})
+            abbr = team.get("abbreviation")
+            if not abbr:
+                # Standings sometimes returns un-hydrated team stubs.
+                # Fall back to the ID so the caller can still map it.
+                tid = team.get("id")
+                if tid is None:
+                    continue
+                abbr = f"__id_{tid}"
+
+            splits = tr.get("records", {}).get("splitRecords", [])
+            for s in splits:
+                if s.get("type") == "lastTen":
+                    try:
+                        result[abbr] = (int(s.get("wins", 0)), int(s.get("losses", 0)))
+                    except (TypeError, ValueError):
+                        pass
+                    break
+
+    log.info("  Last-10 records fetched for %d teams", len(result))
+    return result
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Pitcher game log
 # ─────────────────────────────────────────────────────────────────────────────
@@ -314,10 +369,6 @@ def compute_hitter_splits(pitcher_df, batter_mlbam_id):
     }
 
 
-# League-average HR per fly ball rate (Statcast era average, ~10.5%).
-# xFIP substitutes this for actual HRs to remove HR/FB luck from FIP.
-LG_HR_FB_RATE = 0.105
-
 # FIP constant by season (league average — close enough for display purposes)
 # Updated through 2025; defaults to 3.10 for unknown seasons
 FIP_CONSTANTS = {
@@ -329,17 +380,10 @@ FIP_CONSTANTS = {
 
 def compute_pitcher_fip_vs_team(pitcher_df, opposing_batter_ids):
     """
-    Compute a pitcher's FIP and xFIP against a specific set of batters (the
-    opposing team) using only plate appearance ending events from the Statcast data.
+    Compute a pitcher's FIP against a specific set of batters (the opposing team)
+    using only plate appearance ending events from the Statcast data.
 
-    FIP  = ((13 × HR) + (3 × BB) - (2 × K)) / IP + FIP_constant
-    xFIP = ((13 × (FB × LG_HR_FB_RATE)) + (3 × BB) - (2 × K)) / IP + FIP_constant
-
-    xFIP replaces actual HRs with expected HRs based on the pitcher's fly-ball
-    count and the league-average HR/FB rate, removing HR luck from the equation.
-
-    Returns a dict {"fip": float|None, "xfip": float|None}, or None if there
-    is insufficient data.
+    FIP = ((13 x HR) + (3 x BB) - (2 x K)) / IP + FIP_constant
     """
     if pitcher_df.empty or not opposing_batter_ids:
         return None
@@ -359,18 +403,8 @@ def compute_pitcher_fip_vs_team(pitcher_df, opposing_batter_ids):
     bb = pa_endings["events"].isin(["walk", "intent_walk"]).sum()
     k  = pa_endings["events"].isin(["strikeout", "strikeout_double_play"]).sum()
 
-    # Fly balls for xFIP: count from batted ball events only (where bb_type is meaningful).
-    # bb_type is populated on contact (type == "X"); counting it across all pitches
-    # would include NaN rows and silently return 0 fly balls.
-    # If the column is absent entirely, set xfip to None rather than computing with 0 FBs.
-    has_bb_type = "bb_type" in vs.columns
-    if has_bb_type:
-        bbe_rows = vs[vs["type"] == "X"] if "type" in vs.columns else vs
-        fb = (bbe_rows["bb_type"] == "fly_ball").sum()
-    else:
-        fb = None  # signals xFIP cannot be computed
-
     # Estimate innings pitched: each out = 1/3 inning
+    # Outs = AB events that don't result in hit, walk, HBP, or error
     out_events = {
         "field_out", "force_out", "grounded_into_double_play",
         "double_play", "triple_play", "strikeout",
@@ -393,16 +427,7 @@ def compute_pitcher_fip_vs_team(pitcher_df, opposing_batter_ids):
     fip_c = FIP_CONSTANTS.get(season, 3.10)
     fip   = ((13 * hr) + (3 * bb) - (2 * k)) / ip + fip_c
 
-    # xFIP: swap actual HRs for expected HRs (fly balls × league HR/FB rate).
-    # Return None if bb_type was absent so the dashboard shows "—" honestly
-    # rather than silently computing with 0 fly balls.
-    if fb is not None:
-        hr_expected = fb * LG_HR_FB_RATE
-        xfip = round(((13 * hr_expected) + (3 * bb) - (2 * k)) / ip + fip_c, 2)
-    else:
-        xfip = None
-
-    return {"fip": round(fip, 2), "xfip": xfip}
+    return round(fip, 2)
 
 
 def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
@@ -417,41 +442,26 @@ def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
         pitcher_df = statcast_pitcher(STATCAST_ERA_START, today, player_id=pitcher_mlbam_id)
     except Exception as exc:
         log.error("  Failed to fetch pitcher data for %s: %s", pitcher_name, exc)
-        return pd.DataFrame(), None, None
+        return pd.DataFrame(), None
 
     # Guard: ensure we got a proper DataFrame back, not a tuple or None
     if not isinstance(pitcher_df, pd.DataFrame):
         log.warning("  Unexpected return type for %s: %s", pitcher_name, type(pitcher_df))
-        return pd.DataFrame(), None, None
+        return pd.DataFrame(), None
 
     if pitcher_df.empty:
         log.warning("  No Statcast data found for %s", pitcher_name)
-        return pd.DataFrame(), None, None
+        return pd.DataFrame(), None
 
     log.info("  Got %d pitches — slicing by opposing hitters ...", len(pitcher_df))
 
-    # ── DIAGNOSTIC: log column presence and sample values for xFIP debugging ──
-    has_type = "type"    in pitcher_df.columns
-    has_bb   = "bb_type" in pitcher_df.columns
-    log.info("  [DIAG] has 'type' col: %s | has 'bb_type' col: %s", has_type, has_bb)
-    if has_type:
-        log.info("  [DIAG] 'type' value_counts: %s",
-                 pitcher_df["type"].value_counts().to_dict())
-    if has_bb:
-        log.info("  [DIAG] 'bb_type' value_counts: %s",
-                 pitcher_df["bb_type"].value_counts(dropna=False).to_dict())
-    log.info("  [DIAG] all columns: %s", list(pitcher_df.columns))
-    # ── END DIAGNOSTIC ────────────────────────────────────────────────────────
-
-    # Compute FIP and xFIP vs this entire opposing team using the full pitcher_df
-    opposing_ids   = [h["mlbam_id"] for h in hitters]
-    fip_result     = compute_pitcher_fip_vs_team(pitcher_df, opposing_ids)
-    fip_vs_team    = fip_result["fip"]  if fip_result else None
-    xfip_vs_team   = fip_result["xfip"] if fip_result else None
-    if fip_vs_team is not None:
-        log.info("  FIP vs this team: %.2f  xFIP: %.2f", fip_vs_team, xfip_vs_team)
+    # Compute FIP vs this entire opposing team using the full pitcher_df
+    opposing_ids = [h["mlbam_id"] for h in hitters]
+    fip_vs_team  = compute_pitcher_fip_vs_team(pitcher_df, opposing_ids)
+    if fip_vs_team:
+        log.info("  FIP vs this team: %.2f", fip_vs_team)
     else:
-        log.info("  FIP/xFIP vs this team: insufficient data")
+        log.info("  FIP vs this team: insufficient data")
 
     rows = []
     for hitter in hitters:
@@ -466,9 +476,9 @@ def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
             log.info("    No history: %s vs %s", hitter["name"], pitcher_name)
 
     if not rows:
-        return pd.DataFrame(), fip_vs_team, xfip_vs_team
+        return pd.DataFrame(), fip_vs_team
 
-    return pd.DataFrame(rows).sort_values("xwoba", ascending=False, na_position="last"), fip_vs_team, xfip_vs_team
+    return pd.DataFrame(rows).sort_values("xwoba", ascending=False, na_position="last"), fip_vs_team
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -499,6 +509,17 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
     # Fetch team offense once for all games
     team_offense = fetch_team_offense(date.today().year)
 
+    # Fetch last-10 records once for all games (used by the educated-guess
+    # tiebreak in the dashboard). Empty dict on failure — never fatal.
+    last_ten = fetch_last_ten_records()
+
+    def _last_ten_for(abbr, team_id):
+        """Look up by abbreviation, falling back to the __id_ key."""
+        rec = last_ten.get(abbr)
+        if rec is None:
+            rec = last_ten.get(f"__id_{team_id}")
+        return rec if rec else (None, None)
+
     summary_rows = []
 
     for game in starters:
@@ -509,6 +530,9 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
         away_off    = team_offense.get(game["away_team"], {})
         home_off    = team_offense.get(game["home_team"], {})
         park_factor = PARK_FACTORS.get(game["home_team"], 1.00)
+
+        away_l10_w, away_l10_l = _last_ten_for(game["away_team"], game["away_team_id"])
+        home_l10_w, home_l10_l = _last_ten_for(game["home_team"], game["home_team_id"])
 
         row = {
             "game_id":           game_id,
@@ -542,6 +566,11 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
             "home_k_pct":        home_off.get("k_pct"),
             "home_bb_pct":       home_off.get("bb_pct"),
             "home_babip":        home_off.get("babip"),
+            # Last-10 records — educated-guess tiebreak
+            "away_last10_w":     away_l10_w,
+            "away_last10_l":     away_l10_l,
+            "home_last10_w":     home_l10_w,
+            "home_last10_l":     home_l10_l,
         }
 
         # ── Game logs for both pitchers ─────────────────────────────────────
@@ -556,12 +585,11 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
 
         # ── Home pitcher vs away lineup ──────────────────────────────────────
         if game["home_pitcher_id"]:
-            away_hitters                    = get_active_hitters(game["away_team_id"])
-            away_splits, away_fip, away_xfip = get_lineup_splits_vs_pitcher(
+            away_hitters          = get_active_hitters(game["away_team_id"])
+            away_splits, away_fip = get_lineup_splits_vs_pitcher(
                 away_hitters, game["home_pitcher_id"], game["home_pitcher_name"]
             )
-            row["home_pitcher_fip_vs_opp"]  = away_fip
-            row["home_pitcher_xfip_vs_opp"] = away_xfip
+            row["home_pitcher_fip_vs_opp"] = away_fip
             if not away_splits.empty:
                 path = os.path.join(splits_dir, f"{game_id}_away_vs_home_pitcher.csv")
                 away_splits.to_csv(path, index=False)
@@ -574,20 +602,18 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
                 row["away_lineup_avg_xwoba"]     = None
                 row["away_total_abs"]            = 0
         else:
-            row["away_hitters_with_history"]    = None
-            row["away_lineup_avg_xwoba"]        = None
-            row["away_total_abs"]               = None
-            row["home_pitcher_fip_vs_opp"]      = None
-            row["home_pitcher_xfip_vs_opp"]     = None
+            row["away_hitters_with_history"]   = None
+            row["away_lineup_avg_xwoba"]       = None
+            row["away_total_abs"]              = None
+            row["home_pitcher_fip_vs_opp"]     = None
 
         # ── Away pitcher vs home lineup ──────────────────────────────────────
         if game["away_pitcher_id"]:
-            home_hitters                    = get_active_hitters(game["home_team_id"])
-            home_splits, home_fip, home_xfip = get_lineup_splits_vs_pitcher(
+            home_hitters          = get_active_hitters(game["home_team_id"])
+            home_splits, home_fip = get_lineup_splits_vs_pitcher(
                 home_hitters, game["away_pitcher_id"], game["away_pitcher_name"]
             )
-            row["away_pitcher_fip_vs_opp"]  = home_fip
-            row["away_pitcher_xfip_vs_opp"] = home_xfip
+            row["away_pitcher_fip_vs_opp"] = home_fip
             if not home_splits.empty:
                 path = os.path.join(splits_dir, f"{game_id}_home_vs_away_pitcher.csv")
                 home_splits.to_csv(path, index=False)
@@ -599,11 +625,10 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
                 row["home_lineup_avg_xwoba"]     = None
                 row["home_total_abs"]            = 0
         else:
-            row["home_hitters_with_history"]    = None
-            row["home_lineup_avg_xwoba"]        = None
-            row["home_total_abs"]               = None
-            row["away_pitcher_fip_vs_opp"]      = None
-            row["away_pitcher_xfip_vs_opp"]     = None
+            row["home_hitters_with_history"]   = None
+            row["home_lineup_avg_xwoba"]       = None
+            row["home_total_abs"]              = None
+            row["away_pitcher_fip_vs_opp"]     = None
 
         summary_rows.append(row)
 
