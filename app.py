@@ -598,6 +598,98 @@ def sample_size_weight(total_abs, n_hitters):
     return min(1.0, base + bonus)
 
 
+EG_MIN_RELIABILITY = 0.90
+EG_MIN_HITTERS     = 5
+
+
+def educated_guess_for_panel(q_label, sample_weight, n_hitters,
+                             batting_team, pitching_team):
+    """
+    Evaluate one panel against the Educated Guess criteria.
+
+    Qualifies only on the two corner cells of the 3x3 heatmap:
+      "... Pitching Strongly Favored"  -> winner = pitching team
+      "... Offense Strongly Favored"   -> winner = batting team
+
+    Returns dict with keys: qualified, winner, reason, sw, n, direction
+    direction is "pitching" or "offense" (None when unqualified).
+    """
+    label = str(q_label or "")
+
+    if "Pitching Strongly Favored" in label:
+        winner, direction = pitching_team, "pitching"
+    elif "Offense Strongly Favored" in label:
+        winner, direction = batting_team, "offense"
+    else:
+        return {"qualified": False, "winner": None, "direction": None,
+                "sw": sample_weight, "n": n_hitters,
+                "reason": "Scenario is not a Strongly Favored outcome."}
+
+    sw = sample_weight if sample_weight is not None else 0.0
+    n  = int(n_hitters) if n_hitters else 0
+
+    fails = []
+    if sw < EG_MIN_RELIABILITY:
+        fails.append(f"reliability {int(round(sw*100))}% "
+                     f"(needs {int(EG_MIN_RELIABILITY*100)}%+)")
+    if n < EG_MIN_HITTERS:
+        fails.append(f"{n} hitters with history (needs {EG_MIN_HITTERS}+)")
+
+    if fails:
+        return {"qualified": False, "winner": None, "direction": direction,
+                "sw": sw, "n": n,
+                "reason": "Strongly Favored, but " + " and ".join(fails) + "."}
+
+    return {"qualified": True, "winner": winner, "direction": direction,
+            "sw": sw, "n": n,
+            "reason": f"{int(round(sw*100))}% reliability across {n} hitters."}
+
+
+def resolve_educated_guess(away_eg, home_eg):
+    """
+    Reconcile the two panel results into one game-level verdict.
+
+    Returns (status, winner, detail) where status is one of:
+      "pick" | "conflict" | "none"
+    """
+    quals = [e for e in (away_eg, home_eg) if e and e["qualified"]]
+
+    if not quals:
+        return "none", None, "No panel met the Strongly Favored criteria."
+
+    if len(quals) == 1:
+        e = quals[0]
+        return "pick", e["winner"], e["reason"]
+
+    a, h = quals
+    if a["winner"] == h["winner"]:
+        return "pick", a["winner"], (
+            f"Both panels independently point to {a['winner']} — "
+            f"{a['reason']} and {h['reason']}"
+        )
+
+    if a["direction"] == h["direction"] == "pitching":
+        why = ("Each starter projects to dominate the lineup he is facing, so "
+               "both sides look strong on the mound and neither offense has an "
+               "edge to separate them.")
+    elif a["direction"] == h["direction"] == "offense":
+        why = ("Each lineup projects to hit its opposing starter hard, so both "
+               "offenses look strong and neither pitching staff has an edge to "
+               "separate them.")
+    else:
+        why = ("One matchup projects a strong offensive edge and the other a "
+               "strong pitching edge, so the two signals cancel rather than "
+               "reinforce.")
+
+    return "conflict", None, (
+        f"Both panels cleared the bar but disagree. "
+        f"{a['winner']} qualifies on the {a['direction']} side "
+        f"({a['reason'].rstrip('.')}), while {h['winner']} qualifies on the "
+        f"{h['direction']} side ({h['reason'].rstrip('.')}). "
+        f"{why} No single winner — treat this game as a pass."
+    )
+
+
 def predict_runs(avg_xwoba, fip_vs_team, splits_df,
                  total_abs=None, n_hitters=None, team_off=None):
     """
@@ -762,6 +854,7 @@ with st.sidebar:
     show_table      = st.toggle("Show hitter table", value=True)
     show_prediction = st.toggle("Show run prediction", value=True)
     show_quadrant   = st.toggle("Show xFIP vs xwOBA quadrant", value=True)
+    show_educated_guess = st.toggle("Show Educated Guess", value=True)
     st.divider()
     if st.button("🔄 Force refresh", use_container_width=True):
         st.cache_data.clear()
@@ -976,6 +1069,8 @@ for _, game in summary.iterrows():
                     """,
                     unsafe_allow_html=True,
                 )
+
+        _panel_eg = {}
 
         col_left, col_div, col_right = st.columns([5, 0.2, 5])
 
@@ -1206,6 +1301,32 @@ for _, game in summary.iterrows():
                             key=f"quadrant_{game_id}_{panel['splits_side']}",
                         )
 
+                        if show_educated_guess:
+                            _eg = educated_guess_for_panel(
+                                q_label, q_sw, n, full_team_name, _pitching_team
+                            )
+                            _eg_bg    = "#1b7e24" if _eg["qualified"] else "rgba(255,255,255,0.04)"
+                            _eg_fg    = "white"   if _eg["qualified"] else "#888"
+                            _eg_txt   = (f"🎓 Educated Guess: {_eg['winner']}"
+                                         if _eg["qualified"] else "No Educated Guess")
+                            st.markdown(
+                                f"""<div style="
+                                    background:{_eg_bg};
+                                    border-radius:8px;
+                                    padding:8px 14px;
+                                    margin:4px 0 10px 0;
+                                ">
+                                    <div style="font-size:0.95em;font-weight:700;color:{_eg_fg};">
+                                        {_eg_txt}
+                                    </div>
+                                    <div style="font-size:0.75em;color:#bbb;margin-top:2px;">
+                                        {_eg['reason']}
+                                    </div>
+                                </div>""",
+                                unsafe_allow_html=True,
+                            )
+                            _panel_eg[panel["splits_side"]] = _eg
+
                 # ── Predicted runs badge ─────────────────────────────────
                 if show_prediction:
                     _splits_preview = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
@@ -1261,6 +1382,37 @@ for _, game in summary.iterrows():
                 "padding-top:3rem;color:#888'>vs</div>",
                 unsafe_allow_html=True,
             )
+
+        # ── Game-level Educated Guess verdict ────────────────────────────
+        if show_educated_guess:
+            _status, _winner, _detail = resolve_educated_guess(
+                _panel_eg.get("away"), _panel_eg.get("home")
+            )
+            if _status == "pick":
+                _c, _icon, _hd = "#1b7e24", "🎓", f"Educated Guess: {_winner}"
+            elif _status == "conflict":
+                _c, _icon, _hd = "#f9a825", "⚠️", "Conflicting Signals — No Pick"
+            else:
+                _c, _icon, _hd = "#556", "—", "No Educated Guess"
+
+            if _status != "none":
+                st.markdown(
+                    f"""<div style="
+                        background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+                        border: 2px solid {_c};
+                        border-radius: 10px;
+                        padding: 12px 18px;
+                        margin-top: 14px;
+                    ">
+                        <div style="font-size:1.25rem;font-weight:700;color:{_c};">
+                            {_icon} {_hd}
+                        </div>
+                        <div style="font-size:0.8rem;color:#bbb;margin-top:4px;line-height:1.45;">
+                            {_detail}
+                        </div>
+                    </div>""",
+                    unsafe_allow_html=True,
+                )
 
 st.divider()
 st.caption(
