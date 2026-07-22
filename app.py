@@ -1070,8 +1070,6 @@ for _, game in summary.iterrows():
                     unsafe_allow_html=True,
                 )
 
-        _panel_eg = {}
-
         col_left, col_div, col_right = st.columns([5, 0.2, 5])
 
         for col, panel in zip([col_left, col_right], panels):
@@ -1325,7 +1323,6 @@ for _, game in summary.iterrows():
                                 </div>""",
                                 unsafe_allow_html=True,
                             )
-                            _panel_eg[panel["splits_side"]] = _eg
 
                 # ── Predicted runs badge ─────────────────────────────────
                 if show_prediction:
@@ -1382,37 +1379,6 @@ for _, game in summary.iterrows():
                 "padding-top:3rem;color:#888'>vs</div>",
                 unsafe_allow_html=True,
             )
-
-        # ── Game-level Educated Guess verdict ────────────────────────────
-        if show_educated_guess:
-            _status, _winner, _detail = resolve_educated_guess(
-                _panel_eg.get("away"), _panel_eg.get("home")
-            )
-            if _status == "pick":
-                _c, _icon, _hd = "#1b7e24", "🎓", f"Educated Guess: {_winner}"
-            elif _status == "conflict":
-                _c, _icon, _hd = "#f9a825", "⚠️", "Conflicting Signals — No Pick"
-            else:
-                _c, _icon, _hd = "#556", "—", "No Educated Guess"
-
-            if _status != "none":
-                st.markdown(
-                    f"""<div style="
-                        background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
-                        border: 2px solid {_c};
-                        border-radius: 10px;
-                        padding: 12px 18px;
-                        margin-top: 14px;
-                    ">
-                        <div style="font-size:1.25rem;font-weight:700;color:{_c};">
-                            {_icon} {_hd}
-                        </div>
-                        <div style="font-size:0.8rem;color:#bbb;margin-top:4px;line-height:1.45;">
-                            {_detail}
-                        </div>
-                    </div>""",
-                    unsafe_allow_html=True,
-                )
 
 st.divider()
 st.caption(
