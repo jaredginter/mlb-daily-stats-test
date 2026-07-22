@@ -690,6 +690,126 @@ def resolve_educated_guess(away_eg, home_eg):
     )
 
 
+def _quadrant_label_for(avg_xwoba, fip, batting_team, pitching_team):
+    """
+    Reproduce just the scenario LABEL from fip_xwoba_quadrant without
+    building the Plotly figure. Used by the slate summary table so the
+    top-of-page verdict always matches the per-matchup tile below.
+
+    Returns the label string, or None if inputs are unusable.
+    """
+    FIP_LOW, FIP_HIGH = 3.40, 4.50
+    XW_LOW,  XW_HIGH  = 0.290, 0.340
+
+    try:
+        avg_xwoba = float(avg_xwoba)
+        fip       = float(fip)
+    except (TypeError, ValueError):
+        return None
+    if avg_xwoba != avg_xwoba or fip != fip:   # nan guard
+        return None
+
+    fip_col = 0 if fip < FIP_LOW else (1 if fip <= FIP_HIGH else 2)
+    xw_row  = 0 if avg_xwoba < XW_LOW else (1 if avg_xwoba <= XW_HIGH else 2)
+
+    if (xw_row, fip_col) == (0, 0):
+        return f"{pitching_team} Pitching Strongly Favored"
+    if (xw_row, fip_col) == (2, 2):
+        return f"{batting_team} Offense Strongly Favored"
+    return "not-strongly-favored"
+
+
+def scan_slate_for_guesses(summary_df):
+    """
+    Pre-pass over every game to collect qualifying Educated Guesses
+    for the slate summary table at the top of the dashboard.
+
+    Mirrors the per-panel logic exactly: same quadrant zones, same
+    sample_size_weight, same EG_MIN_* gates. Uses xFIP when the pipeline
+    provides it and falls back to FIP otherwise.
+
+    Returns a list of dicts, one per qualifying panel.
+    """
+    picks = []
+
+    for _, g in summary_df.iterrows():
+        away_abbr = g.get("away_team", "")
+        home_abbr = g.get("home_team", "")
+        away_name = TEAM_NAMES.get(away_abbr, away_abbr)
+        home_name = TEAM_NAMES.get(home_abbr, home_abbr)
+        matchup   = g.get("matchup", f"{away_abbr} @ {home_abbr}")
+
+        # Panel A: home pitcher vs away lineup
+        # Panel B: away pitcher vs home lineup
+        sides = [
+            {
+                "batting_team":  away_name,
+                "pitching_team": home_name,
+                "pitcher":       g.get("home_pitcher_name", "TBD"),
+                "xwoba":         g.get("away_lineup_avg_xwoba"),
+                "fip":           (g.get("home_pitcher_xfip_vs_opp")
+                                  if pd.notna(g.get("home_pitcher_xfip_vs_opp"))
+                                  else g.get("home_pitcher_fip_vs_opp")),
+                "total_abs":     g.get("away_total_abs"),
+                "n":             g.get("away_hitters_with_history"),
+            },
+            {
+                "batting_team":  home_name,
+                "pitching_team": away_name,
+                "pitcher":       g.get("away_pitcher_name", "TBD"),
+                "xwoba":         g.get("home_lineup_avg_xwoba"),
+                "fip":           (g.get("away_pitcher_xfip_vs_opp")
+                                  if pd.notna(g.get("away_pitcher_xfip_vs_opp"))
+                                  else g.get("away_pitcher_fip_vs_opp")),
+                "total_abs":     g.get("home_total_abs"),
+                "n":             g.get("home_hitters_with_history"),
+            },
+        ]
+
+        for s in sides:
+            if not s["pitcher"] or str(s["pitcher"]) == "TBD":
+                continue
+
+            try:
+                n_val = int(s["n"]) if pd.notna(s["n"]) else 0
+            except (TypeError, ValueError):
+                n_val = 0
+            try:
+                abs_val = int(s["total_abs"]) if pd.notna(s["total_abs"]) else 0
+            except (TypeError, ValueError):
+                abs_val = 0
+
+            if n_val <= 0:
+                continue
+
+            label = _quadrant_label_for(
+                s["xwoba"], s["fip"], s["batting_team"], s["pitching_team"]
+            )
+            if label is None:
+                continue
+
+            sw = sample_size_weight(abs_val, n_val)
+            eg = educated_guess_for_panel(
+                label, sw, n_val, s["batting_team"], s["pitching_team"]
+            )
+            if not eg["qualified"]:
+                continue
+
+            picks.append({
+                "matchup":   matchup,
+                "winner":    eg["winner"],
+                "direction": eg["direction"],
+                "pitcher":   s["pitcher"],
+                "xwoba":     s["xwoba"],
+                "fip":       s["fip"],
+                "sw":        sw,
+                "n":         n_val,
+                "abs":       abs_val,
+            })
+
+    return picks
+
+
 def predict_runs(avg_xwoba, fip_vs_team, splits_df,
                  total_abs=None, n_hitters=None, team_off=None):
     """
@@ -918,6 +1038,78 @@ if live_starters:
             "⚠️ **Starter update detected** — the dashboard is refreshing automatically "
             "and will update within ~5 minutes.\n\n" + "\n\n".join(stale_notes)
         )
+
+# ── Educated Guess slate summary ──────────────────────────────────────────────
+# Scans every matchup and surfaces only the panels that clear all three gates:
+#   Strongly Favored scenario · reliability >= 90% · 5+ hitters with history
+
+if show_educated_guess:
+    _slate = scan_slate_for_guesses(summary)
+
+    st.markdown("### 🎓 Educated Guesses — Today's Slate")
+
+    if not _slate:
+        st.info(
+            "**No qualifying Educated Guesses on this slate.** "
+            f"A pick requires a Strongly Favored scenario, "
+            f"{int(EG_MIN_RELIABILITY*100)}%+ quadrant reliability, and "
+            f"{EG_MIN_HITTERS}+ hitters with head-to-head history. "
+            "These are intentionally strict — most days produce few or none."
+        )
+    else:
+        _rows = []
+        for p in _slate:
+            _rows.append({
+                "Matchup":     p["matchup"],
+                "Favored":     p["winner"],
+                "Edge":        "Pitching" if p["direction"] == "pitching" else "Offense",
+                "Key Pitcher": p["pitcher"],
+                "xwOBA":       f"{float(p['xwoba']):.3f}" if pd.notna(p["xwoba"]) else "—",
+                "xFIP":        f"{float(p['fip']):.2f}"   if pd.notna(p["fip"])   else "—",
+                "Reliability": f"{int(round(p['sw']*100))}%",
+                "Hitters":     p["n"],
+                "Career ABs":  p["abs"],
+            })
+
+        _eg_df = pd.DataFrame(_rows)
+
+        _n_games = _eg_df["Matchup"].nunique()
+        st.caption(
+            f"**{len(_eg_df)} qualifying pick{'s' if len(_eg_df) != 1 else ''}** "
+            f"across {_n_games} matchup{'s' if _n_games != 1 else ''} — "
+            f"scroll down for the full breakdown on each."
+        )
+
+        st.dataframe(
+            _eg_df,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "Matchup":     st.column_config.TextColumn(width="medium"),
+                "Favored":     st.column_config.TextColumn(width="medium"),
+                "Edge":        st.column_config.TextColumn(
+                                   help="Pitching = the favored team's starter suppresses the "
+                                        "opposing lineup. Offense = the favored team's lineup "
+                                        "hits the opposing starter hard."),
+                "Reliability": st.column_config.TextColumn(
+                                   help="Sample weight from career ABs vs this pitcher. "
+                                        "Must be 90%+ to qualify."),
+            },
+        )
+
+        # Flag any matchup where both panels qualified but named different winners
+        _by_matchup = {}
+        for p in _slate:
+            _by_matchup.setdefault(p["matchup"], []).append(p["winner"])
+        _conflicts = [m for m, w in _by_matchup.items() if len(set(w)) > 1]
+        if _conflicts:
+            st.warning(
+                "⚠️ **Conflicting signals** in: " + ", ".join(f"**{m}**" for m in _conflicts) +
+                ". Both sides cleared the bar but point to different winners — "
+                "the signals cancel rather than reinforce. Treat these as a pass."
+            )
+
+    st.divider()
 
 # ── Game cards ────────────────────────────────────────────────────────────────
 

@@ -430,6 +430,93 @@ def compute_pitcher_fip_vs_team(pitcher_df, opposing_batter_ids):
     return round(fip, 2)
 
 
+# League average HR/FB rate by season — used for xFIP.
+# HR/FB denominator includes home runs (HR / all fly balls, HR inclusive).
+# Sources: FanGraphs / MLB league splits. Defaults to 0.115 for unknown seasons.
+LEAGUE_HR_FB = {
+    2015: 0.116, 2016: 0.127, 2017: 0.135, 2018: 0.127,
+    2019: 0.153, 2020: 0.146, 2021: 0.139, 2022: 0.118,
+    2023: 0.126, 2024: 0.122, 2025: 0.120, 2026: 0.120,
+}
+DEFAULT_HR_FB = 0.115
+
+
+def compute_pitcher_xfip_vs_team(pitcher_df, opposing_batter_ids):
+    """
+    Compute a pitcher's xFIP against a specific set of batters.
+
+    xFIP is FIP with the pitcher's actual HR total replaced by an expected
+    HR total derived from fly balls allowed and the league HR/FB rate:
+
+        xHR  = FB * lgHR/FB
+        xFIP = ((13 * xHR) + (3 * (BB + HBP)) - (2 * K)) / IP + FIP_constant
+
+    Fly balls are counted from Statcast's bb_type column. Statcast already
+    classifies home runs as fly_ball, which matches the standard HR/FB
+    denominator (fly balls INCLUDING home runs). We defensively union the
+    two sets so any HR that lacks a bb_type label is still counted once.
+
+    Returns a float rounded to 2 decimals, or None when the sample is too
+    thin or the required columns are unavailable.
+    """
+    if pitcher_df.empty or not opposing_batter_ids:
+        return None
+
+    vs = pitcher_df[pitcher_df["batter"].isin(opposing_batter_ids)].copy()
+    if vs.empty:
+        return None
+
+    pa_endings = vs[vs["events"].notna() & (vs["events"] != "")]
+    if pa_endings.empty:
+        return None
+
+    bb  = pa_endings["events"].isin(["walk", "intent_walk"]).sum()
+    hbp = (pa_endings["events"] == "hit_by_pitch").sum()
+    k   = pa_endings["events"].isin(["strikeout", "strikeout_double_play"]).sum()
+
+    # ── Fly balls (HR-inclusive) ─────────────────────────────────────────
+    if "bb_type" not in vs.columns:
+        log.warning("  bb_type column missing — cannot compute xFIP")
+        return None
+
+    is_fb = vs["bb_type"] == "fly_ball"
+    is_hr = vs["events"] == "home_run"
+    # Union: every fly ball, plus any HR not already tagged as a fly ball.
+    fb = int((is_fb | is_hr).sum())
+
+    if fb == 0:
+        # No fly balls allowed to this lineup — xHR is 0, which is a real
+        # (if extreme) result, but with no FB data the estimate is meaningless.
+        return None
+
+    out_events = {
+        "field_out", "force_out", "grounded_into_double_play",
+        "double_play", "triple_play", "strikeout",
+        "strikeout_double_play", "fielders_choice_out",
+        "other_out", "sac_fly", "sac_bunt",
+    }
+    outs = pa_endings["events"].isin(out_events).sum()
+    ip   = outs / 3.0
+
+    if ip < 1.0:
+        return None
+
+    # Season drives both the FIP constant and the league HR/FB rate
+    if "game_date" in vs.columns:
+        years  = pd.to_datetime(vs["game_date"], errors="coerce").dt.year.dropna()
+        season = int(years.mode().iloc[0]) if not years.empty else date.today().year
+    else:
+        season = date.today().year
+
+    fip_c   = FIP_CONSTANTS.get(season, 3.10)
+    hr_fb   = LEAGUE_HR_FB.get(season, DEFAULT_HR_FB)
+    x_hr    = fb * hr_fb
+
+    xfip = ((13 * x_hr) + (3 * (bb + hbp)) - (2 * k)) / ip + fip_c
+
+    return round(xfip, 2)
+
+
 def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
     """
     Fetch the pitcher's full career Statcast data ONCE, then slice per hitter.
@@ -442,26 +529,31 @@ def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
         pitcher_df = statcast_pitcher(STATCAST_ERA_START, today, player_id=pitcher_mlbam_id)
     except Exception as exc:
         log.error("  Failed to fetch pitcher data for %s: %s", pitcher_name, exc)
-        return pd.DataFrame(), None
+        return pd.DataFrame(), None, None
 
     # Guard: ensure we got a proper DataFrame back, not a tuple or None
     if not isinstance(pitcher_df, pd.DataFrame):
         log.warning("  Unexpected return type for %s: %s", pitcher_name, type(pitcher_df))
-        return pd.DataFrame(), None
+        return pd.DataFrame(), None, None
 
     if pitcher_df.empty:
         log.warning("  No Statcast data found for %s", pitcher_name)
-        return pd.DataFrame(), None
+        return pd.DataFrame(), None, None
 
     log.info("  Got %d pitches — slicing by opposing hitters ...", len(pitcher_df))
 
-    # Compute FIP vs this entire opposing team using the full pitcher_df
+    # Compute FIP + xFIP vs this entire opposing team using the full pitcher_df
     opposing_ids = [h["mlbam_id"] for h in hitters]
     fip_vs_team  = compute_pitcher_fip_vs_team(pitcher_df, opposing_ids)
+    xfip_vs_team = compute_pitcher_xfip_vs_team(pitcher_df, opposing_ids)
     if fip_vs_team:
         log.info("  FIP vs this team: %.2f", fip_vs_team)
     else:
         log.info("  FIP vs this team: insufficient data")
+    if xfip_vs_team:
+        log.info("  xFIP vs this team: %.2f", xfip_vs_team)
+    else:
+        log.info("  xFIP vs this team: insufficient data")
 
     rows = []
     for hitter in hitters:
@@ -476,9 +568,10 @@ def get_lineup_splits_vs_pitcher(hitters, pitcher_mlbam_id, pitcher_name):
             log.info("    No history: %s vs %s", hitter["name"], pitcher_name)
 
     if not rows:
-        return pd.DataFrame(), fip_vs_team
+        return pd.DataFrame(), fip_vs_team, xfip_vs_team
 
-    return pd.DataFrame(rows).sort_values("xwoba", ascending=False, na_position="last"), fip_vs_team
+    return (pd.DataFrame(rows).sort_values("xwoba", ascending=False, na_position="last"),
+            fip_vs_team, xfip_vs_team)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -585,11 +678,12 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
 
         # ── Home pitcher vs away lineup ──────────────────────────────────────
         if game["home_pitcher_id"]:
-            away_hitters          = get_active_hitters(game["away_team_id"])
-            away_splits, away_fip = get_lineup_splits_vs_pitcher(
+            away_hitters                      = get_active_hitters(game["away_team_id"])
+            away_splits, away_fip, away_xfip  = get_lineup_splits_vs_pitcher(
                 away_hitters, game["home_pitcher_id"], game["home_pitcher_name"]
             )
-            row["home_pitcher_fip_vs_opp"] = away_fip
+            row["home_pitcher_fip_vs_opp"]  = away_fip
+            row["home_pitcher_xfip_vs_opp"] = away_xfip
             if not away_splits.empty:
                 path = os.path.join(splits_dir, f"{game_id}_away_vs_home_pitcher.csv")
                 away_splits.to_csv(path, index=False)
@@ -606,14 +700,16 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
             row["away_lineup_avg_xwoba"]       = None
             row["away_total_abs"]              = None
             row["home_pitcher_fip_vs_opp"]     = None
+            row["home_pitcher_xfip_vs_opp"]    = None
 
         # ── Away pitcher vs home lineup ──────────────────────────────────────
         if game["away_pitcher_id"]:
-            home_hitters          = get_active_hitters(game["home_team_id"])
-            home_splits, home_fip = get_lineup_splits_vs_pitcher(
+            home_hitters                      = get_active_hitters(game["home_team_id"])
+            home_splits, home_fip, home_xfip  = get_lineup_splits_vs_pitcher(
                 home_hitters, game["away_pitcher_id"], game["away_pitcher_name"]
             )
-            row["away_pitcher_fip_vs_opp"] = home_fip
+            row["away_pitcher_fip_vs_opp"]  = home_fip
+            row["away_pitcher_xfip_vs_opp"] = home_xfip
             if not home_splits.empty:
                 path = os.path.join(splits_dir, f"{game_id}_home_vs_away_pitcher.csv")
                 home_splits.to_csv(path, index=False)
@@ -629,6 +725,7 @@ def build_daily_report(game_date=None, splits_dir=None, logs_dir=None):
             row["home_lineup_avg_xwoba"]       = None
             row["home_total_abs"]              = None
             row["away_pitcher_fip_vs_opp"]     = None
+            row["away_pitcher_xfip_vs_opp"]    = None
 
         summary_rows.append(row)
 
