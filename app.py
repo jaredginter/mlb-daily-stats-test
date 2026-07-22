@@ -136,60 +136,35 @@ def splits_bar_chart(df, pitcher_name, batting_team):
     return fig
 
 
-# ── Matchup zone thresholds ──────────────────────────────────────────────────
-# Single source of truth — used by both the quadrant heatmap and the
-# educated-guess resolver so the two can never drift apart.
-FIP_LOW  = 3.80
-FIP_HIGH = 4.80
-XW_LOW   = 0.300
-XW_HIGH  = 0.340
-
-
-def classify_matchup(avg_xwoba, fip):
-    """
-    Map an (xwOBA, FIP) pair onto the 3x3 grid.
-
-    Returns (xw_row, fip_col) where:
-      fip_col: 0=Low, 1=Avg, 2=High
-      xw_row:  0=Low (bottom), 1=Avg (middle), 2=High (top)
-
-    Returns None if either input is missing or non-numeric.
-    """
-    try:
-        avg_xwoba = float(avg_xwoba)
-        fip       = float(fip)
-    except (TypeError, ValueError):
-        return None
-    # NaN check
-    if avg_xwoba != avg_xwoba or fip != fip:
-        return None
-
-    fip_col = 0 if fip < FIP_LOW else (1 if fip <= FIP_HIGH else 2)
-    xw_row  = 0 if avg_xwoba < XW_LOW else (1 if avg_xwoba <= XW_HIGH else 2)
-    return xw_row, fip_col
-
-
 def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team,
                        total_abs=None, n_hitters=None):
     """
     3×3 heatmap of FIP zones (cols) vs xwOBA zones (rows).
 
-    FIP zones  : Low <3.80 | Avg 3.80–4.80 | High >4.80
-    xwOBA zones: Low <0.300 | Avg 0.300–0.340 | High >0.340
+    FIP zones  : Low ≤3.40 | Avg 3.41–4.50 | High >4.50
+    xwOBA zones: Low ≤0.290 | Avg 0.291–0.340 | High ≥0.350
+
+    NOTE: The "FIP" axis uses xFIP (expected FIP) rather than raw FIP,
+    as xFIP removes HR/FB luck and is a better predictor of future performance.
 
     Active cell is highlighted; scenario label + detail returned for the banner.
     Sample weight drives cell opacity and the reliability metric card.
 
     Returns (fig, label, detail, color, emoji, sw) or None if inputs invalid.
     """
-    # ── Classify into zones (shared helper — see classify_matchup) ───────
-    zones = classify_matchup(avg_xwoba, fip)
-    if zones is None:
-        return None
-    xw_row, fip_col = zones
+    # ── Zone boundaries ──────────────────────────────────────────────────
+    FIP_LOW  = 3.40
+    FIP_HIGH = 4.50
+    XW_LOW   = 0.290
+    XW_HIGH  = 0.340
 
-    avg_xwoba = float(avg_xwoba)
-    fip       = float(fip)
+    try:
+        avg_xwoba = float(avg_xwoba)
+        fip       = float(fip)
+    except (TypeError, ValueError):
+        return None
+    if avg_xwoba != avg_xwoba or fip != fip:
+        return None
 
     # ── Sample weight ────────────────────────────────────────────────────
     sw      = sample_size_weight(total_abs, n_hitters)
@@ -197,49 +172,67 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     abs_str = f"{total_abs} career ABs" if total_abs else "unknown ABs"
     hit_str = f"{n_hitters} hitters"    if n_hitters else "unknown hitters"
 
+    # ── Classify into zones ──────────────────────────────────────────────
+    # fip_col: 0=Low, 1=Avg, 2=High
+    fip_col = 0 if fip < FIP_LOW else (1 if fip <= FIP_HIGH else 2)
+    # xw_row: 0=Low (bottom), 1=Avg (middle), 2=High (top)
+    xw_row  = 0 if avg_xwoba < XW_LOW else (1 if avg_xwoba <= XW_HIGH else 2)
+
     # ── 3×3 scenario table [xw_row][fip_col] ────────────────────────────
     # Colors: green=#43a047, yellow=#f9a825, gray=#607d8b
+    # ── xFIP tier label (used in scenario narratives) ────────────────────
+    def xfip_tier(v):
+        if v < 2.75:  return "elite"
+        if v < 3.00:  return "excellent"
+        if v < 3.25:  return "excellent"
+        if v <= 3.75: return "great"
+        if v <= 4.19: return "average"
+        if v <= 4.50: return "below average"
+        return "poor"
+
+    fip_tier = xfip_tier(fip)
+
     SCENARIOS = {
-        # (xw_row, fip_col): (short_label, color, emoji, detail_fn)
+        # (xw_row, fip_col): (short_label, color, emoji, detail)
         (2, 0): (
             f"{pitching_team} Pitching Holds Edge",
             "#81c784", "🟢",
             f"Contested matchup — {batting_team} hitters make strong contact "
-            f"(xwOBA {avg_xwoba:.3f}) but {pitcher_name} has been elite (FIP {fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) but {pitcher_name} has been {fip_tier} (xFIP {fip:.2f}). "
             f"Hitters have a puncher's chance but the pitcher holds the edge."
         ),
         (2, 1): (
             f"Slight {batting_team} Offensive Edge",
             "#81c784", "🟢",
             f"Slight offensive lean — {batting_team} hitters are making good contact "
-            f"(xwOBA {avg_xwoba:.3f}) against an average FIP pitcher ({fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) against a {fip_tier} xFIP pitcher ({fip:.2f}). "
             f"Mild edge to the offense but far from a slam dunk."
         ),
         (2, 2): (
             f"{batting_team} Offense Strongly Favored",
             "#43a047", "🟢",
             f"High scoring game likely — {batting_team} hitters are squaring up {pitcher_name} "
-            f"(xwOBA {avg_xwoba:.3f}) and the pitcher has struggled vs this lineup (FIP {fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) and the pitcher has a {fip_tier} xFIP ({fip:.2f}). "
             f"Strong indicator to stack the {batting_team} lineup."
         ),
         (1, 0): (
             f"{pitching_team} Pitching Holds Edge",
             "#81c784", "🟢",
             f"Pitcher holds the edge — {batting_team} hitters show average contact quality "
-            f"(xwOBA {avg_xwoba:.3f}) while {pitcher_name} has been elite (FIP {fip:.2f}). "
+            f"(xwOBA {avg_xwoba:.3f}) while {pitcher_name} has been {fip_tier} (xFIP {fip:.2f}). "
             f"Low run environment expected."
         ),
         (1, 1): (
             f"Toss-Up — {batting_team} vs {pitching_team}",
             "#607d8b", "⚪",
             f"True toss-up — both sides are average. {batting_team} hitters at xwOBA {avg_xwoba:.3f} "
-            f"vs {pitcher_name}'s FIP of {fip:.2f}. No clear edge — lean on other factors."
+            f"vs {pitcher_name}'s {fip_tier} xFIP of {fip:.2f}. No clear edge — lean on other factors."
         ),
         (1, 2): (
             f"Slight {batting_team} Offensive Edge",
             "#81c784", "🟢",
             f"Slight offensive lean — average contact quality (xwOBA {avg_xwoba:.3f}) meets a "
-            f"struggling pitcher (FIP {fip:.2f}). Mild advantage to {batting_team} but not a "
+            f"{fip_tier} pitcher (xFIP {fip:.2f}). Mild advantage to {batting_team} but not a "
             f"strong signal on its own."
         ),
         (0, 0): (
@@ -247,18 +240,18 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
             "#43a047", "🟢",
             f"Low scoring game likely — {pitcher_name} dominates this matchup. "
             f"{batting_team} hitters have weak contact quality (xwOBA {avg_xwoba:.3f}) "
-            f"and the pitcher's FIP is elite ({fip:.2f}). Pitcher is firmly in control."
+            f"and the pitcher's xFIP is {fip_tier} ({fip:.2f}). Pitcher is firmly in control."
         ),
         (0, 1): (
             f"{pitching_team} Pitching Holds Edge",
             "#81c784", "🟢",
             f"Pitcher holds the edge — {batting_team} hitters are struggling (xwOBA {avg_xwoba:.3f}) "
-            f"against an average FIP pitcher ({fip:.2f}). Lean toward a quieter offensive game."
+            f"against a {fip_tier} xFIP pitcher ({fip:.2f}). Lean toward a quieter offensive game."
         ),
         (0, 2): (
             f"Mixed Signal — {batting_team} vs {pitching_team}",
             "#f9a825", "🟡",
-            f"Murky matchup — {pitcher_name} is walk- or homer-prone (FIP {fip:.2f}) but "
+            f"Murky matchup — {pitcher_name} has a {fip_tier} xFIP ({fip:.2f}) but "
             f"{batting_team} hitters haven't made strong contact (xwOBA {avg_xwoba:.3f}). "
             f"Unpredictable — lean on other factors before committing."
         ),
@@ -316,8 +309,8 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
     CELL_W = 1.0   # each cell is 1 unit wide/tall in plot space
     GAP    = 0.04  # gap between cells
 
-    col_labels = [f"Low FIP\n(<{FIP_LOW})", f"Avg FIP\n({FIP_LOW}–{FIP_HIGH})", f"High FIP\n(>{FIP_HIGH})"]
-    row_labels = [f"Low xwOBA\n(<{XW_LOW})", f"Avg xwOBA\n({XW_LOW}–{XW_HIGH})", f"High xwOBA\n(>{XW_HIGH})"]
+    col_labels = [f"Low xFIP\n(≤{FIP_LOW})", f"Avg xFIP\n({FIP_LOW}–{FIP_HIGH})", f"High xFIP\n(>{FIP_HIGH})"]
+    row_labels = [f"Low xwOBA\n(≤{XW_LOW})", f"Avg xwOBA\n({XW_LOW}–{XW_HIGH})", f"High xwOBA\n(≥0.350)"]
 
     for row in range(3):
         for col in range(3):
@@ -413,9 +406,9 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
         ),
         showlegend=False,
         title=dict(
-            text=f"Matchup Heatmap — FIP vs xwOBA  "
+            text=f"Matchup Heatmap — xFIP vs xwOBA  "
                  f"<span style='font-size:11px;color:rgba(255,255,255,0.45);'>"
-                 f"(FIP {fip:.2f} · xwOBA {avg_xwoba:.3f})</span>",
+                 f"(xFIP {fip:.2f} · xwOBA {avg_xwoba:.3f})</span>",
             font=dict(size=12),
             x=0.5, xanchor="center",
         ),
@@ -430,7 +423,7 @@ def fip_xwoba_quadrant(avg_xwoba, fip, pitcher_name, batting_team, pitching_team
         marker=dict(size=1, opacity=0),
         hovertemplate=(
             f"<b>{display_emoji} {label}</b><br>"
-            f"FIP vs {batting_team}: <b>{fip:.2f}</b><br>"
+            f"xFIP vs {batting_team}: <b>{fip:.2f}</b><br>"
             f"Lineup avg xwOBA: <b>{avg_xwoba:.3f}</b><br>"
             f"Sample weight: <b>{sw_pct}%</b> ({abs_str} · {hit_str})<br>"
             f"<br><i style='color:#ccc'>{qualifier_note}</i>"
@@ -694,213 +687,6 @@ def predict_runs(avg_xwoba, fip_vs_team, splits_df,
     return round(blended, 1), conf_label, conf_color, inputs_used, round(sw, 2)
 
 
-# ── Educated guess resolver ──────────────────────────────────────────────────
-
-# Qualification gates
-EG_MIN_RELIABILITY = 0.90   # sample weight must clear this
-EG_MIN_HITTERS     = 5      # hitters with history must clear this
-# Near-miss band — shown dimmed so you can see what almost qualified
-EG_NEAR_RELIABILITY = 0.85
-EG_NEAR_HITTERS     = 4
-
-# The only two cells that count as a "Strongly Favored" verdict.
-# (xw_row, fip_col) -> which side the verdict favors
-EG_DECISIVE_CELLS = {
-    (0, 0): "pitching",   # weak contact + elite FIP -> pitcher dominates
-    (2, 2): "batting",    # strong contact + poor FIP -> offense dominates
-}
-
-
-def _last_ten(game, side):
-    """Return (wins, losses) for a side, or None if the columns are absent."""
-    w = game.get(f"{side}_last10_w")
-    l = game.get(f"{side}_last10_l")
-    if w is None or l is None or pd.isna(w) or pd.isna(l):
-        return None
-    try:
-        return int(w), int(l)
-    except (TypeError, ValueError):
-        return None
-
-
-def _evaluate_side(game, pitcher_side):
-    """
-    Evaluate one pitcher's matchup for educated-guess qualification.
-
-    pitcher_side is "home" or "away". The batting side is the opposite.
-    Returns a dict describing the candidate, or None if the matchup
-    doesn't land on a decisive cell at all.
-    """
-    batting_side = "away" if pitcher_side == "home" else "home"
-
-    avg_xwoba = game.get(f"{batting_side}_lineup_avg_xwoba")
-    fip       = game.get(f"{pitcher_side}_pitcher_fip_vs_opp")
-    n_hitters = game.get(f"{batting_side}_hitters_with_history")
-    total_abs = game.get(f"{batting_side}_total_abs")
-
-    zones = classify_matchup(avg_xwoba, fip)
-    if zones is None or zones not in EG_DECISIVE_CELLS:
-        return None
-
-    favors = EG_DECISIVE_CELLS[zones]
-
-    try:
-        n_hitters = int(n_hitters) if n_hitters is not None and not pd.isna(n_hitters) else 0
-    except (TypeError, ValueError):
-        n_hitters = 0
-    try:
-        total_abs = int(total_abs) if total_abs is not None and not pd.isna(total_abs) else 0
-    except (TypeError, ValueError):
-        total_abs = 0
-
-    sw = sample_size_weight(total_abs, n_hitters)
-
-    # Which team does this verdict actually name?
-    if favors == "pitching":
-        team_abbr = game.get(f"{pitcher_side}_team", "")
-    else:
-        team_abbr = game.get(f"{batting_side}_team", "")
-    team_name = TEAM_NAMES.get(team_abbr, team_abbr)
-
-    # Gate evaluation
-    rel_ok = sw >= EG_MIN_RELIABILITY
-    hit_ok = n_hitters >= EG_MIN_HITTERS
-
-    if rel_ok and hit_ok:
-        tier = "qualified"
-    elif sw >= EG_NEAR_RELIABILITY and n_hitters >= EG_NEAR_HITTERS:
-        tier = "near_miss"
-    else:
-        tier = None
-
-    # Human-readable reason for whichever gate failed
-    failed = []
-    if not rel_ok:
-        failed.append(f"reliability {int(round(sw * 100))}% (needs {int(EG_MIN_RELIABILITY * 100)}%)")
-    if not hit_ok:
-        failed.append(f"{n_hitters} hitters (needs {EG_MIN_HITTERS})")
-
-    return {
-        "tier":        tier,
-        "team_abbr":   team_abbr,
-        "team_name":   team_name,
-        "favors":      favors,
-        "sw":          sw,
-        "n_hitters":   n_hitters,
-        "total_abs":   total_abs,
-        "last_ten":    _last_ten(game, team_abbr_side(game, team_abbr)),
-        "failed":      failed,
-        "pitcher_side": pitcher_side,
-    }
-
-
-def team_abbr_side(game, abbr):
-    """Return 'home' or 'away' for a given abbreviation in this game."""
-    return "home" if str(game.get("home_team", "")) == str(abbr) else "away"
-
-
-def educated_guess(game):
-    """
-    Resolve a single educated guess for a game.
-
-    Returns (verdict, note) where verdict is a dict with tier/team_name/etc.
-    or None when neither side lands on a decisive cell.
-
-    Tiebreak when both sides qualify:
-      1. Better last-10 record (more wins)
-      2. Higher sample weight
-      3. No guess — both demoted to near_miss with an unresolved note
-    """
-    sides = [s for s in (_evaluate_side(game, "home"), _evaluate_side(game, "away")) if s]
-    if not sides:
-        return None, None
-
-    qualified = [s for s in sides if s["tier"] == "qualified"]
-
-    if len(qualified) == 1:
-        return qualified[0], None
-
-    if len(qualified) == 2:
-        a, b = qualified
-        # 1. last-10 wins
-        la, lb = a["last_ten"], b["last_ten"]
-        if la and lb and la[0] != lb[0]:
-            winner = a if la[0] > lb[0] else b
-            loser  = b if winner is a else a
-            note = (f"Tiebreak: last-10 record — {winner['team_name']} "
-                    f"{la[0] if winner is a else lb[0]}-{la[1] if winner is a else lb[1]} "
-                    f"vs {loser['team_name']} "
-                    f"{lb[0] if winner is a else la[0]}-{lb[1] if winner is a else la[1]}.")
-            return winner, note
-        # 2. sample weight
-        if abs(a["sw"] - b["sw"]) > 1e-9:
-            winner = a if a["sw"] > b["sw"] else b
-            reason = "last-10 unavailable" if not (la and lb) else "last-10 tied"
-            note = (f"Tiebreak: {reason} — resolved on sample reliability "
-                    f"({int(round(winner['sw'] * 100))}%).")
-            return winner, note
-        # 3. unresolved
-        for s in sides:
-            s["tier"] = "near_miss"
-            s["failed"] = ["tie unresolved — both sides identical on every tiebreak"]
-        return sides[0], "Both sides qualified and every tiebreak came out level — no pick."
-
-    # No qualifiers — surface the strongest near-miss, if any
-    near = [s for s in sides if s["tier"] == "near_miss"]
-    if near:
-        return max(near, key=lambda s: s["sw"]), None
-
-    return None, None
-
-
-def educated_guess_pill(verdict, note=None, compact=False):
-    """Render the educated-guess badge. Gold when qualified, dimmed when not."""
-    if verdict is None:
-        return
-
-    if verdict["tier"] == "qualified":
-        border, text_col, bg = "#c9a227", "#f5d76e", "rgba(201,162,39,0.10)"
-        label = f"🎯 Educated Guess: {verdict['team_name']}"
-        style = "solid"
-    elif verdict["tier"] == "near_miss":
-        border, text_col, bg = "#5a5a5a", "#9a9a9a", "rgba(255,255,255,0.03)"
-        label = f"Just missed: {verdict['team_name']}"
-        style = "dashed"
-    else:
-        return
-
-    l10 = verdict.get("last_ten")
-    l10_str = f" · L10 {l10[0]}-{l10[1]}" if l10 else ""
-    detail = (f"{int(round(verdict['sw'] * 100))}% reliability · "
-              f"{verdict['n_hitters']} hitters · {verdict['total_abs']} ABs{l10_str}")
-
-    if verdict["tier"] == "near_miss" and verdict.get("failed"):
-        detail += " — " + "; ".join(verdict["failed"])
-    if note:
-        detail += f" · {note}"
-
-    pad  = "6px 12px" if compact else "10px 16px"
-    size = "0.95rem"  if compact else "1.05rem"
-
-    st.markdown(
-        f"""<div style="
-            border: 1px {style} {border};
-            background: {bg};
-            border-radius: 10px;
-            padding: {pad};
-            margin: 8px 0;
-        ">
-            <div style="font-size:{size};font-weight:700;color:{text_col};">
-                {label}
-            </div>
-            <div style="font-size:0.7rem;color:#888;margin-top:3px;">
-                {detail}
-            </div>
-        </div>""",
-        unsafe_allow_html=True,
-    )
-
-
 def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample_weight=1.0, total_abs=None, n_hitters=None):
     """Render a styled predicted runs badge."""
     signals = ", ".join(inputs_used) if inputs_used else "insufficient data"
@@ -975,7 +761,7 @@ with st.sidebar:
     show_chart      = st.toggle("Show xwOBA chart", value=True)
     show_table      = st.toggle("Show hitter table", value=True)
     show_prediction = st.toggle("Show run prediction", value=True)
-    show_quadrant   = st.toggle("Show FIP vs xwOBA quadrant", value=True)
+    show_quadrant   = st.toggle("Show xFIP vs xwOBA quadrant", value=True)
     st.divider()
     if st.button("🔄 Force refresh", use_container_width=True):
         st.cache_data.clear()
@@ -1039,68 +825,6 @@ if live_starters:
             "⚠️ **Starter update detected** — the dashboard is refreshing automatically "
             "and will update within ~5 minutes.\n\n" + "\n\n".join(stale_notes)
         )
-
-# ── Educated guesses board ────────────────────────────────────────────────────
-# Single pre-pass over every game. Results are reused by the per-game banners
-# below, so the splits CSVs are never read twice.
-
-GUESSES = {}
-for _, _g in summary.iterrows():
-    _verdict, _note = educated_guess(_g)
-    if _verdict is not None:
-        GUESSES[str(_g["game_id"])] = (_verdict, _note)
-
-_qualified = [(gid, v, n) for gid, (v, n) in GUESSES.items() if v["tier"] == "qualified"]
-_nearmiss  = [(gid, v, n) for gid, (v, n) in GUESSES.items() if v["tier"] == "near_miss"]
-
-# Matchup lookup for board rows
-_matchups = {str(r["game_id"]): r.get("matchup", "") for _, r in summary.iterrows()}
-
-st.markdown("### 🎯 Today's Educated Guesses")
-
-if _qualified:
-    _qualified.sort(key=lambda t: t[1]["sw"], reverse=True)
-    for _gid, _v, _n in _qualified:
-        _l10 = _v.get("last_ten")
-        _l10_str = f"{_l10[0]}-{_l10[1]}" if _l10 else "—"
-        bc1, bc2, bc3, bc4, bc5 = st.columns([3, 3, 1.4, 1.4, 1.4])
-        bc1.markdown(
-            f"<div style='font-weight:700;color:#f5d76e;font-size:1.0rem;'>"
-            f"{_v['team_name']}</div>"
-            f"<div style='font-size:0.7rem;color:#777;'>"
-            f"{'pitching' if _v['favors'] == 'pitching' else 'offense'} strongly favored</div>",
-            unsafe_allow_html=True,
-        )
-        bc2.markdown(
-            f"<div style='color:#bbb;font-size:0.9rem;padding-top:4px;'>"
-            f"{_matchups.get(_gid, '')}</div>",
-            unsafe_allow_html=True,
-        )
-        bc3.metric("Reliability", f"{int(round(_v['sw'] * 100))}%")
-        bc4.metric("Hitters", _v["n_hitters"])
-        bc5.metric("L10", _l10_str)
-        if _n:
-            st.caption(f"↳ {_n}")
-else:
-    st.info(
-        "No qualifying picks on today's slate. A pick requires a "
-        f"**Strongly Favored** verdict, **{int(EG_MIN_RELIABILITY * 100)}%+** "
-        f"quadrant reliability, and **{EG_MIN_HITTERS}+** hitters with history."
-    )
-
-if _nearmiss:
-    with st.expander(f"Just missed ({len(_nearmiss)})", expanded=False):
-        for _gid, _v, _n in sorted(_nearmiss, key=lambda t: t[1]["sw"], reverse=True):
-            st.markdown(
-                f"**{_v['team_name']}** — {_matchups.get(_gid, '')}  \n"
-                f"<span style='font-size:0.78rem;color:#888;'>"
-                f"{int(round(_v['sw'] * 100))}% reliability · {_v['n_hitters']} hitters · "
-                f"{_v['total_abs']} ABs — {'; '.join(_v['failed']) if _v['failed'] else 'below threshold'}"
-                f"</span>",
-                unsafe_allow_html=True,
-            )
-
-st.divider()
 
 # ── Game cards ────────────────────────────────────────────────────────────────
 
@@ -1253,11 +977,6 @@ for _, game in summary.iterrows():
                     unsafe_allow_html=True,
                 )
 
-        # ── Educated guess pill (reuses the pre-pass result) ─────────────
-        _eg = GUESSES.get(str(game_id))
-        if _eg:
-            educated_guess_pill(_eg[0], _eg[1], compact=True)
-
         col_left, col_div, col_right = st.columns([5, 0.2, 5])
 
         for col, panel in zip([col_left, col_right], panels):
@@ -1326,23 +1045,96 @@ for _, game in summary.iterrows():
                         _rel_tier  = "Very Weak"
                         _rel_color = "#9467bd"
 
-                    mc1, mc2, mc3, mc4 = st.columns(4)
-                    mc1.metric("Hitters with history", int(n))
-                    mc2.metric("Lineup avg xwOBA", f"{avg_xwoba:.3f}" if avg_xwoba else "—")
+                    mc1, mc2, mc3, mc4, mc5 = st.columns(5)
+                    mc1.markdown(
+                        f"""<div style="padding:4px 0 8px 0;">
+                            <div style="font-size:0.8rem;color:#888;margin-bottom:4px;">
+                                Hitters with history
+                            </div>
+                            <div style="font-size:1.9rem;font-weight:700;
+                                        color:white;line-height:1.1;">
+                                {int(n)}
+                            </div>
+                        </div>""",
+                        unsafe_allow_html=True,
+                    )
 
-                    fip_display = (
-                        f"{fip_val:.2f}"
-                        if fip_val is not None and str(fip_val) != "nan"
-                        else "—"
+                    # ── Color helpers ────────────────────────────────────
+                    def xwoba_tier_color(v):
+                        if v is None: return "#888888"
+                        if v >= 0.370: return "#1b7e24"   # elite — dark green
+                        if v >= 0.340: return "#43a047"   # great — green
+                        if v >= 0.325: return "#81c784"   # above avg — light green
+                        if v >= 0.305: return "#aaaaaa"   # league avg — gray
+                        if v >= 0.290: return "#ff7f0e"   # below avg — orange
+                        if v >= 0.270: return "#d62728"   # poor — red
+                        return "#9c0006"                  # awful — dark red
+
+                    def fip_tier_color(v):
+                        """Lower FIP = better for pitcher = green."""
+                        if v is None: return "#888888"
+                        if v < 2.75:  return "#1b7e24"   # elite — dark green
+                        if v < 3.00:  return "#43a047"   # excellent — green
+                        if v <= 3.75: return "#81c784"   # great — light green
+                        if v <= 4.19: return "#aaaaaa"   # average — gray
+                        if v <= 4.50: return "#ff7f0e"   # below avg — orange
+                        return "#d62728"                  # poor — red
+
+                    def colored_metric(col, label, display_val, color, help_text):
+                        col.markdown(
+                            f"""<div style="padding:4px 0 8px 0;">
+                                <div style="font-size:0.8rem;color:#888;margin-bottom:4px;">
+                                    {label}
+                                    <span title="{help_text}" style="cursor:help;"> ⓘ</span>
+                                </div>
+                                <div style="font-size:1.9rem;font-weight:700;
+                                            color:{color};line-height:1.1;">
+                                    {display_val}
+                                </div>
+                            </div>""",
+                            unsafe_allow_html=True,
+                        )
+
+                    # xwOBA
+                    _xw_color = xwoba_tier_color(avg_xwoba)
+                    _xw_disp  = f"{avg_xwoba:.3f}" if avg_xwoba else "—"
+                    colored_metric(
+                        mc2, "Lineup avg xwOBA", _xw_disp, _xw_color,
+                        "Expected Weighted On-Base Average — measures contact quality using exit "
+                        "velocity &amp; launch angle, independent of park and defense. Higher = better "
+                        "for the offense. Scale: .370+ elite · .340–.365 great · .325–.335 above avg · "
+                        "~.315 league avg · .290–.310 below avg · .270–.285 poor · &lt;.260 awful"
                     )
-                    mc3.metric(
-                        "FIP vs this team",
-                        fip_display,
-                        help="Fielding Independent Pitching vs today's opposing lineup (career). "
-                             "Lower is better for the pitcher. Scale: <3.20 elite, 3.20–3.79 good, "
-                             "3.80–4.19 average, 4.20–4.79 below avg, 5.00+ poor."
+
+                    # FIP
+                    _fip_val  = fip_val if (fip_val is not None and str(fip_val) != "nan") else None
+                    _fip_disp = f"{_fip_val:.2f}" if _fip_val is not None else "—"
+                    _fip_color = fip_tier_color(_fip_val)
+                    colored_metric(
+                        mc3, "FIP vs this team", _fip_disp, _fip_color,
+                        "Fielding Independent Pitching vs today&#39;s opposing lineup (career). "
+                        "Lower = better for the pitcher. Scale: &lt;2.75 elite · 3.00–3.25 excellent · "
+                        "3.25–3.75 great · 3.76–4.19 average · 4.20–4.50 below avg · 4.75+ poor"
                     )
-                    with mc4:
+
+                    # xFIP
+                    xfip_key = (
+                        "home_pitcher_xfip_vs_opp"
+                        if panel["pitcher_side"] == "home"
+                        else "away_pitcher_xfip_vs_opp"
+                    )
+                    xfip_val = game.get(xfip_key)
+                    _xfip_val  = xfip_val if (xfip_val is not None and str(xfip_val) != "nan") else None
+                    xfip_display = f"{_xfip_val:.2f}" if _xfip_val is not None else "—"
+                    _xfip_color  = fip_tier_color(_xfip_val)
+                    colored_metric(
+                        mc4, "xFIP vs this team", xfip_display, _xfip_color,
+                        "Expected FIP — same as FIP but replaces actual HRs with expected HRs "
+                        "(fly balls × league-avg HR/FB ~10.5%). Removes HR luck; better predictor "
+                        "than FIP. Scale: &lt;2.75 elite · 3.00–3.25 excellent · 3.25–3.75 great · "
+                        "3.76–4.19 average · 4.20–4.50 below avg · 4.75+ poor"
+                    )
+                    with mc5:
                         st.markdown(
                             f"""<div style="padding: 4px 0;">
                                 <div style="font-size:0.8rem;color:#888;margin-bottom:4px;">
@@ -1363,58 +1155,30 @@ for _, game in summary.iterrows():
                     # Sample size warning based on total career ABs vs this pitcher
                     if total_abs < FIP_UNRELIABLE_ABS:
                         st.error(
-                            f"🚨 **FIP unreliable — very small sample.** "
+                            f"🚨 **FIP & xFIP unreliable — very small sample.** "
                             f"Only **{total_abs} total career ABs** across {int(n)} hitters vs this pitcher. "
-                            f"With fewer than {FIP_UNRELIABLE_ABS} ABs, a single home run can swing FIP "
-                            f"by several points. Disregard FIP for this matchup."
+                            f"With fewer than {FIP_UNRELIABLE_ABS} ABs, a single home run or fly ball can swing "
+                            f"FIP and xFIP by several points. Disregard both for this matchup."
                         )
                     elif total_abs < FIP_CAUTION_ABS:
                         st.warning(
-                            f"⚠️ **Small sample — interpret FIP with caution.** "
+                            f"⚠️ **Small sample — interpret FIP & xFIP with caution.** "
                             f"**{total_abs} total career ABs** across {int(n)} hitters vs this pitcher. "
-                            f"FIP is most reliable with 40+ total ABs."
+                            f"Both metrics are most reliable with 40+ total ABs."
                         )
                 else:
                     st.info("No head-to-head Statcast history found for this matchup yet "
                             "(common early in the season or for new pitchers).")
                     continue
 
-                # ── Predicted runs badge ─────────────────────────────────
-                if show_prediction:
-                    _splits_preview = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
-                    # Team offense keys — batting team's season stats
-                    _team_side = panel["splits_side"]  # "away" batters or "home" batters
-                    _team_off  = {
-                        "woba":     game.get(f"{_team_side}_woba"),
-                        "wrc_plus": game.get(f"{_team_side}_wrc_plus"),
-                        "obp":      game.get(f"{_team_side}_obp"),
-                        "ops_plus": game.get(f"{_team_side}_ops_plus"),
-                        "barrel":   game.get(f"{_team_side}_barrel"),
-                        "hard_hit": game.get(f"{_team_side}_hard_hit"),
-                        "k_pct":    game.get(f"{_team_side}_k_pct"),
-                        "bb_pct":   game.get(f"{_team_side}_bb_pct"),
-                        "babip":    game.get(f"{_team_side}_babip"),
-                    }
-                    pred_runs, conf_label, conf_color, inputs_used, sw = predict_runs(
-                        avg_xwoba, fip_val, _splits_preview,
-                        total_abs=total_abs, n_hitters=int(n) if n else None,
-                        team_off=_team_off
-                    )
-                    if pred_runs is not None:
-                        run_prediction_badge(
-                            pred_runs, conf_label, conf_color, batting, inputs_used,
-                            sample_weight=sw, total_abs=total_abs,
-                            n_hitters=int(n) if n else None
-                        )
-
-                # ── FIP vs xwOBA quadrant tile ───────────────────────────
+                # ── xFIP vs xwOBA quadrant tile ──────────────────────────
                 if show_quadrant:
                     _pitching_abbr = game.get(
                         "home_team" if panel["pitcher_side"] == "home" else "away_team", ""
                     )
                     _pitching_team = TEAM_NAMES.get(_pitching_abbr, _pitching_abbr)
                     quad_result = fip_xwoba_quadrant(
-                        avg_xwoba, fip_val, pitcher, full_team_name, _pitching_team,
+                        avg_xwoba, xfip_val, pitcher, full_team_name, _pitching_team,
                         total_abs=total_abs, n_hitters=int(n) if n else None,
                     )
                     if quad_result is not None:
@@ -1440,6 +1204,33 @@ for _, game in summary.iterrows():
                             use_container_width=True,
                             config={"displayModeBar": False},
                             key=f"quadrant_{game_id}_{panel['splits_side']}",
+                        )
+
+                # ── Predicted runs badge ─────────────────────────────────
+                if show_prediction:
+                    _splits_preview = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
+                    _team_side = panel["splits_side"]
+                    _team_off  = {
+                        "woba":     game.get(f"{_team_side}_woba"),
+                        "wrc_plus": game.get(f"{_team_side}_wrc_plus"),
+                        "obp":      game.get(f"{_team_side}_obp"),
+                        "ops_plus": game.get(f"{_team_side}_ops_plus"),
+                        "barrel":   game.get(f"{_team_side}_barrel"),
+                        "hard_hit": game.get(f"{_team_side}_hard_hit"),
+                        "k_pct":    game.get(f"{_team_side}_k_pct"),
+                        "bb_pct":   game.get(f"{_team_side}_bb_pct"),
+                        "babip":    game.get(f"{_team_side}_babip"),
+                    }
+                    pred_runs, conf_label, conf_color, inputs_used, sw = predict_runs(
+                        avg_xwoba, fip_val, _splits_preview,
+                        total_abs=total_abs, n_hitters=int(n) if n else None,
+                        team_off=_team_off
+                    )
+                    if pred_runs is not None:
+                        run_prediction_badge(
+                            pred_runs, conf_label, conf_color, batting, inputs_used,
+                            sample_weight=sw, total_abs=total_abs,
+                            n_hitters=int(n) if n else None
                         )
 
                 splits_df = load_splits(game_id, panel["splits_side"], current_mtime, root=data_root)
