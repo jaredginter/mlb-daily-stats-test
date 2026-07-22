@@ -1,6 +1,6 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 823518,2026-07-22T17:05:00Z,PIT @ NYY,NYY,PIT,Gerrit Cole,Mitch Keller,543037.0,656605,1.05,,,,,,,,,,,,,,,,,,,6,4,6,4,3.27,2.8,5.0,0.262,62.0,4.42,4.73,10,0.427,72
-823519,2026-07-22T23:05:00Z,PIT @ NYY,NYY,PIT,Max Fried,Bubba Chandler,608331.0,696149,1.05,,,,,,,,,,,,,,,,,,,6,4,6,4,2.11,2.44,11.0,0.29,63.0,3.85,5.02,7,,6
+823519,2026-07-22T23:05:00Z,PIT @ NYY,NYY,PIT,Max Fried,Bubba Chandler,608331.0,696149,1.05,,,,,,,,,,,,,,,,,,,6,4,6,4,2.11,2.44,11.0,0.29,63.0,6.1,7.27,8,,6
 824735,2026-07-22T17:35:00Z,BAL @ BOS,BOS,BAL,Jake Bennett,Dean Kremer,687562.0,665152,1.03,,,,,,,,,,,,,,,,,,,7,3,10,0,,,0.0,,0.0,2.61,2.49,9,0.335,56
 824732,2026-07-22T23:10:00Z,BAL @ BOS,BOS,BAL,TBD,Kyle Bradish,,680694,1.03,,,,,,,,,,,,,,,,,,,7,3,10,0,,,,,,7.2,3.25,9,0.394,37
 824083,2026-07-22T18:10:00Z,SF @ KC,KC,SF,Seth Lugo,Landen Roupp,607625.0,694738,0.98,,,,,,,,,,,,,,,,,,,4,6,4,6,10.01,5.93,5.0,0.346,26.0,9.51,5.82,6,0.511,11
