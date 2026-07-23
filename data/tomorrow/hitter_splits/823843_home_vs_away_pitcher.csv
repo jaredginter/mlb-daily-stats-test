@@ -1,0 +1,5 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Kyle Stowers,669065,3,2025,0.333,0,0.498,1.0,0.429,106.9
+Otto Lopez,672640,3,2025,0.667,0,0.484,1.0,0.0,101.4
+Xavier Edwards,669364,2,2025,0.0,0,0.271,0.0,0.333,88.4
+Liam Hicks,689414,3,2025,0.667,0,0.248,0.0,0.4,93.6
