@@ -1,0 +1,7 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Manny Machado,592518,3,2025,0.0,0,0.56,1.0,0.4,103.7
+Gavin Sheets,657757,2,2025,0.5,0,0.51,1.0,0.0,102.1
+Fernando Tatis Jr.,665487,3,2025,0.333,0,0.471,0.667,0.25,103.6
+Luis Rengifo,650859,5,2025,0.2,0,0.367,0.6,0.0,92.2
+Xander Bogaerts,593428,3,2025,0.333,0,0.244,0.333,0.0,90.9
+Ty France,664034,5,2025,0.4,0,0.208,0.4,0.111,93.4
