@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Jo Adell,666176,6,2022–2025,0.333,0,0.437,0.25,0.211,85.5
+Vaughn Grissom,687093,2,2022–2026,0.0,0,0.411,0.5,0.429,96.9
+Mike Trout,545361,8,2015–2026,0.125,1,0.391,0.444,0.15,94.6
+Jorge Soler,624585,11,2016–2026,0.273,1,0.368,0.5,0.462,94.5
+Oswald Peraza,672724,2,2025–2026,0.0,0,0.346,1.0,0.286,108.6
+Logan O'Hoppe,681351,1,2025,0.0,0,,,1.0,
+Nolan Schanuel,694384,1,2025,0.0,0,,0.0,0.0,
+Zach Neto,687263,1,2026,0.0,0,,,0.5,

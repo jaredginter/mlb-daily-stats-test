@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Christian Walker,572233,2,2025,1.0,1,1.184,1.0,0.0,106.8
+Jose Altuve,514888,2,2025,1.0,0,0.75,0.5,0.0,92.6
+Nick Allen,669397,2,2024,0.5,0,0.61,0.5,0.0,93.0
+Isaac Paredes,670623,3,2025,0.667,0,0.461,1.0,0.25,100.2
+Yainer Diaz,673237,1,2025,0.0,0,0.346,,0.333,
+Jeremy Peña,665161,3,2025,0.333,0,0.286,0.667,0.0,94.5
+Cam Smith,701358,2,2025,0.5,0,0.234,0.5,0.2,90.0
+Christian Vázquez,543877,1,2025,0.0,0,0.116,0.0,0.0,78.6
