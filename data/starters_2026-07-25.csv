@@ -1,8 +1,8 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824244,2026-07-25T17:10:00Z,KC @ DET,DET,KC,Casey Mize,Michael Wacha,663554,608379,0.99,,,,,,,,,,,,,,,,,,,6,4,6,4,3.1,4.31,6,0.336,52,3.94,4.31,11,0.313,135
-822704,2026-07-25T20:05:00Z,AZ @ WSH,WSH,AZ,Foster Griffin,Mitch Bratt,656492,683352,1.0,,,,,,,,,,,,,,,,,,,8,2,4,6,1.85,3.41,8,0.188,12,,,0,,0
-823197,2026-07-25T20:05:00Z,LAA @ SF,SF,LAA,Robbie Ray,Ryan Johnson,592662,696270,0.95,,,,,,,,,,,,,,,,,,,4,6,4,6,5.24,5.1,8,0.391,32,1.1,,3,0.083,3
-824734,2026-07-25T20:10:00Z,TOR @ BOS,BOS,TOR,Sonny Gray,Dylan Cease,543243,656302,1.03,,,,,,,,,,,,,,,,,,,2,8,9,1,5.88,4.56,12,0.312,80,2.7,3.02,10,0.309,66
+822704,2026-07-25T20:05:00Z,AZ @ WSH,WSH,AZ,Foster Griffin,Mitch Bratt,656492,683352,1.0,,,,,,,,,,,,,,,,,,,7,3,5,5,1.85,3.41,8,0.188,12,,,0,,0
+823197,2026-07-25T20:05:00Z,LAA @ SF,SF,LAA,Robbie Ray,Ryan Johnson,592662,696270,0.95,,,,,,,,,,,,,,,,,,,3,7,5,5,5.24,5.1,8,0.391,32,1.1,,3,0.083,3
+824734,2026-07-25T20:10:00Z,TOR @ BOS,BOS,TOR,Sonny Gray,Dylan Cease,543243,656302,1.03,,,,,,,,,,,,,,,,,,,3,7,8,2,5.88,4.56,12,0.312,80,2.7,3.02,10,0.309,66
 823841,2026-07-25T20:10:00Z,SD @ MIA,MIA,SD,Eury Pérez,Randy Vásquez,691587,681190,0.95,,,,,,,,,,,,,,,,,,,5,5,0,10,2.24,4.03,8,0.3,25,6.92,5.5,6,0.493,18
 823435,2026-07-25T22:05:00Z,NYY @ PHI,PHI,NYY,Tim Mayza,Ryan Weathers,641835,677960,1.02,,,,,,,,,,,,,,,,,,,7,3,4,6,1.93,3.07,11,0.274,34,14.74,5.23,9,0.389,34
 822948,2026-07-25T22:10:00Z,CLE @ TB,TB,CLE,Nick Martinez,Tanner Bibee,607259,676440,0.97,,,,,,,,,,,,,,,,,,,5,5,4,6,3.61,4.26,12,0.272,48,4.63,3.44,10,0.249,58

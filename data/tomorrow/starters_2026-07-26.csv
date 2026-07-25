@@ -1,8 +1,8 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 822950,2026-07-26T16:15:00Z,CLE @ TB,TB,CLE,Drew Rasmussen,Parker Messick,656876,800048,0.97,,,,,,,,,,,,,,,,,,,5,5,4,6,2.17,3.28,11,0.293,46,1.46,2.03,9,0.158,41
-822706,2026-07-26T17:35:00Z,AZ @ WSH,WSH,AZ,Miles Mikolas,Kohl Drake,571945,684442,1.0,,,,,,,,,,,,,,,,,,,8,2,4,6,6.96,4.21,8,0.351,54,,,0,,0
+822706,2026-07-26T17:35:00Z,AZ @ WSH,WSH,AZ,Miles Mikolas,Kohl Drake,571945,684442,1.0,,,,,,,,,,,,,,,,,,,7,3,5,5,6.96,4.21,8,0.351,54,,,0,,0
 823354,2026-07-26T17:35:00Z,CHC @ PIT,PIT,CHC,Braxton Ashcraft,Jameson Taillon,677952,592791,0.99,,,,,,,,,,,,,,,,,,,6,4,6,4,2.1,2.74,10,0.27,63,4.97,4.86,8,0.344,98
-824730,2026-07-26T17:35:00Z,TOR @ BOS,BOS,TOR,Ranger Suarez,Kevin Gausman,624133,592332,1.03,,,,,,,,,,,,,,,,,,,2,8,9,1,2.25,3.21,10,0.208,42,3.44,2.28,10,0.248,80
+824730,2026-07-26T17:35:00Z,TOR @ BOS,BOS,TOR,Ranger Suarez,Kevin Gausman,624133,592332,1.03,,,,,,,,,,,,,,,,,,,3,7,8,2,2.25,3.21,10,0.208,42,3.44,2.28,10,0.248,80
 824810,2026-07-26T17:35:00Z,ATL @ BAL,BAL,ATL,Shane Baz,Reynaldo López,669358,625643,1.01,,,,,,,,,,,,,,,,,,,7,3,7,3,1.1,1.88,3,0.188,14,0.99,1.67,7,0.299,20
 824246,2026-07-26T17:40:00Z,KC @ DET,DET,KC,Framber Valdez,Luinder Avila,664285,679883,0.99,,,,,,,,,,,,,,,,,,,6,4,6,4,3.44,2.96,10,0.235,69,1.1,2.66,4,0.257,4
 823599,2026-07-26T17:40:00Z,LAD @ NYM,NYM,LAD,Freddy Peralta,Emmet Sheehan,642547,686218,0.98,,,,,,,,,,,,,,,,,,,5,5,3,7,4.68,3.82,10,0.335,118,1.15,2.79,2,0.083,4
@@ -12,5 +12,5 @@ game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_nam
 823755,2026-07-26T18:10:00Z,COL @ MIL,MIL,COL,Jacob Misiorowski,Kyle Freeland,694819,607536,1.0,,,,,,,,,,,,,,,,,,,4,6,5,5,1.99,2.84,11,0.265,34,4.52,3.13,11,0.28,83
 823028,2026-07-26T18:15:00Z,CIN @ STL,STL,CIN,Kyle Leahy,Andrew Abbott,681517,671096,0.99,,,,,,,,,,,,,,,,,,,6,4,3,7,6.42,5.03,12,0.423,51,2.0,3.32,8,0.286,63
 822870,2026-07-26T18:35:00Z,SEA @ TEX,TEX,SEA,Jacob deGrom,Logan Gilbert,594798,669302,1.02,,,,,,,,,,,,,,,,,,,4,6,5,5,4.34,3.25,10,0.368,90,3.72,2.65,11,0.269,113
-823194,2026-07-26T20:05:00Z,LAA @ SF,SF,LAA,Carson Whisenhunt,José Soriano,687931,667755,0.95,,,,,,,,,,,,,,,,,,,4,6,4,6,,,0,,0,2.35,,7,0.349,21
+823194,2026-07-26T20:05:00Z,LAA @ SF,SF,LAA,Carson Whisenhunt,José Soriano,687931,667755,0.95,,,,,,,,,,,,,,,,,,,3,7,5,5,,,0,,0,2.35,,7,0.349,21
 823433,2026-07-26T23:20:00Z,NYY @ PHI,PHI,NYY,Cristopher Sánchez,Will Warren,650911,701542,1.02,,,,,,,,,,,,,,,,,,,7,3,4,6,3.21,2.81,10,0.266,48,2.04,2.28,11,0.315,56
