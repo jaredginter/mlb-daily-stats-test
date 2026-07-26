@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Jake Rogers,668670,2,2023,0.5,1,0.528,0.5,0.0,95.6
+Gleyber Torres,650402,7,2022–2024,0.429,0,0.434,0.125,0.19,81.2
+Zach McKinstry,656716,4,2023–2026,0.25,0,0.4,0.75,0.0,95.6
+Riley Greene,682985,3,2023,0.333,0,0.306,0.0,0.222,78.6
+Spencer Torkelson,679529,3,2023–2026,0.333,0,0.281,0.5,0.333,96.2
+Matt Vierling,663837,2,2022–2023,0.5,0,0.187,0.667,0.0,92.6
+Hao-Yu Lee,701678,1,2026,0.0,0,,,0.5,
+Kerry Carpenter,681481,1,2026,0.0,0,,1.0,0.0,95.4
