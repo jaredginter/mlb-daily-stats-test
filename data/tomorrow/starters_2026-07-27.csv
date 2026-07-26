@@ -1,13 +1,13 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 822868,2026-07-27T18:35:00Z,SEA @ TEX,TEX,SEA,Kumar Rocker,George Kirby,677958.0,669923.0,1.02,,,,,,,,,,,,,,,,,,,4,6,5,5,5.5,3.6,9.0,0.438,48.0,1.74,2.74,8.0,0.281,89.0
 824245,2026-07-27T22:40:00Z,BAL @ DET,DET,BAL,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,7,3,6,4,,,,,,,,,,
-823353,2026-07-27T22:40:00Z,AZ @ PIT,PIT,AZ,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,7,3,6,4,,,,,,,,,,
+823353,2026-07-27T22:40:00Z,AZ @ PIT,PIT,AZ,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,7,3,5,5,,,,,,,,,,
 823839,2026-07-27T22:40:00Z,PHI @ MIA,MIA,PHI,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,4,6,0,10,,,,,,,,,,
 822705,2026-07-27T22:45:00Z,TOR @ WSH,WSH,TOR,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,3,7,5,5,,,,,,,,,,
-824490,2026-07-27T23:10:00Z,CLE @ CIN,CIN,CLE,Chase Burns,Slade Cecconi,695505.0,677944.0,1.04,,,,,,,,,,,,,,,,,,,4,6,6,4,2.67,3.34,6.0,0.02,7.0,2.81,3.34,11.0,0.234,48.0
+824490,2026-07-27T23:10:00Z,CLE @ CIN,CIN,CLE,Chase Burns,Slade Cecconi,695505.0,677944.0,1.04,,,,,,,,,,,,,,,,,,,4,6,5,5,2.67,3.34,6.0,0.02,7.0,2.81,3.34,11.0,0.234,48.0
 823597,2026-07-27T23:10:00Z,ATL @ NYM,NYM,ATL,Zac Thornton,TBD,804267.0,,0.98,,,,,,,,,,,,,,,,,,,7,3,3,7,,,0.0,,0.0,,,,,
-824570,2026-07-27T23:40:00Z,NYY @ CWS,CWS,NYY,Noah Schultz,TBD,702273.0,,0.97,,,,,,,,,,,,,,,,,,,7,3,7,3,,,1.0,,2.0,,,,,
-823025,2026-07-27T23:45:00Z,CHC @ STL,STL,CHC,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,6,4,3,7,,,,,,,,,,
-824001,2026-07-28T01:38:00Z,HOU @ LAA,LAA,HOU,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,5,5,3,7,,,,,,,,,,
+824570,2026-07-27T23:40:00Z,NYY @ CWS,CWS,NYY,Noah Schultz,TBD,702273.0,,0.97,,,,,,,,,,,,,,,,,,,7,3,6,4,,,1.0,,2.0,,,,,
+823025,2026-07-27T23:45:00Z,CHC @ STL,STL,CHC,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,7,3,3,7,,,,,,,,,,
+824001,2026-07-28T01:38:00Z,HOU @ LAA,LAA,HOU,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,6,4,3,7,,,,,,,,,,
 824977,2026-07-28T01:40:00Z,BOS @ ATH,ATH,BOS,TBD,Payton Tolle,,801139.0,1.0,,,,,,,,,,,,,,,,,,,8,2,3,7,,,,,,12.53,3.39,6.0,0.256,10.0
-823195,2026-07-28T01:45:00Z,MIL @ SF,SF,MIL,TBD,Brandon Sproat,,687075.0,0.95,,,,,,,,,,,,,,,,,,,5,5,5,5,,,,,,,,0.0,,0.0
+823195,2026-07-28T01:45:00Z,MIL @ SF,SF,MIL,TBD,Brandon Sproat,,687075.0,0.95,,,,,,,,,,,,,,,,,,,6,4,5,5,,,,,,,,0.0,,0.0
