@@ -1,6 +1,6 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 822868,2026-07-27T18:35:00Z,SEA @ TEX,TEX,SEA,Kumar Rocker,George Kirby,677958,669923,1.02,,,,,,,,,,,,,,,,,,,4,6,5,5,5.5,3.6,9,0.438,48,1.74,2.74,8,0.281,89
-824245,2026-07-27T22:40:00Z,BAL @ DET,DET,BAL,Keider Montero,Kyle Bradish,672456,680694,0.99,,,,,,,,,,,,,,,,,,,6,4,6,4,7.38,4.29,10,0.441,36,5.4,5.06,8,0.356,23
+824245,2026-07-27T22:40:00Z,BAL @ DET,DET,BAL,Keider Montero,Kyle Bradish,672456,680694,0.99,,,,,,,,,,,,,,,,,,,6,4,6,4,7.38,4.29,10,0.441,36,5.55,5.19,7,0.356,22
 823353,2026-07-27T22:40:00Z,AZ @ PIT,PIT,AZ,Mitch Keller,Merrill Kelly,656605,518876,0.99,,,,,,,,,,,,,,,,,,,6,4,5,5,3.38,3.33,10,0.248,80,7.36,5.23,4,0.553,24
 823839,2026-07-27T22:40:00Z,PHI @ MIA,MIA,PHI,Tyler Phillips,Zack Wheeler,663969,554430,0.95,,,,,,,,,,,,,,,,,,,4,6,0,10,6.28,4.58,12,0.339,46,1.2,2.1,9,0.202,57
 822705,2026-07-27T22:45:00Z,TOR @ WSH,WSH,TOR,Eddy Yean,Max Scherzer,678868,453286,1.0,,,,,,,,,,,,,,,,,,,3,7,6,4,,,0,,0,6.49,3.85,4,0.322,32
