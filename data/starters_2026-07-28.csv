@@ -1,17 +1,17 @@
-game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp
-824490,2026-07-28T17:40:00Z,CLE @ CIN,CIN,CLE,TBD,TBD,,,1.04,,,,,,,,,,,,,,,,,,,3,7,6,4,,,,,,,,,,
-824489,2026-07-28T23:10:00Z,CLE @ CIN,CIN,CLE,Brady Singer,Gavin Williams,663903.0,668909.0,1.04,,,,,,,,,,,,,,,,,,,3,7,6,4,12.0,0.378,90.0,6.7,5.19,9.0,0.294,34.0,4.66,2.81
-824243,2026-07-28T22:40:00Z,BAL @ DET,DET,BAL,Troy Melton,Dean Kremer,675512.0,665152.0,0.99,,,,,,,,,,,,,,,,,,,6,4,6,4,6.0,0.252,18.0,1.51,2.89,12.0,0.428,84.0,5.97,4.41
-823350,2026-07-28T22:40:00Z,AZ @ PIT,PIT,AZ,Bubba Chandler,Brandon Pfaadt,696149.0,694297.0,0.99,,,,,,,,,,,,,,,,,,,6,4,5,5,7.0,0.342,13.0,4.6,6.16,7.0,0.402,31.0,5.13,5.54
-822949,2026-07-28T22:40:00Z,TEX @ TB,TB,TEX,Griffin Jax,TBD,643377.0,,0.97,,,,,,,,,,,,,,,,,,,5,5,6,4,7.0,0.276,22.0,3.31,5.55,,,,,
-823838,2026-07-28T22:40:00Z,PHI @ MIA,MIA,PHI,Sandy Alcantara,Aaron Nola,645261.0,605400.0,0.95,,,,,,,,,,,,,,,,,,,4,6,0,10,11.0,0.319,195.0,3.91,3.69,11.0,0.27,43.0,3.38,3.48
-822703,2026-07-28T22:45:00Z,TOR @ WSH,WSH,TOR,Cade Cavalli,Shane Bieber,676917.0,669456.0,1.0,,,,,,,,,,,,,,,,,,,3,7,6,4,0.0,,0.0,,,3.0,0.145,9.0,2.4,4.24
-823598,2026-07-28T23:10:00Z,ATL @ NYM,NYM,ATL,Christian Scott,Chris Sale,681035.0,519242.0,0.98,,,,,,,,,,,,,,,,,,,7,3,4,6,11.0,0.276,30.0,4.32,2.47,0.0,,0.0,,
-823676,2026-07-28T23:40:00Z,KC @ MIN,MIN,KC,Taj Bradley,Seth Lugo,671737.0,607625.0,1.01,,,,,,,,,,,,,,,,,,,7,3,5,5,8.0,0.318,42.0,2.1,3.27,13.0,0.339,83.0,4.97,4.21
-824569,2026-07-28T23:40:00Z,NYY @ CWS,CWS,NYY,Anthony Kay,Gerrit Cole,641743.0,543037.0,0.97,,,,,,,,,,,,,,,,,,,6,4,6,4,8.0,0.354,18.0,2.89,4.87,11.0,0.226,54.0,2.75,2.51
-823026,2026-07-28T23:45:00Z,CHC @ STL,STL,CHC,TBD,Colin Rea,,607067.0,0.99,,,,,,,,,,,,,,,,,,,6,4,3,7,,,,,,8.0,0.224,53.0,2.18,3.25
-824003,2026-07-29T01:38:00Z,HOU @ LAA,LAA,HOU,Reid Detmers,Peter Lambert,672282.0,663567.0,0.97,,,,,,,,,,,,,,,,,,,5,5,4,6,0.0,,0.0,,,10.0,0.321,31.0,6.1,3.29
-824976,2026-07-29T01:40:00Z,BOS @ ATH,ATH,BOS,Gage Jump,Jake Bennett,695611.0,687562.0,1.0,,,,,,,,,,,,,,,,,,,8,2,3,7,1.0,0.434,2.0,,,0.0,,0.0,,
-823275,2026-07-29T01:40:00Z,COL @ SD,SD,COL,Michael King,Michael Lorenzen,650633.0,547179.0,0.95,,,,,,,,,,,,,,,,,,,3,7,5,5,8.0,0.315,34.0,2.51,5.08,9.0,0.379,65.0,5.61,4.31
-823193,2026-07-29T01:45:00Z,MIL @ SF,SF,MIL,Landen Roupp,Logan Henderson,694738.0,701656.0,0.95,,,,,,,,,,,,,,,,,,,7,3,4,6,11.0,0.324,52.0,3.58,4.89,0.0,,0.0,,
-823923,2026-07-29T02:10:00Z,SEA @ LAD,LAD,SEA,TBD,Luis Castillo,,622491.0,0.96,,,,,,,,,,,,,,,,,,,4,6,6,4,,,,,,8.0,0.341,85.0,3.97,3.83
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
+824490,2026-07-28T17:40:00Z,CLE @ CIN,CIN,CLE,Chase Burns,Slade Cecconi,695505.0,677944.0,1.04,,,,,,,,,,,,,,,,,,,3,7,6,4,2.67,3.34,6.0,0.02,7.0,2.84,3.2,10.0,0.223,42.0
+824489,2026-07-28T23:10:00Z,CLE @ CIN,CIN,CLE,TBD,Gavin Williams,,668909.0,1.04,,,,,,,,,,,,,,,,,,,3,7,6,4,,,,,,4.66,2.81,9.0,0.294,34.0
+824243,2026-07-28T22:40:00Z,BAL @ DET,DET,BAL,Troy Melton,Dean Kremer,675512.0,665152.0,0.99,,,,,,,,,,,,,,,,,,,6,4,5,5,1.51,2.89,6.0,0.252,18.0,5.97,4.41,12.0,0.428,84.0
+823350,2026-07-28T22:40:00Z,AZ @ PIT,PIT,AZ,Bubba Chandler,Brandon Pfaadt,696149.0,694297.0,0.99,,,,,,,,,,,,,,,,,,,6,4,5,5,4.6,6.16,7.0,0.342,13.0,5.13,5.54,7.0,0.402,31.0
+822949,2026-07-28T22:40:00Z,TEX @ TB,TB,TEX,Griffin Jax,TBD,643377.0,,0.97,,,,,,,,,,,,,,,,,,,5,5,6,4,3.31,5.55,7.0,0.276,22.0,,,,,
+823838,2026-07-28T22:40:00Z,PHI @ MIA,MIA,PHI,Sandy Alcantara,Aaron Nola,645261.0,605400.0,0.95,,,,,,,,,,,,,,,,,,,3,7,1,9,3.91,3.69,11.0,0.319,195.0,3.38,3.48,11.0,0.27,43.0
+822703,2026-07-28T22:45:00Z,TOR @ WSH,WSH,TOR,Cade Cavalli,Shane Bieber,676917.0,669456.0,1.0,,,,,,,,,,,,,,,,,,,4,6,6,4,,,0.0,,0.0,2.4,4.24,3.0,0.145,9.0
+823598,2026-07-28T23:10:00Z,ATL @ NYM,NYM,ATL,Christian Scott,Chris Sale,681035.0,519242.0,0.98,,,,,,,,,,,,,,,,,,,6,4,5,5,4.32,2.47,11.0,0.276,30.0,5.54,3.39,11.0,0.332,87.0
+823676,2026-07-28T23:40:00Z,KC @ MIN,MIN,KC,Taj Bradley,Seth Lugo,671737.0,607625.0,1.01,,,,,,,,,,,,,,,,,,,7,3,5,5,2.1,3.27,8.0,0.318,42.0,4.97,4.21,13.0,0.339,83.0
+824569,2026-07-28T23:40:00Z,NYY @ CWS,CWS,NYY,Anthony Kay,Gerrit Cole,641743.0,543037.0,0.97,,,,,,,,,,,,,,,,,,,6,4,6,4,2.89,4.87,8.0,0.354,18.0,2.75,2.51,11.0,0.226,54.0
+823026,2026-07-28T23:45:00Z,CHC @ STL,STL,CHC,TBD,Colin Rea,,607067.0,0.99,,,,,,,,,,,,,,,,,,,6,4,3,7,,,,,,2.18,3.25,8.0,0.224,53.0
+824003,2026-07-29T01:38:00Z,HOU @ LAA,LAA,HOU,Reid Detmers,Peter Lambert,672282.0,663567.0,0.97,,,,,,,,,,,,,,,,,,,5,5,4,6,3.17,3.76,9.0,0.339,84.0,6.1,3.29,10.0,0.321,31.0
+824976,2026-07-29T01:40:00Z,BOS @ ATH,ATH,BOS,Gage Jump,Jake Bennett,695611.0,687562.0,1.0,,,,,,,,,,,,,,,,,,,8,2,3,7,,,1.0,0.434,2.0,,,0.0,,0.0
+823275,2026-07-29T01:40:00Z,COL @ SD,SD,COL,Michael King,Michael Lorenzen,650633.0,547179.0,0.95,,,,,,,,,,,,,,,,,,,3,7,5,5,2.51,5.08,8.0,0.315,34.0,5.61,4.31,9.0,0.379,65.0
+823193,2026-07-29T01:45:00Z,MIL @ SF,SF,MIL,Landen Roupp,Logan Henderson,694738.0,701656.0,0.95,,,,,,,,,,,,,,,,,,,7,3,4,6,3.58,4.89,11.0,0.324,52.0,,,1.0,,2.0
+823923,2026-07-29T02:10:00Z,SEA @ LAD,LAD,SEA,TBD,Luis Castillo,,622491.0,0.96,,,,,,,,,,,,,,,,,,,4,6,6,4,,,,,,3.97,3.83,8.0,0.341,85.0

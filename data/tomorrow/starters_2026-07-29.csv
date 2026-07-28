@@ -1,9 +1,9 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-823837,2026-07-29T16:10:00Z,PHI @ MIA,MIA,PHI,TBD,Jesús Luzardo,,666200.0,0.95,,,,,,,,,,,,,,,,,,,4,6,0,10,,,,,,2.41,2.36,9.0,0.233,82.0
+823837,2026-07-29T16:10:00Z,PHI @ MIA,MIA,PHI,TBD,Jesús Luzardo,,666200.0,0.95,,,,,,,,,,,,,,,,,,,3,7,1,9,,,,,,2.41,2.36,9.0,0.233,82.0
 823351,2026-07-29T16:35:00Z,AZ @ PIT,PIT,AZ,Jared Jones,Eduardo Rodriguez,683003.0,593958.0,0.99,,,,,,,,,,,,,,,,,,,6,4,5,5,2.0,0.32,5.0,6.13,,3.63,2.25,8.0,0.256,54.0
-822702,2026-07-29T17:05:00Z,TOR @ WSH,WSH,TOR,Zack Littell,Trey Yesavage,641793.0,702056.0,1.0,,,,,,,,,,,,,,,,,,,3,7,6,4,10.0,0.323,59.0,8.45,5.79,,,0.0,,0.0
-824242,2026-07-29T17:10:00Z,BAL @ DET,DET,BAL,Tarik Skubal,Trevor Rogers,669373.0,669432.0,0.99,,,,,,,,,,,,,,,,,,,6,4,6,4,7.0,0.29,29.0,2.98,2.38,3.6,3.54,8.0,0.37,31.0
-823596,2026-07-29T17:10:00Z,ATL @ NYM,NYM,ATL,Sean Manaea,Grant Holmes,640455.0,656550.0,0.98,,,,,,,,,,,,,,,,,,,7,3,4,6,12.0,0.38,85.0,4.67,3.46,2.42,4.07,11.0,0.26,33.0
+822702,2026-07-29T17:05:00Z,TOR @ WSH,WSH,TOR,Zack Littell,Trey Yesavage,641793.0,702056.0,1.0,,,,,,,,,,,,,,,,,,,4,6,6,4,10.0,0.323,59.0,8.45,5.79,,,0.0,,0.0
+824242,2026-07-29T17:10:00Z,BAL @ DET,DET,BAL,Tarik Skubal,Trevor Rogers,669373.0,669432.0,0.99,,,,,,,,,,,,,,,,,,,6,4,5,5,7.0,0.29,29.0,2.98,2.38,3.6,3.54,8.0,0.37,31.0
+823596,2026-07-29T17:10:00Z,ATL @ NYM,NYM,ATL,Sean Manaea,Grant Holmes,640455.0,656550.0,0.98,,,,,,,,,,,,,,,,,,,6,4,5,5,12.0,0.38,85.0,4.67,3.46,2.42,4.07,11.0,0.26,33.0
 823192,2026-07-29T19:45:00Z,MIL @ SF,SF,MIL,Logan Webb,Shane Drohan,657277.0,675660.0,0.95,,,,,,,,,,,,,,,,,,,7,3,4,6,10.0,0.314,88.0,2.49,2.91,2.64,3.0,8.0,0.359,18.0
 823273,2026-07-29T20:10:00Z,COL @ SD,SD,COL,TBD,Gabriel Hughes,,687312.0,0.95,,,,,,,,,,,,,,,,,,,3,7,5,5,,,,,,,,3.0,,2.0
 822947,2026-07-29T22:40:00Z,TEX @ TB,TB,TEX,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,5,5,6,4,,,,,,,,,,
