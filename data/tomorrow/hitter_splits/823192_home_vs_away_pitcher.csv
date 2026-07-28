@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Luis Arraez,650333,1,2026,0.0,0,0.396,0.0,0.0,73.8
+Casey Schmitt,669477,3,2026,0.0,0,0.386,1.0,0.312,102.3
+Bryce Eldridge,805811,3,2026,0.333,0,0.374,1.0,0.2,107.7
+Rafael Devers,646240,1,2026,0.0,0,0.349,,1.0,
+Jung Hoo Lee,808982,2,2026,0.5,0,0.33,0.0,0.0,89.6
+Willy Adames,642715,4,2026,0.0,0,0.319,0.333,0.167,82.4
+Christian Koss,683766,2,2026,0.5,0,,1.0,0.333,97.7
+Grant McCray,687529,2,2026,1.0,0,,0.0,0.0,64.6
