@@ -1,11 +1,11 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 822946,2026-07-30T16:10:00Z,TEX @ TB,TB,TEX,Shane McClanahan,Nathan Eovaldi,663556.0,543135.0,0.97,,,,,,,,,,,,,,,,,,,6,4,6,4,8.4,3.54,4.0,0.522,14.0,1.83,2.4,7.0,0.16,62.0
 823674,2026-07-30T17:40:00Z,KC @ MIN,MIN,KC,Bailey Ober,TBD,641927.0,,1.01,,,,,,,,,,,,,,,,,,,6,4,5,5,3.53,3.92,8.0,0.33,74.0,,,,,
-824568,2026-07-30T18:10:00Z,NYY @ CWS,CWS,NYY,Sean Burke,Ryan Weathers,680732.0,677960.0,0.97,,,,,,,,,,,,,,,,,,,6,4,5,5,2.57,1.65,9.0,0.349,22.0,3.53,2.79,9.0,0.292,27.0
-823023,2026-07-30T18:15:00Z,CHC @ STL,STL,CHC,Andre Pallante,Shota Imanaga,669467.0,684007.0,0.99,,,,,,,,,,,,,,,,,,,6,4,2,8,5.73,4.69,10.0,0.337,93.0,5.17,3.41,10.0,0.377,69.0
-824488,2026-07-30T23:10:00Z,PIT @ CIN,CIN,PIT,Rhett Lowder,TBD,695076.0,,1.04,,,,,,,,,,,,,,,,,,,5,5,6,4,9.53,10.2,7.0,0.551,11.0,,,,,
+824568,2026-07-30T18:10:00Z,NYY @ CWS,CWS,NYY,Sean Burke,Ryan Weathers,680732.0,677960.0,0.97,,,,,,,,,,,,,,,,,,,7,3,4,6,2.57,1.65,9.0,0.349,22.0,3.53,2.79,9.0,0.292,27.0
+823023,2026-07-30T18:15:00Z,CHC @ STL,STL,CHC,Andre Pallante,Shota Imanaga,669467.0,684007.0,0.99,,,,,,,,,,,,,,,,,,,7,3,2,8,5.73,4.69,10.0,0.337,93.0,5.17,3.41,10.0,0.377,70.0
+824488,2026-07-30T23:10:00Z,PIT @ CIN,CIN,PIT,Rhett Lowder,TBD,695076.0,,1.04,,,,,,,,,,,,,,,,,,,4,6,6,4,9.53,10.2,7.0,0.551,11.0,,,,,
 823595,2026-07-30T23:10:00Z,MIA @ NYM,NYM,MIA,Nolan McLean,TBD,690997.0,,0.98,,,,,,,,,,,,,,,,,,,2,8,5,5,5.64,7.05,7.0,0.301,13.0,,,,,
 824894,2026-07-30T23:15:00Z,WSH @ ATL,ATL,WSH,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,6,4,6,4,,,,,,,,,,
-824974,2026-07-31T01:40:00Z,BOS @ ATH,ATH,BOS,TBD,Sonny Gray,,543243.0,1.0,,,,,,,,,,,,,,,,,,,8,2,3,7,,,,,,2.02,2.96,8.0,0.313,32.0
-823271,2026-07-31T01:40:00Z,SF @ SD,SD,SF,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,4,6,5,5,,,,,,,,,,
-823921,2026-07-31T02:10:00Z,SEA @ LAD,LAD,SEA,Roki Sasaki,Bryce Miller,808963.0,682243.0,0.96,,,,,,,,,,,,,,,,,,,4,6,6,4,0.1,1.27,5.0,0.27,6.0,6.47,4.9,10.0,0.263,46.0
+824974,2026-07-31T01:40:00Z,BOS @ ATH,ATH,BOS,TBD,Sonny Gray,,543243.0,1.0,,,,,,,,,,,,,,,,,,,7,3,4,6,,,,,,2.02,2.96,8.0,0.313,32.0
+823271,2026-07-31T01:40:00Z,SF @ SD,SD,SF,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,3,7,6,4,,,,,,,,,,
+823921,2026-07-31T02:10:00Z,SEA @ LAD,LAD,SEA,Roki Sasaki,Bryce Miller,808963.0,682243.0,0.96,,,,,,,,,,,,,,,,,,,5,5,6,4,0.1,1.27,5.0,0.27,6.0,6.47,4.9,10.0,0.263,46.0
