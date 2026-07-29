@@ -1,7 +1,7 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-823837,2026-07-29T16:10:00Z,PHI @ MIA,MIA,PHI,Ryan Gusto,Jesús Luzardo,687473,666200,0.95,,,,,,,,,,,,,,,,,,,3,7,2,8,10.17,7.27,9,0.477,23,2.41,2.36,9,0.233,82
+823837,2026-07-29T16:10:00Z,PHI @ MIA,MIA,PHI,Ryan Gusto,Jesús Luzardo,687473,666200,0.95,,,,,,,,,,,,,,,,,,,2,8,3,7,10.17,7.27,9,0.477,23,2.41,2.36,9,0.233,82
 823351,2026-07-29T16:35:00Z,AZ @ PIT,PIT,AZ,Jared Jones,Eduardo Rodriguez,683003,593958,0.99,,,,,,,,,,,,,,,,,,,6,4,4,6,6.13,,2,0.32,5,3.63,2.25,8,0.256,54
-822702,2026-07-29T17:05:00Z,TOR @ WSH,WSH,TOR,Zack Littell,Trey Yesavage,641793,702056,1.0,,,,,,,,,,,,,,,,,,,3,7,6,4,8.45,5.79,10,0.323,59,,,0,,0
+822702,2026-07-29T17:05:00Z,TOR @ WSH,WSH,TOR,Zack Littell,Trey Yesavage,641793,702056,1.0,,,,,,,,,,,,,,,,,,,4,6,6,4,8.45,5.79,10,0.323,59,,,0,,0
 824242,2026-07-29T17:10:00Z,BAL @ DET,DET,BAL,Tarik Skubal,Trevor Rogers,669373,669432,0.99,,,,,,,,,,,,,,,,,,,5,5,5,5,2.98,2.38,7,0.29,29,3.32,3.26,9,0.371,35
 823596,2026-07-29T17:10:00Z,ATL @ NYM,NYM,ATL,Sean Manaea,AJ Smith-Shawver,640455,700363,0.98,,,,,,,,,,,,,,,,,,,6,4,5,5,4.67,3.46,12,0.38,85,,,1,0.421,2
 823598,2026-07-29T23:10:00Z,ATL @ NYM,NYM,ATL,Christian Scott,Chris Sale,681035,519242,0.98,,,,,,,,,,,,,,,,,,,6,4,5,5,4.32,2.47,11,0.276,30,5.54,3.39,11,0.332,87
