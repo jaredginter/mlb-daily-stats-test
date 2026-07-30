@@ -1,7 +1,7 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 822946,2026-07-30T16:10:00Z,TEX @ TB,TB,TEX,Shane McClanahan,Cole Winn,663556,668390.0,0.97,,,,,,,,,,,,,,,,,,,5,5,8,2,8.4,3.54,4,0.522,14,3.7,4.64,6.0,0.187,5.0
 823674,2026-07-30T17:40:00Z,KC @ MIN,MIN,KC,Bailey Ober,Noah Cameron,641927,702070.0,1.01,,,,,,,,,,,,,,,,,,,6,4,6,4,3.41,3.48,7,0.33,59,1.23,2.48,12.0,0.239,57.0
-824568,2026-07-30T18:10:00Z,NYY @ CWS,CWS,NYY,Sean Burke,Ryan Weathers,680732,677960.0,0.97,,,,,,,,,,,,,,,,,,,7,3,5,5,2.57,1.65,9,0.349,22,3.53,2.79,9.0,0.292,27.0
+824568,2026-07-30T18:10:00Z,NYY @ CWS,CWS,NYY,Sean Burke,Ryan Weathers,680732,677960.0,0.97,,,,,,,,,,,,,,,,,,,6,4,5,5,2.57,1.65,9,0.349,22,3.53,2.79,9.0,0.292,27.0
 823023,2026-07-30T18:15:00Z,CHC @ STL,STL,CHC,Andre Pallante,Javier Assad,669467,665871.0,0.99,,,,,,,,,,,,,,,,,,,6,4,3,7,5.73,4.69,10,0.337,93,3.39,3.35,10.0,0.278,51.0
 824488,2026-07-30T23:10:00Z,PIT @ CIN,CIN,PIT,Rhett Lowder,Yohan Ramírez,695076,670990.0,1.04,,,,,,,,,,,,,,,,,,,4,6,6,4,9.53,10.2,7,0.551,11,1.77,3.3,12.0,0.28,37.0
 823595,2026-07-30T23:10:00Z,MIA @ NYM,NYM,MIA,Nolan McLean,Eury Pérez,690997,691587.0,0.98,,,,,,,,,,,,,,,,,,,3,7,5,5,5.64,7.05,7,0.301,13,2.61,3.57,10.0,0.285,40.0
