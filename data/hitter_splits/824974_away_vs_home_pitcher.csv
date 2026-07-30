@@ -1,0 +1,8 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Nick Sogard,686765,1,2025,1.0,0,0.603,0.0,0.0,69.4
+Masataka Yoshida,807799,3,2025,0.333,0,0.461,1.0,0.167,99.5
+Connor Wong,657136,2,2025,0.5,0,0.446,0.5,0.0,92.2
+Jarren Duran,680776,5,2025,0.6,0,0.393,0.75,0.25,96.4
+Ceddanne Rafaela,678882,2,2025,0.5,0,0.278,1.0,0.2,103.6
+Carlos Narváez,665966,2,2025,0.0,0,0.125,0.5,0.25,93.2
+Romy Gonzalez,663853,2,2025,0.0,0,0.067,1.0,0.25,97.7

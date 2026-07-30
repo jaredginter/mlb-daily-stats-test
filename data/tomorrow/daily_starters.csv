@@ -1,16 +1,16 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp
-824651,2026-07-31T18:20:00Z,NYY @ CHC,CHC,NYY,Shota Imanaga,TBD,684007.0,,1.02,,,,,,,,,,,,,,,,,,,7,3,7,3,3.56,4.02,11.0,0.21,37.0,,,,,
+824651,2026-07-31T18:20:00Z,NYY @ CHC,CHC,NYY,Shota Imanaga,TBD,684007.0,,1.02,,,,,,,,,,,,,,,,,,,7,3,6,4,3.56,4.02,11.0,0.21,37.0,,,,,
 824486,2026-07-31T22:10:00Z,PIT @ CIN,CIN,PIT,Hunter Greene,Paul Skenes,668881.0,694973.0,1.04,,,,,,,,,,,,,,,,,,,4,6,6,4,2.33,3.33,9.0,0.211,46.0,10.0,0.224,66.0,1.21,2.56
 824809,2026-07-31T23:05:00Z,PHI @ BAL,BAL,PHI,Brandon Young,TBD,687064.0,,1.01,,,,,,,,,,,,,,,,,,,2,8,5,5,,,4.0,0.698,3.0,,,,,
-822782,2026-07-31T23:07:00Z,STL @ TOR,TOR,STL,Dylan Cease,Kyle Leahy,656302.0,681517.0,1.0,,,,,,,,,,,,,,,,,,,2,8,4,6,2.76,1.92,7.0,0.307,35.0,5.0,0.479,5.0,16.1,7.78
-824407,2026-07-31T23:10:00Z,AZ @ CLE,CLE,AZ,Tanner Bibee,Mitch Bratt,676440.0,683352.0,0.97,,,,,,,,,,,,,,,,,,,6,4,3,7,1.49,2.95,11.0,0.228,56.0,0.0,,0.0,,
-822945,2026-07-31T23:10:00Z,CWS @ TB,TB,CWS,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,4,6,7,3,,,,,,,,,,
+822782,2026-07-31T23:07:00Z,STL @ TOR,TOR,STL,Dylan Cease,Kyle Leahy,656302.0,681517.0,1.0,,,,,,,,,,,,,,,,,,,3,7,4,6,2.76,1.92,7.0,0.307,35.0,5.0,0.479,5.0,16.1,7.78
+824407,2026-07-31T23:10:00Z,AZ @ CLE,CLE,AZ,Tanner Bibee,Mitch Bratt,676440.0,683352.0,0.97,,,,,,,,,,,,,,,,,,,6,4,4,6,1.49,2.95,11.0,0.228,56.0,0.0,,0.0,,
+822945,2026-07-31T23:10:00Z,CWS @ TB,TB,CWS,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,5,5,7,3,,,,,,,,,,
 823593,2026-07-31T23:10:00Z,MIA @ NYM,NYM,MIA,Freddy Peralta,Janson Junk,642547.0,676083.0,0.98,,,,,,,,,,,,,,,,,,,3,7,5,5,4.73,3.91,9.0,0.294,62.0,6.0,0.104,15.0,1.9,2.84
 824892,2026-07-31T23:15:00Z,WSH @ ATL,ATL,WSH,Bryce Elder,Foster Griffin,693821.0,656492.0,0.98,,,,,,,,,,,,,,,,,,,6,4,6,4,3.88,4.26,10.0,0.335,79.0,9.0,0.323,42.0,4.19,3.38
-824164,2026-08-01T00:15:00Z,TEX @ HOU,HOU,TEX,Hunter Brown,TBD,686613.0,,1.03,,,,,,,,,,,,,,,,,,,5,5,7,3,3.9,3.36,10.0,0.292,95.0,,,,,
+824164,2026-08-01T00:15:00Z,TEX @ HOU,HOU,TEX,Hunter Brown,TBD,686613.0,,1.03,,,,,,,,,,,,,,,,,,,5,5,8,2,3.9,3.36,10.0,0.292,95.0,,,,,
 824325,2026-08-01T00:40:00Z,KC @ COL,COL,KC,Tomoyuki Sugano,TBD,608372.0,,1.22,,,,,,,,,,,,,,,,,,,6,4,3,7,2.01,3.25,3.0,0.208,11.0,,,,,
 823999,2026-08-01T01:38:00Z,MIL @ LAA,LAA,MIL,Ryan Johnson,Shane Drohan,696270.0,675660.0,0.97,,,,,,,,,,,,,,,,,,,6,4,4,6,2.7,3.32,9.0,0.005,20.0,0.0,,0.0,,
-824975,2026-08-01T01:40:00Z,DET @ ATH,ATH,DET,TBD,Casey Mize,,663554.0,1.0,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,7.0,0.259,21.0,3.53,5.87
+824975,2026-08-01T01:40:00Z,DET @ ATH,ATH,DET,TBD,Casey Mize,,663554.0,1.0,,,,,,,,,,,,,,,,,,,5,5,3,7,,,,,,7.0,0.259,21.0,3.53,5.87
 823272,2026-08-01T01:45:00Z,SF @ SD,SD,SF,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,4,6,7,3,,,,,,,,,,
 823922,2026-08-01T02:10:00Z,BOS @ LAD,LAD,BOS,TBD,TBD,,,0.96,,,,,,,,,,,,,,,,,,,7,3,6,4,,,,,,,,,,
-823111,2026-08-01T02:10:00Z,MIN @ SEA,SEA,MIN,Bryce Miller,TBD,682243.0,,0.97,,,,,,,,,,,,,,,,,,,5,5,5,5,2.08,3.98,7.0,0.203,18.0,,,,,
+823111,2026-08-01T02:10:00Z,MIN @ SEA,SEA,MIN,Bryce Miller,TBD,682243.0,,0.97,,,,,,,,,,,,,,,,,,,5,5,4,6,2.08,3.98,7.0,0.203,18.0,,,,,
