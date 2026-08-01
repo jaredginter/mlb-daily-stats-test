@@ -1,5 +1,5 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-822781,2026-08-01T19:07:00Z,STL @ TOR,TOR,STL,Kevin Gausman,Quinn Mathews,592332,687273,1.0,,,,,,,,,,,,,,,,,,,3,7,5,5,2.3,3.62,6,0.413,25,2.35,,6,,5
+822781,2026-08-01T19:07:00Z,STL @ TOR,TOR,STL,Kevin Gausman,Quinn Mathews,592332,687273,1.0,,,,,,,,,,,,,,,,,,,2,8,6,4,2.3,3.62,6,0.413,25,2.35,,6,,5
 823109,2026-08-01T20:10:00Z,MIN @ SEA,SEA,MIN,Logan Gilbert,Connor Prielipp,669302,687570,0.97,,,,,,,,,,,,,,,,,,,7,3,2,8,2.98,2.94,12,0.242,65,2.24,3.58,8,0.223,14
 822944,2026-08-01T20:10:00Z,CWS @ TB,TB,CWS,Drew Rasmussen,Jordan Hicks,656876,663855,0.97,,,,,,,,,,,,,,,,,,,5,5,7,3,3.1,3.57,6,0.29,11,3.15,3.56,10,0.365,17
 823594,2026-08-01T20:10:00Z,MIA @ NYM,NYM,MIA,Zac Thornton,Tyler Phillips,804267,663969,0.98,,,,,,,,,,,,,,,,,,,4,6,5,5,1.9,2.84,4,,5,1.9,2.84,11,0.366,37
@@ -12,5 +12,5 @@ game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_nam
 824326,2026-08-02T00:10:00Z,KC @ COL,COL,KC,Ryan Feltner,Luinder Avila,663372,679883,1.22,,,,,,,,,,,,,,,,,,,5,5,3,7,3.46,4.77,10,0.216,27,,,0,,0
 823269,2026-08-02T00:40:00Z,SF @ SD,SD,SF,Walker Buehler,Tyler Mahle,621111,641816,0.95,,,,,,,,,,,,,,,,,,,5,5,7,3,1.53,2.38,9,0.26,55,4.41,3.87,10,0.38,29
 823920,2026-08-02T01:10:00Z,BOS @ LAD,LAD,BOS,Yoshinobu Yamamoto,Payton Tolle,808967,801139,0.96,,,,,,,,,,,,,,,,,,,7,3,6,4,0.1,0.88,3,0.233,7,,,0,,0
-824000,2026-08-02T01:38:00Z,MIL @ LAA,LAA,MIL,Brent Suter,Robert Gasser,608718,688107,0.97,,,,,,,,,,,,,,,,,,,6,4,3,7,2.3,3.09,11,0.283,40,,,0,,0
+824000,2026-08-02T01:38:00Z,MIL @ LAA,LAA,MIL,Brent Suter,Robert Gasser,608718,688107,0.97,,,,,,,,,,,,,,,,,,,6,4,3,7,1.99,2.73,12,0.266,43,,,0,,0
 824972,2026-08-02T01:40:00Z,DET @ ATH,ATH,DET,Jack Perkins,Framber Valdez,678022,664285,1.0,,,,,,,,,,,,,,,,,,,5,5,2,8,6.48,3.94,6,0.258,10,4.52,3.12,8,0.215,59

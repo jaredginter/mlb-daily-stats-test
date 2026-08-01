@@ -1,12 +1,12 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824807,2026-08-02T17:35:00Z,PHI @ BAL,BAL,PHI,Kyle Bradish,Zack Wheeler,680694.0,554430,1.01,,,,,,,,,,,,,,,,,,,2,8,5,5,5.01,4.37,9.0,0.301,48.0,2.59,3.03,11,0.381,54
 824891,2026-08-02T17:35:00Z,WSH @ ATL,ATL,WSH,Martín Pérez,Cade Cavalli,527048.0,676917,0.98,,,,,,,,,,,,,,,,,,,4,6,7,3,5.26,3.08,10.0,0.374,32.0,-0.07,1.71,10,0.28,24
-822783,2026-08-02T17:37:00Z,STL @ TOR,TOR,STL,Max Scherzer,Michael McGreevy,453286.0,700241,1.0,,,,,,,,,,,,,,,,,,,3,7,5,5,4.73,3.4,6.0,0.454,17.0,,,1,,1
+822783,2026-08-02T17:37:00Z,STL @ TOR,TOR,STL,Max Scherzer,Michael McGreevy,453286.0,700241,1.0,,,,,,,,,,,,,,,,,,,2,8,6,4,4.73,3.4,6.0,0.454,17.0,,,1,,1
 824404,2026-08-02T17:40:00Z,AZ @ CLE,CLE,AZ,Gavin Williams,Merrill Kelly,668909.0,518876,0.97,,,,,,,,,,,,,,,,,,,7,3,3,7,1.9,2.84,8.0,0.359,29.0,5.6,3.81,10,0.278,54
 824483,2026-08-02T17:40:00Z,PIT @ CIN,CIN,PIT,Chase Burns,Mitch Keller,695505.0,656605,1.04,,,,,,,,,,,,,,,,,,,3,7,7,3,1.64,1.83,8.0,0.254,46.0,3.33,3.68,12,0.333,111
 822943,2026-08-02T17:40:00Z,CWS @ TB,TB,CWS,Griffin Jax,Anthony Kay,643377.0,641743,0.97,,,,,,,,,,,,,,,,,,,5,5,7,3,4.41,4.34,7.0,0.205,25.0,8.46,7.65,9,0.39,20
 823592,2026-08-02T17:40:00Z,MIA @ NYM,NYM,MIA,TBD,Sandy Alcantara,,645261,0.98,,,,,,,,,,,,,,,,,,,4,6,5,5,,,,,,3.76,3.53,10,0.207,80
-824163,2026-08-02T18:10:00Z,TEX @ HOU,HOU,TEX,TBD,Kumar Rocker,,677958,1.03,,,,,,,,,,,,,,,,,,,5,5,9,1,,,,,,7.04,4.19,12,0.308,41
+824163,2026-08-02T18:10:00Z,TEX @ HOU,HOU,TEX,Peter Lambert,Kumar Rocker,663567.0,677958,1.03,,,,,,,,,,,,,,,,,,,5,5,9,1,6.97,4.59,11.0,0.259,54.0,7.04,4.19,12,0.308,41
 824648,2026-08-02T18:20:00Z,NYY @ CHC,CHC,NYY,Colin Rea,Gerrit Cole,607067.0,543037,1.02,,,,,,,,,,,,,,,,,,,6,4,6,4,5.34,4.58,10.0,0.366,40.0,4.37,2.8,10,0.211,62
 824323,2026-08-02T19:10:00Z,KC @ COL,COL,KC,Kyle Freeland,Seth Lugo,607536.0,607625,1.22,,,,,,,,,,,,,,,,,,,5,5,3,7,3.2,3.9,12.0,0.318,68.0,3.71,3.0,9,0.317,64
 823996,2026-08-02T19:15:00Z,MIL @ LAA,LAA,MIL,Walbert Ureña,Jacob Misiorowski,700712.0,694819,0.97,,,,,,,,,,,,,,,,,,,6,4,3,7,,,0.0,,0.0,,,0,,0
