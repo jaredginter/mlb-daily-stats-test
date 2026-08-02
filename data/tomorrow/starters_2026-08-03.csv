@@ -1,9 +1,9 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp
-823431,2026-08-03T22:40:00Z,WSH @ PHI,PHI,WSH,Aaron Nola,TBD,605400.0,,1.02,,,,,,,,,,,,,,,,,,,3,7,3,7,3.54,3.09,12.0,0.257,124.0,,,,,
+823431,2026-08-03T22:40:00Z,WSH @ PHI,PHI,WSH,Aaron Nola,TBD,605400.0,,1.02,,,,,,,,,,,,,,,,,,,3,7,3,7,2.59,2.94,11.0,0.243,96.0,,,,,
 823520,2026-08-03T23:05:00Z,STL @ NYY,NYY,STL,Cam Schlittler,Michael McGreevy,693645.0,700241.0,1.05,,,,,,,,,,,,,,,,,,,3,7,6,4,,,0.0,,0.0,8.0,0.28,15.0,3.85,2.16
 823757,2026-08-03T23:40:00Z,PIT @ MIL,MIL,PIT,Brandon Sproat,Bubba Chandler,687075.0,696149.0,1.0,,,,,,,,,,,,,,,,,,,3,7,6,4,12.1,9.77,7.0,0.519,7.0,11.0,0.308,26.0,2.91,3.79
 824647,2026-08-04T00:05:00Z,LAD @ CHC,CHC,LAD,Matthew Boyd,TBD,571510.0,,1.02,,,,,,,,,,,,,,,,,,,6,4,6,4,3.62,3.81,10.0,0.304,97.0,,,,,
 822867,2026-08-04T00:05:00Z,SF @ TEX,TEX,SF,TBD,Logan Webb,,657277.0,1.02,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,8.0,0.345,77.0,2.73,3.39
 824160,2026-08-04T00:10:00Z,TOR @ HOU,HOU,TOR,Cristian Javier,Shane Bieber,664299.0,669456.0,1.03,,,,,,,,,,,,,,,,,,,6,4,9,1,3.45,4.15,11.0,0.36,53.0,11.0,0.505,68.0,6.42,4.97
 824324,2026-08-04T00:40:00Z,TB @ COL,COL,TB,Michael Lorenzen,Ian Seymour,547179.0,693855.0,1.22,,,,,,,,,,,,,,,,,,,6,4,5,5,7.77,5.15,9.0,0.358,36.0,0.0,,0.0,,
-825095,2026-08-04T01:40:00Z,SD @ AZ,AZ,SD,Brandon Pfaadt,Michael King,694297.0,650633.0,1.05,,,,,,,,,,,,,,,,,,,7,3,6,4,2.84,2.43,13.0,0.268,142.0,11.0,0.283,57.0,3.6,3.57
+825095,2026-08-04T01:40:00Z,SD @ AZ,AZ,SD,Brandon Pfaadt,Michael King,694297.0,650633.0,1.05,,,,,,,,,,,,,,,,,,,8,2,6,4,2.84,2.43,13.0,0.268,142.0,11.0,0.283,57.0,3.6,3.57
