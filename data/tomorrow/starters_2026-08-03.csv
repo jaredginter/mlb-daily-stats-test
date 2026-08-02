@@ -1,9 +1,9 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp
 823431,2026-08-03T22:40:00Z,WSH @ PHI,PHI,WSH,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,4,6,2,8,,,,,,,,,,
 823520,2026-08-03T23:05:00Z,STL @ NYY,NYY,STL,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,2,8,6,4,,,,,,,,,,
-823757,2026-08-03T23:40:00Z,PIT @ MIL,MIL,PIT,Brandon Sproat,TBD,687075.0,,1.0,,,,,,,,,,,,,,,,,,,3,7,6,4,7.0,0.519,7.0,12.1,9.77,,,,,
+823757,2026-08-03T23:40:00Z,PIT @ MIL,MIL,PIT,Brandon Sproat,Bubba Chandler,687075.0,696149.0,1.0,,,,,,,,,,,,,,,,,,,3,7,6,4,7.0,0.519,7.0,12.1,9.77,11.0,0.308,27.0,2.91,3.79
 824647,2026-08-04T00:05:00Z,LAD @ CHC,CHC,LAD,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,6,4,6,4,,,,,,,,,,
 822867,2026-08-04T00:05:00Z,SF @ TEX,TEX,SF,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,,,,,
-824160,2026-08-04T00:10:00Z,TOR @ HOU,HOU,TOR,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,6,4,9,1,,,,,,,,,,
-824324,2026-08-04T00:40:00Z,TB @ COL,COL,TB,TBD,TBD,,,1.22,,,,,,,,,,,,,,,,,,,7,3,4,6,,,,,,,,,,
-825095,2026-08-04T01:40:00Z,SD @ AZ,AZ,SD,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,7,3,7,3,,,,,,,,,,
+824160,2026-08-04T00:10:00Z,TOR @ HOU,HOU,TOR,Cristian Javier,TBD,664299.0,,1.03,,,,,,,,,,,,,,,,,,,6,4,9,1,11.0,0.36,53.0,3.45,4.15,,,,,
+824324,2026-08-04T00:40:00Z,TB @ COL,COL,TB,TBD,Ian Seymour,,693855.0,1.22,,,,,,,,,,,,,,,,,,,7,3,4,6,,,,,,0.0,,0.0,,
+825095,2026-08-04T01:40:00Z,SD @ AZ,AZ,SD,Brandon Pfaadt,TBD,694297.0,,1.05,,,,,,,,,,,,,,,,,,,7,3,7,3,13.0,0.268,142.0,2.84,2.43,,,,,
