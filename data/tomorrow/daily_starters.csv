@@ -1,12 +1,12 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824158,2026-08-05T18:10:00Z,TOR @ HOU,HOU,TOR,Hunter Brown,Dylan Cease,686613.0,656302.0,1.03,,,,,,,,,,,,,,,,,,,6,4,9,1,4.12,4.01,12.0,0.327,66.0,3.86,4.16,11.0,0.276,103.0
-824646,2026-08-05T18:20:00Z,LAD @ CHC,CHC,LAD,Shota Imanaga,Eric Lauer,684007.0,641778.0,1.02,,,,,,,,,,,,,,,,,,,5,5,6,4,6.0,4.22,10.0,0.42,71.0,3.98,3.7,7.0,0.371,58.0
+824646,2026-08-05T18:20:00Z,LAD @ CHC,CHC,LAD,Shota Imanaga,Eric Lauer,684007.0,641778.0,1.02,,,,,,,,,,,,,,,,,,,5,5,6,4,6.0,4.22,10.0,0.42,72.0,3.98,3.7,7.0,0.371,58.0
 822866,2026-08-05T18:35:00Z,SF @ TEX,TEX,SF,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,,,,,
 824322,2026-08-05T19:10:00Z,TB @ COL,COL,TB,Tomoyuki Sugano,Nick Martinez,608372.0,607259.0,1.22,,,,,,,,,,,,,,,,,,,6,4,5,5,7.77,6.03,5.0,0.34,12.0,1.63,2.82,8.0,0.233,35.0
-824806,2026-08-05T22:35:00Z,LAA @ BAL,BAL,LAA,TBD,TBD,,,1.01,,,,,,,,,,,,,,,,,,,2,8,5,5,,,,,,,,,,
+824806,2026-08-05T22:35:00Z,LAA @ BAL,BAL,LAA,TBD,Reid Detmers,,672282.0,1.01,,,,,,,,,,,,,,,,,,,2,8,5,5,,,,,,4.58,2.83,7.0,0.253,37.0
 824402,2026-08-05T22:40:00Z,NYM @ CLE,CLE,NYM,Slade Cecconi,Nolan McLean,677944.0,690997.0,0.97,,,,,,,,,,,,,,,,,,,4,6,3,7,1.9,4.24,5.0,0.564,12.0,,,1.0,0.363,1.0
 824482,2026-08-05T22:40:00Z,ATH @ CIN,CIN,ATH,Rhett Lowder,TBD,695076.0,,1.04,,,,,,,,,,,,,,,,,,,2,8,6,4,3.1,4.66,4.0,,5.0,,,,,
-823429,2026-08-05T22:40:00Z,WSH @ PHI,PHI,WSH,Andrew Painter,Jake Irvin,691725.0,663623.0,1.02,,,,,,,,,,,,,,,,,,,3,7,3,7,-0.4,1.16,7.0,0.081,16.0,4.92,4.17,12.0,0.356,115.0
+823429,2026-08-05T22:40:00Z,WSH @ PHI,PHI,WSH,Andrew Painter,Jake Irvin,691725.0,663623.0,1.02,,,,,,,,,,,,,,,,,,,3,7,4,6,-0.4,1.16,7.0,0.081,16.0,4.92,4.17,12.0,0.356,115.0
 823516,2026-08-05T23:05:00Z,STL @ NYY,NYY,STL,Will Warren,TBD,701542.0,,1.05,,,,,,,,,,,,,,,,,,,3,7,6,4,1.93,2.97,5.0,0.264,19.0,,,,,
 824728,2026-08-05T23:10:00Z,CWS @ BOS,BOS,CWS,TBD,Sean Burke,,680732.0,1.03,,,,,,,,,,,,,,,,,,,5,5,8,2,,,,,,3.85,1.38,5.0,0.244,13.0
 824889,2026-08-05T23:15:00Z,MIA @ ATL,ATL,MIA,Bryce Elder,Eury Pérez,693821.0,691587.0,0.98,,,,,,,,,,,,,,,,,,,6,4,7,3,5.69,4.28,8.0,0.348,38.0,8.23,5.31,9.0,0.339,46.0
