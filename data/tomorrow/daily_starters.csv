@@ -1,7 +1,7 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-824158,2026-08-05T18:10:00Z,TOR @ HOU,HOU,TOR,Hunter Brown,Dylan Cease,686613.0,656302.0,1.03,,,,,,,,,,,,,,,,,,,6,4,8,2,4.12,4.01,12.0,0.327,66.0,3.86,4.16,11.0,0.276,103.0
+824158,2026-08-05T18:10:00Z,TOR @ HOU,HOU,TOR,Hunter Brown,Jameson Taillon,686613.0,592791.0,1.03,,,,,,,,,,,,,,,,,,,6,4,8,2,4.12,4.01,12.0,0.327,66.0,5.81,4.32,11.0,0.368,82.0
 824646,2026-08-05T18:20:00Z,LAD @ CHC,CHC,LAD,Shota Imanaga,Eric Lauer,684007.0,641778.0,1.02,,,,,,,,,,,,,,,,,,,4,6,6,4,6.0,4.22,10.0,0.42,72.0,3.98,3.7,7.0,0.371,58.0
-822866,2026-08-05T18:35:00Z,SF @ TEX,TEX,SF,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,5,5,3,7,,,,,,,,,,
+822866,2026-08-05T18:35:00Z,SF @ TEX,TEX,SF,TBD,Carson Whisenhunt,,687931.0,1.02,,,,,,,,,,,,,,,,,,,5,5,3,7,,,,,,-0.33,0.34,6.0,0.196,8.0
 824322,2026-08-05T19:10:00Z,TB @ COL,COL,TB,Tomoyuki Sugano,Nick Martinez,608372.0,607259.0,1.22,,,,,,,,,,,,,,,,,,,7,3,4,6,7.77,6.03,5.0,0.34,12.0,1.63,2.82,8.0,0.233,35.0
 824806,2026-08-05T22:35:00Z,LAA @ BAL,BAL,LAA,Trevor Rogers,Reid Detmers,669432.0,672282.0,1.01,,,,,,,,,,,,,,,,,,,2,8,5,5,3.98,2.45,5.0,0.232,27.0,4.28,2.82,8.0,0.242,41.0
 824402,2026-08-05T22:40:00Z,NYM @ CLE,CLE,NYM,Tanner Bibee,Christian Scott,676440.0,681035.0,0.97,,,,,,,,,,,,,,,,,,,4,6,3,7,3.86,4.81,7.0,0.292,46.0,0.13,,2.0,0.121,4.0
