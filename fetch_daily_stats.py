@@ -314,11 +314,12 @@ def compute_hitter_splits(pitcher_df, batter_mlbam_id):
         return None
 
     bbe    = vs[vs["type"] == "X"]
-    swings = vs[vs["description"].isin(
-        ["swinging_strike", "foul", "hit_into_play", "swinging_strike_blocked"]
-    )]
+    swings = vs[vs["description"].isin([
+        "swinging_strike", "foul", "hit_into_play", "swinging_strike_blocked",
+        "foul_tip", "foul_bunt", "missed_bunt",
+    ])]
     whiffs = vs[vs["description"].isin(
-        ["swinging_strike", "swinging_strike_blocked"]
+        ["swinging_strike", "swinging_strike_blocked", "missed_bunt"]
     )]
 
     # Year range of the matchup history
@@ -334,8 +335,7 @@ def compute_hitter_splits(pitcher_df, batter_mlbam_id):
     has_launch_spd = "launch_speed" in bbe.columns
     has_xwoba      = "estimated_woba_using_speedangle" in vs.columns
 
-    xwoba_vals = vs["estimated_woba_using_speedangle"].dropna() if has_xwoba else pd.Series([], dtype=float)
-    ev_vals    = bbe["launch_speed"].dropna() if has_launch_spd else pd.Series([], dtype=float)
+    ev_vals = bbe["launch_speed"].dropna() if has_launch_spd else pd.Series([], dtype=float)
 
     # Batting average: hits / at-bats (exclude walks, HBP, sac flies)
     # Statcast events that count as hits
@@ -345,10 +345,15 @@ def compute_hitter_splits(pitcher_df, batter_mlbam_id):
         "strikeout", "strikeout_double_play",
         "field_out", "force_out", "grounded_into_double_play",
         "fielders_choice", "fielders_choice_out",
-        "double_play", "triple_play",
+        "double_play", "triple_play", "field_error",
     }
-    # One row per plate appearance (use last pitch of each AB)
-    ab_df = vs.sort_values("pitch_number").groupby("at_bat_number").last()
+    # One row per plate appearance. `at_bat_number` resets every game, so it
+    # is NOT unique across a batter's career vs. this pitcher — group by
+    # game AND at-bat number together, or plate appearances from different
+    # games collide and get silently dropped.
+    group_cols = ["game_pk", "at_bat_number"] if "game_pk" in vs.columns else ["at_bat_number"]
+    ab_df = vs.sort_values(group_cols + ["pitch_number"]).groupby(group_cols).last()
+
     hits  = ab_df["events"].isin(hit_events).sum() if "events" in ab_df.columns else 0
     abs_  = ab_df["events"].isin(ab_events).sum()  if "events" in ab_df.columns else 0
     batting_avg = round(hits / abs_, 3) if abs_ > 0 else None
@@ -356,12 +361,31 @@ def compute_hitter_splits(pitcher_df, batter_mlbam_id):
     # Home runs: count PA events == "home_run"
     home_runs = int((ab_df["events"] == "home_run").sum()) if "events" in ab_df.columns else 0
 
+    # xwOBA: blend the expected value on batted balls with the actual
+    # outcome value on walks/HBP/strikeouts, over every plate appearance —
+    # not just the ones where the batter made contact.
+    # `estimated_woba_using_speedangle` is only populated on batted-ball
+    # rows, so falling back to the real `woba_value` for every other PA
+    # keeps strikeouts (worth 0) and walks/HBP in the average instead of
+    # silently dropping them, which otherwise inflates the number.
+    xwoba = None
+    if {"woba_value", "woba_denom"}.issubset(ab_df.columns):
+        valid_pa = ab_df["woba_denom"].fillna(0) == 1
+        if has_xwoba:
+            per_pa_value = ab_df["estimated_woba_using_speedangle"].where(
+                ab_df["estimated_woba_using_speedangle"].notna(), ab_df["woba_value"]
+            )
+        else:
+            per_pa_value = ab_df["woba_value"]
+        if valid_pa.sum() > 0:
+            xwoba = round(per_pa_value[valid_pa].mean(), 3)
+
     return {
-        "abs":           int(ab_df["events"].isin(ab_events).sum()) if "events" in ab_df.columns else int(vs["at_bat_number"].nunique()),
+        "abs":           int(abs_),
         "seasons":       seasons_seen,
         "batting_avg":   batting_avg,
         "home_runs":     home_runs,
-        "xwoba":         round(xwoba_vals.mean(), 3) if not xwoba_vals.empty else None,
+        "xwoba":         xwoba,
         "hard_hit_pct":  round((bbe["launch_speed"] >= 95).sum() / len(bbe), 3)
                          if (has_launch_spd and not bbe.empty) else None,
         "whiff_pct":     round(len(whiffs) / len(swings), 3) if len(swings) > 0 else None,
@@ -370,11 +394,16 @@ def compute_hitter_splits(pitcher_df, batter_mlbam_id):
 
 
 # FIP constant by season (league average — close enough for display purposes)
-# Updated through 2025; defaults to 3.10 for unknown seasons
+# Source: FanGraphs Guts! tool (fangraphs.com/guts.aspx?type=cn), checked 2026-08-06.
+# 2025/2026 pulled directly from that table; 2015-2024 were already in this
+# file and were not re-verified against the source during this pass.
+# Updated through 2026; defaults to 3.10 for unknown seasons.
+# Note: the current season's value is season-to-date and will keep moving
+# until the season ends — re-check it periodically.
 FIP_CONSTANTS = {
     2015: 3.134, 2016: 3.147, 2017: 3.158, 2018: 3.161,
     2019: 3.214, 2020: 3.191, 2021: 3.170, 2022: 3.125,
-    2023: 3.148, 2024: 3.131, 2025: 3.10,
+    2023: 3.148, 2024: 3.131, 2025: 3.135, 2026: 3.096,
 }
 
 
@@ -383,7 +412,7 @@ def compute_pitcher_fip_vs_team(pitcher_df, opposing_batter_ids):
     Compute a pitcher's FIP against a specific set of batters (the opposing team)
     using only plate appearance ending events from the Statcast data.
 
-    FIP = ((13 x HR) + (3 x BB) - (2 x K)) / IP + FIP_constant
+    FIP = ((13 x HR) + (3 x (BB + HBP)) - (2 x K)) / IP + FIP_constant
     """
     if pitcher_df.empty or not opposing_batter_ids:
         return None
@@ -399,9 +428,10 @@ def compute_pitcher_fip_vs_team(pitcher_df, opposing_batter_ids):
     if pa_endings.empty:
         return None
 
-    hr = (pa_endings["events"] == "home_run").sum()
-    bb = pa_endings["events"].isin(["walk", "intent_walk"]).sum()
-    k  = pa_endings["events"].isin(["strikeout", "strikeout_double_play"]).sum()
+    hr  = (pa_endings["events"] == "home_run").sum()
+    bb  = pa_endings["events"].isin(["walk", "intent_walk"]).sum()
+    hbp = (pa_endings["events"] == "hit_by_pitch").sum()
+    k   = pa_endings["events"].isin(["strikeout", "strikeout_double_play"]).sum()
 
     # Estimate innings pitched: each out = 1/3 inning
     # Outs = AB events that don't result in hit, walk, HBP, or error
@@ -425,7 +455,7 @@ def compute_pitcher_fip_vs_team(pitcher_df, opposing_batter_ids):
         season = 2025
 
     fip_c = FIP_CONSTANTS.get(season, 3.10)
-    fip   = ((13 * hr) + (3 * bb) - (2 * k)) / ip + fip_c
+    fip   = ((13 * hr) + (3 * (bb + hbp)) - (2 * k)) / ip + fip_c
 
     return round(fip, 2)
 
@@ -475,13 +505,17 @@ def compute_pitcher_xfip_vs_team(pitcher_df, opposing_batter_ids):
     k   = pa_endings["events"].isin(["strikeout", "strikeout_double_play"]).sum()
 
     # ── Fly balls (HR-inclusive) ─────────────────────────────────────────
-    if "bb_type" not in vs.columns:
+    if "bb_type" not in pa_endings.columns:
         log.warning("  bb_type column missing — cannot compute xFIP")
         return None
 
-    is_fb = vs["bb_type"] == "fly_ball"
-    is_hr = vs["events"] == "home_run"
-    # Union: every fly ball, plus any HR not already tagged as a fly ball.
+    # Restricted to plate-appearance-ending pitches: Statcast can tag
+    # `bb_type` on fouled-off balls too, and a foul doesn't end the PA —
+    # counting those would inflate the fly-ball count feeding the expected
+    # HR estimate below.
+    is_fb = pa_endings["bb_type"] == "fly_ball"
+    is_hr = pa_endings["events"] == "home_run"
+    # Union: every PA-ending fly ball, plus any HR not already tagged as one.
     fb = int((is_fb | is_hr).sum())
 
     if fb == 0:
