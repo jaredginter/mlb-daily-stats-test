@@ -961,55 +961,6 @@ def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample
     )
 
 
-def pitcher_season_badge(era, xfip, pitcher_name):
-    """Render a small tile showing the starter's season ERA and season xFIP."""
-    def _fmt(v):
-        try:
-            v = float(v)
-        except (TypeError, ValueError):
-            return "—", None
-        if v != v:  # nan
-            return "—", None
-        return f"{v:.2f}", v
-
-    era_disp, era_val   = _fmt(era)
-    xfip_disp, xfip_val = _fmt(xfip)
-    era_color  = fip_tier_color(era_val)
-    xfip_color = fip_tier_color(xfip_val)
-
-    st.markdown(
-        f"""
-        <div style="
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.10);
-            border-radius: 10px;
-            padding: 10px 18px;
-            margin: 4px 0 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        ">
-            <div style="color:#aaa;font-size:0.75rem;white-space:nowrap;">
-                📅 {pitcher_name} — season
-            </div>
-            <div>
-                <div style="font-size:0.75rem;color:#888;">ERA</div>
-                <div style="font-size:1.4rem;font-weight:700;color:{era_color};line-height:1.1;">
-                    {era_disp}
-                </div>
-            </div>
-            <div>
-                <div style="font-size:0.75rem;color:#888;">xFIP</div>
-                <div style="font-size:1.4rem;font-weight:700;color:{xfip_color};line-height:1.1;">
-                    {xfip_disp}
-                </div>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 
 with st.sidebar:
@@ -1339,7 +1290,6 @@ for _, game in summary.iterrows():
 
                 season_era_key  = f"{panel['pitcher_side']}_pitcher_season_era"
                 season_xfip_key = f"{panel['pitcher_side']}_pitcher_season_xfip"
-                pitcher_season_badge(game.get(season_era_key), game.get(season_xfip_key), pitcher)
 
                 n = panel["hitters_with_history"]
                 avg_xwoba = panel["lineup_avg_xwoba"]
@@ -1394,14 +1344,14 @@ for _, game in summary.iterrows():
                         _rel_tier  = "Very Weak"
                         _rel_color = "#9467bd"
 
-                    mc1, mc2, mc3, mc4, mc5 = st.columns(5)
+                    mc1, mc2, mc3, mc4, mc5, mc6, mc7 = st.columns(7)
                     mc1.markdown(
                         f"""<div style="padding:4px 0 8px 0;">
                             <div style="font-size:0.8rem;color:#888;margin-bottom:4px;">
                                 Hitters with history
                             </div>
-                            <div style="font-size:1.9rem;font-weight:700;
-                                        color:white;line-height:1.1;">
+                            <div style="font-size:1.4rem;font-weight:700;
+                                        color:var(--text-color);line-height:1.1;white-space:nowrap;">
                                 {int(n)}
                             </div>
                         </div>""",
@@ -1426,8 +1376,8 @@ for _, game in summary.iterrows():
                                     {label}
                                     <span title="{help_text}" style="cursor:help;"> ⓘ</span>
                                 </div>
-                                <div style="font-size:1.9rem;font-weight:700;
-                                            color:{color};line-height:1.1;">
+                                <div style="font-size:1.4rem;font-weight:700;
+                                            color:{color};line-height:1.1;white-space:nowrap;">
                                     {display_val}
                                 </div>
                             </div>""",
@@ -1473,7 +1423,30 @@ for _, game in summary.iterrows():
                         "than FIP. Scale: &lt;2.75 elite · 3.00–3.25 excellent · 3.25–3.75 great · "
                         "3.76–4.19 average · 4.20–4.50 below avg · 4.75+ poor"
                     )
-                    with mc5:
+                    # Season xFIP
+                    _season_xfip = game.get(season_xfip_key)
+                    _season_xfip_val  = _season_xfip if (_season_xfip is not None and str(_season_xfip) != "nan") else None
+                    _season_xfip_disp = f"{_season_xfip_val:.2f}" if _season_xfip_val is not None else "—"
+                    _season_xfip_color = fip_tier_color(_season_xfip_val)
+                    colored_metric(
+                        mc5, "Season xFIP", _season_xfip_disp, _season_xfip_color,
+                        "Expected FIP across the pitcher's full season (all opponents), not just "
+                        "today's lineup. Lower = better. Scale: &lt;2.75 elite · 3.00–3.25 excellent · "
+                        "3.25–3.75 great · 3.76–4.19 average · 4.20–4.50 below avg · 4.75+ poor"
+                    )
+
+                    # Season ERA
+                    _season_era = game.get(season_era_key)
+                    _season_era_val  = _season_era if (_season_era is not None and str(_season_era) != "nan") else None
+                    _season_era_disp = f"{_season_era_val:.2f}" if _season_era_val is not None else "—"
+                    _season_era_color = fip_tier_color(_season_era_val)
+                    colored_metric(
+                        mc6, "Season ERA", _season_era_disp, _season_era_color,
+                        "The pitcher's official earned run average for the current season "
+                        "(all starts, all opponents). Lower = better."
+                    )
+
+                    with mc7:
                         st.markdown(
                             f"""<div style="padding: 4px 0;">
                                 <div style="font-size:0.8rem;color:#888;margin-bottom:4px;">
@@ -1481,7 +1454,7 @@ for _, game in summary.iterrows():
                                     <span title="How much career AB history exists between this pitcher and the opposing lineup. Very Strong (≥95%) = excellent data. Strong (80–94%) = well-supported. Moderate (65–79%) = reasonably reliable. Weak (50–64%) = treat as a lean. Very Weak (&lt;50%) = insufficient history, quadrant may mislead."
                                           style="cursor:help;"> ⓘ</span>
                                 </div>
-                                <div style="font-size:1.9rem;font-weight:700;color:{_rel_color};line-height:1.1;">
+                                <div style="font-size:1.4rem;font-weight:700;color:{_rel_color};line-height:1.1;white-space:nowrap;">
                                     {_rel_label}
                                 </div>
                                 <div style="font-size:0.75rem;color:{_rel_color};opacity:0.8;margin-top:2px;">
