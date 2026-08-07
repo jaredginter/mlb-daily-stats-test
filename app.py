@@ -59,6 +59,17 @@ def xwoba_color(val):
     return "background-color: #ffc7ce; color: #9c0006"
 
 
+def fip_tier_color(v):
+    """Lower FIP/xFIP/ERA = better for pitcher = green."""
+    if v is None: return "#888888"
+    if v < 2.75:  return "#1b7e24"   # elite — dark green
+    if v < 3.00:  return "#43a047"   # excellent — green
+    if v <= 3.75: return "#81c784"   # great — light green
+    if v <= 4.19: return "#aaaaaa"   # average — gray
+    if v <= 4.50: return "#ff7f0e"   # below avg — orange
+    return "#d62728"                  # poor — red
+
+
 def style_splits_table(df):
     """Apply conditional formatting to the hitter splits table."""
     # Columns in the exact display order requested
@@ -950,6 +961,55 @@ def run_prediction_badge(runs, conf_label, conf_color, team, inputs_used, sample
     )
 
 
+def pitcher_season_badge(era, xfip, pitcher_name):
+    """Render a small tile showing the starter's season ERA and season xFIP."""
+    def _fmt(v):
+        try:
+            v = float(v)
+        except (TypeError, ValueError):
+            return "—", None
+        if v != v:  # nan
+            return "—", None
+        return f"{v:.2f}", v
+
+    era_disp, era_val   = _fmt(era)
+    xfip_disp, xfip_val = _fmt(xfip)
+    era_color  = fip_tier_color(era_val)
+    xfip_color = fip_tier_color(xfip_val)
+
+    st.markdown(
+        f"""
+        <div style="
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 10px;
+            padding: 10px 18px;
+            margin: 4px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        ">
+            <div style="color:#aaa;font-size:0.75rem;white-space:nowrap;">
+                📅 {pitcher_name} — season
+            </div>
+            <div>
+                <div style="font-size:0.75rem;color:#888;">ERA</div>
+                <div style="font-size:1.4rem;font-weight:700;color:{era_color};line-height:1.1;">
+                    {era_disp}
+                </div>
+            </div>
+            <div>
+                <div style="font-size:0.75rem;color:#888;">xFIP</div>
+                <div style="font-size:1.4rem;font-weight:700;color:{xfip_color};line-height:1.1;">
+                    {xfip_disp}
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 
 with st.sidebar:
@@ -1277,6 +1337,10 @@ for _, game in summary.iterrows():
                     st.info("Starter not yet announced.")
                     continue
 
+                season_era_key  = f"{panel['pitcher_side']}_pitcher_season_era"
+                season_xfip_key = f"{panel['pitcher_side']}_pitcher_season_xfip"
+                pitcher_season_badge(game.get(season_era_key), game.get(season_xfip_key), pitcher)
+
                 n = panel["hitters_with_history"]
                 avg_xwoba = panel["lineup_avg_xwoba"]
 
@@ -1354,16 +1418,6 @@ for _, game in summary.iterrows():
                         if v >= 0.290: return "#ff7f0e"   # below avg — orange
                         if v >= 0.270: return "#d62728"   # poor — red
                         return "#9c0006"                  # awful — dark red
-
-                    def fip_tier_color(v):
-                        """Lower FIP = better for pitcher = green."""
-                        if v is None: return "#888888"
-                        if v < 2.75:  return "#1b7e24"   # elite — dark green
-                        if v < 3.00:  return "#43a047"   # excellent — green
-                        if v <= 3.75: return "#81c784"   # great — light green
-                        if v <= 4.19: return "#aaaaaa"   # average — gray
-                        if v <= 4.50: return "#ff7f0e"   # below avg — orange
-                        return "#d62728"                  # poor — red
 
                     def colored_metric(col, label, display_val, color, help_text):
                         col.markdown(

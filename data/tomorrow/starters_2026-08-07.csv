@@ -1,16 +1,16 @@
-game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-823349,2026-08-07T22:40:00Z,NYM @ PIT,PIT,NYM,Carmen Mlodzinski,Zac Thornton,669387.0,804267.0,0.99,,,,,,,,,,,,,,,,,,,6,4,2,8,2.76,3.54,9.0,0.361,26.0,,,0.0,,0.0
-823428,2026-08-07T22:40:00Z,TOR @ PHI,PHI,TOR,Zack Wheeler,José Soriano,554430.0,667755.0,1.02,,,,,,,,,,,,,,,,,,,6,4,5,5,2.8,3.01,13.0,0.252,121.0,2.19,2.68,8.0,0.218,29.0
-822699,2026-08-07T22:45:00Z,CIN @ WSH,WSH,CIN,Cade Cavalli,TBD,676917.0,,1.0,,,,,,,,,,,,,,,,,,,7,3,2,8,,,2.0,0.362,4.0,,,,,
-823515,2026-08-07T23:05:00Z,ATL @ NYY,NYY,ATL,Max Fried,Tyler Mahle,608331.0,641816.0,1.05,,,,,,,,,,,,,,,,,,,8,2,5,5,3.41,3.42,5.0,0.266,55.0,6.12,4.18,11.0,0.303,83.0
-824727,2026-08-07T23:10:00Z,ATH @ BOS,BOS,ATH,Payton Tolle,Jack Perkins,801139.0,678022.0,1.03,,,,,,,,,,,,,,,,,,,1,9,9,1,5.46,2.1,9.0,0.245,25.0,6.9,6.17,10.0,0.278,17.0
-823836,2026-08-07T23:10:00Z,LAA @ MIA,MIA,LAA,Tyler Phillips,George Klassen,663969.0,691946.0,0.95,,,,,,,,,,,,,,,,,,,3,7,6,4,2.13,3.7,5.0,0.236,9.0,,,0.0,,0.0
-824566,2026-08-07T23:40:00Z,CLE @ CWS,CWS,CLE,Noah Schultz,Parker Messick,702273.0,800048.0,0.97,,,,,,,,,,,,,,,,,,,3,7,5,5,,,1.0,0.0,2.0,3.02,2.98,10.0,0.265,48.0
-823750,2026-08-07T23:40:00Z,MIN @ MIL,MIL,MIN,Shane Drohan,TBD,675660.0,,1.0,,,,,,,,,,,,,,,,,,,5,5,6,4,,,0.0,,0.0,,,,,
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp
+823349,2026-08-07T22:40:00Z,NYM @ PIT,PIT,NYM,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,6,4,3,7,,,,,,,,,,
+823428,2026-08-07T22:40:00Z,TOR @ PHI,PHI,TOR,TBD,José Soriano,,667755.0,1.02,,,,,,,,,,,,,,,,,,,6,4,5,5,,,,,,8.0,0.218,29.0,2.19,2.68
+822699,2026-08-07T22:45:00Z,CIN @ WSH,WSH,CIN,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,7,3,2,8,,,,,,,,,,
+823515,2026-08-07T23:05:00Z,ATL @ NYY,NYY,ATL,Max Fried,TBD,608331.0,,1.05,,,,,,,,,,,,,,,,,,,8,2,5,5,5.0,0.266,55.0,3.41,3.42,,,,,
+824727,2026-08-07T23:10:00Z,ATH @ BOS,BOS,ATH,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,1,9,9,1,,,,,,,,,,
+823836,2026-08-07T23:10:00Z,LAA @ MIA,MIA,LAA,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,2,8,6,4,,,,,,,,,,
+824566,2026-08-07T23:40:00Z,CLE @ CWS,CWS,CLE,TBD,Parker Messick,,800048.0,0.97,,,,,,,,,,,,,,,,,,,3,7,5,5,,,,,,10.0,0.265,48.0,3.02,2.98
+823750,2026-08-07T23:40:00Z,MIN @ MIL,MIL,MIN,Shane Drohan,TBD,675660.0,,1.0,,,,,,,,,,,,,,,,,,,5,5,6,4,0.0,,0.0,,,,,,,
 824081,2026-08-08T00:10:00Z,CHC @ KC,KC,CHC,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,7,3,5,5,,,,,,,,,,
-823024,2026-08-08T00:15:00Z,COL @ STL,STL,COL,Kyle Leahy,Ryan Feltner,681517.0,663372.0,0.99,,,,,,,,,,,,,,,,,,,3,7,4,6,0.93,1.56,8.0,0.222,17.0,3.31,1.85,5.0,0.202,21.0
-822863,2026-08-08T00:15:00Z,BAL @ TEX,TEX,BAL,Nathan Eovaldi,Shane Baz,543135.0,669358.0,1.02,,,,,,,,,,,,,,,,,,,5,5,4,6,3.78,4.13,10.0,0.365,38.0,2.34,3.27,6.0,0.174,19.0
-825051,2026-08-08T01:40:00Z,LAD @ AZ,AZ,LAD,TBD,Roki Sasaki,,808963.0,1.05,,,,,,,,,,,,,,,,,,,2,8,6,4,,,,,,6.56,5.78,10.0,0.305,19.0
-823266,2026-08-08T01:40:00Z,HOU @ SD,SD,HOU,Robbie Ray,Ronel Blanco,592662.0,669854.0,0.95,,,,,,,,,,,,,,,,,,,7,3,7,3,9.21,5.96,6.0,0.368,52.0,3.8,4.86,3.0,0.373,9.0
-823103,2026-08-08T01:45:00Z,TB @ SEA,SEA,TB,Logan Gilbert,Drew Rasmussen,669302.0,656876.0,0.97,,,,,,,,,,,,,,,,,,,7,3,4,6,2.56,3.4,11.0,0.282,55.0,4.68,3.07,10.0,0.27,45.0
-823191,2026-08-08T02:15:00Z,DET @ SF,SF,DET,TBD,Keider Montero,,672456.0,0.95,,,,,,,,,,,,,,,,,,,6,4,4,6,,,,,,2.28,3.62,5.0,0.218,8.0
+823024,2026-08-08T00:15:00Z,COL @ STL,STL,COL,Kyle Leahy,Ryan Feltner,681517.0,663372.0,0.99,,,,,,,,,,,,,,,,,,,3,7,4,6,8.0,0.222,17.0,0.93,1.56,5.0,0.202,21.0,3.31,1.85
+822863,2026-08-08T00:15:00Z,BAL @ TEX,TEX,BAL,Nathan Eovaldi,TBD,543135.0,,1.02,,,,,,,,,,,,,,,,,,,6,4,4,6,10.0,0.365,38.0,3.78,4.13,,,,,
+825051,2026-08-08T01:40:00Z,LAD @ AZ,AZ,LAD,TBD,Roki Sasaki,,808963.0,1.05,,,,,,,,,,,,,,,,,,,2,8,6,4,,,,,,10.0,0.305,19.0,6.56,5.78
+823266,2026-08-08T01:40:00Z,HOU @ SD,SD,HOU,Robbie Ray,Ronel Blanco,592662.0,669854.0,0.95,,,,,,,,,,,,,,,,,,,7,3,7,3,6.0,0.368,52.0,9.21,5.96,3.0,0.373,9.0,3.8,4.86
+823103,2026-08-08T01:45:00Z,TB @ SEA,SEA,TB,TBD,Drew Rasmussen,,656876.0,0.97,,,,,,,,,,,,,,,,,,,7,3,5,5,,,,,,10.0,0.27,45.0,4.68,3.07
+823191,2026-08-08T02:15:00Z,DET @ SF,SF,DET,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,,,,,
