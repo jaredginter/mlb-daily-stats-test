@@ -1,11 +1,11 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-822780,2026-08-10T23:07:00Z,BOS @ TOR,TOR,BOS,TBD,Sonny Gray,,543243.0,1.0,,,,,,,,,,,,,,,,,,,9,1,6,4,,2.78,,,,,,,5.34,4.23,3.28,11.0,0.359,119.0
+822780,2026-08-10T23:07:00Z,BOS @ TOR,TOR,BOS,TBD,Sonny Gray,,543243.0,1.0,,,,,,,,,,,,,,,,,,,9,1,7,3,,2.78,,,,,,,5.34,4.23,3.28,11.0,0.359,119.0
 824887,2026-08-10T23:15:00Z,NYM @ ATL,ATL,NYM,TBD,Christian Scott,,681035.0,0.98,,,,,,,,,,,,,,,,,,,5,5,8,2,,3.15,,,,,,,3.23,2.34,3.21,11.0,0.26,56.0
-823675,2026-08-10T23:40:00Z,BAL @ MIN,MIN,BAL,TBD,TBD,,,1.01,,,,,,,,,,,,,,,,,,,5,5,5,5,,,,,,,,,,,,,,
+823675,2026-08-10T23:40:00Z,BAL @ MIN,MIN,BAL,TBD,TBD,,,1.01,,,,,,,,,,,,,,,,,,,4,6,4,6,,,,,,,,,,,,,,
 823018,2026-08-10T23:45:00Z,PHI @ STL,STL,PHI,Hunter Dobbins,TBD,690928.0,,0.99,,,,,,,,,,,,,,,,,,,5,5,5,5,3.6,,0.0,,0.0,,,3.61,,,,,,
 823998,2026-08-11T01:38:00Z,TEX @ LAA,LAA,TEX,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,4,6,3,7,,,,,,,,,,,,,,
-825048,2026-08-11T01:40:00Z,COL @ AZ,AZ,COL,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,3,7,7,3,,,,,,,,,,,,,,
+825048,2026-08-11T01:40:00Z,COL @ AZ,AZ,COL,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,4,6,7,3,,,,,,,,,,,,,,
 824969,2026-08-11T01:40:00Z,TB @ ATH,ATH,TB,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,7,3,1,9,,,,,,,,,,,,,,
 823265,2026-08-11T01:40:00Z,MIL @ SD,SD,MIL,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,6,4,6,4,,,,,,,,,,,,,,
-823189,2026-08-11T01:45:00Z,HOU @ SF,SF,HOU,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,8,2,4,6,,,,,,,,,,,,,,
-823918,2026-08-11T02:10:00Z,KC @ LAD,LAD,KC,Tarik Skubal,TBD,669373.0,,0.96,,,,,,,,,,,,,,,,,,,3,7,2,8,2.81,,11.0,0.247,118.0,3.26,2.74,2.21,,,,,,
+823189,2026-08-11T01:45:00Z,HOU @ SF,SF,HOU,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,7,3,4,6,,,,,,,,,,,,,,
+823918,2026-08-11T02:10:00Z,KC @ LAD,LAD,KC,Tarik Skubal,TBD,669373.0,,0.96,,,,,,,,,,,,,,,,,,,4,6,2,8,2.81,,11.0,0.247,118.0,3.26,2.74,2.21,,,,,,
