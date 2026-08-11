@@ -1,0 +1,10 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Jonah Heim,641680,4,2022–2025,0.5,1,0.551,0.667,0.182,98.4
+Lawrence Butler,671732,4,2024–2025,0.5,1,0.546,0.5,0.417,98.8
+Donovan Walton,622268,2,2026,0.5,0,0.407,0.5,0.0,98.8
+Zack Gelof,680869,1,2024,1.0,0,0.268,0.0,0.5,84.7
+Jeff McNeil,643446,2,2025,0.5,0,0.254,0.5,0.2,77.5
+Jacob Wilson,805779,2,2025,0.5,0,0.154,0.5,0.0,90.4
+Tyler Soderstrom,691016,4,2025,0.0,0,0.085,0.0,0.167,72.1
+Max Muncy,691777,1,2025,0.0,0,0.065,0.0,0.0,69.7
+Carlos Cortes,666126,3,2025,0.0,0,0.024,0.0,0.2,83.2
