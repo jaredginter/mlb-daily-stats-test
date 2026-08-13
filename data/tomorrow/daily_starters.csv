@@ -1,14 +1,14 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824643,2026-08-14T18:20:00Z,STL @ CHC,CHC,STL,TBD,Matthew Liberatore,,669461.0,1.02,,,,,,,,,,,,,,,,,,,7,3,8,2,,5.15,,,,,,,4.44,4.87,3.64,11.0,0.35,119.0
-824479,2026-08-14T22:10:00Z,MIA @ CIN,CIN,MIA,Chase Burns,TBD,695505.0,,1.04,,,,,,,,,,,,,,,,,,,6,4,5,5,2.61,,0.0,,0.0,,,3.08,,,,,,
+824479,2026-08-14T22:10:00Z,MIA @ CIN,CIN,MIA,Chase Burns,Sandy Alcantara,695505.0,645261.0,1.04,,,,,,,,,,,,,,,,,,,6,4,5,5,2.61,3.52,0.0,,0.0,,,3.08,2.52,2.49,3.49,9.0,0.261,81.0
 823346,2026-08-14T22:40:00Z,BOS @ PIT,PIT,BOS,Bubba Chandler,TBD,696149.0,,0.99,,,,,,,,,,,,,,,,,,,5,5,2,8,4.26,,2.0,0.115,3.0,-0.87,,4.34,,,,,,
 824237,2026-08-14T22:40:00Z,CWS @ DET,DET,CWS,Jackson Jobe,TBD,695549.0,,0.99,,,,,,,,,,,,,,,,,,,4,6,7,3,0.0,,3.0,0.218,9.0,3.56,6.24,3.36,,,,,,
 823591,2026-08-14T23:10:00Z,WSH @ NYM,NYM,WSH,Robert Stock,TBD,476594.0,,0.98,,,,,,,,,,,,,,,,,,,4,6,6,4,10.13,,0.0,,0.0,,,3.33,,,,,,
 824399,2026-08-14T23:10:00Z,SD @ CLE,CLE,SD,Gavin Williams,Michael King,668909.0,650633.0,0.97,,,,,,,,,,,,,,,,,,,7,3,3,7,3.55,3.37,9.0,0.371,24.0,2.27,2.61,2.43,5.31,4.43,3.99,9.0,0.246,54.0
 822942,2026-08-14T23:10:00Z,BAL @ TB,TB,BAL,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,4,6,9,1,,,,,,,,,,,,,,
 824882,2026-08-14T23:15:00Z,AZ @ ATL,ATL,AZ,TBD,Brandon Pfaadt,,694297.0,0.98,,,,,,,,,,,,,,,,,,,5,5,7,3,,3.36,,,,,,,3.49,3.47,3.84,12.0,0.308,96.0
-822777,2026-08-14T23:15:00Z,NYY @ TOR,TOR,NYY,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,6,4,7,3,,,,,,,,,,,,,,
-824159,2026-08-15T00:10:00Z,SEA @ HOU,HOU,SEA,Peter Lambert,TBD,663567.0,,1.03,,,,,,,,,,,,,,,,,,,3,7,5,5,3.09,,9.0,0.239,41.0,2.53,2.34,4.04,,,,,,
+822777,2026-08-14T23:15:00Z,NYY @ TOR,TOR,NYY,TBD,Gerrit Cole,,543037.0,1.0,,,,,,,,,,,,,,,,,,,6,4,7,3,,3.35,,,,,,,3.3,3.56,2.97,9.0,0.318,159.0
+824159,2026-08-15T00:10:00Z,SEA @ HOU,HOU,SEA,Peter Lambert,George Kirby,663567.0,669923.0,1.03,,,,,,,,,,,,,,,,,,,3,7,5,5,3.09,3.68,9.0,0.239,41.0,2.53,2.34,4.04,2.55,3.11,3.42,13.0,0.293,179.0
 823993,2026-08-15T01:38:00Z,KC @ LAA,LAA,KC,TBD,Seth Lugo,,607625.0,0.97,,,,,,,,,,,,,,,,,,,3,7,5,5,,4.41,,,,,,,2.94,3.64,4.25,11.0,0.295,52.0
 824968,2026-08-15T01:40:00Z,TEX @ ATH,ATH,TEX,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,5,5,2,8,,,,,,,,,,,,,,
 823913,2026-08-15T02:10:00Z,MIL @ LAD,LAD,MIL,Yoshinobu Yamamoto,Robert Gasser,808967.0,688107.0,0.96,,,,,,,,,,,,,,,,,,,5,5,4,6,2.65,4.57,9.0,0.307,56.0,5.59,3.89,2.96,9.6,5.44,3.68,8.0,0.341,19.0
