@@ -1,8 +1,8 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824643,2026-08-14T18:20:00Z,STL @ CHC,CHC,STL,TBD,Matthew Liberatore,,669461.0,1.02,,,,,,,,,,,,,,,,,,,7,3,8,2,,5.15,,,,,,,4.44,4.87,3.64,11.0,0.35,119.0
 824479,2026-08-14T22:10:00Z,MIA @ CIN,CIN,MIA,Chase Burns,TBD,695505.0,,1.04,,,,,,,,,,,,,,,,,,,6,4,5,5,2.61,,0.0,,0.0,,,3.08,,,,,,
-823346,2026-08-14T22:40:00Z,BOS @ PIT,PIT,BOS,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,5,5,2,8,,,,,,,,,,,,,,
-824237,2026-08-14T22:40:00Z,CWS @ DET,DET,CWS,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,4,6,7,3,,,,,,,,,,,,,,
+823346,2026-08-14T22:40:00Z,BOS @ PIT,PIT,BOS,Bubba Chandler,TBD,696149.0,,0.99,,,,,,,,,,,,,,,,,,,5,5,2,8,4.26,,2.0,0.115,3.0,-0.87,,4.34,,,,,,
+824237,2026-08-14T22:40:00Z,CWS @ DET,DET,CWS,Jackson Jobe,TBD,695549.0,,0.99,,,,,,,,,,,,,,,,,,,4,6,7,3,0.0,,3.0,0.218,9.0,3.56,6.24,3.36,,,,,,
 823591,2026-08-14T23:10:00Z,WSH @ NYM,NYM,WSH,Robert Stock,TBD,476594.0,,0.98,,,,,,,,,,,,,,,,,,,4,6,6,4,10.13,,0.0,,0.0,,,3.33,,,,,,
 824399,2026-08-14T23:10:00Z,SD @ CLE,CLE,SD,Gavin Williams,Michael King,668909.0,650633.0,0.97,,,,,,,,,,,,,,,,,,,7,3,3,7,3.55,3.37,9.0,0.371,24.0,2.27,2.61,2.43,5.31,4.43,3.99,9.0,0.246,54.0
 822942,2026-08-14T23:10:00Z,BAL @ TB,TB,BAL,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,4,6,9,1,,,,,,,,,,,,,,
