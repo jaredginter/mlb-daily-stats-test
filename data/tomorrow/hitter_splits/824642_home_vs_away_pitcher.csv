@@ -1,0 +1,12 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Michael Conforto,624424,2,2026,0.5,0,1.136,1.0,0.0,103.2
+Alex Bregman,608324,5,2026,0.6,1,0.515,0.8,0.0,92.8
+Nico Hoerner,663538,4,2026,0.75,1,0.461,0.75,0.0,96.2
+Tyrone Taylor,621438,2,2025,0.5,0,0.453,0.0,0.0,86.0
+Carson Kelly,608348,5,2026,0.2,0,0.372,0.4,0.0,88.0
+Michael Busch,683737,5,2026,0.4,0,0.224,0.2,0.0,89.0
+Ian Happ,664023,4,2026,0.0,0,0.223,0.333,0.286,91.9
+Miguel Amaya,665804,2,2026,0.0,0,0.11,0.0,0.0,94.2
+Seiya Suzuki,673548,5,2026,0.2,0,0.022,0.0,0.308,85.9
+Dansby Swanson,621020,3,2026,0.0,0,0.015,0.0,0.5,81.8
+Pete Crow-Armstrong,691718,3,2026,0.0,0,0.006,0.0,0.4,89.3
