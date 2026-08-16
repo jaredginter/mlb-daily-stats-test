@@ -1,12 +1,12 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip
-824514,2026-08-17T17:40:00Z,STL @ CIN,CIN,STL,Rhett Lowder,TBD,695076.0,,1.04,,,,,,,,,,,,,,,,,,,6,4,6,4,5.15,,3.72,3.92,4.03,11.0,0.346,27.0,,,,,,
-824478,2026-08-17T22:40:00Z,STL @ CIN,CIN,STL,TBD,TBD,,,1.04,,,,,,,,,,,,,,,,,,,6,4,6,4,,,,,,,,,,,,,,
-822939,2026-08-17T22:05:00Z,BAL @ TB,TB,BAL,TBD,Brandon Young,,687064.0,0.97,,,,,,,,,,,,,,,,,,,5,5,9,1,,3.33,,,,,,,2.0,0.445,6.0,3.88,5.06,3.86
-823427,2026-08-17T22:40:00Z,MIA @ PHI,PHI,MIA,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,4,6,5,5,,,,,,,,,,,,,,
+824514,2026-08-17T17:40:00Z,STL @ CIN,CIN,STL,Rhett Lowder,TBD,695076.0,,1.04,,,,,,,,,,,,,,,,,,,6,4,5,5,5.15,,3.72,3.92,4.03,11.0,0.346,27.0,,,,,,
+824478,2026-08-17T22:40:00Z,STL @ CIN,CIN,STL,TBD,TBD,,,1.04,,,,,,,,,,,,,,,,,,,6,4,5,5,,,,,,,,,,,,,,
+822939,2026-08-17T22:05:00Z,BAL @ TB,TB,BAL,TBD,Brandon Young,,687064.0,0.97,,,,,,,,,,,,,,,,,,,5,5,8,2,,3.33,,,,,,,2.0,0.445,6.0,3.88,5.06,3.86
+823427,2026-08-17T22:40:00Z,MIA @ PHI,PHI,MIA,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,5,5,5,5,,,,,,,,,,,,,,
 823343,2026-08-17T23:05:00Z,DET @ PIT,PIT,DET,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,5,5,3,7,,,,,,,,,,,,,,
-824725,2026-08-17T23:10:00Z,AZ @ BOS,BOS,AZ,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,,,,,,,,,
-823589,2026-08-17T23:10:00Z,SD @ NYM,NYM,SD,Nolan McLean,TBD,690997.0,,0.98,,,,,,,,,,,,,,,,,,,8,2,7,3,3.42,,2.9,4.14,3.07,8.0,0.29,17.0,,,,,,
+824725,2026-08-17T23:10:00Z,AZ @ BOS,BOS,AZ,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,6,4,4,6,,,,,,,,,,,,,,
+823589,2026-08-17T23:10:00Z,SD @ NYM,NYM,SD,Nolan McLean,TBD,690997.0,,0.98,,,,,,,,,,,,,,,,,,,7,3,7,3,3.42,,2.9,4.14,3.07,8.0,0.29,17.0,,,,,,
 824077,2026-08-17T23:40:00Z,ATH @ KC,KC,ATH,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,3,7,4,6,,,,,,,,,,,,,,
-823668,2026-08-17T23:40:00Z,ATL @ MIN,MIN,ATL,TBD,TBD,,,1.01,,,,,,,,,,,,,,,,,,,6,4,4,6,,,,,,,,,,,,,,
+823668,2026-08-17T23:40:00Z,ATL @ MIN,MIN,ATL,TBD,TBD,,,1.01,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,,,,,,,,,
 824641,2026-08-18T00:05:00Z,CWS @ CHC,CHC,CWS,Shota Imanaga,TBD,684007.0,,1.02,,,,,,,,,,,,,,,,,,,5,5,7,3,3.74,,9.56,3.55,3.41,8.0,0.383,22.0,,,,,,
 824320,2026-08-18T00:40:00Z,LAD @ COL,COL,LAD,TBD,TBD,,,1.22,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,,,,,,,,,
