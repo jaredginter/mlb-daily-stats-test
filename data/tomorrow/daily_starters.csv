@@ -1,7 +1,7 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip
 824514,2026-08-17T17:40:00Z,STL @ CIN,CIN,STL,Rhett Lowder,TBD,695076.0,,1.04,,,,,,,,,,,,,,,,,,,6,4,5,5,5.15,,3.72,3.92,4.03,11.0,0.346,27.0,,,,,,
 824478,2026-08-17T22:40:00Z,STL @ CIN,CIN,STL,TBD,TBD,,,1.04,,,,,,,,,,,,,,,,,,,6,4,5,5,,,,,,,,,,,,,,
-822939,2026-08-17T22:05:00Z,BAL @ TB,TB,BAL,TBD,Brandon Young,,687064.0,0.97,,,,,,,,,,,,,,,,,,,5,5,7,3,,3.33,,,,,,,2.0,0.445,6.0,3.88,5.06,3.86
+822939,2026-08-17T22:05:00Z,BAL @ TB,TB,BAL,Shane McClanahan,Brandon Young,663556.0,687064.0,0.97,,,,,,,,,,,,,,,,,,,5,5,7,3,3.09,3.33,3.79,3.73,3.58,8.0,0.372,34.0,2.0,0.445,6.0,3.88,5.06,3.86
 823427,2026-08-17T22:40:00Z,MIA @ PHI,PHI,MIA,Cristopher Sánchez,Janson Junk,650911.0,676083.0,1.02,,,,,,,,,,,,,,,,,,,5,5,5,5,2.54,4.41,1.77,1.98,2.2,9.0,0.172,53.0,11.0,0.23,34.0,2.29,1.33,3.68
 823343,2026-08-17T23:05:00Z,DET @ PIT,PIT,DET,TBD,Framber Valdez,,664285.0,0.99,,,,,,,,,,,,,,,,,,,5,5,3,7,,4.26,,,,,,,8.0,0.291,30.0,2.18,2.82,3.75
 824725,2026-08-17T23:10:00Z,AZ @ BOS,BOS,AZ,TBD,Mitch Bratt,,683352.0,1.03,,,,,,,,,,,,,,,,,,,6,4,4,6,,3.74,,,,,,,0.0,,0.0,,,5.32
