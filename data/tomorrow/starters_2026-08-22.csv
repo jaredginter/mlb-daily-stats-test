@@ -1,10 +1,10 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 823509,2026-08-22T17:35:00Z,TOR @ NYY,NYY,TOR,Ryan Weathers,Dylan Cease,677960.0,656302.0,1.05,,,,,,,,,,,,,,,,,,,7,3,6,4,3.56,2.42,5.91,3.17,2.85,13.0,0.286,72.0,3.49,3.64,2.3,13.0,0.272,112.0
 823743,2026-08-22T18:10:00Z,ATL @ MIL,MIL,ATL,Logan Henderson,TBD,701656.0,,1.0,,,,,,,,,,,,,,,,,,,4,6,5,5,2.7,,,,2.53,0.0,,0.0,,,,,,
-823831,2026-08-22T20:10:00Z,WSH @ MIA,MIA,WSH,Eury Pérez,Jake Irvin,691587.0,663623.0,0.95,,,,,,,,,,,,,,,,,,,4,6,5,5,3.23,5.8,8.76,5.3,3.34,9.0,0.383,44.0,0.73,2.61,3.83,4.0,0.275,11.0
+823831,2026-08-22T20:10:00Z,WSH @ MIA,MIA,WSH,Eury Pérez,Jake Irvin,691587.0,663623.0,0.95,,,,,,,,,,,,,,,,,,,3,7,5,5,3.23,5.8,8.76,5.3,3.34,9.0,0.383,44.0,0.73,2.61,3.83,4.0,0.275,11.0
 823422,2026-08-22T22:05:00Z,STL @ PHI,PHI,STL,Andrew Painter,TBD,691725.0,,1.02,,,,,,,,,,,,,,,,,,,7,3,8,2,6.43,,2.45,3.46,4.13,8.0,0.22,16.0,,,,,,
-824798,2026-08-22T23:05:00Z,TB @ BAL,BAL,TB,Brandon Young,Shane McClanahan,687064.0,663556.0,1.01,,,,,,,,,,,,,,,,,,,5,5,5,5,3.52,3.25,10.5,4.88,3.89,10.0,0.516,25.0,4.46,3.66,3.57,9.0,0.329,45.0
-822858,2026-08-22T23:05:00Z,LAA @ TEX,TEX,LAA,TBD,Ryan Johnson,,696270.0,1.02,,,,,,,,,,,,,,,,,,,5,5,3,7,,6.41,,,,,,,4.1,3.06,4.41,9.0,0.328,18.0
+824798,2026-08-22T23:05:00Z,TB @ BAL,BAL,TB,Brandon Young,Shane McClanahan,687064.0,663556.0,1.01,,,,,,,,,,,,,,,,,,,5,5,4,6,3.52,3.25,10.5,4.88,3.89,10.0,0.516,25.0,4.46,3.66,3.57,9.0,0.329,45.0
+822858,2026-08-22T23:05:00Z,LAA @ TEX,TEX,LAA,TBD,Ryan Johnson,,696270.0,1.02,,,,,,,,,,,,,,,,,,,5,5,4,6,,6.41,,,,,,,4.1,3.06,4.41,9.0,0.328,18.0
 824151,2026-08-22T23:10:00Z,ATH @ HOU,HOU,ATH,Hunter Brown,Jacob Lopez,686613.0,682052.0,1.03,,,,,,,,,,,,,,,,,,,2,8,4,6,3.67,5.22,2.05,1.72,3.58,7.0,0.22,60.0,5.49,5.44,4.5,9.0,0.387,35.0
 824560,2026-08-22T23:10:00Z,NYM @ CWS,CWS,NYM,Luis Castillo,TBD,622491.0,,0.97,,,,,,,,,,,,,,,,,,,7,3,5,5,4.99,,3.9,3.23,3.8,8.0,0.248,90.0,,,,,,
 824073,2026-08-22T23:15:00Z,DET @ KC,KC,DET,Michael Wacha,Drew Anderson,608379.0,623454.0,0.98,,,,,,,,,,,,,,,,,,,4,6,6,4,3.58,4.01,4.29,4.36,3.89,8.0,0.317,152.0,0.43,1.99,3.09,9.0,0.395,16.0
