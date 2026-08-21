@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Francisco Lindor,596019,18,2018–2025,0.444,2,0.44,0.471,0.097,93.7
+Luis Robert Jr.,673357,9,2023–2025,0.111,0,0.322,0.5,0.0,85.1
+Bo Bichette,666182,20,2022–2025,0.35,0,0.309,0.235,0.14,86.8
+Marcus Semien,543760,21,2023–2025,0.238,1,0.299,0.421,0.176,87.4
+Luis Torrens,620443,6,2017–2024,0.333,0,0.195,0.2,0.125,79.4
+Christopher Morel,666624,12,2022–2024,0.25,0,0.173,0.0,0.405,84.2
+Eric Wagaman,676572,2,2025,0.0,0,0.128,1.0,0.333,103.3
+Francisco Alvarez,682626,2,2025,0.5,0,0.116,1.0,0.333,101.1

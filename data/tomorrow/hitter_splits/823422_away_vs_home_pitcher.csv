@@ -1,0 +1,9 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+José Fermín,665877,1,2026,0.0,0,0.457,0.0,0.0,94.3
+Iván Herrera,671056,3,2026,0.333,0,0.392,0.667,0.143,100.7
+Alec Burleson,676475,2,2026,0.5,0,0.386,1.0,0.286,98.1
+JJ Wetherholt,802139,2,2026,0.0,0,0.321,1.0,0.2,97.9
+Nathan Church,701675,2,2026,0.0,0,0.122,0.0,0.2,87.3
+Jimmy Crooks,699625,2,2026,0.0,0,0.074,0.0,0.167,61.5
+Masyn Winn,691026,2,2026,0.0,0,0.01,0.0,0.333,83.4
+Jordan Walker,691023,2,2026,0.0,0,0.0,,0.8,
