@@ -1,0 +1,6 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Zach Neto,687263,2,2026,1.0,1,0.882,1.0,0.125,101.5
+Vaughn Grissom,687093,2,2026,0.0,0,0.278,1.0,0.143,95.3
+Oswald Peraza,672724,3,2026,0.333,0,0.274,0.5,0.111,87.9
+Josh Lowe,666139,5,2025,0.0,0,0.173,0.0,0.429,76.0
+Mike Trout,545361,3,2026,0.0,0,0.045,1.0,0.25,96.8
