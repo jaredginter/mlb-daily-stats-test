@@ -1,11 +1,11 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip
-824235,2026-08-24T22:40:00Z,TB @ DET,DET,TB,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,4,6,3,7,,,,,,,,,,,,,,
-823828,2026-08-24T22:40:00Z,BOS @ MIA,MIA,BOS,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,5,5,5,5,,,,,,,,,,,,,,
+824235,2026-08-24T22:40:00Z,TB @ DET,DET,TB,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,3,7,2,8,,,,,,,,,,,,,,
+823828,2026-08-24T22:40:00Z,BOS @ MIA,MIA,BOS,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,6,4,5,5,,,,,,,,,,,,,,
 822695,2026-08-24T22:45:00Z,COL @ WSH,WSH,COL,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,4,6,2,8,,,,,,,,,,,,,,
-824557,2026-08-24T23:40:00Z,TEX @ CWS,CWS,TEX,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,4,6,6,4,,,,,,,,,,,,,,
-823992,2026-08-25T01:38:00Z,CLE @ LAA,LAA,CLE,TBD,Parker Messick,,800048.0,0.97,,,,,,,,,,,,,,,,,,,5,5,6,4,,2.54,,,,,,,5.0,0.33,15.0,5.35,3.27,2.84
-825041,2026-08-25T01:40:00Z,CHC @ AZ,AZ,CHC,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,5,5,5,5,,,,,,,,,,,,,,
+824557,2026-08-24T23:40:00Z,TEX @ CWS,CWS,TEX,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,4,6,5,5,,,,,,,,,,,,,,
+823992,2026-08-25T01:38:00Z,CLE @ LAA,LAA,CLE,TBD,Parker Messick,,800048.0,0.97,,,,,,,,,,,,,,,,,,,6,4,6,4,,2.54,,,,,,,5.0,0.33,15.0,5.35,3.27,2.84
+825041,2026-08-25T01:40:00Z,CHC @ AZ,AZ,CHC,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,4,6,5,5,,,,,,,,,,,,,,
 823260,2026-08-25T01:40:00Z,PIT @ SD,SD,PIT,Robbie Ray,TBD,592662.0,,0.95,,,,,,,,,,,,,,,,,,,5,5,7,3,3.2,,7.0,0.199,39.0,1.26,2.16,4.42,,,,,,
-824964,2026-08-25T01:40:00Z,MIN @ ATH,ATH,MIN,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,5,5,2,8,,,,,,,,,,,,,,
-823097,2026-08-25T01:40:00Z,PHI @ SEA,SEA,PHI,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,8,2,5,5,,,,,,,,,,,,,,
+824964,2026-08-25T01:40:00Z,MIN @ ATH,ATH,MIN,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,5,5,3,7,,,,,,,,,,,,,,
+823097,2026-08-25T01:40:00Z,PHI @ SEA,SEA,PHI,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,8,2,6,4,,,,,,,,,,,,,,
 823183,2026-08-25T01:45:00Z,CIN @ SF,SF,CIN,TBD,Chase Burns,,695505.0,0.95,,,,,,,,,,,,,,,,,,,4,6,3,7,,2.51,,,,,,,4.0,0.285,10.0,1.97,,2.98
