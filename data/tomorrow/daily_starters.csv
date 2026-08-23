@@ -1,11 +1,11 @@
-game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip
-824235,2026-08-24T22:40:00Z,TB @ DET,DET,TB,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,3,7,2,8,,,,,,,,,,,,,,
-823828,2026-08-24T22:40:00Z,BOS @ MIA,MIA,BOS,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,6,4,5,5,,,,,,,,,,,,,,
-822695,2026-08-24T22:45:00Z,COL @ WSH,WSH,COL,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,4,6,2,8,,,,,,,,,,,,,,
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
+824235,2026-08-24T22:40:00Z,TB @ DET,DET,TB,TBD,Drew Rasmussen,,656876.0,0.99,,,,,,,,,,,,,,,,,,,3,7,2,8,,3.01,,,,,,,1.65,2.0,2.8,6.0,0.407,24.0
+823828,2026-08-24T22:40:00Z,BOS @ MIA,MIA,BOS,Sandy Alcantara,Ranger Suarez,645261.0,624133.0,0.95,,,,,,,,,,,,,,,,,,,6,4,5,5,3.46,3.41,7.0,0.24,28.0,3.95,3.67,3.62,1.71,2.21,3.13,5.0,0.232,20.0
+822695,2026-08-24T22:45:00Z,COL @ WSH,WSH,COL,Cade Cavalli,TBD,676917.0,,1.0,,,,,,,,,,,,,,,,,,,4,6,2,8,3.22,,9.0,0.179,25.0,2.2,3.37,3.03,,,,,,
 824557,2026-08-24T23:40:00Z,TEX @ CWS,CWS,TEX,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,4,6,5,5,,,,,,,,,,,,,,
-823992,2026-08-25T01:38:00Z,CLE @ LAA,LAA,CLE,TBD,Parker Messick,,800048.0,0.97,,,,,,,,,,,,,,,,,,,6,4,6,4,,2.54,,,,,,,5.0,0.33,15.0,5.35,3.27,2.84
+823992,2026-08-25T01:38:00Z,CLE @ LAA,LAA,CLE,George Klassen,Parker Messick,691946.0,800048.0,0.97,,,,,,,,,,,,,,,,,,,6,4,6,4,3.74,2.54,2.0,0.383,3.0,,,4.84,5.35,3.27,2.84,5.0,0.33,15.0
 825041,2026-08-25T01:40:00Z,CHC @ AZ,AZ,CHC,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,4,6,4,6,,,,,,,,,,,,,,
 823260,2026-08-25T01:40:00Z,PIT @ SD,SD,PIT,Robbie Ray,TBD,592662.0,,0.95,,,,,,,,,,,,,,,,,,,5,5,7,3,3.2,,7.0,0.199,39.0,1.26,2.16,4.42,,,,,,
-824964,2026-08-25T01:40:00Z,MIN @ ATH,ATH,MIN,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,4,6,3,7,,,,,,,,,,,,,,
-823097,2026-08-25T01:40:00Z,PHI @ SEA,SEA,PHI,TBD,Zack Wheeler,,554430.0,0.97,,,,,,,,,,,,,,,,,,,8,2,6,4,,2.92,,,,,,,7.0,0.256,70.0,1.74,3.18,2.54
-823183,2026-08-25T01:45:00Z,CIN @ SF,SF,CIN,TBD,Chase Burns,,695505.0,0.95,,,,,,,,,,,,,,,,,,,4,6,3,7,,2.51,,,,,,,4.0,0.285,10.0,1.97,,2.98
+824964,2026-08-25T01:40:00Z,MIN @ ATH,ATH,MIN,Jeffrey Springs,TBD,605488.0,,1.0,,,,,,,,,,,,,,,,,,,4,6,3,7,6.02,,11.0,0.375,51.0,2.55,2.74,4.66,,,,,,
+823097,2026-08-25T01:40:00Z,PHI @ SEA,SEA,PHI,TBD,Zack Wheeler,,554430.0,0.97,,,,,,,,,,,,,,,,,,,8,2,6,4,,2.92,,,,,,,1.74,3.18,2.54,7.0,0.256,70.0
+823183,2026-08-25T01:45:00Z,CIN @ SF,SF,CIN,TBD,Chase Burns,,695505.0,0.95,,,,,,,,,,,,,,,,,,,4,6,3,7,,2.51,,,,,,,1.97,,2.98,4.0,0.285,10.0
