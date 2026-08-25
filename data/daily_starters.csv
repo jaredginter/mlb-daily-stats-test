@@ -1,11 +1,11 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-824233,2026-08-25T22:40:00Z,TB @ DET,DET,TB,Jackson Jobe,Casey Legumina,695549,668984,0.99,,,,,,,,,,,,,,,,,,,4,6,1,9,4.2,3.99,,,4.45,2,0.043,2,,,4.17,3,0.26,3
-823826,2026-08-25T22:40:00Z,BOS @ MIA,MIA,BOS,Tyler Phillips,Payton Tolle,663969,801139,0.95,,,,,,,,,,,,,,,,,,,7,3,5,5,3.63,3.05,4.8,2.03,4.24,5,0.142,13,,,2.93,0,,0
-822693,2026-08-25T22:45:00Z,COL @ WSH,WSH,COL,Andrew Alvarez,Mason Adams,674841,690279,1.0,,,,,,,,,,,,,,,,,,,2,8,2,8,3.56,,5.5,7.84,3.53,7,0.377,14,,,,1,,1
-823505,2026-08-25T23:05:00Z,HOU @ NYY,NYY,HOU,Will Warren,Ethan Pecko,701542,814490,1.05,,,,,,,,,,,,,,,,,,,4,6,6,4,4.43,4.91,8.24,4.45,3.26,11,0.378,38,,,6.31,0,,0
-822773,2026-08-25T23:07:00Z,KC @ TOR,TOR,KC,Max Scherzer,Seth Lugo,453286,607625,1.0,,,,,,,,,,,,,,,,,,,9,1,5,5,7.4,4.71,7.05,4.0,4.61,11,0.411,33,3.56,3.12,4.16,9,0.386,43
-823585,2026-08-25T23:10:00Z,MIL @ NYM,NYM,MIL,Zac Thornton,Kyle Harrison,804267,690986,0.98,,,,,,,,,,,,,,,,,,,7,3,6,4,3.04,2.84,2.91,4.96,3.93,9,0.344,19,1.77,2.2,2.74,6,0.42,16
-824881,2026-08-25T23:15:00Z,LAD @ ATL,ATL,LAD,Bryce Elder,Tyler Glasnow,693821,607192,0.98,,,,,,,,,,,,,,,,,,,7,3,3,7,3.92,2.72,4.96,4.36,3.78,13,0.352,89,2.79,2.69,2.04,11,0.357,75
+824233,2026-08-25T22:40:00Z,TB @ DET,DET,TB,Jackson Jobe,Casey Legumina,695549,668984,0.99,,,,,,,,,,,,,,,,,,,4,6,1,9,3.71,3.86,,,4.45,2,0.043,2,,,4.17,3,0.26,3
+823826,2026-08-25T22:40:00Z,BOS @ MIA,MIA,BOS,Tyler Phillips,Payton Tolle,663969,801139,0.95,,,,,,,,,,,,,,,,,,,7,3,5,5,3.65,3.02,4.8,2.03,4.24,5,0.142,13,,,2.93,0,,0
+822693,2026-08-25T22:45:00Z,COL @ WSH,WSH,COL,Andrew Alvarez,Mason Adams,674841,690279,1.0,,,,,,,,,,,,,,,,,,,2,8,2,8,3.51,0.0,5.5,7.84,3.53,7,0.377,14,,,,1,,1
+823505,2026-08-25T23:05:00Z,HOU @ NYY,NYY,HOU,Will Warren,Ethan Pecko,701542,814490,1.05,,,,,,,,,,,,,,,,,,,4,6,6,4,4.4,4.91,8.24,4.45,3.26,11,0.378,38,,,6.31,0,,0
+822773,2026-08-25T23:07:00Z,KC @ TOR,TOR,KC,Max Scherzer,Seth Lugo,453286,607625,1.0,,,,,,,,,,,,,,,,,,,9,1,5,5,7.43,4.71,7.05,4.0,4.61,11,0.411,33,3.56,3.12,4.16,9,0.386,43
+823585,2026-08-25T23:10:00Z,MIL @ NYM,NYM,MIL,Zac Thornton,Kyle Harrison,804267,690986,0.98,,,,,,,,,,,,,,,,,,,7,3,6,4,3.0,2.84,2.91,4.96,3.93,9,0.344,19,1.77,2.2,2.74,6,0.42,16
+824881,2026-08-25T23:15:00Z,LAD @ ATL,ATL,LAD,Bryce Elder,Tyler Glasnow,693821,607192,0.98,,,,,,,,,,,,,,,,,,,7,3,3,7,3.91,2.72,4.96,4.36,3.78,13,0.352,89,2.79,2.69,2.04,11,0.357,75
 824556,2026-08-25T23:40:00Z,TEX @ CWS,CWS,TEX,Anthony Kay,Jacob deGrom,641743,594798,0.97,,,,,,,,,,,,,,,,,,,6,4,5,5,3.96,3.77,3.1,4.34,4.2,8,0.299,19,5.14,3.72,2.5,9,0.37,36
 823016,2026-08-25T23:45:00Z,BAL @ STL,STL,BAL,Matthew Liberatore,Chris Bassitt,669461,605135,0.99,,,,,,,,,,,,,,,,,,,5,5,5,5,5.04,5.08,5.65,4.86,3.52,6,0.417,20,12.56,5.28,4.49,10,0.457,33
 823989,2026-08-26T01:38:00Z,CLE @ LAA,LAA,CLE,Walbert Ureña,Gavin Williams,700712,668909,0.97,,,,,,,,,,,,,,,,,,,7,3,4,6,2.8,3.72,5.35,3.27,3.86,8,0.201,15,3.88,3.24,2.47,8,0.266,31
