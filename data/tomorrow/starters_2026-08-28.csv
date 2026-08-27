@@ -1,16 +1,16 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824638,2026-08-28T18:20:00Z,CIN @ CHC,CHC,CIN,David Peterson,Rhett Lowder,656849.0,695076.0,1.02,,,,,,,,,,,,,,,,,,,4,6,4,6,5.17,5.13,3.47,3.09,3.69,10.0,0.353,86.0,6.81,6.74,4.08,11.0,0.514,27.0
-824231,2026-08-28T22:40:00Z,LAD @ DET,DET,LAD,Drew Anderson,Tarik Skubal,623454.0,669373.0,0.99,,,,,,,,,,,,,,,,,,,7,3,2,8,4.09,2.91,,,3.12,3.0,0.721,3.0,13.26,12.54,2.23,3.0,0.464,15.0
-822691,2026-08-28T22:45:00Z,MIA @ WSH,WSH,MIA,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,5,5,2,8,,,,,,,,,,,,,,
+824231,2026-08-28T22:40:00Z,LAD @ DET,DET,LAD,Drew Anderson,Tarik Skubal,623454.0,669373.0,0.99,,,,,,,,,,,,,,,,,,,6,4,2,8,4.09,2.91,,,3.12,3.0,0.721,3.0,13.26,12.54,2.23,3.0,0.464,15.0
+822691,2026-08-28T22:45:00Z,MIA @ WSH,WSH,MIA,TBD,Eury Pérez,,691587.0,1.0,,,,,,,,,,,,,,,,,,,5,5,2,8,,3.17,,,,,,,6.99,5.03,3.38,11.0,0.376,62.0
 824396,2026-08-28T23:10:00Z,KC @ CLE,CLE,KC,Tanner Bibee,TBD,676440.0,,0.97,,,,,,,,,,,,,,,,,,,9,1,8,2,3.97,,6.17,4.42,3.79,10.0,0.21,106.0,,,,,,
-823583,2026-08-28T23:10:00Z,HOU @ NYM,NYM,HOU,Christian Scott,TBD,681035.0,,0.98,,,,,,,,,,,,,,,,,,,4,6,7,3,3.73,,5.13,,3.34,4.0,0.269,7.0,,,,,,
-822935,2026-08-28T23:10:00Z,SD @ TB,TB,SD,Shane McClanahan,Casey Mize,663556.0,663554.0,0.97,,,,,,,,,,,,,,,,,,,6,4,5,5,3.1,3.44,2.69,2.93,3.54,7.0,0.263,61.0,,,,0.0,,0.0
+823583,2026-08-28T23:10:00Z,HOU @ NYM,NYM,HOU,Christian Scott,TBD,681035.0,,0.98,,,,,,,,,,,,,,,,,,,3,7,6,4,3.73,,5.13,,3.34,4.0,0.269,7.0,,,,,,
+822935,2026-08-28T23:10:00Z,SD @ TB,TB,SD,Shane McClanahan,Casey Mize,663556.0,663554.0,0.97,,,,,,,,,,,,,,,,,,,6,4,5,5,3.1,3.44,2.69,2.93,3.54,7.0,0.263,61.0,5.85,3.47,3.73,8.0,0.38,36.0
 822769,2026-08-28T23:15:00Z,SEA @ TOR,TOR,SEA,Dylan Cease,TBD,656302.0,,1.0,,,,,,,,,,,,,,,,,,,6,4,5,5,2.37,,2.96,2.85,2.36,10.0,0.274,94.0,,,,,,
-824877,2026-08-28T23:15:00Z,COL @ ATL,ATL,COL,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,2,8,4,6,,,,,,,,,,,,,,
-823504,2026-08-28T23:15:00Z,BOS @ NYY,NYY,BOS,Cam Schlittler,Patrick Sandoval,693645.0,663776.0,1.05,,,,,,,,,,,,,,,,,,,8,2,6,4,2.16,4.54,2.14,2.29,2.51,8.0,0.283,62.0,5.95,3.41,3.69,7.0,0.372,42.0
-823744,2026-08-28T23:40:00Z,TEX @ MIL,MIL,TEX,Logan Henderson,Cody Bradford,701656.0,674003.0,1.0,,,,,,,,,,,,,,,,,,,6,4,6,4,2.6,3.05,,,2.7,1.0,,1.0,,,4.49,1.0,0.0,1.0
+824877,2026-08-28T23:15:00Z,COL @ ATL,ATL,COL,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,3,7,5,5,,,,,,,,,,,,,,
+823504,2026-08-28T23:15:00Z,BOS @ NYY,NYY,BOS,Cam Schlittler,Patrick Sandoval,693645.0,663776.0,1.05,,,,,,,,,,,,,,,,,,,7,3,7,3,2.16,4.54,2.14,2.29,2.51,8.0,0.283,62.0,5.95,3.41,3.69,7.0,0.372,42.0
+823744,2026-08-28T23:40:00Z,TEX @ MIL,MIL,TEX,Logan Henderson,Cody Bradford,701656.0,674003.0,1.0,,,,,,,,,,,,,,,,,,,5,5,7,3,2.6,3.05,,,2.7,1.0,,1.0,,,4.49,1.0,0.0,1.0
 823666,2026-08-29T00:10:00Z,CWS @ MIN,MIN,CWS,Dean Kremer,Luis Castillo,665152.0,622491.0,1.01,,,,,,,,,,,,,,,,,,,5,5,4,6,5.22,5.19,3.04,2.86,3.74,11.0,0.273,41.0,3.26,3.16,3.82,11.0,0.305,125.0
-823013,2026-08-29T00:15:00Z,PIT @ STL,STL,PIT,Quinn Mathews,Jared Jones,687273.0,683003.0,0.99,,,,,,,,,,,,,,,,,,,5,5,4,6,6.43,4.76,-1.9,-1.12,4.09,6.0,,6.0,3.63,4.42,3.24,3.0,0.236,6.0
+823013,2026-08-29T00:15:00Z,PIT @ STL,STL,PIT,Quinn Mathews,Jared Jones,687273.0,683003.0,0.99,,,,,,,,,,,,,,,,,,,5,5,3,7,6.43,4.76,-1.9,-1.12,4.09,6.0,,6.0,3.63,4.42,3.24,3.0,0.236,6.0
 823985,2026-08-29T01:38:00Z,PHI @ LAA,LAA,PHI,Reid Detmers,Andrew Painter,672282.0,691725.0,0.97,,,,,,,,,,,,,,,,,,,8,2,3,7,3.62,6.04,8.77,7.56,3.16,10.0,0.376,26.0,,,3.97,1.0,,1.0
 824960,2026-08-29T01:40:00Z,BAL @ ATH,ATH,BAL,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,,,,,,,,,
 823178,2026-08-29T02:15:00Z,AZ @ SF,SF,AZ,Blade Tidwell,TBD,694918.0,,0.95,,,,,,,,,,,,,,,,,,,5,5,3,7,3.58,,2.01,3.18,3.44,3.0,0.173,9.0,,,,,,
