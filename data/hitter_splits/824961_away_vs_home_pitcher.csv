@@ -1,0 +1,10 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Jackson Holliday,702616,2,2025,0.5,0,0.573,1.0,0.25,99.6
+Gunnar Henderson,683002,3,2025,0.333,1,0.431,0.667,0.167,95.7
+Yohel Pozo,650968,1,2026,1.0,0,0.422,0.0,0.0,86.2
+Samuel Basallo,694212,1,2026,1.0,0,0.295,1.0,0.0,108.5
+Coby Mayo,691723,2,2025,0.0,0,0.014,0.0,0.5,85.1
+Blaze Alexander,677942,2,2025,0.0,0,0.0,,0.75,
+Dylan Beavers,687637,1,2026,0.0,0,0.0,,1.0,
+Pete Alonso,624413,1,2026,0.0,0,0.0,,0.667,
+Christian Encarnacion-Strand,687952,1,2025,0.0,0,,0.0,0.0,

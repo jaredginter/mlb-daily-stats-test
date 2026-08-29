@@ -1,18 +1,18 @@
-game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-823539,2026-08-29T17:05:00Z,BOS @ NYY,NYY,BOS,TBD,Jake Bennett,,687562.0,1.05,,,,,,,,,,,,,,,,,,,7,3,7,3,,3.49,,,,,,,4.1,5.27,3.51,6.0,0.25,14.0
-823501,2026-08-29T23:15:00Z,BOS @ NYY,NYY,BOS,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,7,3,7,3,,,,,,,,,,,,,,
-824230,2026-08-29T17:10:00Z,LAD @ DET,DET,LAD,Keider Montero,Blake Snell,672456.0,605483.0,0.99,,,,,,,,,,,,,,,,,,,6,4,2,8,3.3,2.57,5.0,0.411,12.0,8.76,4.48,3.76,5.76,5.11,2.94,4.0,0.356,28.0
-823665,2026-08-29T18:10:00Z,CWS @ MIN,MIN,CWS,Bailey Ober,Erick Fedde,641927.0,607200.0,1.01,,,,,,,,,,,,,,,,,,,5,5,4,6,4.49,4.18,8.0,0.38,49.0,4.26,4.06,4.34,2.05,2.91,4.4,9.0,0.249,44.0
-823011,2026-08-29T18:15:00Z,PIT @ STL,STL,PIT,Kyle Leahy,TBD,681517.0,,0.99,,,,,,,,,,,,,,,,,,,5,5,3,7,3.13,,10.0,0.403,33.0,3.23,2.52,3.21,,,,,,
-824637,2026-08-29T18:20:00Z,CIN @ CHC,CHC,CIN,Kevin Gausman,Andrew Abbott,592332.0,671096.0,1.02,,,,,,,,,,,,,,,,,,,4,6,4,6,4.37,4.15,6.0,0.355,46.0,5.01,3.13,3.17,3.81,4.79,4.23,12.0,0.308,122.0
-822770,2026-08-29T19:07:00Z,SEA @ TOR,TOR,SEA,José Soriano,Kade Anderson,667755.0,807739.0,1.0,,,,,,,,,,,,,,,,,,,6,4,4,6,3.43,4.76,11.0,0.237,104.0,3.13,2.92,3.48,,,3.72,0.0,,0.0
-823177,2026-08-29T20:05:00Z,AZ @ SF,SF,AZ,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,,,,,,,,,
-823176,2026-08-30T02:05:00Z,AZ @ SF,SF,AZ,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,,,,,,,,,
-822690,2026-08-29T20:05:00Z,MIA @ WSH,WSH,MIA,Cade Cavalli,Sandy Alcantara,676917.0,645261.0,1.0,,,,,,,,,,,,,,,,,,,5,5,3,7,3.21,3.38,10.0,0.341,55.0,2.95,3.75,3.04,3.87,4.12,3.61,11.0,0.333,82.0
-824392,2026-08-29T20:10:00Z,KC @ CLE,CLE,KC,Foster Griffin,Daniel Lynch IV,656492.0,663738.0,0.97,,,,,,,,,,,,,,,,,,,9,1,8,2,3.19,2.93,6.0,0.408,15.0,1.6,2.06,3.41,5.73,5.79,3.83,11.0,0.364,50.0
-823582,2026-08-29T20:10:00Z,HOU @ NYM,NYM,HOU,Nolan McLean,TBD,690997.0,,0.98,,,,,,,,,,,,,,,,,,,4,6,5,5,3.21,,5.0,0.177,11.0,-0.24,,3.24,,,,,,
-822936,2026-08-29T20:10:00Z,SD @ TB,TB,SD,Nick Martinez,Walker Buehler,607259.0,621111.0,0.97,,,,,,,,,,,,,,,,,,,6,4,5,5,2.93,4.63,11.0,0.273,79.0,3.58,4.04,4.09,6.22,3.95,3.75,9.0,0.314,45.0
-824874,2026-08-29T20:10:00Z,COL @ ATL,ATL,COL,Martín Pérez,Ryan Feltner,527048.0,663372.0,0.98,,,,,,,,,,,,,,,,,,,2,8,5,5,3.12,6.08,8.0,0.269,40.0,3.23,2.02,3.91,5.03,3.58,4.5,10.0,0.351,70.0
-823741,2026-08-29T23:15:00Z,TEX @ MIL,MIL,TEX,Shane Drohan,Cal Quantrill,675660.0,615698.0,1.0,,,,,,,,,,,,,,,,,,,5,5,7,3,3.84,2.9,0.0,,0.0,,,3.42,3.94,3.92,4.13,9.0,0.343,53.0
-824961,2026-08-30T02:05:00Z,BAL @ ATH,ATH,BAL,TBD,Shane Baz,,669358.0,1.0,,,,,,,,,,,,,,,,,,,4,6,4,6,,4.04,,,,,,,4.96,3.68,3.62,7.0,0.284,35.0
-823986,2026-08-30T02:07:00Z,PHI @ LAA,LAA,PHI,Ryan Johnson,Cristopher Sánchez,696270.0,650911.0,0.97,,,,,,,,,,,,,,,,,,,8,2,3,7,5.75,2.62,1.0,0.539,3.0,,,4.45,2.04,2.47,2.19,7.0,0.344,27.0
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
+823539,2026-08-29T17:05:00Z,BOS @ NYY,NYY,BOS,Carlos Rodón,Jake Bennett,607074.0,687562.0,1.05,,,,,,,,,,,,,,,,,,,7,3,7,3,3.15,3.49,3.82,3.03,3.78,11.0,0.298,85.0,4.1,5.27,3.51,6.0,0.25,14.0
+823501,2026-08-29T23:15:00Z,BOS @ NYY,NYY,BOS,Max Fried,TBD,608331.0,,1.05,,,,,,,,,,,,,,,,,,,7,3,7,3,2.81,,1.91,2.9,3.18,10.0,0.299,90.0,,,,,,
+824230,2026-08-29T17:10:00Z,LAD @ DET,DET,LAD,Keider Montero,Blake Snell,672456.0,605483.0,0.99,,,,,,,,,,,,,,,,,,,7,3,2,8,3.3,2.57,8.76,4.48,3.76,5.0,0.411,12.0,5.76,5.11,2.94,4.0,0.356,28.0
+823665,2026-08-29T18:10:00Z,CWS @ MIN,MIN,CWS,Bailey Ober,Erick Fedde,641927.0,607200.0,1.01,,,,,,,,,,,,,,,,,,,6,4,4,6,4.49,4.18,4.26,4.06,4.34,8.0,0.38,49.0,2.05,2.91,4.4,9.0,0.249,44.0
+823011,2026-08-29T18:15:00Z,PIT @ STL,STL,PIT,Kyle Leahy,Lake Bachar,681517.0,669199.0,0.99,,,,,,,,,,,,,,,,,,,4,6,4,6,3.13,3.7,3.23,2.52,3.21,10.0,0.403,33.0,6.56,5.78,3.69,11.0,0.355,20.0
+824637,2026-08-29T18:20:00Z,CIN @ CHC,CHC,CIN,Kevin Gausman,Andrew Abbott,592332.0,671096.0,1.02,,,,,,,,,,,,,,,,,,,4,6,4,6,4.37,4.15,5.01,3.13,3.17,6.0,0.355,46.0,3.81,4.79,4.23,12.0,0.308,122.0
+822770,2026-08-29T19:07:00Z,SEA @ TOR,TOR,SEA,José Soriano,Kade Anderson,667755.0,807739.0,1.0,,,,,,,,,,,,,,,,,,,5,5,5,5,3.43,4.76,3.13,2.92,3.48,11.0,0.237,104.0,,,3.72,0.0,,0.0
+823177,2026-08-29T20:05:00Z,AZ @ SF,SF,AZ,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,6,4,4,6,,,,,,,,,,,,,,
+823176,2026-08-30T02:05:00Z,AZ @ SF,SF,AZ,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,6,4,4,6,,,,,,,,,,,,,,
+822690,2026-08-29T20:05:00Z,MIA @ WSH,WSH,MIA,Cade Cavalli,Sandy Alcantara,676917.0,645261.0,1.0,,,,,,,,,,,,,,,,,,,4,6,4,6,3.21,3.38,2.95,3.75,3.04,10.0,0.341,55.0,3.87,4.12,3.61,11.0,0.333,82.0
+824392,2026-08-29T20:10:00Z,KC @ CLE,CLE,KC,Foster Griffin,Daniel Lynch IV,656492.0,663738.0,0.97,,,,,,,,,,,,,,,,,,,9,1,8,2,3.19,2.93,1.6,2.06,3.41,6.0,0.408,15.0,5.73,5.79,3.83,11.0,0.364,50.0
+823582,2026-08-29T20:10:00Z,HOU @ NYM,NYM,HOU,Nolan McLean,Bennett Sousa,690997.0,656986.0,0.98,,,,,,,,,,,,,,,,,,,5,5,4,6,3.21,6.27,-0.24,,3.24,5.0,0.177,11.0,12.14,5.27,4.55,7.0,0.468,6.0
+822936,2026-08-29T20:10:00Z,SD @ TB,TB,SD,Nick Martinez,Walker Buehler,607259.0,621111.0,0.97,,,,,,,,,,,,,,,,,,,5,5,5,5,2.93,4.63,3.58,4.04,4.09,11.0,0.273,79.0,6.22,3.95,3.75,9.0,0.314,45.0
+824874,2026-08-29T20:10:00Z,COL @ ATL,ATL,COL,Martín Pérez,Ryan Feltner,527048.0,663372.0,0.98,,,,,,,,,,,,,,,,,,,2,8,6,4,3.12,6.08,3.23,2.02,3.91,8.0,0.269,40.0,5.03,3.58,4.5,10.0,0.351,70.0
+823741,2026-08-29T23:15:00Z,TEX @ MIL,MIL,TEX,Shane Drohan,Cal Quantrill,675660.0,615698.0,1.0,,,,,,,,,,,,,,,,,,,5,5,7,3,3.84,2.9,,,3.42,0.0,,0.0,3.94,3.92,4.13,9.0,0.343,53.0
+824961,2026-08-30T02:05:00Z,BAL @ ATH,ATH,BAL,Jack Perkins,Shane Baz,678022.0,669358.0,1.0,,,,,,,,,,,,,,,,,,,5,5,4,6,6.68,4.04,4.93,2.91,4.05,9.0,0.217,14.0,4.96,3.68,3.62,7.0,0.284,35.0
+823986,2026-08-30T02:07:00Z,PHI @ LAA,LAA,PHI,Ryan Johnson,Cristopher Sánchez,696270.0,650911.0,0.97,,,,,,,,,,,,,,,,,,,8,2,3,7,5.75,2.62,,,4.45,1.0,0.539,3.0,2.04,2.47,2.19,7.0,0.344,27.0
