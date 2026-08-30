@@ -1,5 +1,5 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip
-824911,2026-08-31T22:05:00Z,SF @ ATL,ATL,SF,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,3,7,7,3,,,,,,,,,,,,,,
+824911,2026-08-31T22:05:00Z,SF @ ATL,ATL,SF,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,4,6,7,3,,,,,,,,,,,,,,
 824473,2026-08-31T22:40:00Z,SD @ CIN,CIN,SD,Brady Singer,TBD,663903.0,,1.04,,,,,,,,,,,,,,,,,,,5,5,4,6,4.72,,10.0,0.229,80.0,2.76,3.09,4.16,,,,,,
 822932,2026-08-31T22:40:00Z,NYM @ TB,TB,NYM,TBD,Robert Stock,,476594.0,0.97,,,,,,,,,,,,,,,,,,,4,6,6,4,,7.4,,,,,,,2.0,0.57,2.0,,,4.12
 824719,2026-08-31T22:45:00Z,SEA @ BOS,BOS,SEA,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,5,5,6,4,,,,,,,,,,,,,,
@@ -8,6 +8,6 @@ game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_nam
 824635,2026-08-31T23:40:00Z,MIL @ CHC,CHC,MIL,TBD,Kyle Harrison,,690986.0,1.02,,,,,,,,,,,,,,,,,,,7,3,4,6,,2.79,,,,,,,10.0,0.18,44.0,1.51,1.6,2.78
 822855,2026-09-01T00:05:00Z,ATH @ TEX,TEX,ATH,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,4,6,4,6,,,,,,,,,,,,,,
 824149,2026-09-01T00:10:00Z,CWS @ HOU,HOU,CWS,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,7,3,5,5,,,,,,,,,,,,,,
-824314,2026-09-01T00:40:00Z,BAL @ COL,COL,BAL,TBD,TBD,,,1.22,,,,,,,,,,,,,,,,,,,5,5,2,8,,,,,,,,,,,,,,
-823982,2026-09-01T01:38:00Z,NYY @ LAA,LAA,NYY,TBD,Elmer Rodríguez,,695684.0,0.97,,,,,,,,,,,,,,,,,,,6,4,3,7,,4.7,,,,,,,0.0,,0.0,,,4.38
-825040,2026-09-01T01:40:00Z,PHI @ AZ,AZ,PHI,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,8,2,7,3,,,,,,,,,,,,,,
+824314,2026-09-01T00:40:00Z,BAL @ COL,COL,BAL,TBD,TBD,,,1.22,,,,,,,,,,,,,,,,,,,6,4,2,8,,,,,,,,,,,,,,
+823982,2026-09-01T01:38:00Z,NYY @ LAA,LAA,NYY,TBD,Elmer Rodríguez,,695684.0,0.97,,,,,,,,,,,,,,,,,,,6,4,2,8,,4.7,,,,,,,0.0,,0.0,,,4.38
+825040,2026-09-01T01:40:00Z,PHI @ AZ,AZ,PHI,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,8,2,6,4,,,,,,,,,,,,,,
