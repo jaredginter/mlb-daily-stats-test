@@ -1,12 +1,12 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 823415,2026-09-07T17:05:00Z,ATL @ PHI,PHI,ATL,Jesús Luzardo,Bryce Elder,666200.0,693821.0,1.02,,,,,,,,,,,,,,,,,,,7,3,7,3,3.02,4.11,3.17,3.29,2.52,12.0,0.265,186.0,5.3,4.86,3.82,13.0,0.326,124.0
 823820,2026-09-07T17:10:00Z,NYM @ MIA,MIA,NYM,TBD,Jonah Tong,,804636.0,0.95,,,,,,,,,,,,,,,,,,,4,6,4,6,,3.6,,,,,,,2.38,3.94,5.0,8.0,0.168,15.0
-824715,2026-09-07T17:35:00Z,LAA @ BOS,BOS,LAA,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,1,9,4,6,,,,,,,,,,,,,,
-824793,2026-09-07T17:35:00Z,CLE @ BAL,BAL,CLE,TBD,Joey Cantillo,,676282.0,1.01,,,,,,,,,,,,,,,,,,,5,5,5,5,,3.81,,,,,,,3.32,4.45,3.62,10.0,0.251,38.0
-824062,2026-09-07T18:10:00Z,AZ @ KC,KC,AZ,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,5,5,5,5,,,,,,,,,,,,,,
+824715,2026-09-07T17:35:00Z,LAA @ BOS,BOS,LAA,TBD,TBD,,,1.03,,,,,,,,,,,,,,,,,,,2,8,5,5,,,,,,,,,,,,,,
+824793,2026-09-07T17:35:00Z,CLE @ BAL,BAL,CLE,TBD,Joey Cantillo,,676282.0,1.01,,,,,,,,,,,,,,,,,,,5,5,4,6,,3.81,,,,,,,3.32,4.45,3.62,10.0,0.251,38.0
+824062,2026-09-07T18:10:00Z,AZ @ KC,KC,AZ,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,,,,,,,,,
 823742,2026-09-07T18:10:00Z,CHC @ MIL,MIL,CHC,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,5,5,7,3,,,,,,,,,,,,,,
 824229,2026-09-07T19:10:00Z,MIN @ DET,DET,MIN,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,4,6,3,7,,,,,,,,,,,,,,
 823254,2026-09-07T21:10:00Z,WSH @ SD,SD,WSH,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,5,5,3,7,,,,,,,,,,,,,,
 823175,2026-09-08T00:10:00Z,STL @ SF,SF,STL,Logan Webb,TBD,657277.0,,0.95,,,,,,,,,,,,,,,,,,,5,5,5,5,4.21,,2.8,2.25,3.36,8.0,0.332,35.0,,,,,,
 823902,2026-09-08T01:10:00Z,CIN @ LAD,LAD,CIN,TBD,Chase Burns,,695505.0,0.96,,,,,,,,,,,,,,,,,,,5,5,4,6,,2.79,,,,,,,0.8,1.06,2.96,9.0,0.23,23.0
-824958,2026-09-08T02:05:00Z,TOR @ ATH,ATH,TOR,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,7,3,5,5,,,,,,,,,,,,,,
+824958,2026-09-08T02:05:00Z,TOR @ ATH,ATH,TOR,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,8,2,5,5,,,,,,,,,,,,,,
