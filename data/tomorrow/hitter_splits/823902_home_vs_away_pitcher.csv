@@ -1,0 +1,10 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Shohei Ohtani,660271,3,2025,0.333,0,0.522,0.333,0.167,92.1
+Mookie Betts,605141,3,2025,0.667,0,0.435,0.333,0.0,91.6
+Max Muncy,571970,1,2025,0.0,0,0.357,1.0,0.0,98.2
+Enrique Hernández,571771,1,2025,0.0,0,0.257,1.0,0.0,97.7
+Miguel Rojas,500743,3,2025,0.333,0,0.204,0.0,0.2,61.9
+Hunter Feduccia,676439,2,2026,0.0,0,0.155,0.0,0.333,86.3
+Teoscar Hernández,606192,4,2025,0.25,0,0.119,0.5,0.5,80.6
+Freddie Freeman,518692,4,2025,0.0,0,0.02,0.333,0.364,91.0
+Dalton Rushing,687221,2,2025,0.0,0,0.0,,0.8,
