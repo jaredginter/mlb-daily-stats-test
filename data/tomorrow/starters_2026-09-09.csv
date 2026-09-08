@@ -1,9 +1,9 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824226,2026-09-09T17:10:00Z,MIN @ DET,DET,MIN,Keider Montero,Zebby Matthews,672456.0,805673.0,0.99,,,,,,,,,,,,,,,,,,,4,6,4,6,3.52,4.69,3.36,2.48,3.83,7.0,0.284,32.0,5.81,3.47,3.76,8.0,0.242,40.0
 824956,2026-09-09T19:05:00Z,TOR @ ATH,ATH,TOR,TBD,TBD,,,1.0,,,,,,,,,,,,,,,,,,,7,3,5,5,,,,,,,,,,,,,,
-823172,2026-09-09T19:45:00Z,STL @ SF,SF,STL,Blade Tidwell,TBD,694918.0,,0.95,,,,,,,,,,,,,,,,,,,5,5,5,5,4.43,,4.93,6.81,3.94,7.0,0.346,12.0,,,,,,
+823172,2026-09-09T19:45:00Z,STL @ SF,SF,STL,Blade Tidwell,TBD,694918.0,,0.95,,,,,,,,,,,,,,,,,,,5,5,5,5,4.43,,3.56,4.9,3.94,8.0,0.346,14.0,,,,,,
 823251,2026-09-09T20:10:00Z,WSH @ SD,SD,WSH,Walker Buehler,Jackson Kent,621111.0,800600.0,0.95,,,,,,,,,,,,,,,,,,,4,6,4,6,4.56,5.55,1.63,2.8,3.68,6.0,0.301,17.0,,,4.63,0.0,,0.0
-823090,2026-09-09T20:10:00Z,TEX @ SEA,SEA,TEX,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,5,5,3,7,,,,,,,,,,,,,,
+823090,2026-09-09T20:10:00Z,TEX @ SEA,SEA,TEX,Kade Anderson,Cody Bradford,807739.0,674003.0,0.97,,,,,,,,,,,,,,,,,,,5,5,3,7,5.4,4.45,1.9,2.83,4.14,5.0,,6.0,3.38,5.65,4.91,5.0,0.214,14.0
 824791,2026-09-09T22:35:00Z,CLE @ BAL,BAL,CLE,Shane Baz,Foster Griffin,669358.0,656492.0,1.01,,,,,,,,,,,,,,,,,,,5,5,4,6,3.91,3.26,3.22,3.04,3.66,11.0,0.284,47.0,0.74,1.41,3.43,5.0,0.159,15.0
 823416,2026-09-09T22:40:00Z,HOU @ PHI,PHI,HOU,Cristopher Sánchez,Hunter Brown,650911.0,686613.0,1.02,,,,,,,,,,,,,,,,,,,6,4,7,3,2.58,3.31,3.58,3.18,2.21,11.0,0.308,42.0,0.91,1.06,3.44,11.0,0.18,35.0
 823818,2026-09-09T22:40:00Z,NYM @ MIA,MIA,NYM,Janson Junk,Robert Stock,676083.0,476594.0,0.95,,,,,,,,,,,,,,,,,,,6,4,4,6,4.0,5.81,2.84,3.65,3.78,11.0,0.38,35.0,4.35,2.66,3.97,7.0,0.445,14.0
