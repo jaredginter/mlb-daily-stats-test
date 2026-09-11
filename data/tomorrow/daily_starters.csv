@@ -1,8 +1,8 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 824224,2026-09-12T17:10:00Z,COL @ DET,DET,COL,TBD,Tanner Gordon,,685299.0,0.99,,,,,,,,,,,,,,,,,,,3,7,4,6,,5.4,,,,,,,5.64,4.34,3.77,5.0,0.409,20.0
 823496,2026-09-12T17:35:00Z,NYM @ NYY,NYY,NYM,Gerrit Cole,Zac Thornton,543037.0,804267.0,1.05,,,,,,,,,,,,,,,,,,,7,3,7,3,3.41,3.53,10.0,0.363,150.0,5.79,3.74,2.96,,,3.72,0.0,,0.0
-824630,2026-09-12T18:20:00Z,PIT @ CHC,CHC,PIT,Clay Holmes,Paul Skenes,605280.0,694973.0,1.02,,,,,,,,,,,,,,,,,,,8,2,4,6,2.83,3.83,7.0,0.238,23.0,4.34,2.85,3.44,2.76,2.31,2.76,12.0,0.277,125.0
-822768,2026-09-12T19:07:00Z,BAL @ TOR,TOR,BAL,TBD,Kyle Bradish,,680694.0,1.0,,,,,,,,,,,,,,,,,,,3,7,6,4,,3.91,,,,,,,5.94,5.13,3.74,12.0,0.344,92.0
+824630,2026-09-12T18:20:00Z,PIT @ CHC,CHC,PIT,Clay Holmes,Paul Skenes,605280.0,694973.0,1.02,,,,,,,,,,,,,,,,,,,8,2,4,6,2.83,3.83,8.0,0.252,29.0,4.64,3.4,3.44,2.76,2.31,2.76,12.0,0.277,125.0
+822768,2026-09-12T19:07:00Z,BAL @ TOR,TOR,BAL,TBD,Kyle Bradish,,680694.0,1.0,,,,,,,,,,,,,,,,,,,3,7,6,4,,3.91,,,,,,,6.02,5.18,3.74,11.0,0.34,88.0
 822685,2026-09-12T20:05:00Z,LAA @ WSH,WSH,LAA,Andrew Alvarez,Walbert Ureña,674841.0,700712.0,1.0,,,,,,,,,,,,,,,,,,,4,6,2,8,3.6,2.74,1.0,0.049,2.0,,,3.46,,,3.79,0.0,,0.0
 823170,2026-09-12T20:05:00Z,SD @ SF,SF,SD,Cesar Perdomo,Michael King,702885.0,650633.0,0.95,,,,,,,,,,,,,,,,,,,6,4,6,4,0.9,3.0,0.0,,0.0,,,3.37,11.92,8.04,4.04,4.0,0.541,22.0
 824712,2026-09-12T20:10:00Z,KC @ BOS,BOS,KC,Ranger Suarez,Randy Dobnak,624133.0,677976.0,1.03,,,,,,,,,,,,,,,,,,,3,7,6,4,3.44,2.54,11.0,0.222,32.0,2.38,3.5,3.4,9.67,6.78,3.92,4.0,0.243,8.0
@@ -12,5 +12,5 @@ game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_nam
 823737,2026-09-12T23:10:00Z,CIN @ MIL,MIL,CIN,TBD,Brady Singer,,663903.0,1.0,,,,,,,,,,,,,,,,,,,5,5,6,4,,5.03,,,,,,,3.94,3.59,4.16,13.0,0.334,175.0
 824870,2026-09-12T23:15:00Z,PHI @ ATL,ATL,PHI,Tyler Mahle,Jesús Luzardo,641816.0,666200.0,0.98,,,,,,,,,,,,,,,,,,,5,5,4,6,4.05,2.87,14.0,0.193,122.0,3.29,3.55,3.47,1.87,2.88,2.5,12.0,0.22,185.0
 823009,2026-09-12T23:15:00Z,CWS @ STL,STL,CWS,Kyle Leahy,Luis Castillo,681517.0,622491.0,0.99,,,,,,,,,,,,,,,,,,,3,7,4,6,3.41,5.57,7.0,0.519,8.0,10.14,6.76,3.19,2.33,3.67,3.98,7.0,0.278,18.0
-825035,2026-09-13T00:10:00Z,TEX @ AZ,AZ,TEX,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,5,5,5,5,,,,,,,,,,,,,,
+825035,2026-09-13T00:10:00Z,TEX @ AZ,AZ,TEX,TBD,Kumar Rocker,,677958.0,1.05,,,,,,,,,,,,,,,,,,,5,5,5,5,,4.61,,,,,,,4.38,5.72,3.65,9.0,0.337,17.0
 824955,2026-09-13T01:40:00Z,SEA @ ATH,ATH,SEA,Gage Jump,Bryan Woo,695611.0,693433.0,1.0,,,,,,,,,,,,,,,,,,,5,5,6,4,5.12,4.03,11.0,0.303,33.0,0.49,1.3,3.63,2.42,2.37,3.02,11.0,0.221,89.0
