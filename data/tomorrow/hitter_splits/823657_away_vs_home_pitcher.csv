@@ -1,0 +1,10 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Chase DeLauter,800050,2,2026,0.5,0,0.539,1.0,0.0,99.2
+Brayan Rocchio,677587,5,2026,0.4,1,0.51,0.4,0.0,86.2
+Travis Bazzana,683953,3,2026,0.333,1,0.478,1.0,0.167,102.3
+Steven Kwan,680757,2,2026,0.5,0,0.415,0.5,0.0,87.4
+José Ramírez,608070,3,2026,0.333,0,0.4,0.667,0.0,93.1
+Angel Martínez,682657,2,2026,0.0,0,0.366,0.0,0.286,93.9
+Austin Hedges,595978,4,2026,0.25,0,0.229,0.333,0.0,92.2
+Petey Halpin,690984,2,2026,0.0,0,0.08,0.0,0.75,69.1
+David Fry,681807,6,2026,0.0,0,0.017,0.333,0.188,76.6
