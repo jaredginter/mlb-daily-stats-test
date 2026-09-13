@@ -1,11 +1,11 @@
-game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip
-824465,2026-09-14T22:40:00Z,LAD @ CIN,CIN,LAD,Nick Lodolo,TBD,666157.0,,1.04,,,,,,,,,,,,,,,,,,,8,2,4,6,5.12,,5.8,4.82,4.28,11.0,0.321,74.0,,,,,,
-824386,2026-09-14T22:40:00Z,CWS @ CLE,CLE,CWS,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,3,7,5,5,,,,,,,,,,,,,,
-822765,2026-09-14T23:07:00Z,DET @ TOR,TOR,DET,José Soriano,Troy Melton,667755.0,675512.0,1.0,,,,,,,,,,,,,,,,,,,6,4,6,4,3.48,2.42,3.34,2.71,3.52,8.0,0.246,36.0,0.0,,0.0,,,3.63
-823575,2026-09-14T23:10:00Z,BAL @ NYM,NYM,BAL,Jonah Tong,TBD,804636.0,,0.98,,,,,,,,,,,,,,,,,,,3,7,7,3,4.8,,,,4.55,0.0,,0.0,,,,,,
-824629,2026-09-14T23:40:00Z,ATL @ CHC,CHC,ATL,TBD,TBD,,,1.02,,,,,,,,,,,,,,,,,,,6,4,5,5,,,,,,,,,,,,,,
-823656,2026-09-14T23:40:00Z,NYY @ MIN,MIN,NYY,TBD,TBD,,,1.01,,,,,,,,,,,,,,,,,,,7,3,4,6,,,,,,,,,,,,,,
-823006,2026-09-14T23:45:00Z,SF @ STL,STL,SF,TBD,TBD,,,0.99,,,,,,,,,,,,,,,,,,,5,5,4,6,,,,,,,,,,,,,,
-824308,2026-09-15T00:40:00Z,SD @ COL,COL,SD,TBD,TBD,,,1.22,,,,,,,,,,,,,,,,,,,7,3,3,7,,,,,,,,,,,,,,
-823981,2026-09-15T01:38:00Z,SEA @ LAA,LAA,SEA,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,5,5,3,7,,,,,,,,,,,,,,
-825034,2026-09-15T01:40:00Z,MIA @ AZ,AZ,MIA,TBD,TBD,,,1.05,,,,,,,,,,,,,,,,,,,3,7,6,4,,,,,,,,,,,,,,
+game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
+824465,2026-09-14T22:40:00Z,LAD @ CIN,CIN,LAD,Nick Lodolo,Tarik Skubal,666157.0,669373.0,1.04,,,,,,,,,,,,,,,,,,,8,2,4,6,5.12,2.84,5.8,4.82,4.28,11.0,0.321,74.0,2.28,2.25,2.25,10.0,0.235,59.0
+824386,2026-09-14T22:40:00Z,CWS @ CLE,CLE,CWS,TBD,Sean Burke,,680732.0,0.97,,,,,,,,,,,,,,,,,,,3,7,5,5,,3.58,,,,,,,2.33,2.75,3.54,11.0,0.232,69.0
+822765,2026-09-14T23:07:00Z,DET @ TOR,TOR,DET,José Soriano,Troy Melton,667755.0,675512.0,1.0,,,,,,,,,,,,,,,,,,,6,4,6,4,3.48,2.42,3.34,2.71,3.52,8.0,0.246,36.0,,,3.63,0.0,,0.0
+823575,2026-09-14T23:10:00Z,BAL @ NYM,NYM,BAL,Jonah Tong,Brandon Young,804636.0,687064.0,0.98,,,,,,,,,,,,,,,,,,,3,7,7,3,4.8,3.71,,,4.55,0.0,,0.0,2.21,3.29,3.94,7.0,0.301,17.0
+824629,2026-09-14T23:40:00Z,ATL @ CHC,CHC,ATL,David Peterson,Reynaldo López,656849.0,625643.0,1.02,,,,,,,,,,,,,,,,,,,6,4,5,5,5.28,4.13,3.83,2.82,3.71,10.0,0.309,140.0,4.25,4.22,3.96,12.0,0.446,45.0
+823656,2026-09-14T23:40:00Z,NYY @ MIN,MIN,NYY,Dean Kremer,Will Warren,665152.0,701542.0,1.01,,,,,,,,,,,,,,,,,,,7,3,4,6,5.65,4.05,4.57,3.83,3.77,12.0,0.268,98.0,3.74,2.7,3.26,9.0,0.164,20.0
+823006,2026-09-14T23:45:00Z,SF @ STL,STL,SF,Quinn Mathews,TBD,687273.0,,0.99,,,,,,,,,,,,,,,,,,,5,5,4,6,4.11,,7.1,4.58,4.0,9.0,0.334,23.0,,,,,,
+824308,2026-09-15T00:40:00Z,SD @ COL,COL,SD,Tomoyuki Sugano,TBD,608372.0,,1.22,,,,,,,,,,,,,,,,,,,7,3,3,7,5.3,,3.9,3.48,4.36,7.0,0.395,33.0,,,,,,
+823981,2026-09-15T01:38:00Z,SEA @ LAA,LAA,SEA,Reid Detmers,TBD,672282.0,,0.97,,,,,,,,,,,,,,,,,,,5,5,3,7,3.32,,4.49,3.8,3.09,7.0,0.25,80.0,,,,,,
+825034,2026-09-15T01:40:00Z,MIA @ AZ,AZ,MIA,TBD,Sandy Alcantara,,645261.0,1.05,,,,,,,,,,,,,,,,,,,3,7,6,4,,3.78,,,,,,,3.85,3.79,3.78,8.0,0.363,82.0
