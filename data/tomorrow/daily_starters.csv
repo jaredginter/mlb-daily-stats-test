@@ -1,10 +1,10 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-823334,2026-09-17T16:35:00Z,MIL @ PIT,PIT,MIL,TBD,Dustin May,,669160.0,0.99,,,,,,,,,,,,,,,,,,,6,4,7,3,,4.49,,,,,,,6.87,5.11,3.53,13.0,0.351,74.0
+823334,2026-09-17T16:35:00Z,MIL @ PIT,PIT,MIL,TBD,Dustin May,,669160.0,0.99,,,,,,,,,,,,,,,,,,,7,3,6,4,,4.49,,,,,,,6.87,5.11,3.53,13.0,0.351,74.0
 824464,2026-09-17T16:40:00Z,LAD @ CIN,CIN,LAD,Brady Singer,TBD,663903.0,,1.04,,,,,,,,,,,,,,,,,,,8,2,3,7,5.38,,10.0,0.317,48.0,3.86,3.8,4.21,,,,,,
-822924,2026-09-17T17:10:00Z,ATH @ TB,TB,ATH,Drew Rasmussen,Jeffrey Springs,656876.0,605488.0,0.97,,,,,,,,,,,,,,,,,,,7,3,7,3,2.81,5.93,12.0,0.351,41.0,6.74,3.93,2.8,5.03,3.72,4.6,7.0,0.373,28.0
+822924,2026-09-17T17:10:00Z,ATH @ TB,TB,ATH,Drew Rasmussen,Jeffrey Springs,656876.0,605488.0,0.97,,,,,,,,,,,,,,,,,,,6,4,8,2,2.81,5.93,12.0,0.351,41.0,6.74,3.93,2.8,5.03,3.72,4.6,7.0,0.373,28.0
 824305,2026-09-17T19:10:00Z,SD @ COL,COL,SD,Tanner Gordon,Michael King,685299.0,650633.0,1.22,,,,,,,,,,,,,,,,,,,9,1,1,9,5.55,3.03,7.0,0.245,36.0,5.2,3.11,3.77,2.9,3.67,4.0,12.0,0.236,55.0
-824141,2026-09-17T23:15:00Z,KC @ HOU,HOU,KC,TBD,Seth Lugo,,607625.0,1.03,,,,,,,,,,,,,,,,,,,4,6,4,6,,4.99,,,,,,,4.99,4.44,4.17,13.0,0.443,101.0
-823573,2026-09-17T23:15:00Z,PHI @ NYM,NYM,PHI,Nolan McLean,TBD,690997.0,,0.98,,,,,,,,,,,,,,,,,,,4,6,6,4,3.24,,10.0,0.199,48.0,1.82,2.85,3.26,,,,,,
-824548,2026-09-17T23:40:00Z,DET @ CWS,CWS,DET,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,7,3,4,6,,,,,,,,,,,,,,
+824141,2026-09-17T23:15:00Z,KC @ HOU,HOU,KC,TBD,Seth Lugo,,607625.0,1.03,,,,,,,,,,,,,,,,,,,3,7,4,6,,4.99,,,,,,,4.99,4.44,4.17,13.0,0.443,101.0
+823573,2026-09-17T23:15:00Z,PHI @ NYM,NYM,PHI,Nolan McLean,TBD,690997.0,,0.98,,,,,,,,,,,,,,,,,,,4,6,5,5,3.24,,10.0,0.199,48.0,1.82,2.85,3.26,,,,,,
+824548,2026-09-17T23:40:00Z,DET @ CWS,CWS,DET,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,8,2,3,7,,,,,,,,,,,,,,
 822845,2026-09-18T00:05:00Z,BOS @ TEX,TEX,BOS,TBD,Sonny Gray,,543243.0,1.02,,,,,,,,,,,,,,,,,,,7,3,5,5,,2.76,,,,,,,1.79,2.69,3.27,12.0,0.31,99.0
 823978,2026-09-18T01:38:00Z,MIN @ LAA,LAA,MIN,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,3,7,4,6,,,,,,,,,,,,,,
