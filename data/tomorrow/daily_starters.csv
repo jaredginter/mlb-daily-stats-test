@@ -1,11 +1,11 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip
 824463,2026-09-18T22:40:00Z,CHC @ CIN,CIN,CHC,Chase Burns,TBD,695505.0,,1.04,,,,,,,,,,,,,,,,,,,4,6,2,8,2.8,,3.49,3.01,2.95,11.0,0.246,31.0,,,,,,
-823331,2026-09-18T22:40:00Z,KC @ PIT,PIT,KC,Paul Skenes,Randy Dobnak,694973.0,677976.0,0.99,,,,,,,,,,,,,,,,,,,4,6,5,5,3.78,2.73,1.26,1.84,2.82,3.0,0.173,8.0,3.0,0.162,12.0,2.92,4.73,3.92
+823331,2026-09-18T22:40:00Z,KC @ PIT,PIT,KC,Paul Skenes,Randy Dobnak,694973.0,677976.0,0.99,,,,,,,,,,,,,,,,,,,4,6,6,4,3.78,2.73,1.26,1.84,2.82,3.0,0.173,8.0,3.0,0.162,12.0,2.92,4.73,3.92
 824790,2026-09-18T23:05:00Z,MIL @ BAL,BAL,MIL,TBD,Dustin May,,669160.0,1.01,,,,,,,,,,,,,,,,,,,7,3,6,4,,4.49,,,,,,,9.0,0.29,26.0,4.55,3.63,3.53
-824383,2026-09-18T23:10:00Z,ATH @ CLE,CLE,ATH,Daniel Espino,TBD,682982.0,,0.97,,,,,,,,,,,,,,,,,,,5,5,6,4,2.92,,,,1.67,0.0,,0.0,,,,,,
+824383,2026-09-18T23:10:00Z,ATH @ CLE,CLE,ATH,Daniel Espino,Mason Barnett,682982.0,686930.0,0.97,,,,,,,,,,,,,,,,,,,4,6,6,4,2.92,7.08,,,1.67,0.0,,0.0,2.0,0.326,5.0,4.34,6.21,5.02
 822923,2026-09-18T23:10:00Z,BOS @ TB,TB,BOS,Ian Seymour,Ranger Suarez,693855.0,624133.0,0.97,,,,,,,,,,,,,,,,,,,5,5,8,2,4.27,3.33,4.92,3.3,2.81,14.0,0.289,33.0,8.0,0.376,39.0,2.6,3.44,3.31
 823572,2026-09-18T23:15:00Z,PHI @ NYM,NYM,PHI,Zac Thornton,TBD,804267.0,,0.98,,,,,,,,,,,,,,,,,,,4,6,5,5,3.44,,1.03,2.5,3.78,9.0,0.278,22.0,,,,,,
-824547,2026-09-18T23:40:00Z,DET @ CWS,CWS,DET,TBD,Andrew Sears,,808825.0,0.97,,,,,,,,,,,,,,,,,,,7,3,3,7,,5.4,,,,,,,0.0,,0.0,,,4.64
+824547,2026-09-18T23:40:00Z,DET @ CWS,CWS,DET,David Sandlin,Andrew Sears,689818.0,808825.0,0.97,,,,,,,,,,,,,,,,,,,7,3,3,7,5.64,5.4,,,3.62,0.0,,0.0,0.0,,0.0,,,4.64
 822847,2026-09-19T00:05:00Z,TOR @ TEX,TEX,TOR,TBD,Dylan Cease,,656302.0,1.02,,,,,,,,,,,,,,,,,,,4,6,6,4,,2.38,,,,,,,12.0,0.326,97.0,2.88,2.84,2.37
 824303,2026-09-19T00:10:00Z,SEA @ COL,COL,SEA,TBD,Bryan Woo,,693433.0,1.22,,,,,,,,,,,,,,,,,,,5,5,1,9,,3.88,,,,,,,2.0,0.302,16.0,5.04,3.66,3.05
 824138,2026-09-19T00:10:00Z,ATL @ HOU,HOU,ATL,Peter Lambert,Tyler Mahle,663567.0,641816.0,1.03,,,,,,,,,,,,,,,,,,,4,6,3,7,3.71,3.91,3.77,4.64,4.05,9.0,0.336,46.0,12.0,0.344,60.0,2.72,4.21,3.47
