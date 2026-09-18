@@ -1,10 +1,10 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-824463,2026-09-18T22:40:00Z,CHC @ CIN,CIN,CHC,Chase Burns,Clay Holmes,695505,605280,1.04,,,,,,,,,,,,,,,,,,,4,6,2,8,2.8,2.85,3.22,2.77,2.95,12,0.224,32,3.85,4.52,3.5,7,0.308,25
-823331,2026-09-18T22:40:00Z,KC @ PIT,PIT,KC,Paul Skenes,Randy Dobnak,694973,677976,0.99,,,,,,,,,,,,,,,,,,,4,6,6,4,3.78,2.73,1.26,1.84,2.82,3,0.173,8,2.92,4.73,3.92,3,0.162,12
-824790,2026-09-18T23:05:00Z,MIL @ BAL,BAL,MIL,Cade Povich,Dustin May,700249,669160,1.01,,,,,,,,,,,,,,,,,,,7,3,6,4,4.05,4.49,3.13,,4.52,2,0.242,5,4.55,3.63,3.53,9,0.29,26
-824383,2026-09-18T23:10:00Z,ATH @ CLE,CLE,ATH,Daniel Espino,Mason Barnett,682982,686930,0.97,,,,,,,,,,,,,,,,,,,4,6,6,4,2.92,7.08,,,1.67,0,,0,4.34,6.21,5.02,2,0.326,5
-822923,2026-09-18T23:10:00Z,BOS @ TB,TB,BOS,Ian Seymour,Ranger Suarez,693855,624133,0.97,,,,,,,,,,,,,,,,,,,5,5,8,2,4.27,3.33,4.92,3.3,2.81,14,0.289,33,2.6,3.44,3.31,8,0.376,39
-823572,2026-09-18T23:15:00Z,PHI @ NYM,NYM,PHI,Zac Thornton,Tim Mayza,804267,641835,0.98,,,,,,,,,,,,,,,,,,,5,5,4,6,3.44,3.06,1.03,2.5,3.78,9,0.278,22,2.67,3.0,2.87,10,0.351,22
+824463,2026-09-18T22:40:00Z,CHC @ CIN,CIN,CHC,Chase Burns,Clay Holmes,695505,605280,1.04,,,,,,,,,,,,,,,,,,,4,6,2,8,2.82,2.98,3.22,2.77,2.95,12,0.224,32,3.85,4.52,3.5,7,0.308,25
+823331,2026-09-18T22:40:00Z,KC @ PIT,PIT,KC,Paul Skenes,Randy Dobnak,694973,677976,0.99,,,,,,,,,,,,,,,,,,,4,6,6,4,3.77,2.65,1.26,1.84,2.82,3,0.173,8,2.92,4.73,3.92,3,0.162,12
+824790,2026-09-18T23:05:00Z,MIL @ BAL,BAL,MIL,Cade Povich,Dustin May,700249,669160,1.01,,,,,,,,,,,,,,,,,,,7,3,6,4,3.93,4.47,3.13,,4.52,2,0.242,5,4.55,3.63,3.53,9,0.29,26
+824383,2026-09-18T23:10:00Z,ATH @ CLE,CLE,ATH,Daniel Espino,Mason Barnett,682982,686930,0.97,,,,,,,,,,,,,,,,,,,4,6,6,4,4.73,7.08,,,1.67,0,,0,4.34,6.21,5.02,2,0.326,5
+822923,2026-09-18T23:10:00Z,BOS @ TB,TB,BOS,Ian Seymour,Ranger Suarez,693855,624133,0.97,,,,,,,,,,,,,,,,,,,5,5,8,2,4.31,3.38,4.92,3.3,2.81,14,0.289,33,2.6,3.44,3.31,8,0.376,39
+823572,2026-09-18T23:15:00Z,PHI @ NYM,NYM,PHI,Zac Thornton,Tim Mayza,804267,641835,0.98,,,,,,,,,,,,,,,,,,,5,5,4,6,3.39,3.06,1.03,2.5,3.78,9,0.278,22,2.67,3.0,2.87,10,0.351,22
 824547,2026-09-18T23:40:00Z,DET @ CWS,CWS,DET,David Sandlin,Andrew Sears,689818,808825,0.97,,,,,,,,,,,,,,,,,,,7,3,3,7,5.64,5.4,,,3.62,0,,0,,,4.64,0,,0
 822847,2026-09-19T00:05:00Z,TOR @ TEX,TEX,TOR,Kumar Rocker,Dylan Cease,677958,656302,1.02,,,,,,,,,,,,,,,,,,,4,6,6,4,4.54,2.38,2.15,3.38,3.64,8,0.262,23,2.88,2.84,2.37,12,0.326,97
 824303,2026-09-19T00:10:00Z,SEA @ COL,COL,SEA,Gabriel Hughes,Bryan Woo,687312,693433,1.22,,,,,,,,,,,,,,,,,,,5,5,1,9,6.37,3.88,,,3.95,0,,0,5.04,3.66,3.05,2,0.302,16
