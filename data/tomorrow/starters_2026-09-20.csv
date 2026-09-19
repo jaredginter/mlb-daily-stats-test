@@ -1,10 +1,10 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-823570,2026-09-20T17:10:00Z,PHI @ NYM,NYM,PHI,Jonah Tong,Cristopher Sánchez,804636.0,650911.0,0.98,,,,,,,,,,,,,,,,,,,5,5,4,6,3.43,2.93,,,4.14,1.0,0.452,1.0,3.2,2.66,2.31,11.0,0.278,110.0
+823570,2026-09-20T17:10:00Z,PHI @ NYM,NYM,PHI,Jonah Tong,Cristopher Sánchez,804636.0,650911.0,0.98,,,,,,,,,,,,,,,,,,,4,6,4,6,3.43,2.93,,,4.14,1.0,0.452,1.0,3.2,2.66,2.31,11.0,0.278,110.0
 823329,2026-09-20T17:35:00Z,KC @ PIT,PIT,KC,TBD,Michael Wacha,,608379.0,0.99,,,,,,,,,,,,,,,,,,,3,7,6,4,,3.34,,,,,,,4.46,2.63,3.84,8.0,0.274,37.0
 824462,2026-09-20T17:40:00Z,CHC @ CIN,CIN,CHC,Rhett Lowder,TBD,695076.0,,1.04,,,,,,,,,,,,,,,,,,,4,6,3,7,5.79,,5.5,5.3,4.16,12.0,0.359,52.0,,,,,,
-824381,2026-09-20T17:40:00Z,ATH @ CLE,CLE,ATH,Gavin Williams,Jack Perkins,668909.0,678022.0,0.97,,,,,,,,,,,,,,,,,,,4,6,6,4,3.78,6.14,,,,0.0,,0.0,1.63,2.91,3.98,12.0,0.121,26.0
+824381,2026-09-20T17:40:00Z,ATH @ CLE,CLE,ATH,Gavin Williams,Jack Perkins,668909.0,678022.0,0.97,,,,,,,,,,,,,,,,,,,4,6,6,4,3.78,6.14,0.82,2.09,2.43,8.0,0.182,24.0,1.63,2.91,3.98,12.0,0.121,26.0
 822922,2026-09-20T17:40:00Z,BOS @ TB,TB,BOS,Griffin Jax,TBD,643377.0,,0.97,,,,,,,,,,,,,,,,,,,5,5,8,2,3.8,,4.9,2.76,3.02,11.0,0.312,50.0,,,,,,
-824139,2026-09-20T18:10:00Z,ATL @ HOU,HOU,ATL,Hunter Brown,Martín Pérez,686613.0,527048.0,1.03,,,,,,,,,,,,,,,,,,,4,6,4,6,3.43,3.07,5.38,6.09,3.24,10.0,0.335,50.0,4.62,4.32,4.05,11.0,0.429,123.0
+824139,2026-09-20T18:10:00Z,ATL @ HOU,HOU,ATL,Hunter Brown,Martín Pérez,686613.0,527048.0,1.03,,,,,,,,,,,,,,,,,,,5,5,4,6,3.43,3.07,5.38,6.09,3.24,10.0,0.335,50.0,4.62,4.32,4.05,11.0,0.429,123.0
 824546,2026-09-20T18:10:00Z,DET @ CWS,CWS,DET,Davis Martin,Troy Melton,663436.0,675512.0,0.97,,,,,,,,,,,,,,,,,,,7,3,3,7,3.96,2.52,4.41,5.57,3.77,8.0,0.344,61.0,4.1,4.41,3.69,13.0,0.254,70.0
 823001,2026-09-20T18:15:00Z,WSH @ STL,STL,WSH,Quinn Mathews,Jake Irvin,687273.0,663623.0,0.99,,,,,,,,,,,,,,,,,,,4,6,4,6,3.62,5.51,5.8,6.73,3.74,9.0,,12.0,4.51,3.48,3.97,12.0,0.363,74.0
 822844,2026-09-20T18:35:00Z,TOR @ TEX,TEX,TOR,Jacob deGrom,TBD,594798.0,,1.02,,,,,,,,,,,,,,,,,,,4,6,6,4,3.79,,2.66,4.39,2.42,6.0,0.257,22.0,,,,,,
@@ -13,4 +13,4 @@ game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_nam
 823896,2026-09-20T20:10:00Z,SF @ LAD,LAD,SF,TBD,TBD,,,0.96,,,,,,,,,,,,,,,,,,,5,5,7,3,,,,,,,,,,,,,,
 823247,2026-09-20T20:10:00Z,MIA @ SD,SD,MIA,Walker Buehler,TBD,621111.0,,0.95,,,,,,,,,,,,,,,,,,,5,5,9,1,4.58,,4.3,3.48,3.74,11.0,0.311,32.0,,,,,,
 825028,2026-09-20T20:10:00Z,NYY @ AZ,AZ,NYY,Corbin Burnes,Will Warren,669203.0,701542.0,1.05,,,,,,,,,,,,,,,,,,,7,3,5,5,5.87,3.89,3.65,3.02,4.96,10.0,0.328,127.0,4.8,2.9,3.23,8.0,0.416,25.0
-824789,2026-09-20T23:20:00Z,MIL @ BAL,BAL,MIL,Brandon Young,Jacob Misiorowski,687064.0,694819.0,1.01,,,,,,,,,,,,,,,,,,,7,3,6,4,3.65,1.89,,,3.95,1.0,0.348,1.0,,,1.93,1.0,0.004,2.0
+824789,2026-09-20T23:20:00Z,MIL @ BAL,BAL,MIL,Brandon Young,Jacob Misiorowski,687064.0,694819.0,1.01,,,,,,,,,,,,,,,,,,,8,2,6,4,3.65,1.89,,,3.95,1.0,0.348,1.0,,,1.93,1.0,0.004,2.0
