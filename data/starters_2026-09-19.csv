@@ -1,13 +1,13 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
-824545,2026-09-19T18:10:00Z,DET @ CWS,CWS,DET,Sean Burke,Jackson Jobe,680732,695549,0.97,,,,,,,,,,,,,,,,,,,7,3,3,7,3.45,3.89,4.25,4.93,3.54,10,0.299,52,7.43,5.18,3.86,10,0.473,29
-824788,2026-09-19T20:05:00Z,MIL @ BAL,BAL,MIL,Trevor Rogers,Robert Gasser,669432,688107,1.01,,,,,,,,,,,,,,,,,,,8,2,6,4,4.22,4.3,1.93,2.88,3.23,8,0.286,33,,,3.65,0,,0
-822921,2026-09-19T20:10:00Z,BOS @ TB,TB,BOS,Freddy Peralta,Brayan Bello,642547,678394,0.97,,,,,,,,,,,,,,,,,,,5,5,8,2,4.67,4.74,6.72,4.86,3.81,10,0.431,65,3.18,3.9,3.68,12,0.306,97
-823571,2026-09-19T20:10:00Z,PHI @ NYM,NYM,PHI,Christian Scott,Andrew Painter,681035,691725,0.98,,,,,,,,,,,,,,,,,,,4,6,4,6,3.76,5.54,2.8,2.9,3.46,11,0.282,38,,,3.87,0,,0
+824545,2026-09-19T18:10:00Z,DET @ CWS,CWS,DET,Sean Burke,Jackson Jobe,680732,695549,0.97,,,,,,,,,,,,,,,,,,,7,3,4,6,3.4,3.98,4.25,4.93,3.54,10,0.299,52,7.43,5.18,3.86,10,0.473,29
+824788,2026-09-19T20:05:00Z,MIL @ BAL,BAL,MIL,Trevor Rogers,Robert Gasser,669432,688107,1.01,,,,,,,,,,,,,,,,,,,8,2,6,4,4.2,4.17,1.93,2.88,3.23,8,0.286,33,,,3.65,0,,0
+822921,2026-09-19T20:10:00Z,BOS @ TB,TB,BOS,Freddy Peralta,Brayan Bello,642547,678394,0.97,,,,,,,,,,,,,,,,,,,5,5,8,2,4.64,4.66,6.72,4.86,3.81,10,0.431,65,3.18,3.9,3.68,12,0.306,97
+823571,2026-09-19T20:10:00Z,PHI @ NYM,NYM,PHI,Christian Scott,Andrew Painter,681035,691725,0.98,,,,,,,,,,,,,,,,,,,4,6,4,6,3.69,5.49,2.8,2.9,3.46,11,0.282,38,,,3.87,0,,0
 824380,2026-09-19T22:10:00Z,ATH @ CLE,CLE,ATH,Tanner Bibee,Jacob Lopez,676440,682052,0.97,,,,,,,,,,,,,,,,,,,4,6,6,4,4.16,5.02,1.16,2.5,3.89,10,0.223,49,6.41,4.03,4.53,11,0.245,27
 824461,2026-09-19T22:40:00Z,CHC @ CIN,CIN,CHC,Nick Lodolo,Matthew Boyd,666157,571510,1.04,,,,,,,,,,,,,,,,,,,4,6,3,7,5.12,4.16,4.97,4.33,4.32,13,0.312,147,5.9,5.09,3.79,9,0.437,68
 823330,2026-09-19T22:40:00Z,KC @ PIT,PIT,KC,Bubba Chandler,Noah Cameron,696149,702070,0.99,,,,,,,,,,,,,,,,,,,3,7,6,4,4.28,3.84,,,4.27,1,0.56,2,4.47,,3.69,5,0.359,12
 822843,2026-09-19T23:05:00Z,TOR @ TEX,TEX,TOR,Cal Quantrill,José Soriano,615698,667755,1.02,,,,,,,,,,,,,,,,,,,4,6,6,4,2.9,3.56,1.46,2.74,3.86,10,0.186,26,3.3,3.01,3.5,12,0.293,75
-824137,2026-09-19T23:10:00Z,ATL @ HOU,HOU,ATL,Hayden Wesneski,Grant Holmes,669713,656550,1.03,,,,,,,,,,,,,,,,,,,5,5,4,6,3.7,3.49,4.5,4.83,3.7,11,0.302,36,3.63,4.82,4.09,6,0.276,15
+824137,2026-09-19T23:10:00Z,ATL @ HOU,HOU,ATL,Hayden Wesneski,Grant Holmes,669713,656550,1.03,,,,,,,,,,,,,,,,,,,5,5,4,6,3.7,3.49,4.5,4.83,3.7,11,0.302,36,4.33,5.76,4.09,5,0.324,13
 823003,2026-09-19T23:15:00Z,WSH @ STL,STL,WSH,Michael McGreevy,Andrew Alvarez,700241,674841,0.99,,,,,,,,,,,,,,,,,,,5,5,3,7,3.83,3.35,2.5,3.43,3.86,10,0.282,25,,,3.43,0,,0
 824304,2026-09-20T00:10:00Z,SEA @ COL,COL,SEA,Jose Quintana,Bryce Miller,500779,682243,1.22,,,,,,,,,,,,,,,,,,,5,5,1,9,5.27,4.19,3.49,3.47,5.13,8,0.237,39,0.61,1.84,3.62,6,0.287,24
 825029,2026-09-20T00:10:00Z,NYY @ AZ,AZ,NYY,Brandon Pfaadt,Cam Schlittler,694297,693645,1.05,,,,,,,,,,,,,,,,,,,8,2,4,6,3.77,1.95,6.29,4.06,3.71,8,0.275,50,2.76,3.8,2.41,1,0.321,14
