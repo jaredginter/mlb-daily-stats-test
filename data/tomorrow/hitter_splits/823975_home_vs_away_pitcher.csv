@@ -1,0 +1,8 @@
+batter_name,batter_id,abs,seasons,batting_avg,home_runs,xwoba,hard_hit_pct,whiff_pct,avg_exit_velo
+Mike Trout,545361,8,2022–2024,0.125,1,0.633,0.667,0.16,94.1
+Oswald Peraza,672724,2,2025,0.0,0,0.311,0.5,0.2,91.2
+Josh Lowe,666139,17,2022–2025,0.176,0,0.294,0.286,0.191,87.0
+Adam Frazier,624428,6,2021–2024,0.0,0,0.16,0.0,0.1,74.6
+Zach Neto,687263,4,2023–2024,0.25,0,0.067,0.0,0.5,74.6
+Jose Siri,642350,4,2023–2024,0.25,0,0.006,0.0,0.5,86.0
+Travis d'Arnaud,518595,2,2024,0.0,0,,0.0,0.75,
