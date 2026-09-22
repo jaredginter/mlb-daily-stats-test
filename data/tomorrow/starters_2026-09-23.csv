@@ -1,17 +1,17 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip
 824223,2026-09-23T17:10:00Z,WSH @ DET,DET,WSH,Framber Valdez,TBD,664285.0,,0.99,,,,,,,,,,,,,,,,,,,6,4,6,4,4.06,,3.85,2.88,3.77,8.0,0.16,25.0,,,,,,
-824785,2026-09-23T17:35:00Z,TOR @ BAL,BAL,TOR,TBD,TBD,,,1.01,,,,,,,,,,,,,,,,,,,4,6,5,5,,,,,,,,,,,,,,
+824785,2026-09-23T17:35:00Z,TOR @ BAL,BAL,TOR,TBD,Max Scherzer,,453286.0,1.01,,,,,,,,,,,,,,,,,,,4,6,5,5,,6.07,,,,,,,8.0,0.419,59.0,5.28,4.16,4.61
 824784,2026-09-23T22:35:00Z,TOR @ BAL,BAL,TOR,TBD,TBD,,,1.01,,,,,,,,,,,,,,,,,,,4,6,5,5,,,,,,,,,,,,,,
 823168,2026-09-23T19:45:00Z,MIN @ SF,SF,MIN,Cesar Perdomo,TBD,702885.0,,0.95,,,,,,,,,,,,,,,,,,,4,6,3,7,3.72,,,,4.58,0.0,,0.0,,,,,,
 823327,2026-09-23T22:40:00Z,STL @ PIT,PIT,STL,TBD,Matthew Liberatore,,669461.0,0.99,,,,,,,,,,,,,,,,,,,4,6,6,4,,5.36,,,,,,,11.0,0.361,72.0,3.64,3.07,3.56
 823410,2026-09-23T22:40:00Z,MIL @ PHI,PHI,MIL,Aaron Nola,Logan Henderson,605400.0,701656.0,1.02,,,,,,,,,,,,,,,,,,,8,2,4,6,4.49,2.51,3.1,2.6,3.48,11.0,0.261,148.0,2.0,0.134,6.0,3.1,6.22,2.62
-823492,2026-09-23T23:05:00Z,TB @ NYY,NYY,TB,Gerrit Cole,Ian Seymour,543037.0,693855.0,1.05,,,,,,,,,,,,,,,,,,,8,2,6,4,3.63,4.38,3.25,3.17,2.92,11.0,0.27,152.0,12.0,0.296,40.0,3.29,0.72,2.89
+823492,2026-09-23T23:05:00Z,TB @ NYY,NYY,TB,Gerrit Cole,Ian Seymour,543037.0,693855.0,1.05,,,,,,,,,,,,,,,,,,,8,2,6,4,3.63,4.38,3.25,3.17,2.92,11.0,0.27,152.0,12.0,0.29,44.0,2.75,0.61,2.89
 824710,2026-09-23T23:10:00Z,CLE @ BOS,BOS,CLE,Sonny Gray,Foster Griffin,543243.0,656492.0,1.03,,,,,,,,,,,,,,,,,,,7,3,4,6,2.82,3.67,3.99,3.81,3.31,13.0,0.327,130.0,0.0,,0.0,,,3.46
 824868,2026-09-23T23:15:00Z,CIN @ ATL,ATL,CIN,Chris Sale,Andrew Abbott,519242.0,671096.0,0.98,,,,,,,,,,,,,,,,,,,3,7,7,3,2.18,4.7,0.69,1.92,2.51,9.0,0.196,43.0,8.0,0.256,32.0,4.88,5.21,4.35
 824060,2026-09-23T23:40:00Z,CWS @ KC,KC,CWS,Seth Lugo,Erick Fedde,607625.0,607200.0,0.98,,,,,,,,,,,,,,,,,,,5,5,3,7,5.06,3.9,3.54,4.45,4.16,13.0,0.39,97.0,13.0,0.351,99.0,5.93,4.76,4.4
 824625,2026-09-23T23:40:00Z,MIA @ CHC,CHC,MIA,Kevin Gausman,Ryan Gusto,592332.0,687473.0,1.02,,,,,,,,,,,,,,,,,,,4,6,6,4,4.55,4.14,2.05,2.98,3.05,9.0,0.259,30.0,12.0,0.378,37.0,6.1,4.47,3.9
 822841,2026-09-24T00:05:00Z,NYM @ TEX,TEX,NYM,TBD,Nolan McLean,,690997.0,1.02,,,,,,,,,,,,,,,,,,,3,7,6,4,,3.18,,,,,,,5.0,0.269,12.0,1.47,1.99,3.3
 824301,2026-09-24T00:40:00Z,AZ @ COL,COL,AZ,Mason Adams,Merrill Kelly,690279.0,518876.0,1.22,,,,,,,,,,,,,,,,,,,4,6,2,8,5.09,5.0,,,4.42,1.0,,1.0,13.0,0.388,92.0,5.39,3.6,4.59
-824951,2026-09-24T01:40:00Z,LAA @ ATH,ATH,LAA,Jeffrey Springs,Walbert Ureña,605488.0,700712.0,1.0,,,,,,,,,,,,,,,,,,,4,6,3,7,6.18,2.74,4.67,4.82,4.61,12.0,0.467,53.0,10.0,0.225,43.0,2.1,2.56,3.61
+824951,2026-09-24T01:40:00Z,LAA @ ATH,ATH,LAA,Jeffrey Springs,Walbert Ureña,605488.0,700712.0,1.0,,,,,,,,,,,,,,,,,,,4,6,3,7,6.18,2.74,4.67,4.82,4.61,12.0,0.467,53.0,10.0,0.242,38.0,2.76,3.28,3.61
 823894,2026-09-24T02:10:00Z,SD @ LAD,LAD,SD,TBD,Robbie Ray,,592662.0,0.96,,,,,,,,,,,,,,,,,,,9,1,7,3,,3.6,,,,,,,12.0,0.347,194.0,7.05,4.63,4.46
 823086,2026-09-24T02:10:00Z,HOU @ SEA,SEA,HOU,George Kirby,TBD,669923.0,,0.97,,,,,,,,,,,,,,,,,,,3,7,5,5,4.24,,2.89,3.28,3.49,14.0,0.272,202.0,,,,,,
