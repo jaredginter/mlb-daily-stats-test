@@ -1,13 +1,13 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs
 823326,2026-09-24T16:35:00Z,STL @ PIT,PIT,STL,Paul Skenes,Kyle Leahy,694973.0,681517.0,0.99,,,,,,,,,,,,,,,,,,,4,6,6,4,3.91,3.65,2.03,1.4,2.81,10.0,0.229,89.0,5.75,2.77,3.23,14.0,0.275,54.0
-824059,2026-09-24T18:10:00Z,CWS @ KC,KC,CWS,Randy Dobnak,TBD,677976.0,,0.98,,,,,,,,,,,,,,,,,,,6,4,2,8,3.08,,19.67,4.24,4.03,3.0,0.256,7.0,,,,,,
-824623,2026-09-24T18:20:00Z,MIA @ CHC,CHC,MIA,Matthew Boyd,Tyler Phillips,571510.0,663969.0,1.02,,,,,,,,,,,,,,,,,,,5,5,6,4,4.06,3.45,,,3.78,1.0,,1.0,6.37,4.95,4.19,13.0,0.343,34.0
+824059,2026-09-24T18:10:00Z,CWS @ KC,KC,CWS,Randy Dobnak,TBD,677976.0,,0.98,,,,,,,,,,,,,,,,,,,5,5,2,8,3.08,,19.67,4.24,4.03,3.0,0.256,7.0,,,,,,
+824623,2026-09-24T18:20:00Z,MIA @ CHC,CHC,MIA,Matthew Boyd,Tyler Phillips,571510.0,663969.0,1.02,,,,,,,,,,,,,,,,,,,6,4,5,5,4.06,3.45,,,3.78,1.0,,1.0,6.37,4.95,4.19,13.0,0.343,34.0
 822842,2026-09-24T18:35:00Z,NYM @ TEX,TEX,NYM,TBD,Zac Thornton,,804267.0,1.02,,,,,,,,,,,,,,,,,,,4,6,6,4,,3.4,,,,,,,,,3.86,0.0,,0.0
 824298,2026-09-24T19:10:00Z,AZ @ COL,COL,AZ,Tanner Gordon,Eduardo Rodriguez,685299.0,593958.0,1.22,,,,,,,,,,,,,,,,,,,5,5,2,8,6.01,2.89,3.62,3.37,3.84,9.0,0.346,33.0,2.09,3.58,3.99,11.0,0.309,85.0
-823411,2026-09-24T22:05:00Z,MIL @ PHI,PHI,MIL,Andrew Painter,TBD,691725.0,,1.02,,,,,,,,,,,,,,,,,,,7,3,5,5,5.59,,6.3,5.26,3.8,9.0,0.347,20.0,,,,,,
-824707,2026-09-24T22:45:00Z,CLE @ BOS,BOS,CLE,Ranger Suarez,TBD,624133.0,,1.03,,,,,,,,,,,,,,,,,,,8,2,4,6,3.27,,1.48,2.74,3.37,10.0,0.279,44.0,,,,,,
-823493,2026-09-24T23:05:00Z,TB @ NYY,NYY,TB,Cam Schlittler,Ian Seymour,693645.0,693855.0,1.05,,,,,,,,,,,,,,,,,,,8,2,5,5,1.94,4.38,1.79,1.59,2.44,12.0,0.224,74.0,2.75,0.61,2.89,12.0,0.29,44.0
+823411,2026-09-24T22:05:00Z,MIL @ PHI,PHI,MIL,Andrew Painter,Bryse Wilson,691725.0,669060.0,1.02,,,,,,,,,,,,,,,,,,,7,3,5,5,5.59,3.67,6.3,5.26,3.8,9.0,0.347,20.0,5.53,4.66,3.46,11.0,0.381,53.0
+824707,2026-09-24T22:45:00Z,CLE @ BOS,BOS,CLE,Ranger Suarez,Daniel Espino,624133.0,682982.0,1.03,,,,,,,,,,,,,,,,,,,7,3,5,5,3.27,4.73,1.48,2.74,3.37,10.0,0.279,44.0,,,2.43,0.0,,0.0
+823493,2026-09-24T23:05:00Z,TB @ NYY,NYY,TB,Cam Schlittler,Ian Seymour,693645.0,693855.0,1.05,,,,,,,,,,,,,,,,,,,7,3,6,4,1.94,4.38,1.79,1.59,2.44,12.0,0.224,74.0,2.75,0.61,2.89,12.0,0.29,44.0
 824866,2026-09-24T23:15:00Z,CIN @ ATL,ATL,CIN,Tyler Mahle,Brady Singer,641816.0,663903.0,0.98,,,,,,,,,,,,,,,,,,,4,6,6,4,3.81,5.67,15.23,6.72,3.43,11.0,0.446,36.0,6.56,3.68,4.35,12.0,0.375,89.0
 824950,2026-09-25T01:40:00Z,HOU @ ATH,ATH,HOU,TBD,Peter Lambert,,663567.0,1.0,,,,,,,,,,,,,,,,,,,3,7,3,7,,3.7,,,,,,,3.1,4.18,4.03,7.0,0.261,19.0
-823087,2026-09-25T01:40:00Z,LAA @ SEA,SEA,LAA,TBD,Grayson Rodriguez,,680570.0,0.97,,,,,,,,,,,,,,,,,,,4,6,4,6,,5.96,,,,,,,3.44,3.57,4.29,7.0,0.297,34.0
+823087,2026-09-25T01:40:00Z,LAA @ SEA,SEA,LAA,Bryan Woo,Grayson Rodriguez,693433.0,680570.0,0.97,,,,,,,,,,,,,,,,,,,4,6,4,6,3.92,5.96,1.28,2.61,3.05,11.0,0.267,67.0,3.44,3.57,4.29,7.0,0.297,34.0
 823895,2026-09-25T02:10:00Z,SD @ LAD,LAD,SD,Tyler Glasnow,Nick Pivetta,607192.0,601713.0,0.96,,,,,,,,,,,,,,,,,,,8,2,7,3,3.46,3.3,2.54,2.19,2.29,11.0,0.211,108.0,4.01,3.99,3.7,13.0,0.349,166.0
