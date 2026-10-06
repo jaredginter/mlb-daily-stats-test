@@ -1,5 +1,5 @@
 game_id,game_time,matchup,home_team,away_team,home_pitcher_name,away_pitcher_name,home_pitcher_id,away_pitcher_id,park_factor,away_woba,away_wrc_plus,away_obp,away_ops_plus,away_barrel,away_hard_hit,away_k_pct,away_bb_pct,away_babip,home_woba,home_wrc_plus,home_obp,home_ops_plus,home_barrel,home_hard_hit,home_k_pct,home_bb_pct,home_babip,away_last10_w,away_last10_l,home_last10_w,home_last10_l,home_pitcher_season_era,away_pitcher_season_era,away_hitters_with_history,away_lineup_avg_xwoba,away_total_abs,home_pitcher_fip_vs_opp,home_pitcher_xfip_vs_opp,home_pitcher_season_xfip,home_hitters_with_history,home_lineup_avg_xwoba,home_total_abs,away_pitcher_fip_vs_opp,away_pitcher_xfip_vs_opp,away_pitcher_season_xfip
 849833,2026-10-07T20:00:00Z,CLE @ CWS,CWS,CLE,TBD,TBD,,,0.97,,,,,,,,,,,,,,,,,,,8,2,7,3,,,,,,,,,,,,,,
 849822,2026-10-07T22:00:00Z,LAD @ ATL,ATL,LAD,TBD,TBD,,,0.98,,,,,,,,,,,,,,,,,,,8,2,5,5,,,,,,,,,,,,,,
-849838,2026-10-08T00:00:00Z,TB @ NYY,NYY,TB,Max Fried,TBD,608331.0,,1.05,,,,,,,,,,,,,,,,,,,5,5,5,5,2.8,,13.0,0.228,147.0,3.89,3.45,3.26,,,,,,
+849838,2026-10-08T00:00:00Z,TB @ NYY,NYY,TB,Max Fried,Nick Martinez,608331.0,607259.0,1.05,,,,,,,,,,,,,,,,,,,5,5,5,5,2.8,3.1,13.0,0.228,147.0,3.89,3.45,3.26,15.0,0.306,130.0,4.31,3.99,4.02
 849827,2026-10-08T02:00:00Z,MIL @ SD,SD,MIL,TBD,TBD,,,0.95,,,,,,,,,,,,,,,,,,,8,2,8,2,,,,,,,,,,,,,,
